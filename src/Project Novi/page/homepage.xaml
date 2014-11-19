@@ -8,5 +8,9 @@
     
     <Grid Style="{StaticResource ContentRoot}">
         <TextBlock Text="{StaticResource appWelcome}" />
+        <DockPanel>
+            <Button Name="Left" DockPanel.Dock="Left">Ik zit links</Button>
+            <Button Name="Right" DockPanel.Dock="Right">Ik zit rechts</Button>
+        </DockPanel>
     </Grid>
 </UserControl>

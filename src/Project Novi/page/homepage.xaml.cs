@@ -23,6 +23,18 @@ namespace Project_Nova.Pages
         public Homepage()
         {
             InitializeComponent();
+
+            Left.Click += LeftClick;
+            Right.Click += RightClick;
+        }
+
+        void LeftClick(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Links is aangerand!");
+        }
+        void RightClick(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Rechts is aangerand!");
         }
     }
 }

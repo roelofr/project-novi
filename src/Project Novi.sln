@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project Novi", "Project Nova\Project Novi.csproj", "{1565A9B5-C6BE-470F-ABC3-508E8910552C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project Novi", "Project Novi\Project Novi.csproj", "{1565A9B5-C6BE-470F-ABC3-508E8910552C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
