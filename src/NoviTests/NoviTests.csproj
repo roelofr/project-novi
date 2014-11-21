@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>5436e333-358a-43f0-b37e-24ec6a47a800</ProjectGuid>
+    <ProjectGuid>{2671F748-6624-4565-9F28-86480EF238D0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NoviTests</RootNamespace>
