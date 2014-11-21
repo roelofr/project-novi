@@ -42,6 +42,11 @@ D:\Users\Roelof\Documents\Visual Studio 2013\Projects\Project Nova\src\Project N
 D:\Users\Roelof\Documents\Visual Studio 2013\Projects\Project Nova\src\Project Nova\obj\Debug\page\weather.g.cs
 D:\Users\Roelof\Documents\Visual Studio 2013\Projects\Project Nova\src\Project Nova\obj\Debug\page\homepage.baml
 D:\Users\Roelof\Documents\Visual Studio 2013\Projects\Project Nova\src\Project Nova\obj\Debug\page\homepage.g.cs
-D:\Users\Roelof\Documents\Visual Studio 2013\Projects\Project Nova\src\Project Novi\bin\Debug\Project Nova.exe.config
-D:\Users\Roelof\Documents\Visual Studio 2013\Projects\Project Nova\src\Project Novi\obj\Debug\Project Nova.exe
-D:\Users\Roelof\Documents\Visual Studio 2013\Projects\Project Nova\src\Project Novi\obj\Debug\Project Nova.pdb
+D:\Users\Roelof\Documents\Visual Studio 2013\Projects\Project Nova\src\Project Novi\bin\Debug\Project Novi.exe.config
+D:\Users\Roelof\Documents\Visual Studio 2013\Projects\Project Nova\src\Project Novi\bin\Debug\Project Novi.exe
+D:\Users\Roelof\Documents\Visual Studio 2013\Projects\Project Nova\src\Project Novi\bin\Debug\Project Novi.pdb
+D:\Users\Roelof\Documents\Visual Studio 2013\Projects\Project Nova\src\Project Novi\obj\Debug\Project Novi.csprojResolveAssemblyReference.cache
+D:\Users\Roelof\Documents\Visual Studio 2013\Projects\Project Nova\src\Project Novi\obj\Debug\Project_Novi.Properties.Resources.resources
+D:\Users\Roelof\Documents\Visual Studio 2013\Projects\Project Nova\src\Project Novi\obj\Debug\Project Novi.csproj.GenerateResource.Cache
+D:\Users\Roelof\Documents\Visual Studio 2013\Projects\Project Nova\src\Project Novi\obj\Debug\Project Novi.exe
+D:\Users\Roelof\Documents\Visual Studio 2013\Projects\Project Nova\src\Project Novi\obj\Debug\Project Novi.pdb
