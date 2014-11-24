@@ -47,6 +47,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>Project_Novi.NoviLauncher</StartupObject>
@@ -65,12 +66,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IController.cs" />
+    <Compile Include="Modules\Home\HomeModule.cs" />
+    <Compile Include="Modules\Home\HomeView.cs" />
     <Compile Include="Modules\IModule.cs" />
     <Compile Include="Modules\IView.cs" />
+    <Compile Include="NoviController.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Splash.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ViewFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Novi.cs">
@@ -93,6 +98,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Novi.resx">
+      <DependentUpon>Novi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
