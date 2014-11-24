@@ -21,7 +21,22 @@ date: November 2014
 ...
 
 # Inleiding
-<<<<<<< HEAD
+=======
+Dit is het functioneel ontwerp voor Team Awesomer voor het Project Novi product.
+
+# Use-Case Diagram
+Hier komt ons Use-Case Diagram
+![Use-Case Diagram v1](usecase-diagram.png)
+
+# 1. Zichtbare avatar
+Als gebruiker willen we een zichtbare avatar op het scherm zien.
+## Omschrijving
+Omdat we graag een avatar op het scherm zien verschijnen om het product aantrekkelijker te maken voor gebruikers, hebben we een avatar vor onze applicatie nodig.
+Deze avatar is altijd zichtbaar in de gebruikersinterface.
+
+## Schermontwerp
+![Schermontwerp zichtbare avatar](schermontwerpen/zichtbare-avatar.png)
+
 
 # 3 Weergave dialoog
 Als gebruiker wil ik de gesproken tekst op het scherm weergegeven zien zodat ik mee kan lezen met de gesproken tekst.
@@ -49,19 +64,3 @@ De teksten moeten op het juiste moment op de juiste manier getoond worden. De te
 | De gekozen tekst wordt 1 keer weergegeven | Pass |
 | Er wordt random een bericht weergeven uit de daarbijhorende catagorie | Pass |
 | Berichten kunnen worden gewijzigd/toegevoegd door alleen de .xml aan te passen | Pass |
-=======
-Dit is het functioneel ontwerp voor Team Awesomer voor het Project Novi product.
-
-# Use-Case Diagram
-Hier komt ons Use-Case Diagram
-![Use-Case Diagram v1](usecase-diagram.png)
-
-# 1. Zichtbare avatar
-Als gebruiker willen we een zichtbare avatar op het scherm zien.
-## Omschrijving
-Omdat we graag een avatar op het scherm zien verschijnen om het product aantrekkelijker te maken voor gebruikers, hebben we een avatar vor onze applicatie nodig.
-Deze avatar is altijd zichtbaar in de gebruikersinterface.
-
-## Schermontwerp
-![Schermontwerp zichtbare avatar](schermontwerpen/zichtbare-avatar.png)
->>>>>>> 456c55331b0eabe1d6199c94c8b5b0c16ee1db76
