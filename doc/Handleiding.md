@@ -1,6 +1,6 @@
 ---
 title: Handleiding
-group: ICTSE1a - KBS1
+group: Team Awesomer - ICTSE1a - KBS1
 author:
 - name: Arjan van der Weide
   snr: S1070619
