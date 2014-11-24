@@ -25,17 +25,17 @@ namespace Project_Novi.Tekst
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string Categorie = textBox1.Text;
+            string categorie = textBox1.Text;
 
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load("AvatarTekst.xml");
 
-            if (Categorie == "Welkom")
+            if (categorie == "Welkom")
             {         
                 XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/Table/Welkom");
                 string strTxt = "", strID = "";  
                 Random random = new Random();
-                int number = random.Next(4);
+                int number = random.Next(3);
                 foreach (XmlNode node in nodeList)
                 {
                     strID = node.SelectSingleNode("String_ID").InnerText;
@@ -64,9 +64,187 @@ namespace Project_Novi.Tekst
                             break;
                         }
                     }
-                    else if (number == 3)
+                    
+                }
+                
+            }
+            else if(categorie == "Poke")
+            {
+                XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/Table/Poke");
+                string strTxt = "", strID = "";
+                Random random = new Random();
+                int number = random.Next(3);
+                foreach (XmlNode node in nodeList)
+                {
+                    strID = node.SelectSingleNode("String_ID").InnerText;
+                    strTxt = node.SelectSingleNode("String_text").InnerText;
+                    if (number == 0)
                     {
-                        if (strID == "4")
+                        if (strID == "1")
+                        {
+                            MessageBox.Show(strTxt);
+                            break;
+                        }
+                    }
+                    else if (number == 1)
+                    {
+                        if (strID == "2")
+                        {
+                            MessageBox.Show(strTxt);
+                            break;
+                        }
+                    }
+                    else if (number == 2)
+                    {
+                        if (strID == "3")
+                        {
+                            MessageBox.Show(strTxt);
+                            break;
+                        }
+                    }
+                    
+                }
+            }
+            else if (categorie == "Idle")
+            {
+                XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/Table/Idle");
+                string strTxt = "", strID = "";
+                Random random = new Random();
+                int number = random.Next(3);
+                foreach (XmlNode node in nodeList)
+                {
+                    strID = node.SelectSingleNode("String_ID").InnerText;
+                    strTxt = node.SelectSingleNode("String_text").InnerText;
+                    if (number == 0)
+                    {
+                        if (strID == "1")
+                        {
+                            MessageBox.Show(strTxt);
+                            break;
+                        }
+                    }
+                    else if (number == 1)
+                    {
+                        if (strID == "2")
+                        {
+                            MessageBox.Show(strTxt);
+                            break;
+                        }
+                    }
+                    else if (number == 2)
+                    {
+                        if (strID == "3")
+                        {
+                            MessageBox.Show(strTxt);
+                            break;
+                        }
+                    }
+                    
+                }
+            }
+            else if (categorie == "Kaart")
+            {
+                XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/Table/Kaart");
+                string strTxt = "", strID = "";
+                Random random = new Random();
+                int number = random.Next(3);
+                foreach (XmlNode node in nodeList)
+                {
+                    strID = node.SelectSingleNode("String_ID").InnerText;
+                    strTxt = node.SelectSingleNode("String_text").InnerText;
+                    if (number == 0)
+                    {
+                        if (strID == "1")
+                        {
+                            MessageBox.Show(strTxt);
+                            break;
+                        }
+                    }
+                    else if (number == 1)
+                    {
+                        if (strID == "2")
+                        {
+                            MessageBox.Show(strTxt);
+                            break;
+                        }
+                    }
+                    else if (number == 2)
+                    {
+                        if (strID == "3")
+                        {
+                            MessageBox.Show(strTxt);
+                            break;
+                        }
+                    }
+                    
+                }
+            }
+            else if (categorie == "Route1")
+            {
+                XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/Table/RouteVragen");
+                string strTxt = "", strID = "";
+                Random random = new Random();
+                int number = random.Next(3);
+                foreach (XmlNode node in nodeList)
+                {
+                    strID = node.SelectSingleNode("String_ID").InnerText;
+                    strTxt = node.SelectSingleNode("String_text").InnerText;
+                    if (number == 0)
+                    {
+                        if (strID == "1")
+                        {
+                            MessageBox.Show(strTxt);
+                            break;
+                        }
+                    }
+                    else if (number == 1)
+                    {
+                        if (strID == "2")
+                        {
+                            MessageBox.Show(strTxt);
+                            break;
+                        }
+                    }
+                    else if (number == 2)
+                    {
+                        if (strID == "3")
+                        {
+                            MessageBox.Show(strTxt);
+                            break;
+                        }
+                    }
+                    
+                }
+            }
+            else if (categorie == "Route2")
+            {
+                XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/Table/RouteBerekenen");
+                string strTxt = "", strID = "";
+                Random random = new Random();
+                int number = random.Next(3);
+                foreach (XmlNode node in nodeList)
+                {
+                    strID = node.SelectSingleNode("String_ID").InnerText;
+                    strTxt = node.SelectSingleNode("String_text").InnerText;
+                    if (number == 0)
+                    {
+                        if (strID == "1")
+                        {
+                            MessageBox.Show(strTxt);
+                            break;
+                        }
+                    }
+                    else if (number == 1)
+                    {
+                        if (strID == "2")
+                        {
+                            MessageBox.Show(strTxt);
+                            break;
+                        }
+                    }
+                    else if (number == 2)
+                    {
+                        if (strID == "3")
                         {
                             MessageBox.Show(strTxt);
                             break;
@@ -74,14 +252,13 @@ namespace Project_Novi.Tekst
                     }
 
                 }
-                
             }
-            else if(Categorie == "Poke")
+            else if (categorie == "Route3")
             {
-                XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/Table/Poke");
+                XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/Table/BerekendeRoute");
                 string strTxt = "", strID = "";
                 Random random = new Random();
-                int number = random.Next(4);
+                int number = random.Next(2);
                 foreach (XmlNode node in nodeList)
                 {
                     strID = node.SelectSingleNode("String_ID").InnerText;
@@ -97,154 +274,6 @@ namespace Project_Novi.Tekst
                     else if (number == 1)
                     {
                         if (strID == "2")
-                        {
-                            MessageBox.Show(strTxt);
-                            break;
-                        }
-                    }
-                    else if (number == 2)
-                    {
-                        if (strID == "3")
-                        {
-                            MessageBox.Show(strTxt);
-                            break;
-                        }
-                    }
-                    else if (number == 3)
-                    {
-                        if (strID == "4")
-                        {
-                            MessageBox.Show(strTxt);
-                            break;
-                        }
-                    }
-                }
-            }
-            else if (Categorie == "Idle")
-            {
-                XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/Table/Idle");
-                string strTxt = "", strID = "";
-                Random random = new Random();
-                int number = random.Next(4);
-                foreach (XmlNode node in nodeList)
-                {
-                    strID = node.SelectSingleNode("String_ID").InnerText;
-                    strTxt = node.SelectSingleNode("String_text").InnerText;
-                    if (number == 0)
-                    {
-                        if (strID == "1")
-                        {
-                            MessageBox.Show(strTxt);
-                            break;
-                        }
-                    }
-                    else if (number == 1)
-                    {
-                        if (strID == "2")
-                        {
-                            MessageBox.Show(strTxt);
-                            break;
-                        }
-                    }
-                    else if (number == 2)
-                    {
-                        if (strID == "3")
-                        {
-                            MessageBox.Show(strTxt);
-                            break;
-                        }
-                    }
-                    else if (number == 3)
-                    {
-                        if (strID == "4")
-                        {
-                            MessageBox.Show(strTxt);
-                            break;
-                        }
-                    }
-                }
-            }
-            else if (Categorie == "Kaart")
-            {
-                XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/Table/Kaart");
-                string strTxt = "", strID = "";
-                Random random = new Random();
-                int number = random.Next(4);
-                foreach (XmlNode node in nodeList)
-                {
-                    strID = node.SelectSingleNode("String_ID").InnerText;
-                    strTxt = node.SelectSingleNode("String_text").InnerText;
-                    if (number == 0)
-                    {
-                        if (strID == "1")
-                        {
-                            MessageBox.Show(strTxt);
-                            break;
-                        }
-                    }
-                    else if (number == 1)
-                    {
-                        if (strID == "2")
-                        {
-                            MessageBox.Show(strTxt);
-                            break;
-                        }
-                    }
-                    else if (number == 2)
-                    {
-                        if (strID == "3")
-                        {
-                            MessageBox.Show(strTxt);
-                            break;
-                        }
-                    }
-                    else if (number == 3)
-                    {
-                        if (strID == "4")
-                        {
-                            MessageBox.Show(strTxt);
-                            break;
-                        }
-                    }
-                }
-            }
-            else if (Categorie == "Route")
-            {
-                XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/Table/Route");
-                string strTxt = "", strID = "";
-                Random random = new Random();
-                int number = random.Next(4);
-                foreach (XmlNode node in nodeList)
-                {
-                    strID = node.SelectSingleNode("String_ID").InnerText;
-                    strTxt = node.SelectSingleNode("String_text").InnerText;
-                    if (number == 0)
-                    {
-                        if (strID == "1")
-                        {
-                            MessageBox.Show(strTxt);
-                            break;
-                        }
-                    }
-                    else if (number == 1)
-                    {
-                        if (strID == "2")
-                        {
-                            MessageBox.Show(strTxt);
-                            break;
-                        }
-                    }
-                    else if (number == 2)
-                    {
-                        if (strID == "3")
-                        {
-                            MessageBox.Show(strTxt);
-                            break;
-                        }
-                    }
-                    else if (number == 3)
-                    {
-                        if (strID == "4")
                         {
                             MessageBox.Show(strTxt);
                             break;

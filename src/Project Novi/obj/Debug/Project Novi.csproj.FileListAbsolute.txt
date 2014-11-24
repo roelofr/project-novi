@@ -1,0 +1,10 @@
+C:\Users\Arjan\Documents\novi\src\Project Novi\bin\Debug\Project Novi.exe.config
+C:\Users\Arjan\Documents\novi\src\Project Novi\bin\Debug\Project Novi.exe
+C:\Users\Arjan\Documents\novi\src\Project Novi\bin\Debug\Project Novi.pdb
+C:\Users\Arjan\Documents\novi\src\Project Novi\obj\Debug\Project_Novi.Novi.resources
+C:\Users\Arjan\Documents\novi\src\Project Novi\obj\Debug\Project_Novi.Properties.Resources.resources
+C:\Users\Arjan\Documents\novi\src\Project Novi\obj\Debug\Project_Novi.Tekst.TextDisplayer.resources
+C:\Users\Arjan\Documents\novi\src\Project Novi\obj\Debug\Project Novi.csproj.GenerateResource.Cache
+C:\Users\Arjan\Documents\novi\src\Project Novi\obj\Debug\Project Novi.exe
+C:\Users\Arjan\Documents\novi\src\Project Novi\obj\Debug\Project Novi.pdb
+C:\Users\Arjan\Documents\novi\src\Project Novi\obj\Debug\Project Novi.csprojResolveAssemblyReference.cache

@@ -1,0 +1,5 @@
+C:\Users\Arjan\Documents\novi\src\NoviTests\bin\Debug\NoviTests.dll
+C:\Users\Arjan\Documents\novi\src\NoviTests\bin\Debug\NoviTests.pdb
+C:\Users\Arjan\Documents\novi\src\NoviTests\obj\Debug\NoviTests.csprojResolveAssemblyReference.cache
+C:\Users\Arjan\Documents\novi\src\NoviTests\obj\Debug\NoviTests.dll
+C:\Users\Arjan\Documents\novi\src\NoviTests\obj\Debug\NoviTests.pdb

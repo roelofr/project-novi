@@ -15,16 +15,11 @@
 <String_text>Welkom op Windesheim, waarmee kan ik u van dienst zijn?</String_text>
 </Welkom>
 
-<Welkom>
-<String_ID>4</String_ID>
-<String_text>Hoi, wat moet je?</String_text>
-</Welkom>
-
 
 
 <Poke>
 <String_ID>1</String_ID>
-<String_text>Au, stop daarmee!</String_text>
+<String_text>Au, Dat doet zeer!</String_text>
 </Poke>
 
 <Poke>
@@ -37,16 +32,11 @@
 <String_text>He, handen thuis!</String_text>
 </Poke>
 
-<Poke>
-<String_ID>4</String_ID>
-<String_text>Help, ik wordt aangevallen!</String_text>
-</Poke>
-
 
 
 <Idle>
 <String_ID>1</String_ID>
-<String_text>Wat een mooie dag om rond te hangen</String_text>
+<String_text>Een mooie dag om rond te hangen</String_text>
 </Idle>
 
 <Idle>
@@ -57,11 +47,6 @@
 <Idle>
 <String_ID>3</String_ID>
 <String_text>Ik hang hier niet voor niets hoor!</String_text>
-</Idle>
-
-<Idle>
-<String_ID>4</String_ID>
-<String_text>Ik verveel me</String_text>
 </Idle>
 
 
@@ -78,34 +63,53 @@
 
 <Kaart>
 <String_ID>3</String_ID>
-<String_text>Op de kaart, op de kaart, op de kaart, op de kaart</String_text>
-</Kaart>
-
-<Kaart>
-<String_ID>4</String_ID>
-<String_text>De Kaart? Vooruit dan maar</String_text>
+<String_text>Hier is de plattegrond van dit gebouw</String_text>
 </Kaart>
 
 
 
-<Route>
+<RouteVragen>
 <String_ID>1</String_ID>
-<String_text>Ik zal eens kijken hoe u daar het snelst komt</String_text>
-</Route>
+<String_text>Waar wilt u naartoe?</String_text>
+</RouteVragen>
 
-<Route>
+<RouteVragen>
 <String_ID>2</String_ID>
 <String_text>Waar kan ik u naartoe brengen?</String_text>
-</Route>
+</RouteVragen>
 
-<Route>
+<RouteVragen>
 <String_ID>3</String_ID>
-<String_text>Als ik jou was zou ik de trap maar nemen</String_text>
-</Route>
+<String_text>Bent u verdwaald?</String_text>
+</RouteVragen>
 
-<Route>
-<String_ID>4</String_ID>
-<String_text>Deze route kun je het beste nemen</String_text>
-</Route>
+
+
+<RouteBerekenen>
+<String_ID>1</String_ID>
+<String_text>Oke, ik zal de route berekenen</String_text>
+</RouteBerekenen>
+
+<RouteBerekenen>
+<String_ID>2</String_ID>
+<String_text>Ik zal eens kijken hoe u daar het snelst komt</String_text>
+</RouteBerekenen>
+
+<RouteBerekenen>
+<String_ID>3</String_ID>
+<String_text>Een moment geduld alstublieft</String_text>
+</RouteBerekenen>
+
+
+
+<BerekendeRoute>
+<String_ID>1</String_ID>
+<String_text>Hier is uw route, misschien kunt u beter met de lift gaan</String_text>
+</BerekendeRoute>
+
+<BerekendeRoute>
+<String_ID>2</String_ID>
+<String_text>Deze route kunt u het beste nemen, maar ik raad wel de trap aan</String_text>
+</BerekendeRoute>
 
 </Table>
