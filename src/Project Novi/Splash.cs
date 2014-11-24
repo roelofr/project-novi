@@ -13,6 +13,9 @@ namespace Project_Novi
     public class Splash : Form
     {
         Timer closeTimer;
+        int visibleTime { get { return 400; } }
+
+        int visibleFor;
 
         /// <summary>
         /// Required designer variable.
@@ -40,13 +43,17 @@ namespace Project_Novi
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 
             this.CenterToScreen();
-
-            this.Load += SplashLoaded;
         }
 
         public Splash()
         {
             InitializeWindow();
+
+            visibleFor = 0;
+
+            this.Load += SplashLoaded;
+            this.KeyDown += Debug_KeyPressed;
+            this.Opacity = 0;
         }
 
         /// <summary>
@@ -57,8 +64,8 @@ namespace Project_Novi
         public void SplashLoaded(object sender, EventArgs e)
         {
             closeTimer = new Timer();
-            closeTimer.Interval = 1000 * 4;
-            closeTimer.Tick += closeTimerTrigger;
+            closeTimer.Interval = 10;
+            closeTimer.Tick += animationTick;
             closeTimer.Start();
         }
 
@@ -67,9 +74,27 @@ namespace Project_Novi
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void closeTimerTrigger(object sender, EventArgs e)
+        void animationTick(object sender, EventArgs e)
         {
-            closeTimer.Stop();
+            visibleFor += closeTimer.Interval;
+
+            if (visibleFor > visibleTime)
+            {
+                closeTimer.Stop();
+                return;
+            }
+
+            this.Opacity = Math.Min(1, (float)visibleFor / (float)visibleTime);
+        }
+        /// <summary>
+        /// Debug functionality that closes the splash if a key is pressed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void Debug_KeyPressed(object sender, KeyEventArgs e)
+        {
+            if (closeTimer.Enabled)
+                return;
             this.Close();
         }
 
