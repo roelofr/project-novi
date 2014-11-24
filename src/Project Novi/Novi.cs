@@ -15,6 +15,8 @@ namespace Project_Novi
         public Novi()
         {
             InitializeComponent();
+            TTS.TestTTS hoi = new TTS.TestTTS();
+            hoi.Show();
         }
     }
 }
