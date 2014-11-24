@@ -15,6 +15,18 @@ namespace Project_Novi
         public Novi()
         {
             InitializeComponent();
+
+            this.Visible = false;
+
+            this.Load += OpenSplashWindow;
+        }
+
+        void OpenSplashWindow(object sender, EventArgs e)
+        {
+            Splash splash = new Splash();
+            splash.ShowDialog();
+
+            this.Visible = true;
         }
     }
 }

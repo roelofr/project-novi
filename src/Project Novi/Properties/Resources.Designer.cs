@@ -61,7 +61,7 @@ namespace Project_Novi.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to project-luna.
+        ///   Looks up a localized string similar to project-novi.
         /// </summary>
         internal static string AppDataFolder {
             get {
@@ -70,7 +70,17 @@ namespace Project_Novi.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Project Luna.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap novi_logo {
+            get {
+                object obj = ResourceManager.GetObject("novi_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project Novi.
         /// </summary>
         internal static string ProgramName {
             get {

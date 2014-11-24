@@ -68,6 +68,9 @@
     <Compile Include="Modules\IModule.cs" />
     <Compile Include="Modules\IView.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="Splash.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Novi.cs">
@@ -122,6 +125,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules\Home\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AppLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\novi-logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
