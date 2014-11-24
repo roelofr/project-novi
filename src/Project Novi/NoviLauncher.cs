@@ -14,7 +14,8 @@ namespace Project_Novi
                 // Open main app
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Novi());
+                Application.Run(new Tekst.TextSaver());
+                //Application.Run(new Novi());
             
         }
 
