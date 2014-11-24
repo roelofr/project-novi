@@ -1,6 +1,6 @@
 ﻿namespace Project_Novi.Tekst
 {
-    partial class TextSaver
+    partial class TextDisplayer
     {
         /// <summary>
         /// Required designer variable.
@@ -50,15 +50,16 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // TextSaver
+            // TextDisplayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
-            this.Name = "TextSaver";
-            this.Text = "TextSaver";
+            this.Name = "TextDisplayer";
+            this.Text = "TextDisplayer";
+            this.Load += new System.EventHandler(this.TextSaver_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

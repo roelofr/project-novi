@@ -1,0 +1,111 @@
+<Table>
+
+<Welkom>
+<String_ID>1</String_ID>
+<String_text>Welkom in het T-gebouw, kan ik u helpen?</String_text>
+</Welkom>
+
+<Welkom>
+<String_ID>2</String_ID>
+<String_text>Welkom, wat kan ik voor u doen?</String_text>
+</Welkom>
+
+<Welkom>
+<String_ID>3</String_ID>
+<String_text>Welkom op Windesheim, waarmee kan ik u van dienst zijn?</String_text>
+</Welkom>
+
+<Welkom>
+<String_ID>4</String_ID>
+<String_text>Hoi, wat moet je?</String_text>
+</Welkom>
+
+
+
+<Poke>
+<String_ID>1</String_ID>
+<String_text>Au, stop daarmee!</String_text>
+</Poke>
+
+<Poke>
+<String_ID>2</String_ID>
+<String_text>Dat is geen optie!</String_text>
+</Poke>
+
+<Poke>
+<String_ID>3</String_ID>
+<String_text>He, handen thuis!</String_text>
+</Poke>
+
+<Poke>
+<String_ID>4</String_ID>
+<String_text>Help, ik wordt aangevallen!</String_text>
+</Poke>
+
+
+
+<Idle>
+<String_ID>1</String_ID>
+<String_text>Wat een mooie dag om rond te hangen</String_text>
+</Idle>
+
+<Idle>
+<String_ID>2</String_ID>
+<String_text>Is daar iemand?</String_text>
+</Idle>
+
+<Idle>
+<String_ID>3</String_ID>
+<String_text>Ik hang hier niet voor niets hoor!</String_text>
+</Idle>
+
+<Idle>
+<String_ID>4</String_ID>
+<String_text>Ik verveel me</String_text>
+</Idle>
+
+
+
+<Kaart>
+<String_ID>1</String_ID>
+<String_text>Ik zal even de kaart erbij pakken</String_text>
+</Kaart>
+
+<Kaart>
+<String_ID>2</String_ID>
+<String_text>Eens kijken hoe dit gebouw eruit ziet</String_text>
+</Kaart>
+
+<Kaart>
+<String_ID>3</String_ID>
+<String_text>Op de kaart, op de kaart, op de kaart, op de kaart</String_text>
+</Kaart>
+
+<Kaart>
+<String_ID>4</String_ID>
+<String_text>De Kaart? Vooruit dan maar</String_text>
+</Kaart>
+
+
+
+<Route>
+<String_ID>1</String_ID>
+<String_text>Ik zal eens kijken hoe u daar het snelst komt</String_text>
+</Route>
+
+<Route>
+<String_ID>2</String_ID>
+<String_text>Waar kan ik u naartoe brengen?</String_text>
+</Route>
+
+<Route>
+<String_ID>3</String_ID>
+<String_text>Als ik jou was zou ik de trap maar nemen</String_text>
+</Route>
+
+<Route>
+<String_ID>4</String_ID>
+<String_text>Deze route kun je het beste nemen</String_text>
+</Route>
+
+</Table>

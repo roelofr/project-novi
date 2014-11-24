@@ -11,9 +11,9 @@ using System.Xml;
 
 namespace Project_Novi.Tekst
 {
-    public partial class TextSaver : Form
+    public partial class TextDisplayer : Form
     {
-        public TextSaver()
+        public TextDisplayer()
         {
             InitializeComponent();
         }
@@ -256,6 +256,11 @@ namespace Project_Novi.Tekst
             {
                 MessageBox.Show("Die ken ik niet!");
             }
+        }
+
+        private void TextSaver_Load(object sender, EventArgs e)
+        {
+
         }          
     } 
 }
