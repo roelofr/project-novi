@@ -39,7 +39,7 @@ Deze avatar is altijd zichtbaar in de gebruikersinterface.
 # Applicatiescherm
 Als gebruiker wil ik een scherm zien waarop een ruimte voor een avatar is en waarop ik teksten kan lezen die de avatar zegt.
 
-![Ontwerp applicatiescherm](images/schermontwerpen/applicatiescherm.png)
+![Ontwerp applicatiescherm](images/schermontwerpen/zichtbare-avatar.png)
 
 ## Test Cases
 ### Opstarten
