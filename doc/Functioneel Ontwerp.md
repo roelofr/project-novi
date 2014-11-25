@@ -26,7 +26,7 @@ Dit is het functioneel ontwerp voor Team Awesomer voor het Project Novi product.
 
 # Use-Case Diagram
 Hier komt ons Use-Case Diagram
-![Use-Case Diagram v1](usecase-diagram.png)
+![Use-Case Diagram v1](images/usecase-diagram.png)
 
 # 1. Zichtbare avatar
 Als gebruiker willen we een zichtbare avatar op het scherm zien.
@@ -35,13 +35,13 @@ Omdat we graag een avatar op het scherm zien verschijnen om het product aantrekk
 Deze avatar is altijd zichtbaar in de gebruikersinterface.
 
 ## Schermontwerp
-![Schermontwerp zichtbare avatar](schermontwerpen/zichtbare-avatar.png)
+![Schermontwerp zichtbare avatar](images/schermontwerpen/zichtbare-avatar.png)
 
 
 # 3 Weergave dialoog
 Als gebruiker wil ik de gesproken tekst op het scherm weergegeven zien zodat ik mee kan lezen met de gesproken tekst.
 
-![Mockup tekst weergeven](images/mockup_tekst_weergeven.png)
+![Mockup tekst weergeven](images/schermontwerpen/mockup_tekst_weergeven.png)
 
 ## 3a Teksten schrijven
 ### Toelichting
