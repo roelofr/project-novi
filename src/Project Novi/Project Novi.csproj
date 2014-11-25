@@ -53,6 +53,9 @@
     <StartupObject>Project_Novi.NoviLauncher</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NAudio">
+      <HintPath>References\NAudio.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -72,6 +75,13 @@
     <Compile Include="Modules\IView.cs" />
     <Compile Include="NoviController.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="TTS\TestTTS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TTS\TestTTS.Designer.cs">
+      <DependentUpon>TestTTS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TTS\TTS.cs" />
     <Compile Include="Splash.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +115,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TTS\testTTS.resx">
+      <DependentUpon>TestTTS.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

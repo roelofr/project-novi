@@ -49,6 +49,14 @@ Bij het opstarten van de appplicatie opent het applicatiescherm waarop een (ruim
 Als ik klik op een tegel, krijg ik een reactie die van toepassing is op de tegel waar ik op klik.
 Als ik klik op de avatar, krijg ik een toepasselijke reactie.
 
+
+# Pratende avatar
+Als gebruiker wil ik de gesproken tekst op het scherm weergegeven zien.
+
+## Omschrijving
+Om de aandacht te trekken van langslopende personen en om de gebruiker het gevoel te geven met een levend wezen te maken te hebben. is het van belang dat de avatar ook kan praten. 
+
+
 # Weergave dialoog
 Als gebruiker wil ik de gesproken tekst op het scherm weergegeven zien zodat ik mee kan lezen met de gesproken tekst.
 
