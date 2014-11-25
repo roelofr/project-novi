@@ -131,12 +131,38 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Avatar\avatar base.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AppLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\novi-logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar\Face\Mouths\closed happy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar\Face\Mouths\closed sad.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar\Face\Mouths\open happy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar\Face\Mouths\open round.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar\Face\Mouths\open sad.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar\Face\Eyes\avatar eyes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar\Face\avatar nose.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar\Face\Eyes\avatar pupils.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
