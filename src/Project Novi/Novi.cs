@@ -12,10 +12,6 @@ namespace Project_Novi
         public Novi()
         {
             InitializeComponent();
-            TTS.TTS TTS = new TTS.TTS();
-            TTS.TextToSpeech("Dit is een hele lange zin zonder wat dan ook en ik ga nog even lekker door misschien haal ik wel honderd karakters of misschien ook niet dat zullen we wel zien");
-            //TTS.TestTTS hoi = new TTS.TestTTS();
-            //hoi.Show();
             Hide();
             var splash = new Splash();
             splash.ShowDialog();
@@ -37,12 +33,6 @@ namespace Project_Novi
             g.ScaleTransform(scale, scale);
 
             View.Render(g, rect);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Tekst.TextDisplayer text = new Tekst.TextDisplayer();
-            text.Show();
         }
     }
 }

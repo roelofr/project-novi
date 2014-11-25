@@ -12,25 +12,22 @@ namespace Project_Novi.TTS
     // This class allows you to generate audio from text input:
     //  Use method TextToSpeech() to input a text. 
 
-    class TTS
+    static class TTS
     {
         private const string URL = "http://translate.google.com/translate_tts?tl={0}&q={1}";
-        private string strURL;
-        private string[] sentences;
-        private int counter;
+        private static string strURL;
+        private static string[] sentences;
+        private static int counter;
 
-        public TTS()
-        {
-        }
 
         //building the url to format text
-        private void BuildURL(string text)
+        private static void BuildURL(string text)
         {
             strURL = string.Format(URL, "nl", text.ToLower().Replace(" ", "%20"));
         }
 
         //requesting the Google Translate service
-        private void GenerateSpeechFromText()
+        private static void GenerateSpeechFromText()
         {
             if (sentences != null)
             {
@@ -52,7 +49,7 @@ namespace Project_Novi.TTS
         }
 
         //When file downloaded start audio
-        void serviceRequest_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
+        static void serviceRequest_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
         {
             if (e.Error == null && e.Result != null)
             {
@@ -66,7 +63,7 @@ namespace Project_Novi.TTS
         }
 
         //play audio
-        private void PlayMP3(byte[] soundDataArray)
+        private static void PlayMP3(byte[] soundDataArray)
         {
             Stream stream = new MemoryStream(soundDataArray);
             if (stream != null)
@@ -80,7 +77,7 @@ namespace Project_Novi.TTS
         }
 
         //when playing audio completed, generate next sentence
-        void DirectSoundOut_PlaybackStopped(object sender, StoppedEventArgs e)
+        static void DirectSoundOut_PlaybackStopped(object sender, StoppedEventArgs e)
         {
             counter++;
             GenerateSpeechFromText();
@@ -88,7 +85,7 @@ namespace Project_Novi.TTS
 
         
         //split input string in sentences and generate first sentence
-        public void TextToSpeech(string text)
+        public static void TextToSpeech(string text)
         {
             char[] splitters = { ',', '.', '?', '!' };
             sentences = text.Split(splitters);

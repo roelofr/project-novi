@@ -85,13 +85,8 @@
     <Compile Include="Splash.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Text\TextManager.cs" />
     <Compile Include="ViewFactory.cs" />
-    <Compile Include="Tekst\TextDisplayer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Tekst\TextDisplayer.Designer.cs">
-      <DependentUpon>TextDisplayer.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Novi.cs">
@@ -123,9 +118,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TTS\testTTS.resx">
       <DependentUpon>TestTTS.cs</DependentUpon>
-	</EmbeddedResource>
-    <EmbeddedResource Include="Tekst\TextDisplayer.resx">
-      <DependentUpon>TextDisplayer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
