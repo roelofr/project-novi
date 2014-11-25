@@ -17,9 +17,15 @@ namespace Project_Novi.Modules.Home
 
         public void Render(Graphics graphics, Rectangle rectangle)
         {
-            // TODO: Don't simulate a BSOD
             graphics.Clear(Color.FromArgb(255, 32, 103, 178));
-            graphics.DrawString(":(", new Font("Segoe UI", 200), Brushes.White, 200, 100);
+
+            var stringFormat = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
+            Rectangle rect1 = new Rectangle(1, 1, 1920, 300);
+            Font strFont = new Font("Sergoe UI", 50);
+            var strTxt = Text.TextManager.GetText("Welkom");
+
+            var stringSize = graphics.MeasureString(strTxt, strFont);
+            graphics.DrawString(strTxt, strFont, Brushes.White, rect1, stringFormat);
         }
     }
 }
