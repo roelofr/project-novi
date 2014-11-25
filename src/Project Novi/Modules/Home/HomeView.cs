@@ -26,17 +26,26 @@ namespace Project_Novi.Modules.Home
 
             XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/Table/Welkom");
             string strTxt = "", strID = "";
-            Random random = new Random();
-            int number = random.Next(3);
+           // Random random = new Random();
+            int number = 1;
             foreach (XmlNode node in nodeList)
             {
                 strID = node.SelectSingleNode("String_ID").InnerText;
                 strTxt = node.SelectSingleNode("String_text").InnerText;
-                if (number == 0)
+                Font strFont = new Font("Sergoe UI", 50);
+                StringFormat stringFormat = new StringFormat();
+                stringFormat.Alignment = StringAlignment.Center;
+                stringFormat.LineAlignment = StringAlignment.Center;
+                Rectangle rect1 = new Rectangle(1, 1, 1920, 1080);
+
+
+                if (strID == "1")
                 {
                     if (strID == "1")
                     {
-                        graphics.DrawString(strTxt, new Font("Segoe UI", 50), Brushes.White, 150, 100);
+                        SizeF stringSize = new SizeF();
+                        stringSize = graphics.MeasureString(strTxt, strFont);
+                        graphics.DrawString(strTxt, strFont, Brushes.Blue, rect1, stringFormat);
                         break;
                     }
                 }
