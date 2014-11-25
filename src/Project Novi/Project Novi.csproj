@@ -52,9 +52,8 @@
     <StartupObject>Project_Novi.NoviLauncher</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NAudio, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\NAudio.dll</HintPath>
+    <Reference Include="NAudio">
+      <HintPath>References\NAudio.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

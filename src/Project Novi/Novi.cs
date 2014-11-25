@@ -15,8 +15,10 @@ namespace Project_Novi
         public Novi()
         {
             InitializeComponent();
-            TTS.TestTTS hoi = new TTS.TestTTS();
-            hoi.Show();
+            TTS.TTS TTS = new TTS.TTS();
+            TTS.TextToSpeech("Dit is een hele lange zin zonder wat dan ook en ik ga nog even lekker door misschien haal ik wel honderd karakters of misschien ook niet dat zullen we wel zien");
+            //TTS.TestTTS hoi = new TTS.TestTTS();
+            //hoi.Show();
         }
     }
 }
