@@ -1,6 +1,6 @@
 ---
 title: Technisch Ontwerp
-group: Team Awesomer - ICTSE1a - KBS1
+group: ICTSE1a - KBS1
 author:
 - name: Arjan van der Weide
   snr: S1070619
@@ -21,8 +21,6 @@ date: November 2014
 ...
 
 # Inleiding
-Dit is het technisch ontwerp voor Team Awesomer voor het Project Novi product.
+In dit document staan de technische aspecten van het project beschreven. Er zullen hiervoor schematechnieken gebruikt worden die ons geleerd 
 
-# Klassediagram
-Hier komt ons klassediagram
-![Klassediagram v1](klassediagram.png)
+# Tekst weergeven
