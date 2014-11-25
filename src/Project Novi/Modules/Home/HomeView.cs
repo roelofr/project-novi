@@ -24,6 +24,8 @@ namespace Project_Novi.Modules.Home
             var stringFormat = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
             Rectangle rect1 = new Rectangle(1, 1, 1920, 300);
             Font strFont = new Font("Sergoe UI", 50);
+            //Available categories: Welkom, Poke, Idle, Kaart, RouteVragen, RouteBerekenen en BerekendeRoute
+            //Let op: Exact overnemen!!!
             var strTxt = Text.TextManager.GetText("Welkom");
 
             var stringSize = graphics.MeasureString(strTxt, strFont);
