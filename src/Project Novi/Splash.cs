@@ -1,52 +1,43 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Project_Novi
 {
     public class Splash : Form
     {
-        Timer closeTimer;
+        Timer _closeTimer;
+        private const int VisibleTime = 400;
 
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        int _visibleFor;
 
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeWindow()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Project novi";
-            this.BackColor = Color.FromArgb(166, 166, 166);
-            this.ControlBox = false;
+            AutoScaleMode = AutoScaleMode.Font;
+            Text = "Project Novi";
+            BackColor = Color.FromArgb(166, 166, 166);
+            ControlBox = false;
 
-            this.BackgroundImage = Properties.Resources.novi_logo;
-            this.BackgroundImageLayout = ImageLayout.Center;
+            BackgroundImage = Properties.Resources.novi_logo;
+            BackgroundImageLayout = ImageLayout.Center;
 
-            this.Size = new Size(300, 150);
-            this.AutoSize = false;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Size = new Size(300, 150);
+            AutoSize = false;
+            FormBorderStyle = FormBorderStyle.None;
 
-            this.CenterToScreen();
-
-            this.Load += SplashLoaded;
+            CenterToScreen();
         }
 
         public Splash()
         {
             InitializeWindow();
+
+            _visibleFor = 0;
+
+            Load += SplashLoaded;
+            KeyDown += Debug_KeyPressed;
+            MouseDown += Debug_MouseClicked;
+            Opacity = 0;
         }
 
         /// <summary>
@@ -56,35 +47,44 @@ namespace Project_Novi
         /// <param name="e"></param>
         public void SplashLoaded(object sender, EventArgs e)
         {
-            closeTimer = new Timer();
-            closeTimer.Interval = 1000 * 4;
-            closeTimer.Tick += closeTimerTrigger;
-            closeTimer.Start();
+            _closeTimer = new Timer { Interval = 10 };
+            _closeTimer.Tick += AnimationTick;
+            _closeTimer.Start();
         }
 
         /// <summary>
-        /// Closes the window at the first tick of the timer
+        /// Increases the opacity of the window every tick.
+        /// Stops fading in when the window is fully visible.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void closeTimerTrigger(object sender, EventArgs e)
+        void AnimationTick(object sender, EventArgs e)
         {
-            closeTimer.Stop();
-            this.Close();
+            _visibleFor += _closeTimer.Interval;
+
+            if (_visibleFor > VisibleTime)
+            {
+                _closeTimer.Stop();
+                return;
+            }
+
+            Opacity = Math.Min(1, (float)_visibleFor / VisibleTime);
         }
 
+        /// <summary>
+        /// Debug functionality that closes the splash if a key is pressed.
+        /// </summary>
+        void Debug_KeyPressed(object sender, KeyEventArgs e)
+        {
+            Close();
+        }
 
         /// <summary>
-        /// Clean up any resources being used.
+        /// Debug functionality that closes the splash if a mouse button is pressed.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
+        void Debug_MouseClicked(object sender, MouseEventArgs e)
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
+            Close();
         }
     }
 }
