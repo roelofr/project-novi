@@ -34,11 +34,5 @@ namespace Project_Novi
 
             View.Render(g, rect);
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Tekst.TextDisplayer text = new Tekst.TextDisplayer();
-            text.Show();
-        }
     }
 }
