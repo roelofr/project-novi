@@ -35,3 +35,10 @@ Deze avatar is altijd zichtbaar in de gebruikersinterface.
 
 ## Schermontwerp
 ![Schermontwerp zichtbare avatar](schermontwerpen/zichtbare-avatar.png)
+
+# 2. Pratende avatar
+Als gebruiker wil ik de gesproken tekst op het scherm weergegeven zien.
+
+## Omschrijving
+Om de aandacht te trekken van langslopende personen en om de gebruiker het gevoel te geven met een levend wezen te maken te hebben. is het van belang dat de avatar ook kan praten. 
+
