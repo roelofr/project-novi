@@ -26,11 +26,13 @@ namespace Project_Novi.TTS
             text = "Welkom in gebouw t!";
         }
 
+        //building the url to format text
         private void BuildURL()
         {
             strURL = string.Format(URL, "nl", text.ToLower().Replace(" ", "%20"));
         }
 
+        //requesting the Google Translate service
         private void GenerateSpeechFromText()
         {
             WebClient serviceRequest = new WebClient();
@@ -46,21 +48,21 @@ namespace Project_Novi.TTS
             }
         }
 
-
+        //When file downloaded start audio
         void serviceRequest_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
         {
             if (e.Error == null && e.Result != null)
             {
-                    // play MP3 using nAudio lib
                     PlayMP3(e.Result);
             }
             else
             {
-                //te lang
+                //Service returns null or input more than 100 char
                 MessageBox.Show("Ik kan dit niet uitspreken!");
             }
         }
 
+        //playing audio
         private void PlayMP3(byte[] soundDataArray)
         {
             Stream stream = new MemoryStream(soundDataArray);
@@ -73,6 +75,7 @@ namespace Project_Novi.TTS
             }
         }
 
+        //for testing purposes
         private void button1_Click(object sender, EventArgs e)
         {
             BuildURL();
