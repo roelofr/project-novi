@@ -37,11 +37,17 @@ Deze avatar is altijd zichtbaar in de gebruikersinterface.
 ## Schermontwerp
 ![Schermontwerp zichtbare avatar](images/schermontwerpen/zichtbare-avatar.png)
 
-# 2. Pratende avatar
-Als gebruiker wil ik de gesproken tekst op het scherm weergegeven zien.
+# 2 Pratende avatar
+Als gebruiker wil ik de tekst via audio te horen krijgen, zodat ik meer het gevoel heb dat ik met een levend wezen te maken heb. 
 
-## Omschrijving
-Om de aandacht te trekken van langslopende personen en om de gebruiker het gevoel te geven met een levend wezen te maken te hebben. is het van belang dat de avatar ook kan praten. 
+### Toelichting
+Om de aandacht te trekken van langslopende personen en om de gebruiker het gevoel te geven met een levend wezen te maken te hebben, is het van belang dat de avatar ook kan praten.
+Op deze manier wordt de interactie tussen de gebruiker en het scherm levendiger en krijgt de gebruiker meer het idee echt geholpen te worden.
+
+### Testscenario's
+| Scenario  | Verwachte uitkomst    |
+| :---      | :---                  |
+| Bij het verschijnen van nieuwe tekst op het scherm, wordt deze uitgesproken. | Pass |
 
 
 # 3 Weergave dialoog
