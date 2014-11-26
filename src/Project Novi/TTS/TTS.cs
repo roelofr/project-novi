@@ -72,7 +72,11 @@ namespace Project_Novi.TTS
                 var DirectSoundOut = new DirectSoundOut();
                 DirectSoundOut.Init(reader);
                 DirectSoundOut.Play();
-                DirectSoundOut.PlaybackStopped += DirectSoundOut_PlaybackStopped;                
+                DirectSoundOut.PlaybackStopped += DirectSoundOut_PlaybackStopped;
+            }
+            else
+            {
+                Console.WriteLine("Stupid fool");
             }
         }
 

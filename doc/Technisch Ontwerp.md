@@ -23,4 +23,11 @@ date: November 2014
 # Inleiding
 In dit document staan de technische aspecten van het project beschreven. Er zullen hiervoor schematechnieken gebruikt worden die ons geleerd 
 
-# Tekst weergeven
+Was ist das?
+============
+
+> Wat moet hier in:
+>  - Klassendiagram
+>  - Toestandsdiagram
+>  - Sequence diagram
+>  - Extra uitleg bij (zeer) complexe onderdelen

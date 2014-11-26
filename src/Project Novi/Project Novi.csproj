@@ -13,7 +13,8 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <PublishUrl>publish\</PublishUrl>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>D:\Studie\Windesheim\ICTSE1a\KBS SE1a\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,10 +24,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -51,6 +52,18 @@
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>Project_Novi.NoviLauncher</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>33642F0D814D6B5EDC166AF6DDBFB11D5C2A2016</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Project Novi_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NAudio">
@@ -119,6 +132,7 @@
     <EmbeddedResource Include="TTS\testTTS.resx">
       <DependentUpon>TestTTS.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Project Novi_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -145,12 +159,38 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Avatar\avatar base.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AppLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\novi-logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar\Face\Mouths\closed happy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar\Face\Mouths\closed sad.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar\Face\Mouths\open happy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar\Face\Mouths\open round.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar\Face\Mouths\open sad.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar\Face\Eyes\avatar eyes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar\Face\avatar nose.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar\Face\Eyes\avatar pupils.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">
