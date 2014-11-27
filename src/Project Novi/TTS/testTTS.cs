@@ -29,7 +29,8 @@ namespace Project_Novi.TTS
         //building the url to format text
         private void BuildURL()
         {
-            strURL = string.Format(URL, "nl", text.ToLower().Replace(" ", "%20"));
+            
+            strURL = string.Format(URL, "nl", textBox1.Text.ToLower().Replace(" ", "%20"));
         }
 
         //requesting the Google Translate service
