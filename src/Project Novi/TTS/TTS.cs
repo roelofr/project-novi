@@ -49,7 +49,7 @@ namespace Project_Novi.TTS
         }
 
         //When file downloaded start audio
-        static void serviceRequest_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
+        private static void serviceRequest_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
         {
             if (e.Error == null && e.Result != null)
             {
@@ -81,7 +81,7 @@ namespace Project_Novi.TTS
         }
 
         //when playing audio completed, generate next sentence
-        static void DirectSoundOut_PlaybackStopped(object sender, StoppedEventArgs e)
+        private static void DirectSoundOut_PlaybackStopped(object sender, StoppedEventArgs e)
         {
             counter++;
             GenerateSpeechFromText();
