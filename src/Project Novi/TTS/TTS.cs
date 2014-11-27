@@ -76,7 +76,7 @@ namespace Project_Novi.TTS
             }
             else
             {
-                Console.WriteLine("Stupid fool");
+                Console.WriteLine("Er is iets mis gegaan!");
             }
         }
 
