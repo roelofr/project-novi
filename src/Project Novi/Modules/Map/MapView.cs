@@ -65,6 +65,7 @@ namespace Project_Novi.Modules.Map
             switch (_activeFloor)
             {
                 case Floor.T5:
+                    graphics.DrawImage(Properties.Resources.T5x, 100, 200);
                     driehoek[0].X = 1540;
                     driehoek[0].Y = 80;
                     driehoek[1].X = 1540;
@@ -73,6 +74,7 @@ namespace Project_Novi.Modules.Map
                     driehoek[2].Y = 150;
                     break; 
                 case Floor.T4:
+                    graphics.DrawImage(Properties.Resources.T4x, 100, 200);
                     driehoek[0].X = 1540;
                     driehoek[0].Y = 230;
                     driehoek[1].X = 1540;
@@ -81,6 +83,7 @@ namespace Project_Novi.Modules.Map
                     driehoek[2].Y = 300;
                     break;
                 case Floor.T3:
+                    graphics.DrawImage(Properties.Resources.T3x, 100, 200);
                     driehoek[0].X = 1540;
                     driehoek[0].Y = 380;
                     driehoek[1].X = 1540;
@@ -89,6 +92,7 @@ namespace Project_Novi.Modules.Map
                     driehoek[2].Y = 450;
                     break;
                 case Floor.T2:
+                    graphics.DrawImage(Properties.Resources.T2x, 100, 200);
                     driehoek[0].X = 1540;
                     driehoek[0].Y = 530;
                     driehoek[1].X = 1540;
@@ -97,6 +101,7 @@ namespace Project_Novi.Modules.Map
                     driehoek[2].Y = 600;
                     break;
                 case Floor.T1:
+                    graphics.DrawImage(Properties.Resources.T1x, 100, 200);
                     driehoek[0].X = 1540;
                     driehoek[0].Y = 680;
                     driehoek[1].X = 1540;
@@ -105,6 +110,7 @@ namespace Project_Novi.Modules.Map
                     driehoek[2].Y = 750;
                     break;
                 case Floor.T0:
+                    graphics.DrawImage(Properties.Resources.T0x, 100, 200);
                     driehoek[0].X = 1540;
                     driehoek[0].Y = 830;
                     driehoek[1].X = 1540;

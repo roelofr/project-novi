@@ -181,7 +181,35 @@
   <ItemGroup>
     <None Include="Resources\Avatar\Face\Eyes\avatar pupils.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Maps\T0.jpg" />
+    <Resource Include="Resources\Maps\T1.jpg" />
+    <Resource Include="Resources\Maps\T2.jpg" />
+    <Resource Include="Resources\Maps\T3.jpg" />
+    <Resource Include="Resources\Maps\T4.jpg" />
+    <Resource Include="Resources\Maps\T5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T0x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T4x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T2x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">
     <Copy SourceFiles="AvatarTekst.xml" DestinationFolder="$(OutputPath)" />
