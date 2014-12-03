@@ -1,4 +1,5 @@
 ﻿using Project_Novi.Modules;
+using Project_Novi.Modules.Backgrounds;
 using Project_Novi.Modules.Home;
 using Project_Novi.Modules.Map;
 
@@ -18,6 +19,17 @@ namespace Project_Novi
                 return new MapView(module as MapModule, controller);
             }
             return null;
+        }
+
+        internal static IBackgroundView GetBackgroundView(IView view)
+        {
+            IBackgroundView bv;
+            if (view is HomeView)
+                bv = new MainBackground();
+            else
+                bv = null;
+
+            return bv;
         }
     }
 }

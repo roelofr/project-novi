@@ -10,14 +10,16 @@ namespace Project_Novi
         private NoviController _controller;
         internal IView View { get; set; }
 
+        internal IBackgroundView BackgroundView { get; set; }
+
         public Novi()
         {
             InitializeComponent();
-            DoubleBuffered = true;
-            Hide();
+            this.DoubleBuffered = true;
+            this.Hide();
             var splash = new Splash();
             splash.ShowDialog();
-            Show();
+            this.Show();
             _controller = new NoviController(this);
         }
 
@@ -34,7 +36,11 @@ namespace Project_Novi
             var scale = Math.Min(scaleX, scaleY);
             g.ScaleTransform(scale, scale);
 
-            View.Render(g, new Rectangle(0, 0, 1920, 1080));
+            Rectangle windowRectangle = new Rectangle(0, 0, 1920, 1080);
+
+            if (BackgroundView is IBackgroundView && BackgroundView != null)
+                BackgroundView.Render(g, windowRectangle);
+            View.Render(g, windowRectangle);
         }
 
         private void Novi_Click(object sender, MouseEventArgs e)

@@ -21,7 +21,10 @@ namespace Project_Novi
 
             _module = new HomeModule(this);
             _module.Start();
+
             _form.View = ViewFactory.GetView(_module, this);
+            _form.BackgroundView = ViewFactory.GetBackgroundView(_form.View);
+
             _timer = new Timer { Interval = 10 };
             _timer.Tick += TimerCallback;
             _timer.Start();

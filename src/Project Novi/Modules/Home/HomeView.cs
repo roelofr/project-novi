@@ -24,8 +24,6 @@ namespace Project_Novi.Modules.Home
 
         public void Render(Graphics graphics, Rectangle rectangle)
         {
-            graphics.Clear(Color.FromArgb(255, 32, 103, 178));
-
             var stringFormat = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
             var rect = new Rectangle(1, 1, 1920, 300);
             var strFont = new Font("Sergoe UI", 50);
