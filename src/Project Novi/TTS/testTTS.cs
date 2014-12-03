@@ -18,12 +18,10 @@ namespace Project_Novi.TTS
     {
         private const string URL = "http://translate.google.com/translate_tts?tl={0}&q={1}";
         string strURL;
-        string text;
         
         public TestTTS()
         {
             InitializeComponent();
-            text = "Welkom in gebouw t!";
         }
 
         //building the url to format text

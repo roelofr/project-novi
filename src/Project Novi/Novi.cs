@@ -35,5 +35,10 @@ namespace Project_Novi
 
             View.Render(g, rect);
         }
+
+        private void Novi_Click(object sender, MouseEventArgs e)
+        {
+            _controller.HandleTouch(e.Location);
+        }
     }
 }
