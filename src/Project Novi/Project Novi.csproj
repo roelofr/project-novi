@@ -74,6 +74,7 @@
     <Compile Include="Modules\IModule.cs" />
     <Compile Include="Modules\IView.cs" />
     <Compile Include="NoviController.cs" />
+    <Compile Include="Render\Avatar.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="TTS\TestTTS.cs">
       <SubType>Form</SubType>

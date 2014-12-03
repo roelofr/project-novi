@@ -12,6 +12,7 @@ namespace Project_Novi
         public Novi()
         {
             InitializeComponent();
+            DoubleBuffered = true;
             Hide();
             var splash = new Splash();
             splash.ShowDialog();

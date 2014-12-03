@@ -5,11 +5,12 @@ namespace Project_Novi
 {
     static class ViewFactory
     {
-        internal static IView GetView(IModule module)
+        internal static IView GetView(IModule module, IController controller)
         {
             if (module is HomeModule)
             {
-                return new HomeView(module as HomeModule);
+                var v = new HomeView(module as HomeModule, controller);
+                return v;
             }
             return null;
         }
