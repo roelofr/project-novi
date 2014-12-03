@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using Project_Novi.Modules;
 
@@ -33,7 +34,7 @@ namespace Project_Novi
             var scale = Math.Min(scaleX, scaleY);
             g.ScaleTransform(scale, scale);
 
-            View.Render(g, rect);
+            View.Render(g, new Rectangle(0, 0, 1920, 1080));
         }
 
         private void Novi_Click(object sender, MouseEventArgs e)
