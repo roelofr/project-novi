@@ -1,5 +1,6 @@
 ﻿using Project_Novi.Modules;
 using Project_Novi.Modules.Home;
+using Project_Novi.Modules.Map;
 
 namespace Project_Novi
 {
@@ -10,6 +11,10 @@ namespace Project_Novi
             if (module is HomeModule)
             {
                 return new HomeView(module as HomeModule);
+            }
+            else if (module is MapModule)
+            {
+                return new MapView(module as MapModule);
             }
             return null;
         }

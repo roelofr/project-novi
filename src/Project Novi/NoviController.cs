@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Project_Novi.Modules;
 using Project_Novi.Modules.Home;
+using System.Drawing;
 
 namespace Project_Novi
 {
@@ -13,7 +14,7 @@ namespace Project_Novi
         public NoviController(Novi form)
         {
             _form = form;
-            _module = new HomeModule();
+            _module = new HomeModule(this);
             _form.View = ViewFactory.GetView(_module);
         }
 
@@ -28,6 +29,16 @@ namespace Project_Novi
             _module = module;
             _module.Start();
             _form.View = ViewFactory.GetView(_module);
+        }
+
+        public event TouchHandler Touch;
+
+        public void HandleTouch(Point point)
+        {
+            if (Touch != null)
+            {
+                Touch(point);
+            }
         }
     }
 }
