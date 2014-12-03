@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Project_Novi.Modules;
+using System.Drawing;
 
 namespace Project_Novi
 {
@@ -38,7 +39,15 @@ namespace Project_Novi
 
         private void Novi_Click(object sender, MouseEventArgs e)
         {
-            _controller.HandleTouch(e.Location);
+            var sizeY = this.Bounds.Height;
+            var sizeX = this.Bounds.Width;
+            var scaleX = (float)(1920d / sizeX);
+            var scaleY = (float)(1080d / sizeY);
+            var scale = Math.Min(scaleX, scaleY);
+            sizeY = (int)(scaleY * e.Location.Y);
+            sizeX = (int)(scaleX * e.Location.X);
+
+            _controller.HandleTouch(new Point(sizeX, sizeY));
         }
     }
 }

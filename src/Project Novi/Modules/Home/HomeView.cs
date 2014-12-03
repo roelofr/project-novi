@@ -19,6 +19,7 @@ namespace Project_Novi.Modules.Home
             _module = module;
             _controller = controller;
             Avatar = new Avatar(_controller);
+            Avatar.Animate(Avatar.Animated.Pupils, 0, 0, -2000, 0);
         }
 
         public void Render(Graphics graphics, Rectangle rectangle)
