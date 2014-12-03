@@ -15,15 +15,44 @@ namespace Project_Novi.Render
         {
             Mouth,
             Pupils,
-            Eyes,
+            LeftEye,
+            RightEye,
             Nose
         }
+
+        private int blinkDelay;
+        private Random rand;
+
+        private List<Bitmap> leftEyeBlink = new List<Bitmap> {
+            Properties.Resources.left_eye_blink1,
+            Properties.Resources.left_eye_blink2,
+            Properties.Resources.left_eye_blink3,
+            Properties.Resources.left_eye_blink2,
+            Properties.Resources.left_eye_blink1
+        };
+
+        private List<Bitmap> rightEyeBlink = new List<Bitmap> {
+            Properties.Resources.right_eye_blink1,
+            Properties.Resources.right_eye_blink2,
+            Properties.Resources.right_eye_blink3,
+            Properties.Resources.right_eye_blink2,
+            Properties.Resources.right_eye_blink1
+        };
+
+        private List<Bitmap> pupilsBlink = new List<Bitmap> {
+            Properties.Resources.pupils,
+            Properties.Resources.pupils,
+            Properties.Resources.blank,
+            Properties.Resources.pupils,
+            Properties.Resources.pupils
+        };
 
         private readonly Dictionary<Animated, List<Point>> _offsetAnimations = new Dictionary<Animated, List<Point>>
         {
             { Animated.Mouth, new List<Point>() },
             { Animated.Pupils, new List<Point>() },
-            { Animated.Eyes, new List<Point>() },
+            { Animated.LeftEye, new List<Point>() },
+            { Animated.RightEye, new List<Point>() },
             { Animated.Nose, new List<Point>() }
         };
 
@@ -31,7 +60,8 @@ namespace Project_Novi.Render
         {
             { Animated.Mouth, new List<Bitmap>() },
             { Animated.Pupils, new List<Bitmap>() },
-            { Animated.Eyes, new List<Bitmap>() },
+            { Animated.LeftEye, new List<Bitmap>() },
+            { Animated.RightEye, new List<Bitmap>() },
             { Animated.Nose, new List<Bitmap>() }
         };
 
@@ -39,6 +69,8 @@ namespace Project_Novi.Render
         {
             _controller = controller;
             _controller.Tick += ControllerOnTick;
+
+            rand = new Random();
         }
 
         private void ControllerOnTick()
@@ -47,6 +79,16 @@ namespace Project_Novi.Render
                 kv.Value.RemoveAt(0);
             foreach (var kv in _bitmapAnimations.Where(kv => kv.Value.Count > 0))
                 kv.Value.RemoveAt(0);
+
+            if (blinkDelay > 0)
+            {
+                blinkDelay--;
+            }
+            else
+            {
+                Blink();
+                blinkDelay = rand.Next(60) + 20;
+            }
         }
 
         public void Animate(Animated animated, IEnumerable<Point> offsets)
@@ -94,12 +136,19 @@ namespace Project_Novi.Render
             return _bitmapAnimations[animated].Count > 0 ? _bitmapAnimations[animated][0] : def;
         }
 
+        public void Blink()
+        {
+            Animate(Animated.RightEye, rightEyeBlink);
+            Animate(Animated.LeftEye, leftEyeBlink);
+            Animate(Animated.Pupils, pupilsBlink);
+        }
+
         public void Render(Graphics graphics, Rectangle rectangle)
         {
             var scale = Math.Min(rectangle.Width / (float)Width,
                                  rectangle.Height / (float)Height);
             var pupilOffset = GetAnimationOffset(Animated.Pupils);
-            var faceOffset = GetAnimationOffset(Animated.Eyes);
+            var faceOffset = GetAnimationOffset(Animated.LeftEye);
 
             var faceOffsetX = (int)(165 * scale + faceOffset.X * scale);
             var faceOffsetY = (int)(190 * scale + faceOffset.Y * scale);
@@ -118,10 +167,12 @@ namespace Project_Novi.Render
             var faceRect = new Rectangle(offsetX + faceOffsetX, offsetY + faceOffsetY, faceWidth, faceHeight);
             var pupilRect = new Rectangle(offsetX + pupilOffsetX, offsetY + pupilOffsetY, pupilWidth, pupilHeight);
 
-            graphics.DrawImage(Properties.Resources.avatar_base, avatarRect);
-            graphics.DrawImage(GetAnimationBitmap(Animated.Eyes, Properties.Resources.avatar_eyes), faceRect);
-            graphics.DrawImage(GetAnimationBitmap(Animated.Pupils, Properties.Resources.avatar_pupils), pupilRect);
-            graphics.DrawImage(GetAnimationBitmap(Animated.Nose, Properties.Resources.avatar_nose), faceRect);
+            graphics.DrawImage(Properties.Resources.based, avatarRect);
+            graphics.DrawImage(Properties.Resources.vneck_green, avatarRect);
+            graphics.DrawImage(GetAnimationBitmap(Animated.LeftEye, Properties.Resources.left_eye_open), faceRect); 
+            graphics.DrawImage(GetAnimationBitmap(Animated.RightEye, Properties.Resources.right_eye_open), faceRect);
+            graphics.DrawImage(GetAnimationBitmap(Animated.Pupils, Properties.Resources.pupils), pupilRect);
+            graphics.DrawImage(GetAnimationBitmap(Animated.Nose, Properties.Resources.nose), faceRect);
             graphics.DrawImage(GetAnimationBitmap(Animated.Mouth, Properties.Resources.closed_happy), faceRect);
         }
     }
