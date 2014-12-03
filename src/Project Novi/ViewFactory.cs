@@ -15,7 +15,7 @@ namespace Project_Novi
             }
             else if (module is MapModule)
             {
-                return new MapView(module as MapModule);
+                return new MapView(module as MapModule, controller);
             }
             return null;
         }
