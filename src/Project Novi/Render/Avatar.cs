@@ -10,6 +10,8 @@ namespace Project_Novi.Render
         private const int Width = 560;
         private const int Height = 640;
         private IController _controller;
+        private bool _talking;
+        private int _talkingCounter;
 
         public enum Animated
         {
@@ -47,6 +49,26 @@ namespace Project_Novi.Render
                 kv.Value.RemoveAt(0);
             foreach (var kv in _bitmapAnimations.Where(kv => kv.Value.Count > 0))
                 kv.Value.RemoveAt(0);
+
+            if (_talking)
+            {
+                if (_talkingCounter == 0)
+                {
+                    var images = new[]
+                    {
+                        Properties.Resources.open_happy,
+                        Properties.Resources.open_round,
+                        Properties.Resources.closed_happy,
+                        Properties.Resources.open_round
+                    };
+                    Animate(Animated.Mouth, images, 10);
+                    _talkingCounter = 40;
+                }
+                else
+                {
+                    _talkingCounter--;
+                }
+            }
         }
 
         public void Animate(Animated animated, IEnumerable<Point> offsets)
@@ -82,6 +104,16 @@ namespace Project_Novi.Render
                     _bitmapAnimations[animated].Add(b);
                 }
             }
+        }
+
+        public void Say(string text)
+        {
+            _talking = true;
+            TTS.TTS.TextToSpeech(text, () =>
+            {
+                _talking = false;
+                _bitmapAnimations[Animated.Mouth].Clear();
+            });
         }
 
         private Point GetAnimationOffset(Animated animated)

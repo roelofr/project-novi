@@ -28,6 +28,10 @@ namespace Project_Novi.TTS
         /// </summary>
         private static int _counter;
 
+        internal delegate void PlaybackFinished();
+
+        private static PlaybackFinished _finishedCallback;
+
         /// <summary>
         /// Build the Url to make a request to Google Translate.
         /// </summary>
@@ -91,7 +95,15 @@ namespace Project_Novi.TTS
         private static void DirectSoundOut_PlaybackStopped(object sender, StoppedEventArgs e)
         {
             _counter++;
-            GenerateSpeechFromText();
+            if (_counter >= _sentences.Length - 1 && _finishedCallback != null)
+            {
+                _finishedCallback();
+                _finishedCallback = null;
+            }
+            else
+            {
+                GenerateSpeechFromText();
+            }
         }
 
 
@@ -103,6 +115,12 @@ namespace Project_Novi.TTS
             char[] splitters = { ',', '.', '?', '!' };
             _sentences = text.Split(splitters);
             GenerateSpeechFromText();
+        }
+
+        public static void TextToSpeech(string text, PlaybackFinished finished)
+        {
+            _finishedCallback = finished;
+            TextToSpeech(text);
         }
     }
 }

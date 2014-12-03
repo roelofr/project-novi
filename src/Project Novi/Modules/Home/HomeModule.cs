@@ -30,7 +30,6 @@
             //Available categories: Welkom, Poke, Idle, Kaart, RouteVragen, RouteBerekenen en BerekendeRoute
             //Let op: Exact overnemen!!!
             AvatarText = Text.TextManager.GetText("Welkom");
-            TTS.TTS.TextToSpeech(AvatarText);
         }
 
         public void Stop() { }
