@@ -14,7 +14,8 @@ namespace Project_Novi.Modules.Map
 
         private readonly MapModule _module;
         private readonly IController _controller;
-        private Floor _activeFloor;
+        private string _activeFloor = "T0";
+        List<Rectangle> floor_buttons;
         Point[] driehoek = new Point[3];
         SolidBrush brushActiveFloor = new SolidBrush(Color.Orange);
         SolidBrush brushFloors = new SolidBrush(Color.Blue);
@@ -28,6 +29,14 @@ namespace Project_Novi.Modules.Map
         string[] verdiepingen = { "0", "1", "2", "3", "4", "5" };
         string[] lokalen = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
         string[] bonus = { "a", "b", "c" };
+        string[] floors = { "T5", "T4", "T3", "T2", "T1", "T0" };
+
+        private int xpos_floor_buttons = 1650;
+        private int ypos_floor_buttons = 300;
+        private int width_floor_buttons = 220;
+        private int height_floor_buttons = 120;
+        private int margin_floor_buttons = 10;
+        private int number_floor_buttons = 6;
 
         struct ArrowButton
         {
@@ -59,6 +68,8 @@ namespace Project_Novi.Modules.Map
             _controller = controller;
             _controller.Touch += ControllerOnTouch;
             digit_selectors = new List<DigitSelector>();
+            floor_buttons = new List<Rectangle>();
+            GenerateRectangles(xpos_floor_buttons, ypos_floor_buttons, width_floor_buttons, height_floor_buttons, margin_floor_buttons, number_floor_buttons);
             CreateDigitSelector(50, 50, 30, verdiepingen, 0);
             CreateDigitSelector(100, 50, 30, lokalen, 0);
             CreateDigitSelector(150, 50, 30, lokalen, 0);
@@ -67,18 +78,25 @@ namespace Project_Novi.Modules.Map
 
         private void ControllerOnTouch(Point p)
         {
-            if (p.X > 1550 && p.X < 1800 && p.Y > 80 && p.Y < 220)
-                _activeFloor = Floor.T5;
-            else if (p.X > 1550 && p.X < 1800 && p.Y > 230 && p.Y < 370)
-                _activeFloor = Floor.T4;
-            else if (p.X > 1550 && p.X < 1800 && p.Y > 380 && p.Y < 520)
-                _activeFloor = Floor.T3;
-            else if (p.X > 1550 && p.X < 1800 && p.Y > 530 && p.Y < 670)
-                _activeFloor = Floor.T2;
-            else if (p.X > 1550 && p.X < 1800 && p.Y > 680 && p.Y < 820)
-                _activeFloor = Floor.T1;
-            else if (p.X > 1550 && p.X < 1800 && p.Y > 830 && p.Y < 970)
-                _activeFloor = Floor.T0;
+            foreach (Rectangle button in floor_buttons)
+            {
+                if (p.X >= xpos_floor_buttons && p.X <= xpos_floor_buttons + width_floor_buttons && p.Y >= button.Y && p.Y <= button.Y + height_floor_buttons)
+                {
+                    _activeFloor = floors[floor_buttons.IndexOf(button)];
+                }
+            }
+            //if (p.X > 1550 && p.X < 1800 && p.Y > 80 && p.Y < 220)
+            //    _activeFloor = Floor.T5;
+            //else if (p.X > 1550 && p.X < 1800 && p.Y > 230 && p.Y < 370)
+            //    _activeFloor = Floor.T4;
+            //else if (p.X > 1550 && p.X < 1800 && p.Y > 380 && p.Y < 520)
+            //    _activeFloor = Floor.T3;
+            //else if (p.X > 1550 && p.X < 1800 && p.Y > 530 && p.Y < 670)
+            //    _activeFloor = Floor.T2;
+            //else if (p.X > 1550 && p.X < 1800 && p.Y > 680 && p.Y < 820)
+            //    _activeFloor = Floor.T1;
+            //else if (p.X > 1550 && p.X < 1800 && p.Y > 830 && p.Y < 970)
+            //    _activeFloor = Floor.T0;
 
             int selector_index = -1;
             string change = "none";
@@ -114,85 +132,104 @@ namespace Project_Novi.Modules.Map
         {
             graphics.Clear(Color.Beige);
             //button T5
-            graphics.FillRectangle(brushFloors, 1550, 80, 250, 140);
-            //button T4
-            graphics.FillRectangle(brushFloors, 1550, 230, 250, 140);
-            //button T3
-            graphics.FillRectangle(brushFloors, 1550, 380, 250, 140);
-            //button T2
-            graphics.FillRectangle(brushFloors, 1550, 530, 250, 140);
-            //button T1
-            graphics.FillRectangle(brushFloors, 1550, 680, 250, 140);
-            //button T0
-            graphics.FillRectangle(brushFloors, 1550, 830, 250, 140);
-            
-            switch (_activeFloor)
+            //graphics.FillRectangle(brushFloors, 1550, 80, 250, 140);
+            ////button T4
+            //graphics.FillRectangle(brushFloors, 1550, 230, 250, 140);
+            ////button T3
+            //graphics.FillRectangle(brushFloors, 1550, 380, 250, 140);
+            ////button T2
+            //graphics.FillRectangle(brushFloors, 1550, 530, 250, 140);
+            ////button T1
+            //graphics.FillRectangle(brushFloors, 1550, 680, 250, 140);
+            ////button T0
+            //graphics.FillRectangle(brushFloors, 1550, 830, 250, 140);
+            foreach (Rectangle button in floor_buttons)
             {
-                case Floor.T5:
-                    driehoek[0].X = 1540;
-                    driehoek[0].Y = 80;
-                    driehoek[1].X = 1540;
-                    driehoek[1].Y = 220;
-                    driehoek[2].X = 1490;
-                    driehoek[2].Y = 150;
-                    break; 
-                case Floor.T4:
-                    driehoek[0].X = 1540;
-                    driehoek[0].Y = 230;
-                    driehoek[1].X = 1540;
-                    driehoek[1].Y = 370;
-                    driehoek[2].X = 1490;
-                    driehoek[2].Y = 300;
-                    break;
-                case Floor.T3:
-                    driehoek[0].X = 1540;
-                    driehoek[0].Y = 380;
-                    driehoek[1].X = 1540;
-                    driehoek[1].Y = 520;
-                    driehoek[2].X = 1490;
-                    driehoek[2].Y = 450;
-                    break;
-                case Floor.T2:
-                    driehoek[0].X = 1540;
-                    driehoek[0].Y = 530;
-                    driehoek[1].X = 1540;
-                    driehoek[1].Y = 670;
-                    driehoek[2].X = 1490;
-                    driehoek[2].Y = 600;
-                    break;
-                case Floor.T1:
-                    driehoek[0].X = 1540;
-                    driehoek[0].Y = 680;
-                    driehoek[1].X = 1540;
-                    driehoek[1].Y = 820;
-                    driehoek[2].X = 1490;
-                    driehoek[2].Y = 750;
-                    break;
-                case Floor.T0:
-                    driehoek[0].X = 1540;
-                    driehoek[0].Y = 830;
-                    driehoek[1].X = 1540;
-                    driehoek[1].Y = 970;
-                    driehoek[2].X = 1490;
-                    driehoek[2].Y = 900;
-                    break;
+                graphics.FillRectangle(brushFloors, button);
+            }
+            
+            //switch (_activeFloor)
+            //{
+            //    case "T5":
+            //        driehoek[0].X = 1540;
+            //        driehoek[0].Y = 80;
+            //        driehoek[1].X = 1540;
+            //        driehoek[1].Y = 220;
+            //        driehoek[2].X = 1490;
+            //        driehoek[2].Y = 150;
+            //        break; 
+            //    case "T4":
+            //        driehoek[0].X = 1540;
+            //        driehoek[0].Y = 230;
+            //        driehoek[1].X = 1540;
+            //        driehoek[1].Y = 370;
+            //        driehoek[2].X = 1490;
+            //        driehoek[2].Y = 300;
+            //        break;
+            //    case "T3":
+            //        driehoek[0].X = 1540;
+            //        driehoek[0].Y = 380;
+            //        driehoek[1].X = 1540;
+            //        driehoek[1].Y = 520;
+            //        driehoek[2].X = 1490;
+            //        driehoek[2].Y = 450;
+            //        break;
+            //    case "T2":
+            //        driehoek[0].X = 1540;
+            //        driehoek[0].Y = 530;
+            //        driehoek[1].X = 1540;
+            //        driehoek[1].Y = 670;
+            //        driehoek[2].X = 1490;
+            //        driehoek[2].Y = 600;
+            //        break;
+            //    case "T1":
+            //        driehoek[0].X = 1540;
+            //        driehoek[0].Y = 680;
+            //        driehoek[1].X = 1540;
+            //        driehoek[1].Y = 820;
+            //        driehoek[2].X = 1490;
+            //        driehoek[2].Y = 750;
+            //        break;
+            //    case "T0":
+            //        driehoek[0].X = 1540;
+            //        driehoek[0].Y = 830;
+            //        driehoek[1].X = 1540;
+            //        driehoek[1].Y = 970;
+            //        driehoek[2].X = 1490;
+            //        driehoek[2].Y = 900;
+            //        break;
+            //}
+
+            
+            var strFont = new Font("Segoe UI", 50);
+            //var rectT5 = new Rectangle(1520, 130, 300, 60);
+            //var rectT4 = new Rectangle(1520, 280, 300, 60);
+            //var rectT3 = new Rectangle(1520, 430, 300, 60);
+            //var rectT2 = new Rectangle(1520, 580, 300, 60);
+            //var rectT1 = new Rectangle(1520, 730, 300, 60);
+            //var rectT0 = new Rectangle(1520, 880, 300, 60);
+            var stringFormat = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
+            //graphics.DrawString("T5", strFont, Brushes.White, rectT5, stringFormat);
+            //graphics.DrawString("T4", strFont, Brushes.White, rectT4, stringFormat);
+            //graphics.DrawString("T3", strFont, Brushes.White, rectT3, stringFormat);
+            //graphics.DrawString("T2", strFont, Brushes.White, rectT2, stringFormat);
+            //graphics.DrawString("T1", strFont, Brushes.White, rectT1, stringFormat);
+            //graphics.DrawString("T0", strFont, Brushes.White, rectT0, stringFormat);
+
+            foreach (Rectangle button in floor_buttons) {
+                if (_activeFloor.Equals("T" + (number_floor_buttons - 1 - floor_buttons.IndexOf(button)).ToString()))
+                {
+                    driehoek[0].X = button.X - margin_floor_buttons;
+                    driehoek[0].Y = button.Y;
+                    driehoek[1].X = button.X - margin_floor_buttons;
+                    driehoek[1].Y = button.Y + height_floor_buttons;
+                    driehoek[2].X = button.X - (5 * margin_floor_buttons);
+                    driehoek[2].Y = (button.Y + button.Y + height_floor_buttons) / 2;
+
+                }
+                graphics.DrawString(floors[floor_buttons.IndexOf(button)], strFont, Brushes.White, button, stringFormat);
             }
             graphics.FillPolygon(brushActiveFloor, driehoek);
-            var strFont = new Font("Helvetica Neue", 50);
-            var rectT5 = new Rectangle(1520, 130, 300, 60);
-            var rectT4 = new Rectangle(1520, 280, 300, 60);
-            var rectT3 = new Rectangle(1520, 430, 300, 60);
-            var rectT2 = new Rectangle(1520, 580, 300, 60);
-            var rectT1 = new Rectangle(1520, 730, 300, 60);
-            var rectT0 = new Rectangle(1520, 880, 300, 60);
-            var stringFormat = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
-            graphics.DrawString("T5", strFont, Brushes.White, rectT5, stringFormat);
-            graphics.DrawString("T4", strFont, Brushes.White, rectT4, stringFormat);
-            graphics.DrawString("T3", strFont, Brushes.White, rectT3, stringFormat);
-            graphics.DrawString("T2", strFont, Brushes.White, rectT2, stringFormat);
-            graphics.DrawString("T1", strFont, Brushes.White, rectT1, stringFormat);
-            graphics.DrawString("T0", strFont, Brushes.White, rectT0, stringFormat);
-
             // draw all digit selectors
             foreach (DigitSelector ds in digit_selectors)
             {
@@ -277,6 +314,14 @@ namespace Project_Novi.Modules.Map
             }
             ds.digitbox = db;
             digit_selectors[selector_index] = ds;
+        }
+
+        public void GenerateRectangles(int xpos, int ypos, int width, int height, int margin, int number)
+        {
+            for (int i = 0; i < number; i++) {
+                Rectangle rect = new Rectangle(xpos, ypos + (i * height) + (i * margin), width, height);
+                floor_buttons.Add(rect);
+            }
         }
     }
 }
