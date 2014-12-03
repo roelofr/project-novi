@@ -121,37 +121,73 @@
     <value>project-novi</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="avatar_base" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\avatar base.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="novi_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\novi-logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ProgramName" xml:space="preserve">
     <value>Project Novi</value>
   </data>
-  <data name="avatar_eyes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Face\Eyes\avatar eyes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="based" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Avatar\Head\Base\base.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="avatar_nose" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Face\avatar nose.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="avatar_pupils" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Face\Eyes\avatar pupils.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="blank" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Avatar\blank.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="closed_happy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Face\Mouths\closed happy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Avatar\Head\Face\Mouths\closed-happy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="closed_sad" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Face\Mouths\closed sad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Avatar\Head\Face\Mouths\closed-sad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="left_eye_blink1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Avatar\Head\Face\Eyes\left-eye-blink1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="left_eye_blink2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Avatar\Head\Face\Eyes\left-eye-blink2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="left_eye_blink3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Avatar\Head\Face\Eyes\left-eye-blink3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="left_eye_open" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Avatar\Head\Face\Eyes\left-eye-open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="left_eye_pinch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Avatar\Head\Face\Eyes\left-eye-pinch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="nose" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Avatar\Head\Face\nose.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="open_happy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Face\Mouths\open happy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Avatar\Head\Face\Mouths\open-happy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="open_round" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Face\Mouths\open round.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Avatar\Head\Face\Mouths\open-round.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="open_sad" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Face\Mouths\open sad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Avatar\Head\Face\Mouths\open-sad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pupils" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Avatar\Head\Face\Eyes\pupils.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="right_eye_blink1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Avatar\Head\Face\Eyes\right-eye-blink1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="right_eye_blink2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Avatar\Head\Face\Eyes\right-eye-blink2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="right_eye_blink3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Avatar\Head\Face\Eyes\right-eye-blink3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="right_eye_open" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Avatar\Head\Face\Eyes\right-eye-open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="right_eye_pinch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Avatar\Head\Face\Eyes\right-eye-pinch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="roundneck_green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Avatar\Clothes\roundneck-green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vneck_green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Avatar\Clothes\vneck-green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
