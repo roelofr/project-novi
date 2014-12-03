@@ -1,54 +1,63 @@
 ﻿using NAudio.Wave;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project_Novi.TTS
 {
-    // This class allows you to generate audio from text input:
-    //  Use method TextToSpeech() to input a text. 
-
+    /// <summary>
+    /// Allows you to generate audio from text input.
+    /// Use the method TextToSpeech() to speak text.
+    /// 
+    /// This class calls out to Google Translate to generate speech.
+    /// </summary>
     static class TTS
     {
-        private const string URL = "http://translate.google.com/translate_tts?tl={0}&q={1}";
-        private static string strURL;
-        private static string[] sentences;
-        private static int counter;
+        private const string BaseUrl = "http://translate.google.com/translate_tts?tl={0}&q={1}";
 
+        /// <summary>
+        /// Keep track of a list of sentences to speak.
+        /// This is needed because long text can't be submitted to Google Translate in one go, but has to be split up.
+        /// </summary>
+        private static string[] _sentences;
 
-        //building the url to format text
-        private static void BuildURL(string text)
+        /// <summary>
+        /// The index of the currently spoken sentence.
+        /// Sometimes later parts of a text arrive before earlier parts, jumbling up the spoken order.
+        /// To fix that every sentence is requested only when the previous one has finished.
+        /// </summary>
+        private static int _counter;
+
+        /// <summary>
+        /// Build the Url to make a request to Google Translate.
+        /// </summary>
+        private static string BuildUrl(string text)
         {
-            strURL = string.Format(URL, "nl", text.ToLower().Replace(" ", "%20"));
+            return string.Format(BaseUrl, "nl", Uri.EscapeUriString(text.ToLower()));
         }
 
-        //requesting the Google Translate service
+        /// <summary>
+        /// Make a request to Google Translate based on the variables _sentences and _counter.
+        /// </summary>
         private static void GenerateSpeechFromText()
         {
-            if (sentences != null)
+            if (_sentences == null || _counter >= _sentences.Length) return;
+
+            var serviceRequest = new WebClient();
+            serviceRequest.DownloadDataCompleted += serviceRequest_DownloadDataCompleted;
+            try
             {
-                if (counter < sentences.Length)
-                {
-                    BuildURL(sentences[counter]);
-                    WebClient serviceRequest = new WebClient();
-                    serviceRequest.DownloadDataCompleted += serviceRequest_DownloadDataCompleted;
-                    try
-                    {
-                        serviceRequest.DownloadDataAsync(new Uri(strURL));
-                    }
-                    catch (Exception)
-                    {
-                        Console.Write("Tekst is te lang!");
-                    }
-                }                
-            }            
+                serviceRequest.DownloadDataAsync(new Uri(BuildUrl(_sentences[_counter])));
+            }
+            catch (Exception)
+            {
+                Console.Write("Tekst is te lang!");
+            }
         }
 
-        //When file downloaded start audio
+        /// <summary>
+        /// Called when a request completes. Starts playing the result.
+        /// </summary>
         private static void serviceRequest_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
         {
             if (e.Error == null && e.Result != null)
@@ -62,38 +71,38 @@ namespace Project_Novi.TTS
             }
         }
 
-        //play audio
+        /// <summary>
+        /// Play audio from an array of MP3 bytes.
+        /// </summary>
+        /// <param name="soundDataArray">The bytes containing a valid MP3 sequence</param>
         private static void PlayMP3(byte[] soundDataArray)
         {
             Stream stream = new MemoryStream(soundDataArray);
-            if (stream != null)
-            {
-                Mp3FileReader reader = new Mp3FileReader(stream);
-                var DirectSoundOut = new DirectSoundOut();
-                DirectSoundOut.Init(reader);
-                DirectSoundOut.Play();
-                DirectSoundOut.PlaybackStopped += DirectSoundOut_PlaybackStopped;
-            }
-            else
-            {
-                Console.WriteLine("Er is iets mis gegaan!");
-            }
+            var reader = new Mp3FileReader(stream);
+            var directSoundOut = new DirectSoundOut();
+            directSoundOut.Init(reader);
+            directSoundOut.Play();
+            directSoundOut.PlaybackStopped += DirectSoundOut_PlaybackStopped;
         }
 
-        //when playing audio completed, generate next sentence
+        /// <summary>
+        /// Request the next sentence when the previous one has finished playing.
+        /// </summary>
         private static void DirectSoundOut_PlaybackStopped(object sender, StoppedEventArgs e)
         {
-            counter++;
+            _counter++;
             GenerateSpeechFromText();
         }
 
-        
-        //split input string in sentences and generate first sentence
+
+        /// <summary>
+        /// Split up the text into sentences and start playing the first sentence.
+        /// </summary>
         public static void TextToSpeech(string text)
         {
             char[] splitters = { ',', '.', '?', '!' };
-            sentences = text.Split(splitters);
-            GenerateSpeechFromText();            
+            _sentences = text.Split(splitters);
+            GenerateSpeechFromText();
         }
     }
 }
