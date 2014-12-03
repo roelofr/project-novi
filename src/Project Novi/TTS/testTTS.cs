@@ -18,18 +18,16 @@ namespace Project_Novi.TTS
     {
         private const string URL = "http://translate.google.com/translate_tts?tl={0}&q={1}";
         string strURL;
-        string text;
         
         public TestTTS()
         {
             InitializeComponent();
-            text = "Welkom in gebouw t!";
         }
 
         //building the url to format text
         private void BuildURL()
         {
-            strURL = string.Format(URL, "nl", text.ToLower().Replace(" ", "%20"));
+            strURL = string.Format(URL, "nl", textBox1.Text.ToLower().Replace(" ", "%20"));
         }
 
         //requesting the Google Translate service

@@ -12,6 +12,7 @@ namespace Project_Novi
         public Novi()
         {
             InitializeComponent();
+            DoubleBuffered = true;
             Hide();
             var splash = new Splash();
             splash.ShowDialog();
@@ -33,6 +34,11 @@ namespace Project_Novi
             g.ScaleTransform(scale, scale);
 
             View.Render(g, rect);
+        }
+
+        private void Novi_Click(object sender, MouseEventArgs e)
+        {
+            _controller.HandleTouch(e.Location);
         }
     }
 }

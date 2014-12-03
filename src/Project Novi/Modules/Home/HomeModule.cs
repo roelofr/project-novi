@@ -2,6 +2,8 @@
 {
     class HomeModule : IModule
     {
+        public string AvatarText = "";
+        private IController _controller;
         public string Name
         {
             get { return "Home"; }
@@ -12,7 +14,24 @@
             get { return "Hallo, kan ik u helpen?"; }
         }
 
-        public void Start() { }
+        public HomeModule(IController controller)
+        {
+            _controller = controller;
+            controller.Touch += controller_Touch;
+        }
+
+        private void controller_Touch(System.Drawing.Point point)
+        {
+            _controller.SelectModule(new Map.MapModule(_controller));
+        }
+
+        public void Start()
+        {
+            //Available categories: Welkom, Poke, Idle, Kaart, RouteVragen, RouteBerekenen en BerekendeRoute
+            //Let op: Exact overnemen!!!
+            AvatarText = Text.TextManager.GetText("Welkom");
+            TTS.TTS.TextToSpeech(AvatarText);
+        }
 
         public void Stop() { }
     }
