@@ -21,3 +21,23 @@ date: November 2014
 ...
 
 # Inleiding
+
+
+
+
+
+
+# Inhoudsopgave
+
+
+
+# Activeren applicatie
+
+# Weergeven plattegrond
+## Stap 1 - Open plattegrond
+
+Voordat de gebruiker een plattegrond kan zien, moet hij/zij eerst de optie plattegrond aanklikken in het hoofdscherm. Hierna zal een scherm inladen met de plattegrond van verdieping T0.
+
+
+## Stap 2 - Selecteer de juiste verdieping
+Aan de rechterzijde kan de gebruiker aangeven welke verdieping weergegeven moet worden. De opties zijn: T0, T1, T2, T3, T4, T5. 
