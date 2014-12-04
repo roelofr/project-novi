@@ -29,6 +29,7 @@ namespace Project_Novi.Render
             Properties.Resources.left_eye_blink1,
             Properties.Resources.left_eye_blink2,
             Properties.Resources.left_eye_blink3,
+            Properties.Resources.left_eye_blink3,
             Properties.Resources.left_eye_blink2,
             Properties.Resources.left_eye_blink1
         };
@@ -37,6 +38,7 @@ namespace Project_Novi.Render
             Properties.Resources.right_eye_blink1,
             Properties.Resources.right_eye_blink2,
             Properties.Resources.right_eye_blink3,
+            Properties.Resources.right_eye_blink3,
             Properties.Resources.right_eye_blink2,
             Properties.Resources.right_eye_blink1
         };
@@ -44,6 +46,7 @@ namespace Project_Novi.Render
         private List<Bitmap> pupilsBlink = new List<Bitmap> {
             Properties.Resources.pupils,
             Properties.Resources.pupils,
+            Properties.Resources.blank,
             Properties.Resources.blank,
             Properties.Resources.pupils,
             Properties.Resources.pupils
