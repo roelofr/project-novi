@@ -154,4 +154,22 @@
   <data name="open_sad" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Avatar\Face\Mouths\open sad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="T0x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T0x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="T1x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T1x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="T3x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T3x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="T4x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T4x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="T2x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T2x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="T5x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T5x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
