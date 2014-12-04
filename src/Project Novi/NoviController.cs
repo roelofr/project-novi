@@ -14,6 +14,7 @@ namespace Project_Novi
 
         private Timer _timer;
         public event TickHandler Tick;
+        public event TouchHandler Touch;
 
         public NoviController(Novi form)
         {
@@ -32,7 +33,7 @@ namespace Project_Novi
 
         private void TimerCallback(object sender, EventArgs e)
         {
-            Tick();
+            if (Tick != null) Tick();
             _form.Invalidate(true);
         }
 
@@ -44,12 +45,13 @@ namespace Project_Novi
         public void SelectModule(IModule module)
         {
             _module.Stop();
+            Tick = null;
+            Touch = null;
             _module = module;
             _module.Start();
             _form.View = ViewFactory.GetView(_module, this);
         }
 
-        public event TouchHandler Touch;
 
         public void HandleTouch(Point point)
         {
