@@ -32,7 +32,7 @@ namespace Project_Novi.Modules.Map
         string[] floors = { "T5", "T4", "T3", "T2", "T1", "T0" };
 
         private int xpos_floor_buttons = 1650;
-        private int ypos_floor_buttons = 300;
+        private int ypos_floor_buttons = 250;
         private int width_floor_buttons = 220;
         private int height_floor_buttons = 120;
         private int margin_floor_buttons = 10;
@@ -131,18 +131,7 @@ namespace Project_Novi.Modules.Map
         public void Render(Graphics graphics, Rectangle rectangle)
         {
             graphics.Clear(Color.Beige);
-            //button T5
-            //graphics.FillRectangle(brushFloors, 1550, 80, 250, 140);
-            ////button T4
-            //graphics.FillRectangle(brushFloors, 1550, 230, 250, 140);
-            ////button T3
-            //graphics.FillRectangle(brushFloors, 1550, 380, 250, 140);
-            ////button T2
-            //graphics.FillRectangle(brushFloors, 1550, 530, 250, 140);
-            ////button T1
-            //graphics.FillRectangle(brushFloors, 1550, 680, 250, 140);
-            ////button T0
-            //graphics.FillRectangle(brushFloors, 1550, 830, 250, 140);
+
             foreach (Rectangle button in floor_buttons)
             {
                 graphics.FillRectangle(brushFloors, button);
@@ -202,19 +191,8 @@ namespace Project_Novi.Modules.Map
 
             
             var strFont = new Font("Segoe UI", 50);
-            //var rectT5 = new Rectangle(1520, 130, 300, 60);
-            //var rectT4 = new Rectangle(1520, 280, 300, 60);
-            //var rectT3 = new Rectangle(1520, 430, 300, 60);
-            //var rectT2 = new Rectangle(1520, 580, 300, 60);
-            //var rectT1 = new Rectangle(1520, 730, 300, 60);
-            //var rectT0 = new Rectangle(1520, 880, 300, 60);
+
             var stringFormat = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
-            //graphics.DrawString("T5", strFont, Brushes.White, rectT5, stringFormat);
-            //graphics.DrawString("T4", strFont, Brushes.White, rectT4, stringFormat);
-            //graphics.DrawString("T3", strFont, Brushes.White, rectT3, stringFormat);
-            //graphics.DrawString("T2", strFont, Brushes.White, rectT2, stringFormat);
-            //graphics.DrawString("T1", strFont, Brushes.White, rectT1, stringFormat);
-            //graphics.DrawString("T0", strFont, Brushes.White, rectT0, stringFormat);
 
             foreach (Rectangle button in floor_buttons) {
                 if (_activeFloor.Equals("T" + (number_floor_buttons - 1 - floor_buttons.IndexOf(button)).ToString()))
