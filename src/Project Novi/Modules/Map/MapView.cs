@@ -7,37 +7,50 @@ namespace Project_Novi.Modules.Map
 {
     class MapView : IView
     {
-        private enum Floor
-        {
-            T0, T1, T2, T3, T4, T5
-        }
-
         private readonly MapModule _module;
         private readonly IController _controller;
+
+        // Digit selectors for room input
+        private List<DigitSelector> _digitSelectors;
+        private string[] _floors = { "0", "1", "2", "3", "4", "5" };
+        private string[] _rooms = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+        private string[] _roomAddition = { "a", "b", "c" };
+        private int _sizeDigits = 50;
+        private int _yposDigits = 600;
+        private int _xposDigits = 50;
+        private int _marginDigits = 10;
+
+        // Brushes and fonts
+        private SolidBrush _digitTextBrush = new SolidBrush(Color.Black);
+        private SolidBrush _activeFloorArrowBrush = new SolidBrush(Color.Orange);
+        private SolidBrush _floorButtonBrush = new SolidBrush(Color.Blue);        
+        private SolidBrush _digitButtonBrush = new SolidBrush(Color.Blue);
+        private SolidBrush _floorTextBrush = new SolidBrush(Color.White);
+        private SolidBrush _findButtonBrush = new SolidBrush(Color.Orange);
+        private SolidBrush _findTextBrush = new SolidBrush(Color.White);
+        private Font _digitFont = new Font("Segoe UI", 20);
+        private Font _floorFont = new Font("Segoe UI", 40);
+        private StringFormat _formatText = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
+
+        // Buttons for selecting floors
         private string _activeFloor = "T0";
-        List<Rectangle> floor_buttons;
-        Point[] driehoek = new Point[3];
-        SolidBrush brushActiveFloor = new SolidBrush(Color.Orange);
-        SolidBrush brushFloors = new SolidBrush(Color.Blue);
+        private Point[] _activeFloorArrow = new Point[3];
+        private List<Rectangle> _floorButtons;       
+        private string[] _floorNames = { "T5", "T4", "T3", "T2", "T1", "T0" };
+        private int _xposFloorButtons = 1650;
+        private int _yposFloorButtons = 250;
+        private int _widthFloorButtons = 220;
+        private int _heightFloorButtonss = 120;
+        private int _marginFloorButtons = 10;
+        private int _numberFloorButtons;
 
-        List<DigitSelector> digit_selectors;
-        SolidBrush button_brush = new SolidBrush(Color.Blue);
-        SolidBrush text_brush = new SolidBrush(Color.Black);
-        Font text_font = new Font("Segoe UI", 16);
-        Rectangle ok_button = new Rectangle(100, 150, 50, 50);
-      
-        string[] verdiepingen = { "0", "1", "2", "3", "4", "5" };
-        string[] lokalen = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-        string[] bonus = { "a", "b", "c" };
-        string[] floors = { "T5", "T4", "T3", "T2", "T1", "T0" };
+        // Xpos for display map, y value equals ypos of floor buttons
+        private int _xposMap = 200;
 
-        private int xpos_floor_buttons = 1650;
-        private int ypos_floor_buttons = 250;
-        private int width_floor_buttons = 220;
-        private int height_floor_buttons = 120;
-        private int margin_floor_buttons = 10;
-        private int number_floor_buttons = 6;
-
+        private int _xposFindButton = 100;
+        private int _yposFindButton = 800;
+        private int _sizeFindButton = 150;
+        
         struct ArrowButton
         {
             public Point[] coords { get; set; }
@@ -67,40 +80,36 @@ namespace Project_Novi.Modules.Map
             _module = module;
             _controller = controller;
             _controller.Touch += ControllerOnTouch;
-            digit_selectors = new List<DigitSelector>();
-            floor_buttons = new List<Rectangle>();
-            GenerateRectangles(xpos_floor_buttons, ypos_floor_buttons, width_floor_buttons, height_floor_buttons, margin_floor_buttons, number_floor_buttons);
-            CreateDigitSelector(50, 50, 30, verdiepingen, 0);
-            CreateDigitSelector(100, 50, 30, lokalen, 0);
-            CreateDigitSelector(150, 50, 30, lokalen, 0);
-            CreateDigitSelector(200, 50, 30, bonus, 0);
+            _digitSelectors = new List<DigitSelector>();
+            _floorButtons = new List<Rectangle>();
+            _numberFloorButtons = _floorNames.Length;
+
+            // Create all buttons for selecting floors
+            CreateFloorButtons(_xposFloorButtons, _yposFloorButtons, _widthFloorButtons, _heightFloorButtonss, _marginFloorButtons, _numberFloorButtons);
+
+            // Create all selectors for inputting room
+            CreateDigitSelector(_xposDigits, _yposDigits, _sizeDigits, _floors, 0);
+            CreateDigitSelector(_xposDigits + (1 * _sizeDigits) + (1 * _marginDigits), _yposDigits, _sizeDigits, _rooms, 0);
+            CreateDigitSelector(_xposDigits + (2 * _sizeDigits) + (2 * _marginDigits), _yposDigits, _sizeDigits, _rooms, 0);
+            CreateDigitSelector(_xposDigits + (3 * _sizeDigits) + (3 * _marginDigits), _yposDigits, _sizeDigits, _roomAddition, 0);
         }
 
         private void ControllerOnTouch(Point p)
         {
-            foreach (Rectangle button in floor_buttons)
+            // Check if a floor button has been pressed
+            foreach (Rectangle button in _floorButtons)
             {
-                if (p.X >= xpos_floor_buttons && p.X <= xpos_floor_buttons + width_floor_buttons && p.Y >= button.Y && p.Y <= button.Y + height_floor_buttons)
+                if (p.X >= _xposFloorButtons && p.X <= _xposFloorButtons + _widthFloorButtons && p.Y >= button.Y && p.Y <= button.Y + _heightFloorButtonss)
                 {
-                    _activeFloor = floors[floor_buttons.IndexOf(button)];
+                    _activeFloor = _floorNames[_floorButtons.IndexOf(button)];
+                    FloorSelect(_floorButtons.IndexOf(button));
                 }
             }
-            //if (p.X > 1550 && p.X < 1800 && p.Y > 80 && p.Y < 220)
-            //    _activeFloor = Floor.T5;
-            //else if (p.X > 1550 && p.X < 1800 && p.Y > 230 && p.Y < 370)
-            //    _activeFloor = Floor.T4;
-            //else if (p.X > 1550 && p.X < 1800 && p.Y > 380 && p.Y < 520)
-            //    _activeFloor = Floor.T3;
-            //else if (p.X > 1550 && p.X < 1800 && p.Y > 530 && p.Y < 670)
-            //    _activeFloor = Floor.T2;
-            //else if (p.X > 1550 && p.X < 1800 && p.Y > 680 && p.Y < 820)
-            //    _activeFloor = Floor.T1;
-            //else if (p.X > 1550 && p.X < 1800 && p.Y > 830 && p.Y < 970)
-            //    _activeFloor = Floor.T0;
 
+            // Check if a digit selector has been pressed
             int selector_index = -1;
             string change = "none";
-            foreach (DigitSelector ds in digit_selectors)
+            foreach (DigitSelector ds in _digitSelectors)
             {
                 foreach (ArrowButton ab in ds.buttons)
                 {
@@ -108,7 +117,7 @@ namespace Project_Novi.Modules.Map
                     {
                         if (((p.X >= ab.coords[0].X && p.X <= ab.coords[2].X) && (p.Y >= ab.coords[0].Y && p.Y <= ab.coords[0].Y + (2 * (p.X - ab.coords[0].X)))) || ((p.X >= ab.coords[2].X && p.X <= ab.coords[1].X) && (p.Y >= ab.coords[1].Y && p.Y <= ab.coords[1].Y + (2 * (ab.coords[1].X - p.X)))))
                         {
-                            selector_index = digit_selectors.IndexOf(ds);
+                            selector_index = _digitSelectors.IndexOf(ds);
                             change = "down";
                         }
                     }
@@ -116,90 +125,98 @@ namespace Project_Novi.Modules.Map
                     {
                         if (((p.X >= ab.coords[0].X && p.X <= ab.coords[2].X) && (p.Y <= ab.coords[0].Y && p.Y >= ab.coords[0].Y - (2 * (p.X - ab.coords[0].X)))) || ((p.X >= ab.coords[2].X && p.X <= ab.coords[1].X) && (p.Y <= ab.coords[1].Y && p.Y >= ab.coords[1].Y - (2 * (ab.coords[1].X - p.X)))))
                         {
-                            selector_index = digit_selectors.IndexOf(ds);
+                            selector_index = _digitSelectors.IndexOf(ds);
                             change = "up";
                         }
                     }
                 }
             }
+
+            // Update digits if one has been pressed
             if (selector_index != -1)
             {
                 UpdateIndex(selector_index, change);
+            }
+
+            if (p.X >= _xposFindButton && p.X <= _xposFindButton + _sizeFindButton && p.Y >= _yposFindButton && p.Y <= (_yposFindButton + (_sizeFindButton / 2)))
+            {
+                MessageBox.Show("TEST");
             }
         }
 
         public void Render(Graphics graphics, Rectangle rectangle)
         {
-            graphics.Clear(Color.Beige);
-
-            foreach (Rectangle button in floor_buttons)
-            {
-                graphics.FillRectangle(brushFloors, button);
-            }
-
+            // Display correct floor map
             switch(_activeFloor)
             {
                 case "T5":
-                    graphics.DrawImage(Properties.Resources.T5x, 100, ypos_floor_buttons);
+                    graphics.DrawImage(Properties.Resources.T5x, _xposMap, _yposFloorButtons);
                     break;
                 case "T4":
-                    graphics.DrawImage(Properties.Resources.T4x, 100, ypos_floor_buttons);
+                    graphics.DrawImage(Properties.Resources.T4x, _xposMap, _yposFloorButtons);
                     break;
                 case "T3":
-                    graphics.DrawImage(Properties.Resources.T3x, 100, ypos_floor_buttons);
+                    graphics.DrawImage(Properties.Resources.T3x, _xposMap, _yposFloorButtons);
                     break;
                 case "T2":
-                    graphics.DrawImage(Properties.Resources.T2x, 100, ypos_floor_buttons);
+                    graphics.DrawImage(Properties.Resources.T2x, _xposMap, _yposFloorButtons);
                     break;
                 case "T1":
-                    graphics.DrawImage(Properties.Resources.T1x, 100, ypos_floor_buttons);
+                    graphics.DrawImage(Properties.Resources.T1x, _xposMap, _yposFloorButtons);
                     break;
                 case "T0":
-                    graphics.DrawImage(Properties.Resources.T0x, 100, ypos_floor_buttons);
+                    graphics.DrawImage(Properties.Resources.T0x, _xposMap, _yposFloorButtons);
                     break;
-            }
-            
-            var strFont = new Font("Segoe UI", 50);
+            }            
 
-            var stringFormat = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
-
-            foreach (Rectangle button in floor_buttons) {
-                if (_activeFloor.Equals("T" + (number_floor_buttons - 1 - floor_buttons.IndexOf(button)).ToString()))
+            // Display all floor buttons
+            foreach (Rectangle button in _floorButtons) {
+                if (_activeFloor.Equals("T" + (_numberFloorButtons - 1 - _floorButtons.IndexOf(button)).ToString()))
                 {
-                    driehoek[0].X = button.X - margin_floor_buttons;
-                    driehoek[0].Y = button.Y;
-                    driehoek[1].X = button.X - margin_floor_buttons;
-                    driehoek[1].Y = button.Y + height_floor_buttons;
-                    driehoek[2].X = button.X - (5 * margin_floor_buttons);
-                    driehoek[2].Y = (button.Y + button.Y + height_floor_buttons) / 2;
-
-                }
-                graphics.DrawString(floors[floor_buttons.IndexOf(button)], strFont, Brushes.White, button, stringFormat);
+                    _activeFloorArrow[0].X = button.X - _marginFloorButtons;
+                    _activeFloorArrow[0].Y = button.Y;
+                    _activeFloorArrow[1].X = button.X - _marginFloorButtons;
+                    _activeFloorArrow[1].Y = button.Y + _heightFloorButtonss;
+                    _activeFloorArrow[2].X = button.X - (5 * _marginFloorButtons);
+                    _activeFloorArrow[2].Y = (button.Y + button.Y + _heightFloorButtonss) / 2;
+                }                
+                graphics.FillRectangle(_floorButtonBrush, button);
+                graphics.DrawString(_floorNames[_floorButtons.IndexOf(button)], _floorFont, _floorTextBrush, button, _formatText);
             }
-            graphics.FillPolygon(brushActiveFloor, driehoek);
-            // draw all digit selectors
-            foreach (DigitSelector ds in digit_selectors)
+
+            // Display arrow for active floor
+            graphics.FillPolygon(_activeFloorArrowBrush, _activeFloorArrow);
+
+            // Display all digit selectors
+            foreach (DigitSelector ds in _digitSelectors)
             {
                 foreach (ArrowButton ab in ds.buttons)
                 {
-                    graphics.FillPolygon(button_brush, ab.coords);
+                    graphics.FillPolygon(_digitButtonBrush, ab.coords);
                 }
-                graphics.DrawString(ds.digitbox.values[ds.digitbox.index], text_font, text_brush, ds.digitbox.coords);
+                Rectangle digit_box = new Rectangle(ds.digitbox.coords.X, ds.digitbox.coords.Y, _sizeDigits, _sizeDigits);
+                graphics.DrawString(ds.digitbox.values[ds.digitbox.index], _digitFont, _digitTextBrush, digit_box, _formatText);
             }
+
+            Rectangle find_box = new Rectangle(_xposFindButton, _yposFindButton, _sizeFindButton, _sizeFindButton / 2);
+            graphics.FillRectangle(_findButtonBrush, _xposFindButton, _yposFindButton, _sizeFindButton, _sizeFindButton / 2);
+            graphics.DrawString("Vind", _floorFont, _findTextBrush, find_box, _formatText);
         }
 
+        // Add a new digit selector to list
         private void CreateDigitSelector(int x, int y, int size, string[] values, int index)
         {
             DigitSelector ds = new DigitSelector();
-            ArrowButton arrow_down = CreateArrowButton(x, y + 30, size, "down");
+            ArrowButton arrow_down = CreateArrowButton(x, y, size, "down");
             ArrowButton arrow_up = CreateArrowButton(x, y, size, "up");
             ds.buttons = new List<ArrowButton>();
             ds.buttons.Add(arrow_down);
             ds.buttons.Add(arrow_up);
             ds.digitbox = CreateDigitBox(x, y, values, index);
-            digit_selectors.Add(ds);
+            _digitSelectors.Add(ds);
         }
 
+        // Return a DigitBox for DigitSelector being created
         private DigitBox CreateDigitBox(int x, int y, string[] values, int index)
         {
             DigitBox db = new DigitBox();
@@ -210,32 +227,37 @@ namespace Project_Novi.Modules.Map
             return db;
         }
 
+        // Return an ArrowButton for DigitSelector being created
         private ArrowButton CreateArrowButton(int x, int y, int size, string direction)
         {
             ArrowButton ab = new ArrowButton();
             Point[] button = new Point[3];
-            button[0].X = x;
-            button[0].Y = y;
-            button[1].X = x + size;
-            button[1].Y = y;
+            button[0].X = x;            
+            button[1].X = x + size;            
             button[2].X = x + (size / 2);
+
             if (direction.Equals("up"))
             {
+                button[0].Y = y;
+                button[1].Y = y;
                 button[2].Y = y - size;
                 ab.direction = "up";
             }
             else
             {
-                button[2].Y = y + size;
+                button[0].Y = y + size;
+                button[1].Y = y + size;
+                button[2].Y = y + (2 * size);
                 ab.direction = "down";
             }
             ab.coords = button;
             return ab;
         }
 
+        // Update Digitbox if an ArrowButton has been pressed
         private void UpdateIndex(int selector_index, string change)
         {
-            DigitSelector ds = digit_selectors[selector_index];
+            DigitSelector ds = _digitSelectors[selector_index];
             DigitBox db = ds.digitbox;
             if (change.Equals("up"))
             {
@@ -260,14 +282,25 @@ namespace Project_Novi.Modules.Map
                 }
             }
             ds.digitbox = db;
-            digit_selectors[selector_index] = ds;
+            _digitSelectors[selector_index] = ds;
         }
 
-        public void GenerateRectangles(int xpos, int ypos, int width, int height, int margin, int number)
+        // Update first DigitSelector if another floor has been selected
+        private void FloorSelect(int floor)
+        {
+            DigitSelector ds = _digitSelectors[0];
+            DigitBox db = ds.digitbox;
+            db.index = _floors.Length - 1 - floor;
+            ds.digitbox = db;
+            _digitSelectors[0] = ds;
+        }
+
+        // Create all buttons for selecting floor
+        public void CreateFloorButtons(int xpos, int ypos, int width, int height, int margin, int number)
         {
             for (int i = 0; i < number; i++) {
                 Rectangle rect = new Rectangle(xpos, ypos + (i * height) + (i * margin), width, height);
-                floor_buttons.Add(rect);
+                _floorButtons.Add(rect);
             }
         }
     }
