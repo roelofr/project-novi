@@ -136,59 +136,28 @@ namespace Project_Novi.Modules.Map
             {
                 graphics.FillRectangle(brushFloors, button);
             }
-            
-            //switch (_activeFloor)
-            //{
-            //    case "T5":
-            //        driehoek[0].X = 1540;
-            //        driehoek[0].Y = 80;
-            //        driehoek[1].X = 1540;
-            //        driehoek[1].Y = 220;
-            //        driehoek[2].X = 1490;
-            //        driehoek[2].Y = 150;
-            //        break; 
-            //    case "T4":
-            //        driehoek[0].X = 1540;
-            //        driehoek[0].Y = 230;
-            //        driehoek[1].X = 1540;
-            //        driehoek[1].Y = 370;
-            //        driehoek[2].X = 1490;
-            //        driehoek[2].Y = 300;
-            //        break;
-            //    case "T3":
-            //        driehoek[0].X = 1540;
-            //        driehoek[0].Y = 380;
-            //        driehoek[1].X = 1540;
-            //        driehoek[1].Y = 520;
-            //        driehoek[2].X = 1490;
-            //        driehoek[2].Y = 450;
-            //        break;
-            //    case "T2":
-            //        driehoek[0].X = 1540;
-            //        driehoek[0].Y = 530;
-            //        driehoek[1].X = 1540;
-            //        driehoek[1].Y = 670;
-            //        driehoek[2].X = 1490;
-            //        driehoek[2].Y = 600;
-            //        break;
-            //    case "T1":
-            //        driehoek[0].X = 1540;
-            //        driehoek[0].Y = 680;
-            //        driehoek[1].X = 1540;
-            //        driehoek[1].Y = 820;
-            //        driehoek[2].X = 1490;
-            //        driehoek[2].Y = 750;
-            //        break;
-            //    case "T0":
-            //        driehoek[0].X = 1540;
-            //        driehoek[0].Y = 830;
-            //        driehoek[1].X = 1540;
-            //        driehoek[1].Y = 970;
-            //        driehoek[2].X = 1490;
-            //        driehoek[2].Y = 900;
-            //        break;
-            //}
 
+            switch(_activeFloor)
+            {
+                case "T5":
+                    graphics.DrawImage(Properties.Resources.T5x, 100, ypos_floor_buttons);
+                    break;
+                case "T4":
+                    graphics.DrawImage(Properties.Resources.T4x, 100, ypos_floor_buttons);
+                    break;
+                case "T3":
+                    graphics.DrawImage(Properties.Resources.T3x, 100, ypos_floor_buttons);
+                    break;
+                case "T2":
+                    graphics.DrawImage(Properties.Resources.T2x, 100, ypos_floor_buttons);
+                    break;
+                case "T1":
+                    graphics.DrawImage(Properties.Resources.T1x, 100, ypos_floor_buttons);
+                    break;
+                case "T0":
+                    graphics.DrawImage(Properties.Resources.T0x, 100, ypos_floor_buttons);
+                    break;
+            }
             
             var strFont = new Font("Segoe UI", 50);
 
