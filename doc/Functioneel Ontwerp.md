@@ -89,3 +89,28 @@ De teksten moeten op het juiste moment op de juiste manier getoond worden. De te
 | De gekozen tekst wordt 1 keer weergegeven | Pass |
 | Er wordt random een bericht weergeven uit de daarbijhorende catagorie | Pass |
 | Berichten kunnen worden gewijzigd/toegevoegd door alleen de .xml aan te passen | Pass |
+
+#Overzicht locaties
+Als gebruiker wil ik een overzicht van alle lokalen in het T gebouw zodat ik kan opzoeken waar ik moet zijn.
+
+![Mockup tekst weergeven](images/schermontwerpen/mockup_selectverdieping.png)
+## Bruikbaar maken data
+### Toelichting
+Om het overzicht van alle lokalen te kunnen realiseren zullen de aangeleverde kaarten en coördinaten  kloppend moeten zijn en zodanig zijn aangepast dat het toegpast kan worden in de applicatie.
+
+
+## Weergave plattegrond
+### Toelichting
+Nadat de kaarten kloppend zijn gemaakt moeten ze in de applicatie komen te staan en op het juiste moment weergegeven worden.
+
+## Selecteren verdieping
+### Toelichting
+Om de kaarten overzichtelijk te houden kan de gebruiker zelf aangeven van welke verdieping hij de kaart wil zien.
+
+
+##Testscenarios
+|Scenario | Verwachte uitkomst |
+|:---|:---|
+| Per verdieping wordt de juiste kaart aangeroepen | Pass |
+| Het is niet mogelijk om meerdere kaarten tegelijk te zien | Pass |
+| De kaarten zijn goed leesbaar | Pass |
