@@ -8,6 +8,7 @@ namespace Project_Novi.Modules.Home
         private readonly HomeModule _module;
         private readonly IController _controller;
         public Avatar Avatar;
+        private FontFamily font = null;
       
         public IModule Module
         {
@@ -24,14 +25,18 @@ namespace Project_Novi.Modules.Home
 
         public void Render(Graphics graphics, Rectangle rectangle)
         {
-            var stringFormat = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
-            var rect = new Rectangle(1, 1, 1920, 300);
-            var strFont = new Font("Sergoe UI", 50);
+            StringFormat stringFormat = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Far };
+            Rectangle rectText = new Rectangle(1, 295, 1920, 90);
+            int fontSize = 45;
 
-            graphics.DrawString(_module.AvatarText, strFont, Brushes.White, rect, stringFormat);
-            rectangle.Y += 200;
-            rectangle.Height -= 200;
-            Avatar.Render(graphics, rectangle);
+            Font strFont = TextUtils.getFont(fontSize);
+            if (strFont == null)
+                strFont = new Font(SystemFonts.DefaultFont.Name, fontSize, FontStyle.Regular);
+
+                graphics.DrawString(_module.AvatarText, strFont, Brushes.White, rectText, stringFormat);
+
+            Rectangle rectAvatar = new Rectangle(rectText.X, 489, 1920, 1080 - 489);
+            Avatar.Render(graphics, rectAvatar);
         }
     }
 }

@@ -70,7 +70,9 @@
   <ItemGroup>
     <Compile Include="IController.cs" />
     <Compile Include="Modules\Backgrounds\DateAssociation.cs" />
+    <Compile Include="Modules\Backgrounds\DateManager.cs" />
     <Compile Include="Modules\Backgrounds\MainBackground.cs" />
+    <Compile Include="Modules\Backgrounds\SubBackground.cs" />
     <Compile Include="Modules\Home\HomeModule.cs" />
     <Compile Include="Modules\Home\HomeView.cs" />
     <Compile Include="Modules\IModule.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Modules\IView.cs" />
     <Compile Include="Modules\Map\MapModule.cs" />
     <Compile Include="Modules\Map\MapView.cs" />
+    <Compile Include="Modules\TextUtils.cs" />
     <Compile Include="NoviController.cs" />
     <Compile Include="Render\Avatar.cs" />
     <Compile Include="Settings.cs" />
@@ -130,6 +133,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Resources\OpenSans-Light.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

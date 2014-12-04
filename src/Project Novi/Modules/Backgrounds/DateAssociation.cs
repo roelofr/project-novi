@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_Novi.Modules.Bg_generic
+namespace Project_Novi.Modules.Backgrounds
 {
     class DateAssociation
     {

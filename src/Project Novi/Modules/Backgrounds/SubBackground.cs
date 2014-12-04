@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace Project_Novi.Modules.Backgrounds
 {
-    class MainBackground : IBackgroundView
+    class SubBackground : IBackgroundView
     {
 
         public void Render(Graphics graphics, Rectangle rectangle)

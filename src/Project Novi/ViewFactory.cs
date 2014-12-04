@@ -27,7 +27,7 @@ namespace Project_Novi
             if (view is HomeView)
                 bv = new MainBackground();
             else
-                bv = null;
+                bv = new SubBackground();
 
             return bv;
         }
