@@ -40,6 +40,7 @@ namespace Project_Novi
 
             if (BackgroundView is IBackgroundView && BackgroundView != null)
                 BackgroundView.Render(g, windowRectangle);
+
             View.Render(g, windowRectangle);
         }
 

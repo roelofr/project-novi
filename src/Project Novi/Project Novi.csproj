@@ -70,7 +70,7 @@
   <ItemGroup>
     <Compile Include="IController.cs" />
     <Compile Include="Modules\Backgrounds\DateAssociation.cs" />
-    <Compile Include="Modules\Backgrounds\DateManager.cs" />
+    <Compile Include="Modules\Backgrounds\BackgroundUtils.cs" />
     <Compile Include="Modules\Backgrounds\MainBackground.cs" />
     <Compile Include="Modules\Backgrounds\SubBackground.cs" />
     <Compile Include="Modules\Home\HomeModule.cs" />

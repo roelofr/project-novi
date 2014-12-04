@@ -3,3 +3,8 @@ C:\Users\Arjan\Documents\novi\src\NoviTests\bin\Debug\NoviTests.pdb
 C:\Users\Arjan\Documents\novi\src\NoviTests\obj\Debug\NoviTests.csprojResolveAssemblyReference.cache
 C:\Users\Arjan\Documents\novi\src\NoviTests\obj\Debug\NoviTests.dll
 C:\Users\Arjan\Documents\novi\src\NoviTests\obj\Debug\NoviTests.pdb
+D:\Users\Roelof\Documents\VisualStudioProjects\Project Novi\src\NoviTests\bin\Debug\NoviTests.dll
+D:\Users\Roelof\Documents\VisualStudioProjects\Project Novi\src\NoviTests\bin\Debug\NoviTests.pdb
+D:\Users\Roelof\Documents\VisualStudioProjects\Project Novi\src\NoviTests\obj\Debug\NoviTests.csprojResolveAssemblyReference.cache
+D:\Users\Roelof\Documents\VisualStudioProjects\Project Novi\src\NoviTests\obj\Debug\NoviTests.dll
+D:\Users\Roelof\Documents\VisualStudioProjects\Project Novi\src\NoviTests\obj\Debug\NoviTests.pdb

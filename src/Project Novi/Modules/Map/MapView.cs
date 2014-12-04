@@ -26,7 +26,7 @@ namespace Project_Novi.Modules.Map
 
         public void Render(Graphics graphics, Rectangle rectangle)
         {
-            graphics.Clear(Color.Beige);
+            //graphics.Clear(Color.Beige);
         }
     }
 }

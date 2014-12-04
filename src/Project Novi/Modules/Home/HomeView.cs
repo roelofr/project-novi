@@ -8,7 +8,6 @@ namespace Project_Novi.Modules.Home
         private readonly HomeModule _module;
         private readonly IController _controller;
         public Avatar Avatar;
-        private FontFamily font = null;
       
         public IModule Module
         {
