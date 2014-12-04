@@ -40,6 +40,7 @@
             this.Text = "Novi";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Novi_Paint);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Novi_Click);
             this.ResumeLayout(false);
 
         }

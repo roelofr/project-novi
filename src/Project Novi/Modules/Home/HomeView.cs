@@ -1,53 +1,40 @@
 ﻿using System.Drawing;
+using Project_Novi.Render;
 
 namespace Project_Novi.Modules.Home
 {
     class HomeView : IView
     {
         private readonly HomeModule _module;
+        private readonly IController _controller;
+        public Avatar Avatar;
       
         public IModule Module
         {
             get { return _module; }
         }
 
-        public HomeView(HomeModule module)
+        public HomeView(HomeModule module, IController controller)
         {
             _module = module;
+            _controller = controller;
+            Avatar = new Avatar(_controller);
+            Avatar.Say(_module.AvatarText);
         }
 
         public void Render(Graphics graphics, Rectangle rectangle)
         {
-            graphics.Clear(Color.FromArgb(255, 32, 103, 178));
+            var stringFormat = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Far };
+            var rectText = new Rectangle(1, 295, 1920, 90);
+            const int fontSize = 45;
 
-            var stringFormat = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
-            Rectangle rect1 = new Rectangle(1, 1, 1920, 300);
-            Font strFont = new Font("Sergoe UI", 50);
-            //Available categories: Welkom, Poke, Idle, Kaart, RouteVragen, RouteBerekenen en BerekendeRoute
-            //Let op: Exact overnemen!!!
-            var strTxt = Text.TextManager.GetText("Welkom");
+            var strFont = TextUtils.GetFont(fontSize) ??
+                          new Font(SystemFonts.DefaultFont.Name, fontSize, FontStyle.Regular);
 
-            TTS.TTS.TextToSpeech(strTxt);
-            graphics.DrawString(strTxt, strFont, Brushes.White, rect1, stringFormat);
+            graphics.DrawString(_module.AvatarText, strFont, Brushes.White, rectText, stringFormat);
 
-
-            // Draw avatar
-            int avatarStartX = 680;
-            int avatarStartY = 440;
-            int faceOffsetX = avatarStartX + 165;
-            int faceOffsetY = avatarStartY + 190;
-            int pupilOffsetX = faceOffsetX + 33;
-            int pupilOffsetY = faceOffsetY + 33;
-
-            Rectangle avatarRect = new Rectangle(avatarStartX, avatarStartY, 560, 640);
-            Rectangle faceRect = new Rectangle(faceOffsetX, faceOffsetY, 224, 158);
-            Rectangle pupilRect= new Rectangle(pupilOffsetX, pupilOffsetY, 160, 18);
-
-            graphics.DrawImage(Properties.Resources.avatar_base, avatarRect);
-            graphics.DrawImage(Properties.Resources.avatar_eyes, faceRect);
-            graphics.DrawImage(Properties.Resources.avatar_pupils, pupilRect);
-            graphics.DrawImage(Properties.Resources.avatar_nose, faceRect);
-            graphics.DrawImage(Properties.Resources.closed_happy, faceRect);
+            var rectAvatar = new Rectangle(rectText.X, 489, 1920, 1080 - 489);
+            Avatar.Render(graphics, rectAvatar);
         }
     }
 }
