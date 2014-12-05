@@ -42,7 +42,9 @@ namespace Project_Novi.Modules.Backgrounds
 
         private static String ZeroFill(int value)
         {
-            return value < 10 ? String.Format("0{0}", value) : value.ToString();
+            if (value < 10)
+                return String.Format("0{0}", value);
+            return value.ToString();
         }
 
         private static bool InsertDateAssoc(int Day, int Month, String description)
@@ -102,7 +104,7 @@ namespace Project_Novi.Modules.Backgrounds
         public static String GetTime()
         {
             var now = DateTime.Now;
-            return String.Format("{0}:{1}:{2}", now.Hour, now.Minute, now.Second);
+            return String.Format("{0}:{1}:{2}", now.Hour, ZeroFill(now.Minute), ZeroFill(now.Second));
 
         }
 
