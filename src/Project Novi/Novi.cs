@@ -12,10 +12,23 @@ namespace Project_Novi
 
         internal IBackgroundView BackgroundView { get; set; }
 
+
+
         public Novi()
         {
             InitializeComponent();
+
+            // Add settings
             this.DoubleBuffered = true;
+
+            // Add event hooks
+            this.Paint += Novi_Paint;
+            this.MouseClick += Novi_Click;
+            this.MouseUp += Novi_MouseUp;
+            this.MouseDown += Novi_MouseDown;
+            this.MouseMove += Novi_MouseMove;
+
+            // Hide and open splash
             this.Hide();
             var splash = new Splash();
             splash.ShowDialog();
@@ -23,9 +36,11 @@ namespace Project_Novi
             _controller = new NoviController(this);
         }
 
+
         private void Novi_Paint(object sender, PaintEventArgs e)
         {
-            if (!Visible) return;
+            if (!Visible)
+                return;
 
             var rect = e.ClipRectangle;
             var g = e.Graphics;
@@ -47,6 +62,19 @@ namespace Project_Novi
         private void Novi_Click(object sender, MouseEventArgs e)
         {
             _controller.HandleTouch(e.Location);
+        }
+
+        private void Novi_MouseDown(object sender, MouseEventArgs e)
+        {
+            _controller.HandleTouchStart(e.Location);
+        }
+        private void Novi_MouseMove(object sender, MouseEventArgs e) {
+            _controller.HandleTouchMove(e.Location);
+        }
+
+        private void Novi_MouseUp(object sender, MouseEventArgs e)
+        {
+            _controller.HandleTouchEnd(e.Location);
         }
     }
 }

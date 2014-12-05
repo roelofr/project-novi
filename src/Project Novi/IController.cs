@@ -6,6 +6,7 @@ namespace Project_Novi
 {
     delegate void TickHandler();
     delegate void TouchHandler(Point point);
+    delegate void DragHandler(Point current, Point origin);
 
     interface IController
     {
