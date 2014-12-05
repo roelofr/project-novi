@@ -14,7 +14,7 @@ namespace Project_Novi.TTS
     /// </summary>
     static class TTS
     {
-        private const string BaseUrl = "http://translate.google.com/translate_tts?tl={0}&q={1}";
+        private const string BaseUrl = "https://translate.google.com/translate_tts?tl={0}&q={1}";
 
         /// <summary>
         /// Keep track of a list of sentences to speak.
