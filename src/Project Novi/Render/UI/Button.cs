@@ -27,17 +27,19 @@ namespace Project_Novi.Render.UI
         private IController _controller;
 
         public event EventHandler Click;
-        public Button(IController controller) {
+        public Button(IController controller)
+        {
             _controller = controller;
             _controller.Touch += controllerTouched;
 
             // Set default values
             Size = new Size(100, 20);
-           Location = new Point(0, 0);
+            Location = new Point(0, 0);
             Text = "Button";
+            IsDark = true;
 
             // Calculate height to points, using 60% of available height.
-            FontSize = (int) (Size.Height * 72d / 96d * 0.6);
+            FontSize = (int)(Size.Height * 72d / 96d * 0.6);
 
         }
         /// <summary>
@@ -77,7 +79,7 @@ namespace Project_Novi.Render.UI
 
             graphics.FillRectangle(bg, rect);
             graphics.DrawString(Text, font, fg, rect, format);
-            
+
         }
     }
 }
