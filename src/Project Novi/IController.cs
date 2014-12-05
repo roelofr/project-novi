@@ -14,5 +14,8 @@ namespace Project_Novi
         IEnumerator<IModule> GetModules(); 
         void SelectModule(IModule module);
         event TouchHandler Touch;
+        event TouchHandler DragStart;
+        event TouchHandler DragEnd;
+        event DragHandler Drag;
     }
 }

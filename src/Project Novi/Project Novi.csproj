@@ -88,6 +88,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Render\Avatar.cs" />
+    <Compile Include="Render\UI\IButton.cs" />
+    <Compile Include="Render\UI\Button.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="TTS\TestTTS.cs">
       <SubType>Form</SubType>
@@ -133,7 +135,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Resources\OpenSans-Light.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

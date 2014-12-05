@@ -1,5 +1,7 @@
 ﻿using System.Drawing;
 using Project_Novi.Render;
+using Project_Novi.Render.UI;
+using System.Windows.Forms;
 
 namespace Project_Novi.Modules.Home
 {
@@ -8,6 +10,8 @@ namespace Project_Novi.Modules.Home
         private readonly HomeModule _module;
         private readonly IController _controller;
         public Avatar Avatar;
+
+        Project_Novi.Render.UI.Button btn;
       
         public IModule Module
         {
@@ -20,6 +24,15 @@ namespace Project_Novi.Modules.Home
             _controller = controller;
             Avatar = new Avatar(_controller);
             Avatar.Say(_module.AvatarText);
+
+            btn = new Project_Novi.Render.UI.Button(controller);
+            btn.Location = new Point(1920 / 2, 1080 - 300);
+            btn.Click += btn_Click;
+        }
+
+        void btn_Click(object sender, System.EventArgs e)
+        {
+            MessageBox.Show("Got some bacon!");
         }
 
         public void Render(Graphics graphics, Rectangle rectangle)
@@ -35,6 +48,8 @@ namespace Project_Novi.Modules.Home
 
             var rectAvatar = new Rectangle(rectText.X, 489, 1920, 1080 - 489);
             Avatar.Render(graphics, rectAvatar);
+
+            btn.Render(graphics);
         }
     }
 }
