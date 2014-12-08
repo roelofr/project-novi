@@ -69,13 +69,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\IBackgroundView.cs" />
+    <Compile Include="Api\IController.cs" />
     <Compile Include="Api\IModule.cs" />
     <Compile Include="Api\IView.cs" />
     <Compile Include="Background\BackgroundUtils.cs" />
     <Compile Include="Background\DateAssociation.cs" />
     <Compile Include="Background\MainBackground.cs" />
     <Compile Include="Background\SubBackground.cs" />
-    <Compile Include="IController.cs" />
     <Compile Include="ModuleManager.cs" />
     <Compile Include="Modules\Home\HomeModule.cs" />
     <Compile Include="Modules\Home\HomeView.cs" />

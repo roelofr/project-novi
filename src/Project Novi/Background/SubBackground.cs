@@ -3,7 +3,7 @@ using Project_Novi.Api;
 
 namespace Project_Novi.Background
 {
-    class SubBackground : IBackgroundView
+    public class SubBackground : IBackgroundView
     {
         public void Render(Graphics graphics, Rectangle rectangle)
         {

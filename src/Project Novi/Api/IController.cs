@@ -1,13 +1,13 @@
 ﻿using System.Drawing;
-using Project_Novi.Api;
 using Project_Novi.Render;
 
-namespace Project_Novi
+namespace Project_Novi.Api
 {
-    delegate void TickHandler();
-    delegate void TouchHandler(Point point);
+    public delegate void TickHandler();
 
-    interface IController
+    public delegate void TouchHandler(Point point);
+
+    public interface IController
     {
         ModuleManager ModuleManager { get; }
         void SelectModule(IModule module);

@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using Project_Novi.Api;
 
 namespace Project_Novi.Render
 {
     /// <summary>
     /// Implements an animated avatar that can talk.
     /// </summary>
-    class Avatar
+    public class Avatar
     {
         private const int Width = 560;
         private const int Height = 640;

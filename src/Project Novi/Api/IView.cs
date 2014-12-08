@@ -6,7 +6,7 @@ namespace Project_Novi.Api
     /// <summary>
     /// IView is the basic interface every view should implement.
     /// </summary>
-    interface IView
+    public interface IView
     {
         /// <summary>
         /// The type of the module this view is designed to display.

@@ -5,7 +5,7 @@ using Project_Novi.Text;
 
 namespace Project_Novi.Background
 {
-    class BackgroundUtils
+    public class BackgroundUtils
     {
         private static readonly List<DateAssociation> Dates = new List<DateAssociation>();
 

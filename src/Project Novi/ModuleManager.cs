@@ -9,7 +9,7 @@ using Project_Novi.Modules.Map;
 
 namespace Project_Novi
 {
-    class ModuleManager
+    public class ModuleManager
     {
         private readonly IController _controller;
 

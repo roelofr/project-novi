@@ -4,7 +4,7 @@
     /// IModule is the basic interface which all modules should implement.
     /// There will be one instance of every module.
     /// </summary>
-    interface IModule
+    public interface IModule
     {
         /// <summary>
         /// The name of the module. Other modules will use this name when referring to this module.

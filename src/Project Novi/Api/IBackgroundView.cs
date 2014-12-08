@@ -8,7 +8,7 @@ namespace Project_Novi.Api
     /// which should render any background information that is not specific to
     /// the currently active module and view.
     /// </summary>
-    interface IBackgroundView
+    public interface IBackgroundView
     {
         /// <summary>
         /// Get the Rectangle reserved for the module's view to draw in,
