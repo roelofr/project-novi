@@ -22,7 +22,7 @@
 
         private void controller_Touch(System.Drawing.Point point)
         {
-            _controller.SelectModule(new Map.MapModule(_controller));
+            _controller.SelectModule(new Map.MapModule(_controller));            
         }
 
         public void Start()
@@ -33,5 +33,13 @@
         }
 
         public void Stop() { }
+
+        public void GoIdle()
+        {
+            //if (IdleManager.GetLastInputTime() > 10000)
+            //{
+            //    _controller.SelectModule(new Home.HomeModule(_controller));
+            //}
+        }
     }
 }

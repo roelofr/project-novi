@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IController.cs" />
+    <Compile Include="IdleManager.cs" />
     <Compile Include="Modules\Backgrounds\DateAssociation.cs" />
     <Compile Include="Modules\Backgrounds\BackgroundUtils.cs" />
     <Compile Include="Modules\Backgrounds\MainBackground.cs" />

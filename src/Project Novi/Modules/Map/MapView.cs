@@ -21,7 +21,7 @@ namespace Project_Novi.Modules.Map
 
         private void ControllerOnTouch(Point p)
         {
-
+            
         }
 
         public void Render(Graphics graphics, Rectangle rectangle)

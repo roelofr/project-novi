@@ -9,6 +9,7 @@ namespace Project_Novi.Modules.Map
     class MapModule : IModule
     {
         private IController _controller;
+        public uint dwTime;
         public string Name
         {
             get { return "Map"; }
@@ -32,6 +33,14 @@ namespace Project_Novi.Modules.Map
         public void Stop()
         {
            
+        }
+
+        public void GoIdle()
+        {
+            if(IdleManager.CheckIdle() == true)
+            {
+                Environment.Exit(0);
+            }
         }
     }
 }

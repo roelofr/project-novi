@@ -50,6 +50,8 @@ namespace Project_Novi
             _module = module;
             _module.Start();
             _form.View = ViewFactory.GetView(_module, this);
+            _module.GoIdle();
+            
         }
 
 
