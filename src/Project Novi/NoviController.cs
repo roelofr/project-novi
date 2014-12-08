@@ -35,6 +35,7 @@ namespace Project_Novi
         {
             if (Tick != null) Tick();
             _form.Invalidate(true);
+            GoIdle();
         }
 
         public IEnumerator<IModule> GetModules()
@@ -50,8 +51,6 @@ namespace Project_Novi
             _module = module;
             _module.Start();
             _form.View = ViewFactory.GetView(_module, this);
-            _module.GoIdle();
-            
         }
 
 
@@ -60,6 +59,14 @@ namespace Project_Novi
             if (Touch != null)
             {
                 Touch(point);
+            }
+        }
+
+        public void GoIdle()
+        {
+            if (IdleManager.CheckIdle() == true)
+            {
+                this.SelectModule(new HomeModule(this));
             }
         }
     }

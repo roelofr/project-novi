@@ -1,72 +1,56 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.InteropServices;
-using System.Timers;
 
 namespace Project_Novi
 {
     class IdleManager
     {
+        private static bool _isIdle;
         [DllImport("user32.dll")]
-        public static extern Boolean GetLastInputInfo(ref LASTINPUTINFO plii);
-        internal struct LASTINPUTINFO
+        public static extern Boolean GetLastInputInfo(ref LastInputInfo plii);
+        internal struct LastInputInfo
         {
-            public uint cbSize;
+            public uint CbSize;
 
-            public uint dwTime;
+            public uint DwTime;
         }
 
         public static uint GetIdleTime()
-        {
-            //int Uptime = System.Environment.TickCount;
-            //int LastInputTicks = 0;
-            //int IdleTicks = 0;
-            //LASTINPUTINFO LastInput = new LASTINPUTINFO();
-            //LastInput.cbSize = (uint)System.Runtime.InteropServices.Marshal.SizeOf(LastInput);
-            //LastInput.dwTime = 0;
-
-            //if (GetLastInput(ref LastInput))    
-            //{
-
-
-            //return ((uint)Environment.TickCount/1000) - LastInput.dwTime;
-
-            // Get the system uptime    
-            int systemUptime = Environment.TickCount;
-            // The tick at which the last input was recorded    
-            int LastInputTicks = 0;
+        {   
             // The number of ticks that passed since last input    
-            int IdleTicks = 0;
+            long idleTicks = 0;
             // Set the struct    
-            LASTINPUTINFO LastInputInfo = new LASTINPUTINFO();
-            LastInputInfo.cbSize = (uint)Marshal.SizeOf(LastInputInfo);
-            LastInputInfo.dwTime = 0;
+            LastInputInfo lastInputInfo = new LastInputInfo();
+            lastInputInfo.CbSize = (uint)Marshal.SizeOf(lastInputInfo);
+            lastInputInfo.DwTime = 0;
 
             // If we have a value from the function    
-            if (GetLastInputInfo(ref LastInputInfo))
+            if (GetLastInputInfo(ref lastInputInfo))
             {
                 // Get the number of ticks at the point when the last activity was seen    
-                LastInputTicks = (int)LastInputInfo.dwTime;
+                var lastInputTicks = lastInputInfo.DwTime;
                 // Number of idle ticks = system uptime ticks - number of ticks at last input    
-                IdleTicks = systemUptime - LastInputTicks;
+                idleTicks = (Environment.TickCount - lastInputTicks) / 1000;
             }
 
-            return (uint)IdleTicks;
+            return (uint)idleTicks;
         }
 
-        public static Boolean CheckIdle()
+        public static bool CheckIdle()
         {
-            if (GetIdleTime() > 100)
+            if (GetIdleTime() > 180)
             {
-                return true;
+                if (_isIdle)
+                {
+                    return false;
+                }
+                _isIdle = true;
             }
             else
             {
-                return false;
+                _isIdle = false;
             }
+            return _isIdle;
         }
     }
 }

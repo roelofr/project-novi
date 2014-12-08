@@ -1,4 +1,5 @@
-﻿namespace Project_Novi.Modules.Home
+﻿using System;
+namespace Project_Novi.Modules.Home
 {
     class HomeModule : IModule
     {
@@ -17,7 +18,6 @@
         public HomeModule(IController controller)
         {
             _controller = controller;
-            controller.Touch += controller_Touch;
         }
 
         private void controller_Touch(System.Drawing.Point point)
@@ -30,16 +30,12 @@
             //Available categories: Welkom, Poke, Idle, Kaart, RouteVragen, RouteBerekenen en BerekendeRoute
             //Let op: Exact overnemen!!!
             AvatarText = Text.TextManager.GetText("Welkom");
+            _controller.Touch += controller_Touch;
         }
 
-        public void Stop() { }
-
-        public void GoIdle()
-        {
-            //if (IdleManager.GetLastInputTime() > 10000)
-            //{
-            //    _controller.SelectModule(new Home.HomeModule(_controller));
-            //}
+        public void Stop()
+        { 
+        
         }
     }
 }
