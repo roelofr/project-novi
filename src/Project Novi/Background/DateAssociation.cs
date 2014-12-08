@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Project_Novi.Modules.Backgrounds
+namespace Project_Novi.Background
 {
     class DateAssociation
     {

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Project_Novi.Modules;
-using System.Drawing;
+﻿using System.Drawing;
+using Project_Novi.Api;
+using Project_Novi.Render;
 
 namespace Project_Novi
 {
@@ -9,9 +9,12 @@ namespace Project_Novi
 
     interface IController
     {
-        event TickHandler Tick;
-        IEnumerator<IModule> GetModules(); 
+        ModuleManager ModuleManager { get; }
         void SelectModule(IModule module);
+
+        Avatar Avatar { get; }
+
+        event TickHandler Tick;
         event TouchHandler Touch;
     }
 }

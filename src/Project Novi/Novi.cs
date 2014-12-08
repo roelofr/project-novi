@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Project_Novi.Modules;
+using Project_Novi.Api;
 
 namespace Project_Novi
 {
     public partial class Novi : Form
     {
-        private NoviController _controller;
+        private readonly NoviController _controller;
         internal IView View { get; set; }
 
         internal IBackgroundView BackgroundView { get; set; }
@@ -15,11 +15,11 @@ namespace Project_Novi
         public Novi()
         {
             InitializeComponent();
-            this.DoubleBuffered = true;
-            this.Hide();
+            DoubleBuffered = true;
+            Hide();
             var splash = new Splash();
             splash.ShowDialog();
-            this.Show();
+            Show();
             _controller = new NoviController(this);
         }
 
@@ -36,12 +36,15 @@ namespace Project_Novi
             var scale = Math.Min(scaleX, scaleY);
             g.ScaleTransform(scale, scale);
 
-            Rectangle windowRectangle = new Rectangle(0, 0, 1920, 1080);
+            var windowRectangle = new Rectangle(0, 0, 1920, 1080);
 
-            if (BackgroundView is IBackgroundView && BackgroundView != null)
+            if (BackgroundView != null)
+            {
                 BackgroundView.Render(g, windowRectangle);
-
-            View.Render(g, windowRectangle);
+                View.Render(g, BackgroundView.GetModuleRectangle(windowRectangle));
+            }
+            else
+                View.Render(g, windowRectangle);
         }
 
         private void Novi_Click(object sender, MouseEventArgs e)
