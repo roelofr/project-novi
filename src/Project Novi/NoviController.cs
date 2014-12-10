@@ -73,9 +73,9 @@ namespace Project_Novi
 
         public void GoIdle()
         {
-            if (IdleManager.CheckIdle() == true)
+            if (IdleManager.CheckIdle())
             {
-                this.SelectModule(new HomeModule(this));
+                SelectModule(ModuleManager.GetModule("Home"));
             }
         }
     }
