@@ -8,7 +8,7 @@ namespace Project_Novi.Background
         private readonly IController _controller;
 
         private const int ModuleOffsetX = 500;
-        private const int ModuleOffsetY = 00;
+        private const int ModuleOffsetY = 200;
 
         private readonly Rectangle _backButton = new Rectangle(0, 980, 100, 100);
 
@@ -28,8 +28,8 @@ namespace Project_Novi.Background
         public Rectangle GetModuleRectangle(Rectangle fullRectangle)
         {
             var moduleRectangle = fullRectangle;
-            moduleRectangle.Width += ModuleOffsetX;
-            moduleRectangle.Height += ModuleOffsetY;
+            moduleRectangle.Width -= ModuleOffsetX;
+            moduleRectangle.Height -= ModuleOffsetY;
             moduleRectangle.Offset(ModuleOffsetX, ModuleOffsetY);
 
             return moduleRectangle;
