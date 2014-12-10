@@ -38,6 +38,7 @@
             this.textboxPassInput.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textboxPassInput.Location = new System.Drawing.Point(100, 51);
             this.textboxPassInput.Name = "textboxPassInput";
+            this.textboxPassInput.PasswordChar = '*';
             this.textboxPassInput.Size = new System.Drawing.Size(132, 25);
             this.textboxPassInput.TabIndex = 0;
             this.textboxPassInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PasswordDialog_KeyDown);
