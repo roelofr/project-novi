@@ -18,17 +18,22 @@ namespace Project_Novi
         public event TickHandler Tick;
         public event TouchHandler Touch;
 
-        public NoviController(Novi form)
+        public NoviController()
         {
-            _form = form;
-            ModuleManager = new ModuleManager(this);
+            _form = new Novi(this);
             Avatar = new Avatar(this);
+            ModuleManager = new ModuleManager(this);
+        }
 
+        public Form Start()
+        {
             SelectModule(ModuleManager.GetModule("Home"));
 
             _timer = new Timer { Interval = 10 };
             _timer.Tick += TimerCallback;
             _timer.Start();
+
+            return _form;
         }
 
         private void TimerCallback(object sender, EventArgs e)

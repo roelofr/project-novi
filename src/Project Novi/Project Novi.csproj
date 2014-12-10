@@ -91,9 +91,6 @@
     <Compile Include="Settings.cs" />
     <Compile Include="Text\TextUtils.cs" />
     <Compile Include="Text\TTS.cs" />
-    <Compile Include="Splash.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Text\TextManager.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -12,15 +12,11 @@ namespace Project_Novi
 
         internal IBackgroundView BackgroundView { get; set; }
 
-        public Novi()
+        internal Novi(NoviController controller)
         {
             InitializeComponent();
             DoubleBuffered = true;
-            Hide();
-            var splash = new Splash();
-            splash.ShowDialog();
-            Show();
-            _controller = new NoviController(this);
+            _controller = controller;
         }
 
         private void Novi_Paint(object sender, PaintEventArgs e)

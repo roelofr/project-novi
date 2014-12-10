@@ -9,7 +9,7 @@ namespace Project_Novi
                 // Open main app
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Novi());
+                Application.Run(new NoviController().Start());
         }
     }
 }
