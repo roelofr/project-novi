@@ -20,7 +20,7 @@ namespace Project_Novi.Modules.Map
         public void Initialize(IController controller)
         {
             _controller = controller;
-            BackgroundView = new SubBackground();
+            BackgroundView = new SubBackground(controller);
         }
 
         public void Attach(IModule module)

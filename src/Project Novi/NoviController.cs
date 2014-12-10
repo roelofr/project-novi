@@ -50,6 +50,7 @@ namespace Project_Novi
                 Tick = null;
                 Touch = null;
                 _form.View.Detach();
+                _form.BackgroundView.Detach();
             }
 
             _module = module;
@@ -59,6 +60,7 @@ namespace Project_Novi
             var view = ModuleManager.GetView(_module);
             view.Attach(_module);
             _form.BackgroundView = view.BackgroundView;
+            _form.BackgroundView.Attach();
             _form.View = view;
         }
 

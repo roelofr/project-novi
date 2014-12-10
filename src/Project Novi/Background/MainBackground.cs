@@ -15,5 +15,10 @@ namespace Project_Novi.Background
         {
             return fullRectangle;
         }
+
+
+        public void Attach() { }
+
+        public void Detach() { }
     }
 }

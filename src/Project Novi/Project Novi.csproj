@@ -179,6 +179,12 @@
   <ItemGroup>
     <Resource Include="Resources\Design\ontwerpWithBorder.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home_button.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Design\home-button.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">
     <Copy SourceFiles="AvatarTekst.xml" DestinationFolder="$(OutputPath)" />
