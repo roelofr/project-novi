@@ -1,115 +1,73 @@
-<Table>
+<Strings>
+  <Welkom>
+    <String>Welkom in het T-gebouw, kan ik u helpen?</String>
+    <String>Welkom, wat kan ik voor u doen?</String>
+    <String>Welkom op Windesheim, waarmee kan ik u van dienst zijn?</String>
+  </Welkom>
 
-<Welkom>
-<String_ID>1</String_ID>
-<String_text>Welkom in het T-gebouw, kan ik u helpen?</String_text>
-</Welkom>
+  <Poke>
+    <String>Auw, dat doet zeer!</String>
+    <String>Dat is geen optie!</String>
+    <String>Hey, handen thuis!</String>
+  </Poke>
 
-<Welkom>
-<String_ID>2</String_ID>
-<String_text>Welkom, wat kan ik voor u doen?</String_text>
-</Welkom>
+  <Idle>
+    <String>Een mooie dag om rond te hangen</String>
+    <String>Is daar iemand?</String>
+    <String>Ik hang hier niet voor niets hoor!</String>
+  </Idle>
 
-<Welkom>
-<String_ID>3</String_ID>
-<String_text>Welkom op Windesheim, waarmee kan ik u van dienst zijn?</String_text>
-</Welkom>
+  <Kaart>
+    <String>Ik zal even de kaart erbij pakken</String>
+    <String>Eens kijken hoe dit gebouw eruit ziet</String>
+    <String>Hier is de plattegrond van dit gebouw</String>
+  </Kaart>
 
+  <RouteVragen>
+    <String>Waar wilt u naartoe?</String>
+    <String>Waar kan ik u naartoe brengen?</String>
+    <String>Bent u verdwaald?</String>
+  </RouteVragen>
 
+  <RouteBerekenen>
+    <String>Oke, ik zal de route berekenen</String>
+    <String>Ik zal eens kijken hoe u daar het snelst komt</String>
+    <String>Een moment geduld alstublieft</String>
+  </RouteBerekenen>
 
-<Poke>
-<String_ID>1</String_ID>
-<String_text>Auw, dat doet zeer!</String_text>
-</Poke>
-
-<Poke>
-<String_ID>2</String_ID>
-<String_text>Dat is geen optie!</String_text>
-</Poke>
-
-<Poke>
-<String_ID>3</String_ID>
-<String_text>Hey, handen thuis!</String_text>
-</Poke>
-
-
-
-<Idle>
-<String_ID>1</String_ID>
-<String_text>Een mooie dag om rond te hangen</String_text>
-</Idle>
-
-<Idle>
-<String_ID>2</String_ID>
-<String_text>Is daar iemand?</String_text>
-</Idle>
-
-<Idle>
-<String_ID>3</String_ID>
-<String_text>Ik hang hier niet voor niets hoor!</String_text>
-</Idle>
-
-
-
-<Kaart>
-<String_ID>1</String_ID>
-<String_text>Ik zal even de kaart erbij pakken</String_text>
-</Kaart>
-
-<Kaart>
-<String_ID>2</String_ID>
-<String_text>Eens kijken hoe dit gebouw eruit ziet</String_text>
-</Kaart>
-
-<Kaart>
-<String_ID>3</String_ID>
-<String_text>Hier is de plattegrond van dit gebouw</String_text>
-</Kaart>
-
-
-
-<RouteVragen>
-<String_ID>1</String_ID>
-<String_text>Waar wilt u naartoe?</String_text>
-</RouteVragen>
-
-<RouteVragen>
-<String_ID>2</String_ID>
-<String_text>Waar kan ik u naartoe brengen?</String_text>
-</RouteVragen>
-
-<RouteVragen>
-<String_ID>3</String_ID>
-<String_text>Bent u verdwaald?</String_text>
-</RouteVragen>
-
-
-
-<RouteBerekenen>
-<String_ID>1</String_ID>
-<String_text>Oke, ik zal de route berekenen</String_text>
-</RouteBerekenen>
-
-<RouteBerekenen>
-<String_ID>2</String_ID>
-<String_text>Ik zal eens kijken hoe u daar het snelst komt</String_text>
-</RouteBerekenen>
-
-<RouteBerekenen>
-<String_ID>3</String_ID>
-<String_text>Een moment geduld alstublieft</String_text>
-</RouteBerekenen>
-
-
-
-<BerekendeRoute>
-<String_ID>1</String_ID>
-<String_text>Hier is uw route, misschien kunt u beter met de lift gaan</String_text>
-</BerekendeRoute>
-
-<BerekendeRoute>
-<String_ID>2</String_ID>
-<String_text>Deze route kunt u het beste nemen, maar ik raad wel de trap aan</String_text>
-</BerekendeRoute>
-
-</Table>
+  <BerekendeRoute>
+    <String>Hier is uw route, misschien kunt u beter met de lift gaan</String>
+    <String>Deze route kunt u het beste nemen, maar ik raad wel de trap aan</String>
+  </BerekendeRoute>
+  
+  <MapF0>
+	<String>Dat is op deze verdieping</String>
+	<String>Dat lokaal is op deze verdieping</String>
+  </MapF0>
+  
+  <MapF1>
+	<String>De eerste verdieping is slechts twintig traptreden. Ik raad u aan met de trap te gaan</String>
+	<String>De eerste verdieping is hier vlak boven. U kunt daarvoor best met de trap</String>
+  </MapF1>
+  
+  <MapF2>
+	<String>De tweede verdieping is veertig traptreden. Even een ongerelateerd weetje, de trap is goed voor de lijn</String>
+	<String>De tweede verdieping is niet zo ver omhood, ik zou met de trap gaan</String>
+  </MapF2>
+  
+  <MapF3>
+	<String>De derde verdieping is zesitg treden omhoog. De lift bevindt zich in de gangen naast u</String>
+	<String>Voor verdieping drie zou ik de lift nemen</String>
+  </MapF3>
+  
+  <MapF4>
+	<String>De vierde verdieping is tachtig treden omhoog. De lift bevindt zich in de gangen naast u</String>
+	<String>De vierde verdieping is wel tachtig traptreden! Ik zou met de lift gaan</String>
+  </MapF4>
+  
+  <MapF5>
+	<String>Verdieping vijf is wel honderd traptreden. Ik zou met de lift gaan</String>
+	<String>Verdieping vijf is de hoogste verdieping. Ik raad u aan met de lift te gaan</String>
+	<String>Voor verdieping vijf kan u best de lift nemen</String>
+  </MapF5>
+</Strings>
