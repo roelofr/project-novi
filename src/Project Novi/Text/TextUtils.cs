@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace Project_Novi.Modules
+namespace Project_Novi.Text
 {
     class TextUtils
     {

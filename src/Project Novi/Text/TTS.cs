@@ -1,9 +1,10 @@
-﻿using NAudio.Wave;
-using System;
+﻿using System;
 using System.IO;
 using System.Net;
+using System.Security.Cryptography;
+using NAudio.Wave;
 
-namespace Project_Novi.TTS
+namespace Project_Novi.Text
 {
     /// <summary>
     /// Allows you to generate audio from text input.
@@ -20,6 +21,18 @@ namespace Project_Novi.TTS
         /// This is needed because long text can't be submitted to Google Translate in one go, but has to be split up.
         /// </summary>
         private static string[] _sentences;
+
+        /// <summary>
+        /// We generate the SHA1 hash of every sentence we speak, which we use to store the generated speech.
+        /// This way we don't need to make new requests to Google all the time.
+        /// </summary>
+        private static readonly SHA1 Sha1 = new SHA1CryptoServiceProvider();
+
+        /// <summary>
+        /// Store the path to the cache file of the currently spoken text.
+        /// This variable is set when GenerateSpeechFromText is called and is used by serviceRequest_DownloadDataCompleted.
+        /// </summary>
+        private static string _currentPath;
 
         /// <summary>
         /// The index of the currently spoken sentence.
@@ -47,6 +60,24 @@ namespace Project_Novi.TTS
         {
             if (_sentences == null || _counter >= _sentences.Length) return;
 
+            // hash the sentence to select its cache file.
+            var sentence = _sentences[_counter];
+            var hash = BitConverter.ToString(Sha1.ComputeHash(System.Text.Encoding.UTF8.GetBytes(sentence)));
+            _currentPath = String.Format("tts-cache/{0}.mp3", hash);
+
+            if (File.Exists(_currentPath))
+            {
+                try
+                {
+                    PlayMP3(File.ReadAllBytes(_currentPath));
+                    return;
+                }
+                catch
+                {
+                    // If loading the cache file fails we'll just make a request to Google Translate.
+                    // Note that this new data will then be cached.
+                }
+            }
             var serviceRequest = new WebClient();
             serviceRequest.DownloadDataCompleted += serviceRequest_DownloadDataCompleted;
             try
@@ -67,6 +98,16 @@ namespace Project_Novi.TTS
             if (e.Error == null && e.Result != null)
             {
                 PlayMP3(e.Result);
+                try
+                {
+                    Directory.CreateDirectory("tts-cache");
+                    File.WriteAllBytes(_currentPath, e.Result);
+                }
+                catch
+                {
+                    // Caching failed. We'll just try again next time.
+                }
+
             }
             else
             {

@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using Project_Novi.Api;
+using Project_Novi.Text;
 
 namespace Project_Novi.Render
 {
     /// <summary>
     /// Implements an animated avatar that can talk.
     /// </summary>
-    class Avatar
+    public class Avatar
     {
         private const int Width = 560;
         private const int Height = 640;
@@ -194,7 +196,7 @@ namespace Project_Novi.Render
         public void Say(string text)
         {
             _talking = true;
-            TTS.TTS.TextToSpeech(text, () =>
+            TTS.TextToSpeech(text, () =>
             {
                 _talking = false;
                 _bitmapAnimations[Animated.Mouth].Clear();

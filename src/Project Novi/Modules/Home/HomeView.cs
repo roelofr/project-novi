@@ -1,25 +1,44 @@
-﻿using System.Drawing;
-using Project_Novi.Render;
+﻿using System;
+using System.Drawing;
+using Project_Novi.Api;
+using Project_Novi.Background;
+using Project_Novi.Text;
 
 namespace Project_Novi.Modules.Home
 {
     class HomeView : IView
     {
-        private readonly HomeModule _module;
-        private readonly IController _controller;
-        public Avatar Avatar;
-      
-        public IModule Module
+        private HomeModule _module;
+        private IController _controller;
+
+        public Type ModuleType
         {
-            get { return _module; }
+            get { return typeof(HomeModule); }
         }
 
-        public HomeView(HomeModule module, IController controller)
+        public IBackgroundView BackgroundView { get; private set; }
+
+        public void Initialize(IController controller)
         {
-            _module = module;
             _controller = controller;
-            Avatar = new Avatar(_controller);
-            Avatar.Say(_module.AvatarText);
+            BackgroundView = new MainBackground();
+        }
+
+        public void Attach(IModule module)
+        {
+            var homeModule = module as HomeModule;
+            if (homeModule != null)
+            {
+                _module = homeModule;
+                _controller.Avatar.Say(_module.AvatarText);
+            }
+            else
+                throw new ArgumentException("A MapView can only render the interface for a MapModule");
+        }
+
+        public void Detach()
+        {
+            _module = null;
         }
 
         public void Render(Graphics graphics, Rectangle rectangle)
@@ -34,7 +53,7 @@ namespace Project_Novi.Modules.Home
             graphics.DrawString(_module.AvatarText, strFont, Brushes.White, rectText, stringFormat);
 
             var rectAvatar = new Rectangle(rectText.X, 489, 1920, 1080 - 489);
-            Avatar.Render(graphics, rectAvatar);
+            _controller.Avatar.Render(graphics, rectAvatar);
         }
     }
 }

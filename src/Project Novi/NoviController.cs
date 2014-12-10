@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using Project_Novi.Modules;
-using Project_Novi.Modules.Home;
 using System.Drawing;
+using Project_Novi.Api;
+using Project_Novi.Render;
 
 namespace Project_Novi
 {
@@ -12,23 +11,29 @@ namespace Project_Novi
         private readonly Novi _form;
         private IModule _module;
 
+        public ModuleManager ModuleManager { get; private set; }
+
         private Timer _timer;
+        public Avatar Avatar { get; private set; }
         public event TickHandler Tick;
         public event TouchHandler Touch;
 
-        public NoviController(Novi form)
+        public NoviController()
         {
-            _form = form;
+            _form = new Novi(this);
+            Avatar = new Avatar(this);
+            ModuleManager = new ModuleManager(this);
+        }
 
-            _module = new HomeModule(this);
-            _module.Start();
-
-            _form.View = ViewFactory.GetView(_module, this);
-            _form.BackgroundView = ViewFactory.GetBackgroundView(_form.View);
+        public Form Start()
+        {
+            SelectModule(ModuleManager.GetModule("Home"));
 
             _timer = new Timer { Interval = 10 };
             _timer.Tick += TimerCallback;
             _timer.Start();
+
+            return _form;
         }
 
         private void TimerCallback(object sender, EventArgs e)
@@ -38,19 +43,23 @@ namespace Project_Novi
             GoIdle();
         }
 
-        public IEnumerator<IModule> GetModules()
-        {
-            throw new NotImplementedException();
-        }
-
         public void SelectModule(IModule module)
         {
-            _module.Stop();
-            Tick = null;
-            Touch = null;
+            if (_module != null)
+            {
+                _module.Stop();
+                Tick = null;
+                Touch = null;
+                _form.View.Detach();
+            }
+
             _module = module;
             _module.Start();
-            _form.View = ViewFactory.GetView(_module, this);
+
+            var view = ModuleManager.GetView(_module);
+            view.Attach(_module);
+            _form.BackgroundView = view.BackgroundView;
+            _form.View = view;
         }
 
 

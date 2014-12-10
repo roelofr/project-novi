@@ -68,20 +68,20 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IController.cs" />
+    <Compile Include="Api\IBackgroundView.cs" />
+    <Compile Include="Api\IController.cs" />
+    <Compile Include="Api\IModule.cs" />
+    <Compile Include="Api\IView.cs" />
+    <Compile Include="Background\BackgroundUtils.cs" />
+    <Compile Include="Background\DateAssociation.cs" />
+    <Compile Include="Background\MainBackground.cs" />
+    <Compile Include="Background\SubBackground.cs" />
+    <Compile Include="ModuleManager.cs" />
     <Compile Include="IdleManager.cs" />
-    <Compile Include="Modules\Backgrounds\DateAssociation.cs" />
-    <Compile Include="Modules\Backgrounds\BackgroundUtils.cs" />
-    <Compile Include="Modules\Backgrounds\MainBackground.cs" />
-    <Compile Include="Modules\Backgrounds\SubBackground.cs" />
     <Compile Include="Modules\Home\HomeModule.cs" />
     <Compile Include="Modules\Home\HomeView.cs" />
-    <Compile Include="Modules\IModule.cs" />
-    <Compile Include="Modules\IBackgroundView.cs" />
-    <Compile Include="Modules\IView.cs" />
     <Compile Include="Modules\Map\MapModule.cs" />
     <Compile Include="Modules\Map\MapView.cs" />
-    <Compile Include="Modules\TextUtils.cs" />
     <Compile Include="NoviController.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -90,18 +90,9 @@
     </Compile>
     <Compile Include="Render\Avatar.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="TTS\TestTTS.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TTS\TestTTS.Designer.cs">
-      <DependentUpon>TestTTS.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TTS\TTS.cs" />
-    <Compile Include="Splash.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Text\TextUtils.cs" />
+    <Compile Include="Text\TTS.cs" />
     <Compile Include="Text\TextManager.cs" />
-    <Compile Include="ViewFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Novi.cs">
@@ -125,9 +116,6 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TTS\testTTS.resx">
-      <DependentUpon>TestTTS.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

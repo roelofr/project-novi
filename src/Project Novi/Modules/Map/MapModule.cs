@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Project_Novi.Api;
 
 namespace Project_Novi.Modules.Map
 {
@@ -14,12 +10,7 @@ namespace Project_Novi.Modules.Map
             get { return "Map"; }
         }
 
-        public string WelcomeText
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public MapModule(IController controller)
+        public void Initialize(IController controller)
         {
             _controller = controller;
         }
