@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using Project_Novi.Api;
+using Project_Novi.Text;
 
 namespace Project_Novi.Render
 {
@@ -195,7 +196,7 @@ namespace Project_Novi.Render
         public void Say(string text)
         {
             _talking = true;
-            TTS.TTS.TextToSpeech(text, () =>
+            TTS.TextToSpeech(text, () =>
             {
                 _talking = false;
                 _bitmapAnimations[Animated.Mouth].Clear();

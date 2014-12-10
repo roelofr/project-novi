@@ -1,10 +1,10 @@
-﻿using System.Security.Cryptography;
-using NAudio.Wave;
-using System;
+﻿using System;
 using System.IO;
 using System.Net;
+using System.Security.Cryptography;
+using NAudio.Wave;
 
-namespace Project_Novi.TTS
+namespace Project_Novi.Text
 {
     /// <summary>
     /// Allows you to generate audio from text input.
