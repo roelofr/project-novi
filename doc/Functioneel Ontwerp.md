@@ -29,6 +29,7 @@ Hier komt ons Use-Case Diagram
 
 # Zichtbare avatar
 Als gebruiker willen we een zichtbare avatar op het scherm zien. In onderstaande afbeelding is te zien hoe de avatar er standaard uit ziet.
+
 ![Uiterlijk avatar](images/avatar.png)
 
 ## Omschrijving

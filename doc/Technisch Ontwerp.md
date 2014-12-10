@@ -25,7 +25,7 @@ In dit document staan de technische aspecten van het project beschreven. Er zull
 
 # Klassendiagram
 
-![Klassendiagram](images/klassendiagram.png)
+![Klassendiagram](images/KlassendiagramNovi.png)
 
 Was ist das?
 ============
