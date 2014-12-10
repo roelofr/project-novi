@@ -70,4 +70,39 @@
 	<String>Verdieping vijf is de hoogste verdieping. Ik raad u aan met de lift te gaan</String>
 	<String>Voor verdieping vijf kan u best de lift nemen</String>
   </MapF5>
+  
+  <MapC0>
+	<String>Als u met de trap gaat is het lokaal aan uw rechterkant zodra u het trappenhuis uit gaat</String>
+	<String>Zodra u op de verdieping bent is het lokaal aan uw rechterkant mits u met de trap gaat</String>
+  </MapC0>
+  
+  <MapC1>
+	<String>Als u met de trap gaat is het lokaal aan uw rechterkant zodra u het trappenhuis uit gaat</String>
+	<String>Zodra u op de verdieping bent is het lokaal aan uw rechterkant mits u met de trap gaat</String>
+  </MapC1>
+  
+  <MapC2>
+	<String>Als u met de trap gaat is het lokaal aan uw rechterkant zodra u het trappenhuis uit gaat</String>
+	<String>Zodra u op de verdieping bent is het lokaal aan uw rechterkant mits u met de trap gaat</String>
+  </MapC2>
+  
+  <MapC3>
+	<String>U kan het lokaal in de gang vinden</String>
+	<String>U kan het lokaal tussen de rechter- en linkerhelft van het gebouw vinden</String>
+  </MapC3>
+  
+  <MapC4>
+	<String>Als u met de lift gaat is het lokaal aan uw rechterkant zodra u de lift uit komt</String>
+	<String>Zodra u op de verdieping bent is het lokaal aan uw rechterkant mits u met de lft gaat</String>
+  </MapC4>
+  
+  <MapC5>
+	<String>Als u met de lift gaat is het lokaal aan uw rechterkant zodra u de lift uit komt</String>
+	<String>Zodra u op de verdieping bent is het lokaal aan uw rechterkant mits u met de lft gaat</String>
+  </MapC5>
+  
+  <MapC6>
+	<String>Als u met de lift gaat is het lokaal aan uw rechterkant zodra u de lift uit komt</String>
+	<String>Zodra u op de verdieping bent is het lokaal aan uw rechterkant mits u met de lft gaat</String>
+  </MapC6>
 </Strings>
