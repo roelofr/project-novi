@@ -27,13 +27,13 @@ namespace Project_Novi.Render
             Nose
         }
 
-        private int blinkDelay;
-        private Random rand;
+        private int _blinkDelay;
+        private readonly Random _rand;
 
         /// <summary>
         /// An animation for the blinking of the left eye.
         /// </summary>
-        private List<Bitmap> leftEyeBlink = new List<Bitmap> {
+        private readonly List<Bitmap> _leftEyeBlink = new List<Bitmap> {
             Properties.Resources.left_eye_blink1,
             Properties.Resources.left_eye_blink2,
             Properties.Resources.left_eye_blink3,
@@ -45,7 +45,7 @@ namespace Project_Novi.Render
         /// <summary>
         /// An animation for the blinking of the right eye.
         /// </summary>
-        private List<Bitmap> rightEyeBlink = new List<Bitmap> {
+        private readonly List<Bitmap> _rightEyeBlink = new List<Bitmap> {
             Properties.Resources.right_eye_blink1,
             Properties.Resources.right_eye_blink2,
             Properties.Resources.right_eye_blink3,
@@ -57,7 +57,7 @@ namespace Project_Novi.Render
         /// <summary>
         /// An animation for the blinking of the pupils.
         /// </summary>
-        private List<Bitmap> pupilsBlink = new List<Bitmap> {
+        private readonly List<Bitmap> _pupilsBlink = new List<Bitmap> {
             Properties.Resources.pupils,
             Properties.Resources.pupils,
             Properties.Resources.blank,
@@ -108,14 +108,14 @@ namespace Project_Novi.Render
                 kv.Value.RemoveAt(0);
 
             // Blink after a random amount of ticks.
-            if (blinkDelay > 0)
+            if (_blinkDelay > 0)
             {
-                blinkDelay--;
+                _blinkDelay--;
             }
             else
             {
                 Blink();
-                blinkDelay = rand.Next(60) + 20;
+                _blinkDelay = _rand.Next(60) + 20;
             }
 
             // While the avatar is still talking keep adding the talking animation.
@@ -208,9 +208,9 @@ namespace Project_Novi.Render
         /// </summary>
         public void Blink()
         {
-            Animate(Animated.RightEye, rightEyeBlink);
-            Animate(Animated.LeftEye, leftEyeBlink);
-            Animate(Animated.Pupils, pupilsBlink);
+            Animate(Animated.RightEye, _rightEyeBlink);
+            Animate(Animated.LeftEye, _leftEyeBlink);
+            Animate(Animated.Pupils, _pupilsBlink);
         }
 
         private Point GetAnimationOffset(Animated animated)
