@@ -95,9 +95,12 @@ namespace Project_Novi.Render
         public Avatar(IController controller)
         {
             _controller = controller;
-            _controller.Tick += ControllerOnTick;
+            _rand = new Random();
+        }
 
-            rand = new Random();
+        internal void Attach()
+        {
+            _controller.Tick += ControllerOnTick;
         }
 
         private void ControllerOnTick()
