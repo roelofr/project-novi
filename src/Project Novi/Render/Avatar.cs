@@ -14,8 +14,7 @@ namespace Project_Novi.Render
     {
         private const int Width = 560;
         private const int Height = 640;
-        private IController _controller;
-        private bool _talking;
+        private readonly IController _controller;
         private int _talkingCounter;
 
         public enum Animated
@@ -29,6 +28,8 @@ namespace Project_Novi.Render
 
         private int _blinkDelay;
         private readonly Random _rand;
+
+        private TTS _tts;
 
         /// <summary>
         /// An animation for the blinking of the left eye.
@@ -101,6 +102,7 @@ namespace Project_Novi.Render
         internal void Attach()
         {
             _controller.Tick += ControllerOnTick;
+            if (_tts != null) _tts.Talking = false;
         }
 
         private void ControllerOnTick()
@@ -122,7 +124,7 @@ namespace Project_Novi.Render
             }
 
             // While the avatar is still talking keep adding the talking animation.
-            if (_talking)
+            if (_tts.Talking)
             {
                 if (_talkingCounter == 0)
                 {
@@ -198,10 +200,12 @@ namespace Project_Novi.Render
         /// <param name="text">The text to speak.</param>
         public void Say(string text)
         {
-            _talking = true;
-            TTS.TextToSpeech(text, () =>
+            if (_tts != null)
+                _tts.Talking = false;
+
+            _tts = new TTS();
+            _tts.TextToSpeech(text, () =>
             {
-                _talking = false;
                 _bitmapAnimations[Animated.Mouth].Clear();
             });
         }

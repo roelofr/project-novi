@@ -12,38 +12,9 @@ namespace Project_Novi.Text
     /// 
     /// This class calls out to Google Translate to generate speech.
     /// </summary>
-    static class TTS
+    class TTS
     {
         private const string BaseUrl = "http://translate.google.com/translate_tts?tl={0}&q={1}";
-
-        /// <summary>
-        /// Keep track of a list of sentences to speak.
-        /// This is needed because long text can't be submitted to Google Translate in one go, but has to be split up.
-        /// </summary>
-        private static string[] _sentences;
-
-        /// <summary>
-        /// We generate the SHA1 hash of every sentence we speak, which we use to store the generated speech.
-        /// This way we don't need to make new requests to Google all the time.
-        /// </summary>
-        private static readonly SHA1 Sha1 = new SHA1CryptoServiceProvider();
-
-        /// <summary>
-        /// Store the path to the cache file of the currently spoken text.
-        /// This variable is set when GenerateSpeechFromText is called and is used by serviceRequest_DownloadDataCompleted.
-        /// </summary>
-        private static string _currentPath;
-
-        /// <summary>
-        /// The index of the currently spoken sentence.
-        /// Sometimes later parts of a text arrive before earlier parts, jumbling up the spoken order.
-        /// To fix that every sentence is requested only when the previous one has finished.
-        /// </summary>
-        private static int _counter;
-
-        internal delegate void PlaybackFinished();
-
-        private static PlaybackFinished _finishedCallback;
 
         /// <summary>
         /// Build the Url to make a request to Google Translate.
@@ -54,9 +25,58 @@ namespace Project_Novi.Text
         }
 
         /// <summary>
+        /// We generate the SHA1 hash of every sentence we speak, which we use to store the generated speech.
+        /// This way we don't need to make new requests to Google all the time.
+        /// </summary>
+        private static readonly SHA1 Sha1 = new SHA1CryptoServiceProvider();
+
+        /// <summary>
+        /// Keep track of a list of sentences to speak.
+        /// This is needed because long text can't be submitted to Google Translate in one go, but has to be split up.
+        /// </summary>
+        private string[] _sentences;
+
+        /// <summary>
+        /// Store the path to the cache file of the currently spoken text.
+        /// This variable is set when GenerateSpeechFromText is called and is used by serviceRequest_DownloadDataCompleted.
+        /// </summary>
+        private string _currentPath;
+
+        DirectSoundOut _directSoundOut;
+
+        /// <summary>
+        /// The index of the currently spoken sentence.
+        /// Sometimes later parts of a text arrive before earlier parts, jumbling up the spoken order.
+        /// To fix that every sentence is requested only when the previous one has finished.
+        /// </summary>
+        private int _counter;
+
+        internal delegate void PlaybackFinished();
+
+        private bool _talking;
+        public bool Talking
+        {
+            get { return _talking; }
+            set
+            {
+                if (!value)
+                {
+                    if (_finishedCallback != null)
+                        _finishedCallback();
+                    if (_directSoundOut != null)
+                        _directSoundOut.Stop();
+                }
+
+                _talking = value;
+            }
+        }
+
+        private PlaybackFinished _finishedCallback;
+
+        /// <summary>
         /// Make a request to Google Translate based on the variables _sentences and _counter.
         /// </summary>
-        private static void GenerateSpeechFromText()
+        private void GenerateSpeechFromText()
         {
             if (_sentences == null || _counter >= _sentences.Length) return;
 
@@ -93,7 +113,7 @@ namespace Project_Novi.Text
         /// <summary>
         /// Called when a request completes. Starts playing the result.
         /// </summary>
-        private static void serviceRequest_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
+        private void serviceRequest_DownloadDataCompleted(object sender, DownloadDataCompletedEventArgs e)
         {
             if (e.Error == null && e.Result != null)
             {
@@ -107,7 +127,6 @@ namespace Project_Novi.Text
                 {
                     // Caching failed. We'll just try again next time.
                 }
-
             }
             else
             {
@@ -120,26 +139,28 @@ namespace Project_Novi.Text
         /// Play audio from an array of MP3 bytes.
         /// </summary>
         /// <param name="soundDataArray">The bytes containing a valid MP3 sequence</param>
-        private static void PlayMP3(byte[] soundDataArray)
+        private void PlayMP3(byte[] soundDataArray)
         {
+            if (!Talking) return;
+
             Stream stream = new MemoryStream(soundDataArray);
             var reader = new Mp3FileReader(stream);
-            var directSoundOut = new DirectSoundOut();
-            directSoundOut.Init(reader);
-            directSoundOut.Play();
-            directSoundOut.PlaybackStopped += DirectSoundOut_PlaybackStopped;
+            _directSoundOut = new DirectSoundOut();
+            _directSoundOut.Init(reader);
+            _directSoundOut.Play();
+            _directSoundOut.PlaybackStopped += DirectSoundOut_PlaybackStopped;
         }
 
         /// <summary>
         /// Request the next sentence when the previous one has finished playing.
         /// </summary>
-        private static void DirectSoundOut_PlaybackStopped(object sender, StoppedEventArgs e)
+        private void DirectSoundOut_PlaybackStopped(object sender, StoppedEventArgs e)
         {
             _counter++;
             if (_counter >= _sentences.Length && _finishedCallback != null)
             {
                 _finishedCallback();
-                _finishedCallback = null;
+                Talking = false;
                 _counter = 0;
             }
             else
@@ -148,18 +169,18 @@ namespace Project_Novi.Text
             }
         }
 
-
         /// <summary>
         /// Split up the text into sentences and start playing the first sentence.
         /// </summary>
-        public static void TextToSpeech(string text)
+        public void TextToSpeech(string text)
         {
             char[] splitters = { ',', '.', '?', '!' };
             _sentences = text.Split(splitters, StringSplitOptions.RemoveEmptyEntries);
+            Talking = true;
             GenerateSpeechFromText();
         }
 
-        public static void TextToSpeech(string text, PlaybackFinished finished)
+        public void TextToSpeech(string text, PlaybackFinished finished)
         {
             _finishedCallback = finished;
             TextToSpeech(text);
