@@ -68,6 +68,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controlpanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controlpanel.Designer.cs">
+      <DependentUpon>Controlpanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="IController.cs" />
     <Compile Include="Modules\Backgrounds\DateAssociation.cs" />
     <Compile Include="Modules\Backgrounds\BackgroundUtils.cs" />
@@ -82,6 +88,12 @@
     <Compile Include="Modules\Map\MapView.cs" />
     <Compile Include="Modules\TextUtils.cs" />
     <Compile Include="NoviController.cs" />
+    <Compile Include="PasswordDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PasswordDialog.Designer.cs">
+      <DependentUpon>PasswordDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -118,8 +130,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Controlpanel.resx">
+      <DependentUpon>Controlpanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Novi.resx">
       <DependentUpon>Novi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PasswordDialog.resx">
+      <DependentUpon>PasswordDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
