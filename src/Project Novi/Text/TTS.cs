@@ -136,10 +136,11 @@ namespace Project_Novi.Text
         private static void DirectSoundOut_PlaybackStopped(object sender, StoppedEventArgs e)
         {
             _counter++;
-            if (_counter >= _sentences.Length - 1 && _finishedCallback != null)
+            if (_counter >= _sentences.Length && _finishedCallback != null)
             {
                 _finishedCallback();
                 _finishedCallback = null;
+                _counter = 0;
             }
             else
             {
@@ -154,7 +155,7 @@ namespace Project_Novi.Text
         public static void TextToSpeech(string text)
         {
             char[] splitters = { ',', '.', '?', '!' };
-            _sentences = text.Split(splitters);
+            _sentences = text.Split(splitters, StringSplitOptions.RemoveEmptyEntries);
             GenerateSpeechFromText();
         }
 

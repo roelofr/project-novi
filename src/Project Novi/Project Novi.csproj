@@ -148,9 +148,6 @@
     <None Include="Resources\AppLogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\novi-logo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Resources\Avatar\Hats\" />
   </ItemGroup>
   <ItemGroup>
