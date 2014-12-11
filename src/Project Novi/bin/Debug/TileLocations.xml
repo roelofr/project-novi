@@ -5,12 +5,16 @@
     <y>520</y>
     <width>320</width>
     <height>180</height>
+	<text>Kaart</text>
+	<target>MapModule</target>
   </tile>
   <tile>
     <x>320</x>
     <y>720</y>
     <width>320</width>
     <height>180</height>
+	<text>None</text>
+	<target>-</target>
   </tile>
 <!-- First column right -->
   <tile>
@@ -18,12 +22,16 @@
     <y>520</y>
     <width>320</width>
     <height>180</height>
+	<text>None</text>
+	<target>-</target>
   </tile>
   <tile>
     <x>1280</x>
     <y>720</y>
     <width>320</width>
     <height>180</height>
+	<text>None</text>
+	<target>-</target>
   </tile>
 <!-- Second column left -->
   <tile>
@@ -31,12 +39,16 @@
     <y>520</y>
     <width>320</width>
     <height>180</height>
+	<text>None</text>
+	<target>-</target>
   </tile>
   <tile>
     <x>-20</x>
     <y>720</y>
     <width>320</width>
     <height>180</height>
+	<text>None</text>
+	<target>-</target>
   </tile>
 <!-- Second column right -->
   <tile>
@@ -44,11 +56,15 @@
     <y>520</y>
     <width>320</width>
     <height>180</height>
+	<text>None</text>
+	<target>-</target>
   </tile>
   <tile>
     <x>1620</x>
     <y>720</y>
     <width>320</width>
     <height>180</height>
+	<text>None</text>
+	<target>-</target>
   </tile>
 </tiles>

@@ -39,7 +39,7 @@ namespace Project_Novi
 
         private void Novi_Paint(object sender, PaintEventArgs e)
         {
-            if (!Visible)
+            if (!Visible || View == null)
                 return;
 
             var rect = e.ClipRectangle;

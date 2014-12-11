@@ -14,51 +14,67 @@ namespace Project_Novi.Modules.Home
         private readonly IController _controller;
         public Avatar Avatar;
 
-        private static readonly List<Rectangle> tileLocations = new List<Rectangle>();
+        private static readonly List<TileReference> tileLocations = new List<TileReference>();
 
         public static void loadTileLocations()
         {
             if (tileLocations.Count > 0)
                 return;
 
+            List<String> errors = new List<String>();
+
             try
             {
                 var xmlDoc = new XmlDocument();
                 xmlDoc.Load("TileLocations.xml");
 
-                XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/Tile/Tile");
+                XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/tiles/tile");
 
                 foreach (XmlNode node in nodeList)
                 {
                     try
                     {
-                        var x = Int32.Parse(node.SelectSingleNode("/x").InnerText);
-                        var y = Int32.Parse(node.SelectSingleNode("/y").InnerText);
-                        var w = Int32.Parse(node.SelectSingleNode("/width").InnerText);
-                        var h = Int32.Parse(node.SelectSingleNode("/height").InnerText);
+                        var x = Int32.Parse(node.SelectSingleNode("x").InnerText);
+                        var y = Int32.Parse(node.SelectSingleNode("y").InnerText);
+                        var w = Int32.Parse(node.SelectSingleNode("width").InnerText);
+                        var h = Int32.Parse(node.SelectSingleNode("height").InnerText);
+                        var text = node.SelectSingleNode("text").InnerText;
+                        var target = node.SelectSingleNode("target").InnerText;
                         var rect = new Rectangle(x, y, w, h);
-                        tileLocations.Add(rect);
+                        tileLocations.Add(new TileReference(text, target, rect));
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
-                        Console.Error.WriteLine("Error: {0}", e.Message);
+                        errors.Add(String.Format("Error: {0}", e.Message));
                         continue;
                     }
                 }
             }
-            catch
+            catch (Exception e)
             {
-                MessageBox.Show("Error!");
-                Console.Error.WriteLine("Tile locations file damaged or of wrong format.");
-                return;
+                var Msg = String.Format("An error occurred: {0}", e.Message);
+                errors.Add(Msg);
             }
+
+            if (errors.Count > 0)
+            {
+
+                var output = String.Format("Number of errors: {0}\r\n-----------------------------\r\n\r\n{1}", errors.Count, String.Join("\r\n", errors));
+                alert(output);
+            }
+        }
+
+        private static void alert(String message)
+        {
+            MessageBox.Show(message);
         }
 
         private List<TileButton> buttons = new List<TileButton>();
 
         public IModule Module
         {
-            get {
+            get
+            {
                 return _module;
             }
         }
@@ -73,13 +89,16 @@ namespace Project_Novi.Modules.Home
             loadTileLocations();
 
             int count = 1;
-            foreach (Rectangle location in tileLocations)
+            foreach (TileReference tile in tileLocations)
             {
-                var lbl = String.Format("Button {0}", count);
+                var lbl = String.Format(tile.Text, count);
                 var btn = new TileButton(controller, lbl, Properties.Resources.icon_maps);
-                btn.Location = location.Location;
-                btn.Size = location.Size;
-                btn.Click += btn_Click;
+                btn.Location = tile.Rectangle.Location;
+                btn.Size = tile.Rectangle.Size;
+                if (tile.Target == "-")
+                    btn.IsReleased = false;
+                else
+                    btn.Click += btn_Click;
                 buttons.Add(btn);
                 count++;
             }
@@ -87,7 +106,24 @@ namespace Project_Novi.Modules.Home
 
         void btn_Click(object sender, System.EventArgs e)
         {
-            MessageBox.Show("Got some bacon!");
+            if (sender is TileButton == false)
+                return;
+
+            var button = sender as TileButton;
+
+            var location = button.Location;
+
+            foreach (TileReference tile in tileLocations)
+            {
+                if (tile.Rectangle.Location.Equals(location))
+                {
+                    if (tile.Target == "MapModule")
+                    {
+                        _controller.SelectModule(new Map.MapModule(_controller));
+                    }
+                    break;
+                }
+            }
         }
 
         public void Render(Graphics graphics, Rectangle rectangle)

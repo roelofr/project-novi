@@ -17,12 +17,6 @@
         public HomeModule(IController controller)
         {
             _controller = controller;
-            controller.Touch += controller_Touch;
-        }
-
-        private void controller_Touch(System.Drawing.Point point)
-        {
-            _controller.SelectModule(new Map.MapModule(_controller));
         }
 
         public void Start()
