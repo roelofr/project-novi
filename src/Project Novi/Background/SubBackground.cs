@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Windows.Forms;
 using Project_Novi.Api;
 
 namespace Project_Novi.Background
@@ -11,6 +12,7 @@ namespace Project_Novi.Background
         private const int ModuleOffsetY = 200;
 
         private readonly Rectangle _backButton = new Rectangle(0, 980, 100, 100);
+        private Rectangle _avatar;
 
         public SubBackground(IController controller)
         {
@@ -21,7 +23,7 @@ namespace Project_Novi.Background
         {
             BackgroundUtils.DrawBackground(graphics);
             BackgroundUtils.DrawClock(graphics);
-            _controller.Avatar.Render(graphics, new Rectangle(rectangle.X + _backButton.Width, rectangle.Y, ModuleOffsetX - _backButton.Width, rectangle.Height));
+            _controller.Avatar.Render(graphics, _avatar = new Rectangle(rectangle.X + _backButton.Width, rectangle.Y, ModuleOffsetX - _backButton.Width, rectangle.Height));
             graphics.DrawImage(Properties.Resources.home_button, _backButton);
         }
 
@@ -46,6 +48,12 @@ namespace Project_Novi.Background
             if (_backButton.Contains(point))
             {
                 _controller.SelectModule(_controller.ModuleManager.GetModule("Home"));
+            }
+            if (_avatar.Contains(point))
+            {
+                _controller.Avatar.Pinch();
+                
+                _controller.Avatar.Say(Text.TextManager.GetText("Poke"));
             }
         }
 

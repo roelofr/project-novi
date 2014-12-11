@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Text;
 using Project_Novi.Api;
 using Project_Novi.Background;
 using Project_Novi.Text;
@@ -10,6 +11,9 @@ namespace Project_Novi.Modules.Home
     {
         private HomeModule _module;
         private IController _controller;
+
+        private Rectangle rectText;
+        private Rectangle rectAvatar;
 
         public Type ModuleType
         {
@@ -34,6 +38,19 @@ namespace Project_Novi.Modules.Home
             }
             else
                 throw new ArgumentException("A MapView can only render the interface for a MapModule");
+
+            _controller.Touch += ControllerOnTouch;
+        }
+
+        private void ControllerOnTouch(Point point)
+        {
+           
+            if (rectAvatar.Contains(point))
+            {
+                _controller.Avatar.Pinch();
+
+                _controller.Avatar.Say(Text.TextManager.GetText("Poke"));
+            }
         }
 
         public void Detach()
@@ -44,7 +61,7 @@ namespace Project_Novi.Modules.Home
         public void Render(Graphics graphics, Rectangle rectangle)
         {
             var stringFormat = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Far };
-            var rectText = new Rectangle(1, 295, 1920, 90);
+            rectText = new Rectangle(1, 295, 1920, 90);
             const int fontSize = 45;
 
             var strFont = TextUtils.GetFont(fontSize) ??
@@ -52,7 +69,7 @@ namespace Project_Novi.Modules.Home
 
             graphics.DrawString(_module.AvatarText, strFont, Brushes.White, rectText, stringFormat);
 
-            var rectAvatar = new Rectangle(rectText.X, 489, 1920, 1080 - 489);
+            rectAvatar = new Rectangle(rectText.X + ((1920/2) - 250), 489, 500, 1080 - 489);
             _controller.Avatar.Render(graphics, rectAvatar);
         }
     }

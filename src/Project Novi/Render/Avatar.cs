@@ -31,6 +31,29 @@ namespace Project_Novi.Render
 
         private TTS _tts;
 
+        private readonly List<Bitmap> _leftEyePinch = new List<Bitmap>()
+        {
+            Properties.Resources.left_eye_blink1,
+            Properties.Resources.left_eye_pinch,
+            Properties.Resources.left_eye_pinch,
+            Properties.Resources.left_eye_blink1
+        };
+
+        private readonly List<Bitmap> _rightEyePinch = new List<Bitmap>()
+        {
+            Properties.Resources.right_eye_blink1,
+            Properties.Resources.right_eye_pinch,
+            Properties.Resources.right_eye_pinch,
+            Properties.Resources.right_eye_blink1
+        };
+
+        private readonly List<Bitmap> _pupilsPinch = new List<Bitmap> {
+            Properties.Resources.pupils,
+            Properties.Resources.blank,
+            Properties.Resources.blank,
+            Properties.Resources.pupils
+        };
+
         /// <summary>
         /// An animation for the blinking of the left eye.
         /// </summary>
@@ -218,6 +241,13 @@ namespace Project_Novi.Render
             Animate(Animated.RightEye, _rightEyeBlink);
             Animate(Animated.LeftEye, _leftEyeBlink);
             Animate(Animated.Pupils, _pupilsBlink);
+        }
+
+        public void Pinch()
+        {
+            Animate(Animated.LeftEye, _leftEyePinch);
+            Animate(Animated.RightEye, _rightEyePinch);
+            Animate(Animated.Pupils, _pupilsPinch);
         }
 
         private Point GetAnimationOffset(Animated animated)
