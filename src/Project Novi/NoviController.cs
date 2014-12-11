@@ -29,7 +29,7 @@ namespace Project_Novi
         /// </summary>
         private Point dragOrigin;
         /// <summary>
-        /// Set to true if the user is dragging, causes a DragEnd event to fire on the controller
+        /// Set to true if the user is dragging, causes a DragEnd event to fire on the _controller
         /// </summary>
         private bool isDragging = false;
 

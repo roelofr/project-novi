@@ -8,78 +8,39 @@ using System.Threading.Tasks;
 
 namespace Project_Novi.Render.UI
 {
-    class Button : IButton
+    class Button : BasicButton
     {
-        private static readonly Brush _backgroundDark = new SolidBrush(Color.FromArgb(100, 0, 0, 0));
-        private static readonly Brush _backgroundLight = new SolidBrush(Color.FromArgb(100, 255, 255, 255));
-
-        private static readonly Brush _textDark = new SolidBrush(Color.FromArgb(255, 255, 255, 255));
-        private static readonly Brush _textLight = new SolidBrush(Color.FromArgb(255, 100, 100, 100));
-
-        public Size Size { get; set; }
-        public Point Location { get; set; }
         public String Text { get; set; }
 
-        public int FontSize { get; set; }
-
-        public Boolean IsDark { get; set; }
-
-        private IController _controller;
-
-        public event EventHandler Click;
-        public Button(IController controller)
+        public Button(IController ctrl, String text)
+            : base(ctrl)
         {
-            _controller = controller;
-            _controller.Touch += controllerTouched;
-
-            // Set default values
-            Size = new Size(100, 20);
-            Location = new Point(0, 0);
-            Text = "Button";
-            IsDark = true;
-
-            // Calculate height to points, using 60% of available height.
-            FontSize = (int)(Size.Height * 72d / 96d * 0.6);
-
+            Text = text;
         }
-        /// <summary>
-        /// Unregister the handler
-        /// </summary>
-        ~Button()
+        protected int getFontSize()
         {
-            if (_controller != null)
-                _controller.Touch -= controllerTouched;
+            return (int)Math.Floor(Size.Height * 72 / 96 * .7d);
         }
-        private bool shouldClick(Point point)
+        protected Size getTextSize()
         {
-            var rect = new Rectangle(Location, Size);
-            var pointRect = new Rectangle(point, new Size(1, 1));
+            if (Text == null)
+                return new Size(0, 0);
 
-            return rect.IntersectsWith(pointRect);
+            var fontFamily = TextUtils.GetFont(getFontSize());
+            var fontValue = Text;
 
+            return System.Windows.Forms.TextRenderer.MeasureText(Text, fontFamily);
         }
-        public void controllerTouched(Point point)
+
+        public void SizeToContentsX()
         {
-            if (!shouldClick(point))
-                return;
-
-            if (this.Click != null)
-                this.Click(this, new EventArgs());
-
+            Size newSize = getTextSize();
+            this.Size = new Size(newSize.Width, this.Size.Height);
         }
-        public void Render(Graphics graphics)
+        public override void Render(Graphics graphics)
         {
-            var bg = IsDark ? _backgroundDark : _backgroundLight;
-            var fg = IsDark ? _textDark : _textLight;
-
-            var format = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
-            var rect = new Rectangle(Location, Size);
-
-            var font = TextUtils.GetFont(FontSize);
-
-            graphics.FillRectangle(bg, rect);
-            graphics.DrawString(Text, font, fg, rect, format);
-
+            DrawBackground(graphics);
+            DrawText(graphics, Text);
         }
     }
 }
