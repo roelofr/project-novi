@@ -70,18 +70,22 @@ namespace Project_Novi
             {
                 var assembly = Assembly.LoadFile(args);
 
-                foreach (var t in assembly.GetTypes())
+                try
                 {
-                    if (t.GetInterface(typeof(IModule).Name) != null)
+                    foreach (var t in assembly.GetTypes())
                     {
-                        AddModule((IModule)Activator.CreateInstance(t));
-                    }
+                        if (t.GetInterface(typeof(IModule).Name) != null)
+                        {
+                            AddModule((IModule)Activator.CreateInstance(t));
+                        }
 
-                    if (t.GetInterface(typeof(IView).Name) != null)
-                    {
-                        AddView((IView)Activator.CreateInstance(t));
+                        if (t.GetInterface(typeof(IView).Name) != null)
+                        {
+                            AddView((IView)Activator.CreateInstance(t));
+                        }
                     }
                 }
+                catch { }
             }
 
         }

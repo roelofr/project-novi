@@ -18,7 +18,7 @@ namespace Project_Novi.Modules.Home
 
         private void controller_Touch(System.Drawing.Point point)
         {
-            _controller.SelectModule(_controller.ModuleManager.GetModule("map"));
+            _controller.SelectModule(_controller.ModuleManager.GetModule("twitter"));
         }
 
         public void Start()
