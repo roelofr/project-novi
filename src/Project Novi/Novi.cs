@@ -1,24 +1,22 @@
 ﻿using System;
-using System.Windows.Forms;
-using Project_Novi.Modules;
 using System.Drawing;
+using System.Windows.Forms;
+using Project_Novi.Api;
 
 namespace Project_Novi
 {
     public partial class Novi : Form
     {
-        private NoviController _controller;
+        private readonly NoviController _controller;
         internal IView View { get; set; }
 
-        public Novi()
+        internal IBackgroundView BackgroundView { get; set; }
+
+        internal Novi(NoviController controller)
         {
             InitializeComponent();
             DoubleBuffered = true;
-            Hide();
-            var splash = new Splash();
-            splash.ShowDialog();
-            Show();
-            _controller = new NoviController(this);
+            _controller = controller;
         }
 
         private void Novi_Paint(object sender, PaintEventArgs e)
@@ -34,18 +32,26 @@ namespace Project_Novi
             var scale = Math.Min(scaleX, scaleY);
             g.ScaleTransform(scale, scale);
 
-            View.Render(g, rect);
+            var windowRectangle = new Rectangle(0, 0, 1920, 1080);
+
+            if (BackgroundView != null)
+            {
+                BackgroundView.Render(g, windowRectangle);
+                View.Render(g, BackgroundView.GetModuleRectangle(windowRectangle));
+            }
+            else
+                View.Render(g, windowRectangle);
         }
 
         private void Novi_Click(object sender, MouseEventArgs e)
         {
-            var sizeY = this.Bounds.Height;
-            var sizeX = this.Bounds.Width;
+            var sizeY = Bounds.Height;
+            var sizeX = Bounds.Width;
             var scaleX = (float)(1920d / sizeX);
             var scaleY = (float)(1080d / sizeY);
             var scale = Math.Min(scaleX, scaleY);
-            sizeY = (int)(scaleY * e.Location.Y);
-            sizeX = (int)(scaleX * e.Location.X);
+            sizeY = (int)(scale * e.Location.Y);
+            sizeX = (int)(scale * e.Location.X);
 
             _controller.HandleTouch(new Point(sizeX, sizeY));
         }
