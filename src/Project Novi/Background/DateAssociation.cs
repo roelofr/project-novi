@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Project_Novi.Modules.Backgrounds
+namespace Project_Novi.Background
 {
-    class DateAssociation
+    public class DateAssociation
     {
         public readonly DateTime Date;
         public readonly String Description;

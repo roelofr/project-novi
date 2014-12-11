@@ -1,32 +1,29 @@
-﻿namespace Project_Novi.Modules.Home
+﻿using Project_Novi.Api;
+
+namespace Project_Novi.Modules.Home
 {
     class HomeModule : IModule
     {
         public string AvatarText = "";
-        private readonly IController _controller;
+        private IController _controller;
         public string Name
         {
             get { return "Home"; }
         }
 
-        public string WelcomeText
-        {
-            get { return "Hallo, kan ik u helpen?"; }
-        }
-
-        public HomeModule(IController controller)
+        public void Initialize(IController controller)
         {
             _controller = controller;
-            controller.Touch += controller_Touch;
         }
 
         private void controller_Touch(System.Drawing.Point point)
         {
-            _controller.SelectModule(new Map.MapModule(_controller));
+            _controller.SelectModule(_controller.ModuleManager.GetModule("map"));
         }
 
         public void Start()
         {
+            _controller.Touch += controller_Touch;
             //Available categories: Welkom, Poke, Idle, Kaart, RouteVragen, RouteBerekenen en BerekendeRoute
             //Let op: Exact overnemen!!!
             AvatarText = Text.TextManager.GetText("Welkom");
