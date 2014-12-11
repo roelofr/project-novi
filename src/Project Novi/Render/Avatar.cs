@@ -31,6 +31,8 @@ namespace Project_Novi.Render
 
         private TTS _tts;
 
+        public static string Saying { get; set; }
+
         /// <summary>
         /// An animation for the blinking of the left eye.
         /// </summary>
@@ -200,6 +202,7 @@ namespace Project_Novi.Render
         /// <param name="text">The text to speak.</param>
         public void Say(string text)
         {
+            Saying = text;
             if (_tts != null)
                 _tts.Talking = false;
 

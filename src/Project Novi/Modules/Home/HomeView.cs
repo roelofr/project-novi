@@ -2,6 +2,7 @@
 using System.Drawing;
 using Project_Novi.Api;
 using Project_Novi.Background;
+using Project_Novi.Render;
 using Project_Novi.Text;
 
 namespace Project_Novi.Modules.Home
@@ -50,7 +51,7 @@ namespace Project_Novi.Modules.Home
             var strFont = TextUtils.GetFont(fontSize) ??
                           new Font(SystemFonts.DefaultFont.Name, fontSize, FontStyle.Regular);
 
-            graphics.DrawString(_module.AvatarText, strFont, Brushes.White, rectText, stringFormat);
+            graphics.DrawString(Avatar.Saying, strFont, Brushes.White, rectText, stringFormat);
 
             var rectAvatar = new Rectangle(rectText.X, 489, 1920, 1080 - 489);
             _controller.Avatar.Render(graphics, rectAvatar);
