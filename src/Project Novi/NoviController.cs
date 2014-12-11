@@ -40,6 +40,7 @@ namespace Project_Novi
         {
             if (Tick != null) Tick();
             _form.Invalidate(true);
+            GoIdle();
         }
 
         public void SelectModule(IModule module)
@@ -70,6 +71,14 @@ namespace Project_Novi
             if (Touch != null)
             {
                 Touch(point);
+            }
+        }
+
+        public void GoIdle()
+        {
+            if (IdleManager.CheckIdle())
+            {
+                SelectModule(ModuleManager.GetModule("Home"));
             }
         }
     }

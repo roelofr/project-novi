@@ -116,3 +116,19 @@ Om de kaarten overzichtelijk te houden kan de gebruiker zelf aangeven van welke 
 | Per verdieping wordt de juiste kaart aangeroepen | Pass |
 | Het is niet mogelijk om meerdere kaarten tegelijk te zien | Pass |
 | De kaarten zijn goed leesbaar | Pass |
+
+
+#Idle
+
+##Transitie & Detectie
+###Toelichting
+Om ervoor te zorgen dat elke nieuwe gebruiker wel weer vanaf het hoofdscherm begint, moet het scherm na inactiviteit voor een bepaalde tijd weer terugkeren naar het hoofscherm.
+
+
+##Testscenario's
+
+|Scenario | Verwachte uitkomst |
+|:---|:---|
+| De applicatie keert weer terug naar het hoofdscherm na een bepaalde tijd | Pass |
+| De applicatie keert wel terug naar het hoofscherm, maar houdt geen rekening met de tijd  | Fail |
+| Bij terugkeren naar het hoofdscherm werkt de applicatie hetzelfde als dat hij opnieuw wordt opgestart | Pass |

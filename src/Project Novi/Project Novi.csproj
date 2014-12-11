@@ -77,6 +77,7 @@
     <Compile Include="Background\MainBackground.cs" />
     <Compile Include="Background\SubBackground.cs" />
     <Compile Include="ModuleManager.cs" />
+    <Compile Include="IdleManager.cs" />
     <Compile Include="Modules\Home\HomeModule.cs" />
     <Compile Include="Modules\Home\HomeView.cs" />
     <Compile Include="Modules\Map\MapModule.cs" />
