@@ -68,31 +68,34 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IController.cs" />
+    <Compile Include="Api\IBackgroundView.cs" />
+    <Compile Include="Api\IController.cs" />
+    <Compile Include="Api\IModule.cs" />
+    <Compile Include="Api\IView.cs" />
+    <Compile Include="Background\BackgroundUtils.cs" />
+    <Compile Include="Background\DateAssociation.cs" />
+    <Compile Include="Background\MainBackground.cs" />
+    <Compile Include="Background\SubBackground.cs" />
+    <Compile Include="ModuleManager.cs" />
+    <Compile Include="IdleManager.cs" />
     <Compile Include="Modules\Home\HomeModule.cs" />
     <Compile Include="Modules\Home\HomeView.cs" />
-    <Compile Include="Modules\IModule.cs" />
-    <Compile Include="Modules\IView.cs" />
     <Compile Include="Modules\Map\NumPad.cs" />
     <Compile Include="Modules\Map\NumPadOutput.cs" />
     <Compile Include="Modules\Map\TouchButton.cs" />
     <Compile Include="Modules\Map\MapModule.cs" />
     <Compile Include="Modules\Map\MapView.cs" />
     <Compile Include="NoviController.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Render\Avatar.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="TTS\TestTTS.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TTS\TestTTS.Designer.cs">
-      <DependentUpon>TestTTS.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TTS\TTS.cs" />
-    <Compile Include="Splash.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Text\TextUtils.cs" />
+    <Compile Include="Text\TTS.cs" />
     <Compile Include="Text\TextManager.cs" />
-    <Compile Include="ViewFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Novi.cs">
@@ -104,11 +107,6 @@
     <Compile Include="NoviLauncher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -122,14 +120,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="TTS\testTTS.resx">
-      <DependentUpon>TestTTS.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Resources\OpenSans-Light.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -152,48 +148,46 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Avatar\avatar base.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\AppLogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\novi-logo.png" />
+    <Folder Include="Resources\Avatar\Hats\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Avatar\Face\Mouths\closed happy.png" />
+    <Resource Include="Resources\Avatar\Clothes\roundneck-green.png" />
+    <Resource Include="Resources\Avatar\Clothes\vneck-green.png" />
+    <Resource Include="Resources\Avatar\Head\Base\base.png" />
+    <Resource Include="Resources\Avatar\Head\Face\nose.png" />
+    <Resource Include="Resources\Avatar\Head\Face\Mouths\closed-happy.png" />
+    <Resource Include="Resources\Avatar\Head\Face\Mouths\closed-sad.png" />
+    <Resource Include="Resources\Avatar\Head\Face\Mouths\open-happy.png" />
+    <Resource Include="Resources\Avatar\Head\Face\Mouths\open-round.png" />
+    <Resource Include="Resources\Avatar\Head\Face\Mouths\open-sad.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Avatar\Face\Mouths\closed sad.png" />
+    <Resource Include="Resources\Avatar\blank.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Avatar\Face\Mouths\open happy.png" />
+    <Resource Include="Resources\Avatar\Head\Face\Eyes\left-eye-blink1.png" />
+    <Resource Include="Resources\Avatar\Head\Face\Eyes\left-eye-blink2.png" />
+    <Resource Include="Resources\Avatar\Head\Face\Eyes\left-eye-blink3.png" />
+    <Resource Include="Resources\Avatar\Head\Face\Eyes\left-eye-open.png" />
+    <Resource Include="Resources\Avatar\Head\Face\Eyes\left-eye-pinch.png" />
+    <Resource Include="Resources\Avatar\Head\Face\Eyes\pupils.png" />
+    <Resource Include="Resources\Avatar\Head\Face\Eyes\right-eye-blink1.png" />
+    <Resource Include="Resources\Avatar\Head\Face\Eyes\right-eye-blink2.png" />
+    <Resource Include="Resources\Avatar\Head\Face\Eyes\right-eye-blink3.png" />
+    <Resource Include="Resources\Avatar\Head\Face\Eyes\right-eye-open.png" />
+    <Resource Include="Resources\Avatar\Head\Face\Eyes\right-eye-pinch.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Avatar\Face\Mouths\open round.png" />
+    <Resource Include="Resources\Design\ontwerpWithBorder.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Avatar\Face\Mouths\open sad.png" />
+    <None Include="Resources\home_button.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Avatar\Face\Eyes\avatar eyes.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Avatar\Face\avatar nose.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Avatar\Face\Eyes\avatar pupils.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Maps\T0.jpg" />
-    <Resource Include="Resources\Maps\T1.jpg" />
-    <Resource Include="Resources\Maps\T2.jpg" />
-    <Resource Include="Resources\Maps\T3.jpg" />
-    <Resource Include="Resources\Maps\T4.jpg" />
-    <Resource Include="Resources\Maps\T5.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\T5.png" />
+    <None Include="Resources\Design\home-button.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\T0x.png" />

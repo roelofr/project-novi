@@ -7,13 +7,12 @@ namespace Project_Novi.Text
     {
         public static String GetText(string category)
         {
-            XmlDocument xmlDoc = new XmlDocument();
+            var xmlDoc = new XmlDocument();
             xmlDoc.Load("AvatarTekst.xml");
 
-            XmlNodeList nodeList = xmlDoc.DocumentElement.SelectNodes("/Table/" + category);
-            Random random = new Random();
-            int number = random.Next(3);
-            return nodeList[random.Next(nodeList.Count)].SelectSingleNode("String_text").InnerText;          
+            var nodeList = xmlDoc.DocumentElement.SelectNodes(String.Format("/Strings/{0}/String", category));
+            var random = new Random();
+            return nodeList[random.Next(nodeList.Count)].InnerText;          
         }
     }
 }

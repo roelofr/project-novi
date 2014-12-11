@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Xml;
+using Project_Novi.Api;
+using Project_Novi.Background;
 
 namespace Project_Novi.Modules.Map
 {
     class MapView : IView
     {
-        private readonly MapModule _module;
-        private readonly IController _controller;// Brushes and fonts
-        
         private readonly SolidBrush _floorButtonBrush = new SolidBrush(Color.Blue);
         
         private readonly SolidBrush _floorTextBrush = new SolidBrush(Color.White);
@@ -20,14 +19,14 @@ namespace Project_Novi.Modules.Map
         // Buttons for selecting floors
         private string _activeFloor = "T0";
         private readonly Point[] _activeFloorArrow = new Point[3];
-        private readonly List<TouchButton> _floorButtons;       
+        private List<TouchButton> _floorButtons;       
         private readonly string[] _floorNames = { "T5", "T4", "T3", "T2", "T1", "T0" };
         private const int XposFloorButtons = 1650;
         private const int YposFloorButtons = 250;
         private const int WidthFloorButtons = 220;
         private const int HeightFloorButtonss = 120;
         private const int MarginFloorButtons = 10;
-        private readonly int _numberFloorButtons;
+        private int _numberFloorButtons;
         private readonly int _XposMap = 50;
         private readonly int _YposMap = 50;
         private Point _activePosition = new Point();
@@ -40,16 +39,19 @@ namespace Project_Novi.Modules.Map
         private NumPadOutput npo;
         private TouchButton backspace;
 
-        public IModule Module
+        private MapModule _module;
+        private IController _controller;
+      
+        public Type ModuleType
         {
-            get { return _module; }
+            get { return typeof(MapModule); }
         }
 
-        public MapView(MapModule module, IController controller)
+        public IBackgroundView BackgroundView { get; private set; }
+
+        public void Initialize(IController controller)
         {
-            _module = module;
             _controller = controller;
-            _controller.Touch += ControllerOnTouch;
             _floorButtons = new List<TouchButton>();
             _numberFloorButtons = _floorNames.Length;
             //string[] s = { "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M" };
@@ -61,6 +63,26 @@ namespace Project_Novi.Modules.Map
             // Create all buttons for selecting floors
             CreateFloorButtons(XposFloorButtons, YposFloorButtons, WidthFloorButtons, HeightFloorButtonss, MarginFloorButtons, _numberFloorButtons);
             
+            BackgroundView = new SubBackground(controller);
+        }
+
+        public void Attach(IModule module)
+        {
+            var mapModule = module as MapModule;
+            if (mapModule != null)
+            {
+                _module = mapModule;
+                _controller.Touch += ControllerOnTouch;
+            }
+            else
+                throw new ArgumentException("A MapView can only render the interface for a MapModule");
+
+            _controller.Touch += ControllerOnTouch;
+        }
+
+        public void Detach()
+        {
+            _module = null;
         }
 
         private void ControllerOnTouch(Point p)
