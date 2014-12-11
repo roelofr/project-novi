@@ -45,7 +45,15 @@ namespace Project_Novi
 
         private void Novi_Click(object sender, MouseEventArgs e)
         {
-            _controller.HandleTouch(e.Location);
+            var sizeY = Bounds.Height;
+            var sizeX = Bounds.Width;
+            var scaleX = (float)(1920d / sizeX);
+            var scaleY = (float)(1080d / sizeY);
+            var scale = Math.Min(scaleX, scaleY);
+            sizeY = (int)(scale * e.Location.Y);
+            sizeX = (int)(scale * e.Location.X);
+
+            _controller.HandleTouch(new Point(sizeX, sizeY));
         }
     }
 }

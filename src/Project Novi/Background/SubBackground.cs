@@ -40,8 +40,8 @@ namespace Project_Novi.Background
         public Rectangle GetModuleRectangle(Rectangle fullRectangle)
         {
             var moduleRectangle = fullRectangle;
-            moduleRectangle.Width += ModuleOffsetX;
-            moduleRectangle.Height += ModuleOffsetY;
+            moduleRectangle.Width -= ModuleOffsetX;
+            moduleRectangle.Height -= ModuleOffsetY;
             moduleRectangle.Offset(ModuleOffsetX, ModuleOffsetY);
 
             return moduleRectangle;
