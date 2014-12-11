@@ -38,7 +38,7 @@ namespace Project_Novi
 
         public static bool CheckIdle()
         {
-            if (GetIdleTime() > 10)
+            if (GetIdleTime() > 120)
             {
                 if (_isIdle)
                 {
