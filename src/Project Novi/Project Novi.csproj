@@ -73,6 +73,9 @@
     <Compile Include="Modules\Home\HomeView.cs" />
     <Compile Include="Modules\IModule.cs" />
     <Compile Include="Modules\IView.cs" />
+    <Compile Include="Modules\Map\NumPad.cs" />
+    <Compile Include="Modules\Map\NumPadOutput.cs" />
+    <Compile Include="Modules\Map\TouchButton.cs" />
     <Compile Include="Modules\Map\MapModule.cs" />
     <Compile Include="Modules\Map\MapView.cs" />
     <Compile Include="NoviController.cs" />
@@ -213,5 +216,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">
     <Copy SourceFiles="AvatarTekst.xml" DestinationFolder="$(OutputPath)" />
+    <Copy SourceFiles="room_mapping.xml" DestinationFolder="$(OutputPath)" />
   </Target>
 </Project>
