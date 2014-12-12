@@ -16,10 +16,7 @@ namespace Project_Novi.Modules.Home
             _controller = controller;
         }
 
-        private void controller_Touch(System.Drawing.Point point)
-        {
-            _controller.SelectModule(_controller.ModuleManager.GetModule("map"));
-        }
+        private void controller_Touch(System.Drawing.Point point) { }
 
         public void Start()
         {

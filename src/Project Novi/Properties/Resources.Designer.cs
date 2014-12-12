@@ -118,6 +118,13 @@ namespace Project_Novi.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+
+        internal static System.Drawing.Bitmap icon_maps {
+            get {
+                object obj = ResourceManager.GetObject("icon_maps", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
@@ -215,6 +222,16 @@ namespace Project_Novi.Properties {
         internal static System.Drawing.Bitmap open_sad {
             get {
                 object obj = ResourceManager.GetObject("open_sad", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pakket {
+            get {
+                object obj = ResourceManager.GetObject("pakket", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -17,11 +17,20 @@ namespace Project_Novi
             InitializeComponent();
             DoubleBuffered = true;
             _controller = controller;
+
+            // Add event hooks
+            this.Paint += Novi_Paint;
+            this.MouseClick += Novi_Click;
+            this.MouseUp += Novi_MouseUp;
+            this.MouseDown += Novi_MouseDown;
+            this.MouseMove += Novi_MouseMove;
         }
+
 
         private void Novi_Paint(object sender, PaintEventArgs e)
         {
-            if (!Visible) return;
+            if (!Visible || View == null)
+                return;
 
             var rect = e.ClipRectangle;
             var g = e.Graphics;
@@ -54,6 +63,19 @@ namespace Project_Novi
             sizeX = (int)(scale * e.Location.X);
 
             _controller.HandleTouch(new Point(sizeX, sizeY));
+        }
+
+        private void Novi_MouseDown(object sender, MouseEventArgs e)
+        {
+            _controller.HandleTouchStart(e.Location);
+        }
+        private void Novi_MouseMove(object sender, MouseEventArgs e) {
+            _controller.HandleTouchMove(e.Location);
+        }
+
+        private void Novi_MouseUp(object sender, MouseEventArgs e)
+        {
+            _controller.HandleTouchEnd(e.Location);
         }
     }
 }

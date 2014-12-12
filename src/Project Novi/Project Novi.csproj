@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -80,6 +80,7 @@
     <Compile Include="IdleManager.cs" />
     <Compile Include="Modules\Home\HomeModule.cs" />
     <Compile Include="Modules\Home\HomeView.cs" />
+    <Compile Include="Modules\Home\TileReference.cs" />
     <Compile Include="Modules\Map\MapModule.cs" />
     <Compile Include="Modules\Map\MapView.cs" />
     <Compile Include="NoviController.cs" />
@@ -89,6 +90,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Render\Avatar.cs" />
+    <Compile Include="Render\UI\Button.cs" />
+    <Compile Include="Render\UI\IButton.cs" />
+    <Compile Include="Render\UI\BasicButton.cs" />
+    <Compile Include="Render\UI\TileButton.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Text\TextUtils.cs" />
     <Compile Include="Text\TTS.cs" />
@@ -122,7 +127,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Resources\OpenSans-Light.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -186,8 +190,15 @@
   <ItemGroup>
     <None Include="Resources\Design\home-button.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Arrow-Up-Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pakket.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">
     <Copy SourceFiles="AvatarTekst.xml" DestinationFolder="$(OutputPath)" />
+    <Copy SourceFiles="TileLocations.xml" DestinationFolder="$(OutputPath)" />
   </Target>
 </Project>
