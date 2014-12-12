@@ -23,7 +23,7 @@ namespace Project_Novi
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            _usernameTwitter = textboxUsernameTwitter.Text;
+            _usernameTwitter = textboxUsernameTwitter1.Text;
         }
 
         private void Controlpanel_KeyDown(object sender, KeyEventArgs e)
