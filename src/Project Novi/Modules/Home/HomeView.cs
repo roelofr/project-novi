@@ -15,6 +15,8 @@ namespace Project_Novi.Modules.Home
         private HomeModule _module;
         private IController _controller;
 
+        private List<TileButton> buttons = new List<TileButton>();
+
         public Type ModuleType
         {
             get { return typeof (HomeModule); }
@@ -77,7 +79,6 @@ namespace Project_Novi.Modules.Home
             MessageBox.Show(message);
         }
 
-        private List<TileButton> buttons = new List<TileButton>();
 
         public IModule Module
         {
@@ -139,6 +140,7 @@ namespace Project_Novi.Modules.Home
         public void Detach()
         {
             _module = null;
+            buttons.Clear();
         }
 
         void btn_Click(object sender, System.EventArgs e)
