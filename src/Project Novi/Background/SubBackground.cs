@@ -55,6 +55,9 @@ namespace Project_Novi.Background
 
         private void ControllerOnTouch(Point point)
         {
+            point.X += ModuleOffsetX;
+            point.Y += ModuleOffsetY;
+
             if (_backButton.Contains(point))
             {
                 _controller.SelectModule(_controller.ModuleManager.GetModule("Home"));

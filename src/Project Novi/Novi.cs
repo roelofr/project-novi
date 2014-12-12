@@ -46,36 +46,55 @@ namespace Project_Novi
             if (BackgroundView != null)
             {
                 BackgroundView.Render(g, windowRectangle);
-                View.Render(g, BackgroundView.GetModuleRectangle(windowRectangle));
+                var moduleRect = BackgroundView.GetModuleRectangle(Bounds);
+                
+                // Make the module believe it's drawing at 0,0
+                g.TranslateTransform(moduleRect.X, moduleRect.Y);
+                moduleRect.X = 0;
+                moduleRect.Y = 0;
+
+                // and disallow any drawing outside of the reserved space.
+                g.SetClip(moduleRect);
+                View.Render(g, moduleRect);
             }
             else
                 View.Render(g, windowRectangle);
         }
 
-        private void Novi_Click(object sender, MouseEventArgs e)
+        private Point scalePoint(Point original)
         {
             var sizeY = Bounds.Height;
             var sizeX = Bounds.Width;
             var scaleX = (float)(1920d / sizeX);
             var scaleY = (float)(1080d / sizeY);
             var scale = Math.Min(scaleX, scaleY);
-            sizeY = (int)(scale * e.Location.Y);
-            sizeX = (int)(scale * e.Location.X);
+            sizeY = (int)(scale * original.Y);
+            sizeX = (int)(scale * original.X);
 
-            _controller.HandleTouch(new Point(sizeX, sizeY));
+            var moduleRect = BackgroundView.GetModuleRectangle(Bounds);
+            sizeX -= moduleRect.X;
+            sizeY -= moduleRect.Y;
+            return new Point(sizeX, sizeY);
+        }
+
+        private void Novi_Click(object sender, MouseEventArgs e)
+        {
+            _controller.HandleTouch(scalePoint(e.Location));
         }
 
         private void Novi_MouseDown(object sender, MouseEventArgs e)
         {
-            _controller.HandleTouchStart(e.Location);
+            _controller.HandleTouchStart(scalePoint(e.Location));
         }
-        private void Novi_MouseMove(object sender, MouseEventArgs e) {
-            _controller.HandleTouchMove(e.Location);
+
+        private void Novi_MouseMove(object sender, MouseEventArgs e)
+        {
+            _controller.HandleTouchMove(scalePoint(e.Location));
         }
 
         private void Novi_MouseUp(object sender, MouseEventArgs e)
         {
-            _controller.HandleTouchEnd(e.Location);
+            _controller.HandleTouchEnd(scalePoint(e.Location));
         }
     }
 }
