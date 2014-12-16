@@ -11,6 +11,11 @@ namespace Project_Novi.Modules.Home
             get { return "Home"; }
         }
 
+        public string DisplayName
+        {
+            get { return "Home"; }
+        }
+
         public void Initialize(IController controller)
         {
             _controller = controller;
