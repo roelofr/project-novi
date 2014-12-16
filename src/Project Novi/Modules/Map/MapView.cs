@@ -13,8 +13,8 @@ namespace Project_Novi.Modules.Map
     {
         private readonly Color _buttonColor = Color.Black;
         private readonly Color _textColor = Color.White;
-        private readonly SolidBrush _markerBrush = new SolidBrush(Color.FromArgb(100, Color.Red));
-        private readonly Font _floorFont = new Font("Segoe UI", 40);
+        private readonly SolidBrush _markerBrush = new SolidBrush(Color.FromArgb(100, Color.DimGray));
+        private readonly Font _floorFont = new Font("Segoe UI", 30);
         private readonly StringFormat _formatText = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
         private string _activeFloor;
         private readonly Point[] _activeFloorArrow = new Point[3];
@@ -24,7 +24,7 @@ namespace Project_Novi.Modules.Map
         private int _xposFloorButtons;
         private int _yposFloorButtons;
         private const int WidthFloorButtons = 220;
-        private const int HeightFloorButtonss = 100;
+        private const int HeightFloorButtons = 110;
         private const int MarginFloorButtons = 10;
         private int _numberFloorButtons;
         private const int XposMap = 0;
@@ -38,13 +38,13 @@ namespace Project_Novi.Modules.Map
         private TouchButton _backspace;
         private TouchButton _tIndicator;
         private TouchButton _pIndicator;
-        private const int XposNumPad = 450;
-        private const int YposNumPad = 500;
-        private const int WidthNumPad = 240;
-        private const int HeightNumPad = 280;
+        private int XposNumPad;
+        private int YposNumPad;
+        private const int WidthNumPad = 200;
+        private const int HeightNumPad = 240;
         private const int MarkerSize = 50;
         private XmlDocument _xmlDoc;
-
+        private const int scale = 100;
 
         private MapModule _module;
         private IController _controller;
@@ -84,6 +84,9 @@ namespace Project_Novi.Modules.Map
 
             _xposFloorButtons = _modularRectangle.Width - WidthFloorButtons - MarginFloorButtons;
             _yposFloorButtons = MarginFloorButtons;
+
+            XposNumPad = XposMap + ((Properties.Resources.T5x.Width*scale/100)/2) - (WidthNumPad / 2);
+            YposNumPad = _modularRectangle.Height - (_modularRectangle.Height - (YposMap + Properties.Resources.T5x.Height*scale/100)) / 2 - HeightNumPad/2 + 50;
             _floorButtons = new List<TouchButton>();
             _numberFloorButtons = _floorNames.Length;
 
@@ -93,17 +96,17 @@ namespace Project_Novi.Modules.Map
             _floorSelectOutput.TouchButtons[1].Xpos += 2 * _floorSelectOutput.TouchButtons[1].Width;
             _floorSelectOutput.TouchButtons[2].Xpos += 2 * _floorSelectOutput.TouchButtons[2].Width;
 
-            _backspace = new TouchButton(XposNumPad + 5 * _floorSelectOutput.TouchButtons[0].Width, YposNumPad - (1 * _floorSelectNumpad.TouchButtons[0].Height), _floorSelectOutput.TouchButtons[0].Width, _floorSelectOutput.TouchButtons[0].Height, "←", _buttonColor, _textColor, _floorFont);
-            _tIndicator = new TouchButton(XposNumPad, YposNumPad - (1 * _floorSelectNumpad.TouchButtons[0].Height), _floorSelectOutput.TouchButtons[0].Width, _floorSelectOutput.TouchButtons[0].Height, "T", _buttonColor, _textColor, _floorFont);
+            _backspace = new TouchButton(XposNumPad + 5 * _floorSelectOutput.TouchButtons[0].Width, YposNumPad - (1 * _floorSelectNumpad.TouchButtons[0].Height), _floorSelectOutput.TouchButtons[0].Width, _floorSelectOutput.TouchButtons[0].Height, "←", _buttonColor, _textColor, new Font(_floorFont.FontFamily, (int)(0.8 * (_floorSelectOutput.TouchButtons[0].Width))));
+            _tIndicator = new TouchButton(XposNumPad, YposNumPad - (1 * _floorSelectNumpad.TouchButtons[0].Height), _floorSelectOutput.TouchButtons[0].Width, _floorSelectOutput.TouchButtons[0].Height, "T", _buttonColor, _textColor, new Font(_floorFont.FontFamily, (int)(0.8 * (_floorSelectOutput.TouchButtons[0].Width))));
             _tIndicator.Enabled = false;
-            _pIndicator = new TouchButton(XposNumPad + 2 * _floorSelectOutput.TouchButtons[0].Width, YposNumPad - (1 * _floorSelectNumpad.TouchButtons[0].Height), _floorSelectOutput.TouchButtons[0].Width, _floorSelectOutput.TouchButtons[0].Height, ".", _buttonColor, _textColor, _floorFont);
+            _pIndicator = new TouchButton(XposNumPad + 2 * _floorSelectOutput.TouchButtons[0].Width, YposNumPad - (1 * _floorSelectNumpad.TouchButtons[0].Height), _floorSelectOutput.TouchButtons[0].Width, _floorSelectOutput.TouchButtons[0].Height, ".", _buttonColor, _textColor, new Font(_floorFont.FontFamily, (int)(0.8 * (_floorSelectOutput.TouchButtons[0].Width))));
             _pIndicator.Enabled = false;
             _activeTimer = new Stopwatch();
             _floorTimer = new Stopwatch();
             _floorTimer.Start();
 
             // Create all buttons for selecting floors
-            CreateFloorButtons(_xposFloorButtons, _yposFloorButtons, WidthFloorButtons, HeightFloorButtonss, MarginFloorButtons, _numberFloorButtons);
+            CreateFloorButtons(_xposFloorButtons, _yposFloorButtons, WidthFloorButtons, HeightFloorButtons, MarginFloorButtons, _numberFloorButtons);
 
             ButtonControl(_floorSelectNumpad, _floorSelectOutput);
         }
@@ -176,29 +179,29 @@ namespace Project_Novi.Modules.Map
             _pIndicator.DrawButton(graphics);
             _tIndicator.DrawButton(graphics);
             // Display correct floor map
-            
+            Bitmap bm = new Bitmap(Properties.Resources.T0x);
             switch (_activeFloor)
             {
                 case "T5":
-                    graphics.DrawImage(Properties.Resources.T5x, XposMap, YposMap, Properties.Resources.T5x.Width, Properties.Resources.T5x.Height);
-                    graphics.DrawLine(Pens.Red, 0, 0, Properties.Resources.T5x.Width / Properties.Resources.T5x.HorizontalResolution * graphics.DpiX, 0);
+                    bm = Properties.Resources.T5x;
                     break;
                 case "T4":
-                    graphics.DrawImage(Properties.Resources.T4x, XposMap, YposMap);
+                    bm = Properties.Resources.T4x;
                     break;
                 case "T3":
-                    graphics.DrawImage(Properties.Resources.T3x, XposMap, YposMap);
+                    bm = Properties.Resources.T3x;
                     break;
                 case "T2":
-                    graphics.DrawImage(Properties.Resources.T2x, XposMap, YposMap);
+                    bm = Properties.Resources.T2x;
                     break;
                 case "T1":
-                    graphics.DrawImage(Properties.Resources.T1x, XposMap, YposMap);
+                    bm = Properties.Resources.T1x;
                     break;
                 case "T0":
-                    graphics.DrawImage(Properties.Resources.T0x, XposMap, YposMap);
+                    bm = Properties.Resources.T0x;
                     break;
-            }  
+            }
+            graphics.DrawImage(bm, XposMap, YposMap, bm.Width * scale / 100, bm.Height * scale / 100);
             // Display all floor buttons
             foreach (var button in _floorButtons) {
                 if (_activeFloor.Equals("T" + (_numberFloorButtons - 1 - _floorButtons.IndexOf(button)).ToString()))
@@ -206,9 +209,9 @@ namespace Project_Novi.Modules.Map
                     _activeFloorArrow[0].X = button.Xpos;
                     _activeFloorArrow[0].Y = button.Ypos;
                     _activeFloorArrow[1].X = button.Xpos;
-                    _activeFloorArrow[1].Y = button.Ypos + HeightFloorButtonss;
+                    _activeFloorArrow[1].Y = button.Ypos + HeightFloorButtons;
                     _activeFloorArrow[2].X = button.Xpos - (5 * MarginFloorButtons);
-                    _activeFloorArrow[2].Y = (button.Ypos + button.Ypos + HeightFloorButtonss) / 2;
+                    _activeFloorArrow[2].Y = (button.Ypos + button.Ypos + HeightFloorButtons) / 2;
                 }                
                 button.DrawButton(graphics);
                 //graphics.DrawString(_floorNames[_floorButtons.IndexOf(button)], _floorFont, _floorTextBrush, button, _formatText);
@@ -230,10 +233,10 @@ namespace Project_Novi.Modules.Map
                 else if (_activeTimer.ElapsedMilliseconds/500%2 == 0)
                 {
                     graphics.FillEllipse(_markerBrush,
-                        _activePosition.X/Properties.Resources.T0x.HorizontalResolution*graphics.DpiX - (MarkerSize / 2),
-                        _activePosition.Y / Properties.Resources.T0x.VerticalResolution * graphics.DpiY - (MarkerSize / 2), MarkerSize, MarkerSize);
-                    graphics.DrawEllipse(new Pen(_markerBrush.Color, 5), _activePosition.X / Properties.Resources.T0x.HorizontalResolution * graphics.DpiX - (MarkerSize / 2),
-                        _activePosition.Y / Properties.Resources.T0x.VerticalResolution * graphics.DpiY - (MarkerSize / 2), MarkerSize, MarkerSize);
+                        _activePosition.X - (MarkerSize / 2),
+                        _activePosition.Y - (MarkerSize / 2), MarkerSize, MarkerSize);
+                    graphics.DrawEllipse(new Pen(_markerBrush.Color, 5), _activePosition.X - (MarkerSize / 2),
+                        _activePosition.Y - (MarkerSize / 2), MarkerSize, MarkerSize);
                 }
             }
             else
@@ -323,7 +326,7 @@ namespace Project_Novi.Modules.Map
             if (numPadOutput.Output.Length == numPadOutput.Digits)
             {
                 var roomPos = GetRoomLocation(numPadOutput.Output);
-                _activePosition = new Point(roomPos.X + XposMap, roomPos.Y + YposMap);
+                _activePosition = new Point(roomPos.X * scale / 100 + XposMap, roomPos.Y * scale / 100 + YposMap);
 
             }
         }
