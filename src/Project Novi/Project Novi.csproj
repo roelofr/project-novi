@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -80,7 +80,7 @@
     <Compile Include="IdleManager.cs" />
     <Compile Include="Modules\Home\HomeModule.cs" />
     <Compile Include="Modules\Home\HomeView.cs" />
-    <Compile Include="Modules\Home\TileReference.cs" />
+    <Compile Include="Modules\Home\HomeTileLocation.cs" />
     <Compile Include="Modules\Map\MapModule.cs" />
     <Compile Include="Modules\Map\MapView.cs" />
     <Compile Include="NoviController.cs" />
