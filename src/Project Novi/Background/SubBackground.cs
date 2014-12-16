@@ -62,9 +62,15 @@ namespace Project_Novi.Background
 
             if (_avatar.Contains(point))
             {
-                _controller.Avatar.Pinch();
-                
-                _controller.Avatar.Say(TextManager.GetText("Poke"));
+                if (_controller.Avatar.Talking)
+                {
+                    _controller.Avatar.Talking = false;
+                }
+                else
+                {
+                    _controller.Avatar.Pinch();
+                    _controller.Avatar.Say(TextManager.GetText("Poke"));
+                }
             }
         }
 

@@ -131,9 +131,15 @@ namespace Project_Novi.Modules.Home
         {
             if (_rectAvatar.Contains(point))
             {
-                _controller.Avatar.Pinch();
-
-                _controller.Avatar.Say(Text.TextManager.GetText("Poke"));
+                if (_controller.Avatar.Talking)
+                {
+                    _controller.Avatar.Talking = false;
+                }
+                else
+                {
+                    _controller.Avatar.Pinch();
+                    _controller.Avatar.Say(TextManager.GetText("Poke"));
+                }
             }
         }
 

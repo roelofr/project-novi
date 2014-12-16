@@ -118,6 +118,12 @@ namespace Project_Novi.Render
             { Animated.Nose, new List<Bitmap>() }
         };
 
+        public bool Talking
+        {
+            get { return _tts.Talking; }
+            set { _tts.Talking = value; }
+        }
+
         public Avatar(IController controller)
         {
             _controller = controller;
