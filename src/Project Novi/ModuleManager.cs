@@ -27,6 +27,20 @@ namespace Project_Novi
             return _modules[name];
         }
 
+        /// <summary>
+        /// Returns a List consisting of the names of all registered modules
+        /// </summary>
+        /// <returns></returns>
+        public List<String> GetModuleNameList()
+        {
+            var output = new List<String>();
+            foreach (var entry in _modules)
+            {
+                output.Add(entry.Key);
+            }
+            return output;
+        } 
+
         public IView GetView(IModule module)
         {
             return _views[module.GetType()];
