@@ -16,7 +16,7 @@ namespace Project_Novi.Background
         private Rectangle _avatar;
         private readonly Rectangle _backButton = new Rectangle((100/2) - (BackButtonSize/2), 1080 - ((100/2) + (BackButtonSize/2)), BackButtonSize, BackButtonSize);
 
-        private readonly Rectangle _textRect = new Rectangle(0, 100, ModuleOffsetX, 500);
+        private Rectangle _textRect = new Rectangle(0, 100, ModuleOffsetX, 500);
         private readonly StringFormat _stringFormat = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
         private readonly Font _strFont = TextUtils.GetFont(FontSize) ??
                           new Font(SystemFonts.DefaultFont.Name, FontSize, FontStyle.Regular);
@@ -37,6 +37,7 @@ namespace Project_Novi.Background
                 rectangle.Y + 600,
                 ModuleOffsetX - _backButton.Width,
                 rectangle.Height - 600);
+            _textRect.X = _avatar.X;
 
             _controller.Avatar.Render(graphics, _avatar);
             graphics.DrawImage(Properties.Resources.home_button, _backButton);
