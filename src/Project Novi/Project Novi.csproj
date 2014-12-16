@@ -215,5 +215,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">
     <Copy SourceFiles="AvatarTekst.xml" DestinationFolder="$(OutputPath)" />
+	<Copy SourceFiles="TwitterSettings.xml" DestinationFolder="$(OutputPath)" />
   </Target>
 </Project>
