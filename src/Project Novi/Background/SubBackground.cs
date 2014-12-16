@@ -32,7 +32,13 @@ namespace Project_Novi.Background
         {
             BackgroundUtils.DrawBackground(graphics);
             BackgroundUtils.DrawClock(graphics);
-            _controller.Avatar.Render(graphics, _avatar = new Rectangle(rectangle.X + _backButton.Width + 50, rectangle.Y, ModuleOffsetX - _backButton.Width, rectangle.Height));
+
+            _avatar = new Rectangle(rectangle.X + _backButton.Width + 50,
+                rectangle.Y + 600,
+                ModuleOffsetX - _backButton.Width,
+                rectangle.Height - 600);
+
+            _controller.Avatar.Render(graphics, _avatar);
             graphics.DrawImage(Properties.Resources.home_button, _backButton);
             graphics.DrawString(_controller.Avatar.Saying, _strFont, Brushes.White, _textRect, _stringFormat);
         }

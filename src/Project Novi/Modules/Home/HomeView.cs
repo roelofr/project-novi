@@ -209,13 +209,10 @@ namespace Project_Novi.Modules.Home
             var strFont = TextUtils.GetFont(fontSize) ??
                           new Font(SystemFonts.DefaultFont.Name, fontSize, FontStyle.Regular);
 
-            graphics.DrawString(_controller.Avatar.Saying, strFont, Brushes.White, _rectText, stringFormat);
+            graphics.DrawString(_module.AvatarText, strFont, Brushes.White, _rectText, stringFormat);
 
             _rectAvatar = new Rectangle(_rectText.X + ((1920 / 2) - 250), 489, 500, 1080 - 489);
             _controller.Avatar.Render(graphics, _rectAvatar);
-
-            var rectAvatar = new Rectangle(_rectText.X, 489, 1920, 1080 - 489);
-            _controller.Avatar.Render(graphics, rectAvatar);
 
             foreach (var btn in buttons)
             {
