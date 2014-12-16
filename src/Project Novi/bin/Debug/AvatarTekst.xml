@@ -56,7 +56,7 @@
   </MapF2>
   
   <MapF3>
-	<String>De derde verdieping is zesitg treden omhoog. De lift bevindt zich in de gangen naast u</String>
+	<String>De derde verdieping is zestig treden omhoog. De lift bevindt zich in de gangen naast u</String>
 	<String>Voor verdieping drie zou ik de lift nemen</String>
   </MapF3>
   
@@ -71,38 +71,28 @@
 	<String>Voor verdieping vijf kan u best de lift nemen</String>
   </MapF5>
   
-  <MapC0>
+  <MapTrapRechts>
 	<String>Als u met de trap gaat is het lokaal aan uw rechterkant zodra u het trappenhuis uit gaat</String>
 	<String>Zodra u op de verdieping bent is het lokaal aan uw rechterkant mits u met de trap gaat</String>
-  </MapC0>
+  </MapTrapRechts>
   
-  <MapC1>
-	<String>Als u met de trap gaat is het lokaal aan uw rechterkant zodra u het trappenhuis uit gaat</String>
-	<String>Zodra u op de verdieping bent is het lokaal aan uw rechterkant mits u met de trap gaat</String>
-  </MapC1>
+  <MapTrapLinks>
+	<String>Als u met de trap gaat is het lokaal aan uw linkerkant zodra u het trappenhuis uit gaat</String>
+	<String>Zodra u op de verdieping bent is het lokaal aan uw linkerkant mits u met de trap gaat</String>
+  </MapTrapLinks>
   
-  <MapC2>
-	<String>Als u met de trap gaat is het lokaal aan uw rechterkant zodra u het trappenhuis uit gaat</String>
-	<String>Zodra u op de verdieping bent is het lokaal aan uw rechterkant mits u met de trap gaat</String>
-  </MapC2>
+  <MapLiftRechts>
+	<String>Als u met de lift gaat is het lokaal aan uw rechterkant zodra u de lift uit komt</String>
+	<String>Zodra u op de verdieping bent is het lokaal aan uw rechterkant mits u met de lft gaat</String>
+  </MapLiftRechts>
   
-  <MapC3>
+  <MapLiftLinks>
+	<String>Als u met de lift gaat is het lokaal aan uw linkerkant zodra u de lift uit komt</String>
+	<String>Zodra u op de verdieping bent is het lokaal aan uw linkerkant mits u met de lft gaat</String>
+  </MapLiftLinks>
+  
+  <MapMidden>
 	<String>U kan het lokaal in de gang vinden</String>
-	<String>U kan het lokaal tussen de rechter- en linkerhelft van het gebouw vinden</String>
-  </MapC3>
-  
-  <MapC4>
-	<String>Als u met de lift gaat is het lokaal aan uw rechterkant zodra u de lift uit komt</String>
-	<String>Zodra u op de verdieping bent is het lokaal aan uw rechterkant mits u met de lft gaat</String>
-  </MapC4>
-  
-  <MapC5>
-	<String>Als u met de lift gaat is het lokaal aan uw rechterkant zodra u de lift uit komt</String>
-	<String>Zodra u op de verdieping bent is het lokaal aan uw rechterkant mits u met de lft gaat</String>
-  </MapC5>
-  
-  <MapC6>
-	<String>Als u met de lift gaat is het lokaal aan uw rechterkant zodra u de lift uit komt</String>
-	<String>Zodra u op de verdieping bent is het lokaal aan uw rechterkant mits u met de lft gaat</String>
-  </MapC6>
+	<String>Het lokaal is in het middenste deel van het gebouw</String>
+  </MapMidden>
 </Strings>
