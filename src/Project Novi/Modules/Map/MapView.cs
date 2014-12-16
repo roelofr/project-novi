@@ -327,7 +327,8 @@ namespace Project_Novi.Modules.Map
             {
                 var roomPos = GetRoomLocation(numPadOutput.Output);
                 _activePosition = new Point(roomPos.X * scale / 100 + XposMap, roomPos.Y * scale / 100 + YposMap);
-
+                var description = _module.GetRouteDescription(numPadOutput.Output);
+                _controller.Avatar.Say(description);
             }
         }
     }
