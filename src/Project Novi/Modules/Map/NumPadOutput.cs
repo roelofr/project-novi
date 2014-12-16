@@ -114,21 +114,27 @@ namespace Project_Novi.Modules.Map
             Output = "";
             foreach (var tb in TouchButtons)
             {
-                if (!tb.Value.Equals("_"))
+                if (!tb.Value.Equals("_") && !tb.ActiveTimer.IsRunning)
                 {
                   Output += tb.Value;  
                 }
             }
         }
 
-        public void ClearOutput()
+        public void ClearOutput(int digit)
         {
-            ActiveDigit = 0;
             foreach (var tb in TouchButtons)
             {
-                tb.Value = "_";
+                if (TouchButtons.IndexOf(tb) >= digit)
+                {
+                    tb.Value = "_";
+                }
             }
-            AddOutputDigit();
+            if (digit == 0)
+            {
+                AddOutputDigit();
+            }
+            
         }
 
     }

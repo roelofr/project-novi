@@ -21,8 +21,11 @@ namespace Project_Novi.Modules.Map
         public SolidBrush TextColor { get; set; }
         public Font TextFont { get; set; }
         public bool Enabled { get; set; }
-        private Stopwatch TouchTimer;
+        private readonly Stopwatch _touchTimer;
         public Stopwatch ActiveTimer;
+        private const int EnabledButton = 200;
+        private const int DisabledButton = 150;
+        private const int TouchedButton = 255;
 
         private readonly StringFormat _formatText = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
         public TouchButton(int x, int y, int width, int height, string value, Color buttoncolor, Color textcolor, Font font)
@@ -32,19 +35,19 @@ namespace Project_Novi.Modules.Map
             Width = width;
             Height = height;
             Value = value;
-            ButtonColor = new SolidBrush(Color.FromArgb(200, buttoncolor));
-            TextColor = new SolidBrush(Color.FromArgb(200, textcolor));
+            ButtonColor = new SolidBrush(Color.FromArgb(EnabledButton, buttoncolor));
+            TextColor = new SolidBrush(Color.FromArgb(EnabledButton, textcolor));
             TextFont = font;
             Enabled = true;
             ActiveTimer = new Stopwatch();
-            TouchTimer = new Stopwatch();
+            _touchTimer = new Stopwatch();
         }
 
         public bool IsClicked(Point p)
         {
             if (p.X >= Xpos && p.X <= Xpos + Width && p.Y >= Ypos && p.Y <= Ypos + Height && Enabled)
             {
-                TouchTimer.Start();
+                _touchTimer.Start();
                 return true;
             }
             else
@@ -56,25 +59,25 @@ namespace Project_Novi.Modules.Map
 
         public void DrawButton(Graphics g)
         {
-            if (TouchTimer.ElapsedMilliseconds < 250 && TouchTimer.IsRunning)
+            if (_touchTimer.ElapsedMilliseconds < 250 && _touchTimer.IsRunning)
             {
-                ButtonColor = new SolidBrush(Color.FromArgb(255, ButtonColor.Color));
-                TextColor = new SolidBrush(Color.FromArgb(255, TextColor.Color));
+                ButtonColor = new SolidBrush(Color.FromArgb(TouchedButton, ButtonColor.Color));
+                TextColor = new SolidBrush(Color.FromArgb(TouchedButton, TextColor.Color));
             }
             else if (Enabled)
             {
-                ButtonColor = new SolidBrush(Color.FromArgb(200, ButtonColor.Color));
-                TextColor = new SolidBrush(Color.FromArgb(200, TextColor.Color));
-                TouchTimer.Reset();
+                ButtonColor = new SolidBrush(Color.FromArgb(EnabledButton, ButtonColor.Color));
+                TextColor = new SolidBrush(Color.FromArgb(EnabledButton, TextColor.Color));
+                _touchTimer.Reset();
             }
             else
             {
-                ButtonColor = new SolidBrush(Color.FromArgb(100, ButtonColor.Color));
-                TextColor = new SolidBrush(Color.FromArgb(100, TextColor.Color));
+                ButtonColor = new SolidBrush(Color.FromArgb(DisabledButton, ButtonColor.Color));
+                TextColor = new SolidBrush(Color.FromArgb(DisabledButton, TextColor.Color));
             }
             var buttonRect = new Rectangle(Xpos, Ypos, Width, Height);
             g.FillRectangle(ButtonColor, buttonRect);
-            if (ActiveTimer.IsRunning && Math.Floor((decimal) (ActiveTimer.ElapsedMilliseconds/500))%2 == 0)
+            if (ActiveTimer.IsRunning && ActiveTimer.ElapsedMilliseconds / 500 % 2 == 0 && !_touchTimer.IsRunning)
             {
                 g.DrawString(" ", TextFont, TextColor, buttonRect, _formatText);
             }
