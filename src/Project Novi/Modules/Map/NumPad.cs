@@ -49,6 +49,8 @@ namespace Project_Novi.Modules.Map
                 columns = Math.Round(columns);
                 rows = Math.Ceiling(rows);
             }
+            Width = (int)Math.Floor(Width / columns) * (int)columns;
+            Height = (int)Math.Floor(Height / rows) * (int)rows;
             var textLength = 0;
             foreach (var s in Values)
             {
