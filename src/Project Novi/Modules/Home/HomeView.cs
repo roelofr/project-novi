@@ -25,6 +25,7 @@ namespace Project_Novi.Modules.Home
         private static readonly List<TileReference> tileLocations = new List<TileReference>();
         private Rectangle _rectText;
         private Rectangle _rectAvatar;
+        private DateTime _lastSpokenTime = DateTime.Now.AddMinutes(-16);
 
         public static void loadTileLocations()
         {
@@ -104,7 +105,11 @@ namespace Project_Novi.Modules.Home
             if (homeModule != null)
             {
                 _module = homeModule;
-                _controller.Avatar.Say(_module.AvatarText);
+                if (DateTime.Now.Subtract(_lastSpokenTime).TotalMinutes > 10)
+                {
+                    _controller.Avatar.Say(_module.AvatarText);
+                    _lastSpokenTime = DateTime.Now;
+                }
             }
             else
                 throw new ArgumentException("A MapView can only render the interface for a MapModule");
