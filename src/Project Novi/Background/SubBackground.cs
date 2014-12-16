@@ -9,7 +9,7 @@ namespace Project_Novi.Background
         private readonly IController _controller;
 
         private const int ModuleOffsetX = 500;
-        private const int ModuleOffsetY = 00;
+        private const int ModuleOffsetY = 200;
         private const int FontSize = 35;
         private const int BackButtonSize = 50;
 
@@ -37,7 +37,6 @@ namespace Project_Novi.Background
                 rectangle.Y + 600,
                 ModuleOffsetX - _backButton.Width,
                 rectangle.Height - 600);
-            _textRect.X = _avatar.X;
 
             _controller.Avatar.Render(graphics, _avatar);
             graphics.DrawImage(Properties.Resources.home_button, _backButton);

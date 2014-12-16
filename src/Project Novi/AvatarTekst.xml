@@ -39,4 +39,63 @@
     <String>Hier is uw route, misschien kunt u beter met de lift gaan</String>
     <String>Deze route kunt u het beste nemen, maar ik raad wel de trap aan</String>
   </BerekendeRoute>
+  
+  <MapF0>
+	<String>Dat is op deze verdieping.</String>
+	<String>Dat lokaal is op deze verdieping.</String>
+  </MapF0>
+  
+  <MapF1>
+	<String>De eerste verdieping is slechts twintig traptreden. Ik raad u aan met de trap te gaan.</String>
+	<String>De eerste verdieping is hier vlak boven. U kunt daarvoor best met de trap.</String>
+  </MapF1>
+  
+  <MapF2>
+	<String>De tweede verdieping is veertig traptreden. Dat kan best met de trap.</String>
+	<String>De tweede verdieping is niet zo ver omhoog, ik zou met de trap gaan.</String>
+  </MapF2>
+  
+  <MapF3>
+	<String>De derde verdieping is zestig treden omhoog. De lift bevindt zich in de gangen naast u.</String>
+	<String>Voor verdieping drie zou ik de lift nemen.</String>
+  </MapF3>
+  
+  <MapF4>
+	<String>De vierde verdieping is tachtig treden omhoog. De lift bevindt zich in de gangen naast u.</String>
+	<String>De vierde verdieping is wel tachtig traptreden! Ik zou met de lift gaan.</String>
+	<String>Voor verdieping vier kan u best de lift nemen.</String>
+  </MapF4>
+  
+  <MapF5>
+	<String>Verdieping vijf is wel honderd traptreden! Ik zou met de lift gaan.</String>
+	<String>Verdieping vijf is de hoogste verdieping. Ik raad u aan met de lift te gaan.</String>
+	<String>Voor verdieping vijf kan u best de lift nemen.</String>
+  </MapF5>
+  
+  <MapTrapRechts>
+	<String> Als u met de trap gaat is het lokaal aan uw rechterkant zodra u het trappenhuis uit loopt.</String>
+	<String> Zodra u op de verdieping bent is het lokaal aan uw rechterkant mits u met de trap gaat.</String>
+	<String> Het lokaal is aan uw rechterkant zodra u het trappenhuis uit loopt.</String>
+  </MapTrapRechts>
+  
+  <MapTrapLinks>
+	<String> Als u met de trap gaat is het lokaal aan uw linkerkant zodra u het trappenhuis uit loopt.</String>
+	<String> Zodra u op de verdieping bent is het lokaal aan uw linkerkant mits u met de trap gaat.</String>
+	<String> Het lokaal is aan uw linkerkant zodra u het trappenhuis uit loopt.</String>
+  </MapTrapLinks>
+  
+  <MapLiftRechts>
+	<String> Het lokaal is aan uw rechterkant zodra u de lift uit komt.</String>
+	<String> Zodra u op de verdieping bent is het lokaal aan uw rechterkant mits u met de lift gaat.</String>
+  </MapLiftRechts>
+  
+  <MapLiftLinks>
+	<String> Het lokaal is aan uw linkerkant zodra u de lift uit komt.</String>
+	<String> Zodra u op de verdieping bent is het lokaal aan uw linkerkant mits u met de lift gaat.</String>
+  </MapLiftLinks>
+  
+  <MapMidden>
+	<String> U kan het lokaal in de gang vinden.</String>
+	<String> Het lokaal is in het middenste deel van het gebouw.</String>
+  </MapMidden>
 </Strings>

@@ -1,0 +1,855 @@
+<?xml version="1.0" encoding="utf-8"?>
+<building>
+	<floor id="0">
+		<room id="T001">
+			<xPos>107</xPos>
+			<yPos>468</yPos>
+		</room>
+		<room id="T002">
+			<xPos>249</xPos>
+			<yPos>483</yPos>
+		</room>
+		<room id="T006">
+			<xPos>250</xPos>
+			<yPos>431</yPos>
+		</room>
+		<room id="T008">
+			<xPos>251</xPos>
+			<yPos>396</yPos>
+		</room>
+		<room id="T007">
+			<xPos>104</xPos>
+			<yPos>394</yPos>
+		</room>
+		<room id="T007a">
+			<xPos>159</xPos>
+			<yPos>391</yPos>
+		</room>
+		<room id="T009">
+			<xPos>107</xPos>
+			<yPos>361</yPos>
+		</room>
+		<room id="T009a">
+			<xPos>159</xPos>
+			<yPos>359</yPos>
+		</room>
+		<room id="T011">
+			<xPos>92</xPos>
+			<yPos>321</yPos>
+		</room>
+		<room id="T013">
+			<xPos>116</xPos>
+			<yPos>234</yPos>
+		</room>
+		<room id="T016">
+			<xPos>252</xPos>
+			<yPos>232</yPos>
+		</room>
+		<room id="T020">
+			<xPos>251</xPos>
+			<yPos>162</yPos>
+		</room>
+		<room id="T021">
+			<xPos>106</xPos>
+			<yPos>142</yPos>
+		</room>
+		<room id="T023">
+			<xPos>107</xPos>
+			<yPos>105</yPos>
+		</room>
+		<room id="T024">
+			<xPos>251</xPos>
+			<yPos>107</yPos>
+		</room>
+		<room id="T031">
+			<xPos>325</xPos>
+			<yPos>431</yPos>
+		</room>
+		<room id="T033">
+			<xPos>465</xPos>
+			<yPos>409</yPos>
+		</room>
+		<room id="T014">
+			<xPos>252</xPos>
+			<yPos>282</yPos>
+		</room>
+		<room id="T053">
+			<xPos>538</xPos>
+			<yPos>285</yPos>
+		</room>
+		<room id="T041">
+			<xPos>579</xPos>
+			<yPos>430</yPos>
+		</room>
+		<room id="T047">
+			<xPos>522</xPos>
+			<yPos>385</yPos>
+		</room>
+		<room id="T042">
+			<xPos>663</xPos>
+			<yPos>484</yPos>
+		</room>
+		<room id="T046">
+			<xPos>663</xPos>
+			<yPos>429</yPos>
+		</room>
+		<room id="T044">
+			<xPos>703</xPos>
+			<yPos>465</yPos>
+		</room>
+		<room id="T044a">
+			<xPos>751</xPos>
+			<yPos>439</yPos>
+		</room>
+		<room id="T044b">
+			<xPos>751</xPos>
+			<yPos>488</yPos>
+		</room>
+		<room id="T048">
+			<xPos>666</xPos>
+			<yPos>377</yPos>
+		</room>
+		<room id="T048a">
+			<xPos>698</xPos>
+			<yPos>376</yPos>
+		</room>
+		<room id="T048b">
+			<xPos>748</xPos>
+			<yPos>377</yPos>
+		</room>
+		<room id="T054">
+			<xPos>701</xPos>
+			<yPos>269</yPos>
+		</room>
+		<room id="T055">
+			<xPos>537</xPos>
+			<yPos>249</yPos>
+		</room>
+		<room id="T057">
+			<xPos>555</xPos>
+			<yPos>160</yPos>
+		</room>
+		<room id="T058">
+			<xPos>647</xPos>
+			<yPos>212</yPos>
+		</room>
+		<room id="T058a">
+			<xPos>699</xPos>
+			<yPos>187</yPos>
+		</room>
+		<room id="T058b">
+			<xPos>749</xPos>
+			<yPos>196</yPos>
+		</room>
+		<room id="T060">
+			<xPos>650</xPos>
+			<yPos>177</yPos>
+		</room>
+		<room id="T062">
+			<xPos>691</xPos>
+			<yPos>125</yPos>
+		</room>
+	</floor>
+	<floor id ="1">
+		<room id="T103">
+			<xPos>102</xPos>
+			<yPos>484</yPos>
+		</room>
+		<room id="T104">
+			<xPos>247</xPos>
+			<yPos>485</yPos>
+		</room>
+		<room id="T105">
+			<xPos>102</xPos>
+			<yPos>428</yPos>
+		</room>
+		<room id="T106">
+			<xPos>230</xPos>
+			<yPos>409</yPos>
+		</room>
+		<room id="T107">
+			<xPos>102</xPos>
+			<yPos>392</yPos>
+		</room>
+		<room id="T109">
+			<xPos>102</xPos>
+			<yPos>355</yPos>
+		</room>
+		<room id="T128a">
+			<xPos>172</xPos>
+			<yPos>364</yPos>
+		</room>
+		<room id="T128b">
+			<xPos>172</xPos>
+			<yPos>393</yPos>
+		</room>
+		<room id="T113">
+			<xPos>99</xPos>
+			<yPos>301</yPos>
+		</room>
+		<room id="T114">
+			<xPos>245</xPos>
+			<yPos>284</yPos>
+		</room>
+		<room id="T116">
+			<xPos>245</xPos>
+			<yPos>255</yPos>
+		</room>
+		<room id="T117">
+			<xPos>101</xPos>
+			<yPos>247</yPos>
+		</room>
+		<room id="T118">
+			<xPos>246</xPos>
+			<yPos>228</yPos>
+		</room>
+		<room id="T119">
+			<xPos>101</xPos>
+			<yPos>211</yPos>
+		</room>
+		<room id="T121">
+			<xPos>101</xPos>
+			<yPos>139</yPos>
+		</room>
+		<room id="T124">
+			<xPos>246</xPos>
+			<yPos>146</yPos>
+		</room>
+		<room id="T134">
+			<xPos>365</xPos>
+			<yPos>414</yPos>
+		</room>
+		<room id="T153">
+			<xPos>535</xPos>
+			<yPos>284</yPos>
+		</room>
+		<room id="T143">
+			<xPos>536</xPos>
+			<yPos>466</yPos>
+		</room>
+		<room id="T143a">
+			<xPos>553</xPos>
+			<yPos>390</yPos>
+		</room>
+		<room id="T143b">
+			<xPos>518</xPos>
+			<yPos>398</yPos>
+		</room>
+		<room id="T144">
+			<xPos>604</xPos>
+			<yPos>397</yPos>
+		</room>
+		<room id="T144a">
+			<xPos>709</xPos>
+			<yPos>464</yPos>
+		</room>
+		<room id="T146">
+			<xPos>681</xPos>
+			<yPos>374</yPos>
+		</room>
+		<room id="T150">
+			<xPos>755</xPos>
+			<yPos>373</yPos>
+		</room>
+		<room id="T156">
+			<xPos>689</xPos>
+			<yPos>263</yPos>
+		</room>
+		<room id="T156a">
+			<xPos>679</xPos>
+			<yPos>264</yPos>
+		</room>
+		<room id="T157">
+			<xPos>537</xPos>
+			<yPos>237</yPos>
+		</room>
+		<room id="T154">
+			<xPos>648</xPos>
+			<yPos>195</yPos>
+		</room>
+		<room id="T158">
+			<xPos>781</xPos>
+			<yPos>194</yPos>
+		</room>
+		<room id="T159">
+			<xPos>534</xPos>
+			<yPos>141</yPos>
+		</room>
+		<room id="T162">
+			<xPos>756</xPos>
+			<yPos>120</yPos>
+		</room>
+		<room id="T163">
+			<xPos>591</xPos>
+			<yPos>78</yPos>
+		</room>
+		<room id="T163a">
+			<xPos>625</xPos>
+			<yPos>78</yPos>
+		</room>
+		<room id="T165a">
+			<xPos>519</xPos>
+			<yPos>22</yPos>
+		</room>
+		<room id="T165b">
+			<xPos>554</xPos>
+			<yPos>57</yPos>
+		</room>
+		<room id="T165c">
+			<xPos>555</xPos>
+			<yPos>28</yPos>
+		</room>
+		<room id="T166">
+			<xPos>663</xPos>
+			<yPos>45</yPos>
+		</room>
+		<room id="T166a">
+			<xPos>727</xPos>
+			<yPos>45</yPos>
+		</room>
+	</floor>
+	<floor id="2">
+		<room id="T202">
+			<xPos>254</xPos>
+			<yPos>499</yPos>
+		</room>
+		<room id="T203">
+			<xPos>103</xPos>
+			<yPos>481</yPos>
+		</room>
+		<room id="T204">
+			<xPos>253</xPos>
+			<yPos>463</yPos>
+		</room>
+		<room id="T205">
+			<xPos>106</xPos>
+			<yPos>425</yPos>
+		</room>
+		<room id="T206">
+			<xPos>250</xPos>
+			<yPos>411</yPos>
+		</room>
+		<room id="T209">
+			<xPos>103</xPos>
+			<yPos>373</yPos>
+		</room>
+		<room id="T213">
+			<xPos>127</xPos>
+			<yPos>266</yPos>
+		</room>
+		<room id="T214">
+			<xPos>259</xPos>
+			<yPos>281</yPos>
+		</room>
+		<room id="T215">
+			<xPos>163</xPos>
+			<yPos>211</yPos>
+		</room>
+		<room id="T216">
+			<xPos>247</xPos>
+			<yPos>237</yPos>
+		</room>
+		<room id="T217">
+			<xPos>159</xPos>
+			<yPos>176</yPos>
+		</room>
+		<room id="T220">
+			<xPos>246</xPos>
+			<yPos>149</yPos>
+		</room>
+		<room id="T221">
+			<xPos>105</xPos>
+			<yPos>175</yPos>
+		</room>
+		<room id="T223">
+			<xPos>103</xPos>
+			<yPos>103</yPos>
+		</room>
+		<room id="T231">
+			<xPos>321</xPos>
+			<yPos>393</yPos>
+		</room>
+		<room id="T233">
+			<xPos>429</xPos>
+			<yPos>393</yPos>
+		</room>
+		<room id="T253">
+			<xPos>537</xPos>
+			<yPos>281</yPos>
+		</room>
+		<room id="T241">
+			<xPos>537</xPos>
+			<yPos>463</yPos>
+		</room>
+		<room id="T241a">
+			<xPos>519</xPos>
+			<yPos>388</yPos>
+		</room>
+		<room id="T243">
+			<xPos>556</xPos>
+			<yPos>388</yPos>
+		</room>
+		<room id="T244">
+			<xPos>681</xPos>
+			<yPos>465</yPos>
+		</room>
+		<room id="T248">
+			<xPos>682</xPos>
+			<yPos>386</yPos>
+		</room>
+		<room id="T252a">
+			<xPos>752</xPos>
+			<yPos>336</yPos>
+		</room>
+		<room id="T252b">
+			<xPos>753</xPos>
+			<yPos>465</yPos>
+		</room>
+		<room id="T255">
+			<xPos>539</xPos>
+			<yPos>246</yPos>
+		</room>
+		<room id="T257">
+			<xPos>537</xPos>
+			<yPos>176</yPos>
+		</room>
+		<room id="T258">
+			<xPos>678</xPos>
+			<yPos>264</yPos>
+		</room>
+		<room id="T262">
+			<xPos>680</xPos>
+			<yPos>191</yPos>
+		</room>
+		<room id="T263">
+			<xPos>536</xPos>
+			<yPos>102</yPos>
+		</room>
+		<room id="T264">
+			<xPos>678</xPos>
+			<yPos>121</yPos>
+		</room>
+		<room id="T265">
+			<xPos>534</xPos>
+			<yPos>49</yPos>
+		</room>
+		<room id="T266">
+			<xPos>678</xPos>
+			<yPos>50</yPos>
+		</room>
+	</floor>
+	<floor id="3">
+		<room id="T301">
+			<xPos>95</xPos>
+			<yPos>463</yPos>
+		</room>
+		<room id="T302">
+			<xPos>254</xPos>
+			<yPos>464</yPos>
+		</room>
+		<room id="T306">
+			<xPos>255</xPos>
+			<yPos>392</yPos>
+		</room>
+		<room id="T307">
+			<xPos>105</xPos>
+			<yPos>391</yPos>
+		</room>
+		<room id="T330">
+			<xPos>177</xPos>
+			<yPos>428</yPos>
+		</room>
+		<room id="T329">
+			<xPos>176</xPos>
+			<yPos>392</yPos>
+		</room>
+		<room id="T309">
+			<xPos>103</xPos>
+			<yPos>338</yPos>
+		</room>
+		<room id="T313">
+			<xPos>95</xPos>
+			<yPos>283</yPos>
+		</room>
+		<room id="T314">
+			<xPos>259</xPos>
+			<yPos>283</yPos>
+		</room>
+		<room id="T315">
+			<xPos>95</xPos>
+			<yPos>247</yPos>
+		</room>
+		<room id="T317">
+			<xPos>96</xPos>
+			<yPos>210</yPos>
+		</room>
+		<room id="T319">
+			<xPos>95</xPos>
+			<yPos>174</yPos>
+		</room>
+		<room id="T316">
+			<xPos>260</xPos>
+			<yPos>227</yPos>
+		</room>
+		<room id="T320">
+			<xPos>259</xPos>
+			<yPos>173</yPos>
+		</room>
+		<room id="T321">
+			<xPos>95</xPos>
+			<yPos>139</yPos>
+		</room>
+		<room id="T322">
+			<xPos>259</xPos>
+			<yPos>139</yPos>
+		</room>
+		<room id="T323">
+			<xPos>95</xPos>
+			<yPos>103</yPos>
+		</room>
+		<room id="T324">
+			<xPos>259</xPos>
+			<yPos>104</yPos>
+		</room>
+		<room id="T331">
+			<xPos>321</xPos>
+			<yPos>384</yPos>
+		</room>
+		<room id="T333">
+			<xPos>391</xPos>
+			<yPos>384</yPos>
+		</room>
+		<room id="T334">
+			<xPos>463</xPos>
+			<yPos>384</yPos>
+		</room>
+		<room id="T353">
+			<xPos>535</xPos>
+			<yPos>282</yPos>
+		</room>
+		<room id="T343">
+			<xPos>537</xPos>
+			<yPos>464</yPos>
+		</room>
+		<room id="T343a">
+			<xPos>521</xPos>
+			<yPos>390</yPos>
+		</room>
+		<room id="T347">
+			<xPos>555</xPos>
+			<yPos>389</yPos>
+		</room>
+		<room id="T344">
+			<xPos>683</xPos>
+			<yPos>483</yPos>
+		</room>
+		<room id="T346">
+			<xPos>683</xPos>
+			<yPos>428</yPos>
+		</room>
+		<room id="T348">
+			<xPos>682</xPos>
+			<yPos>391</yPos>
+		</room>
+		<room id="T350">
+			<xPos>682</xPos>
+			<yPos>357</yPos>
+		</room>
+		<room id="T354">
+			<xPos>682</xPos>
+			<yPos>274</yPos>
+		</room>
+		<room id="T356">
+			<xPos>685</xPos>
+			<yPos>227</yPos>
+		</room>
+		<room id="T355">
+			<xPos>535</xPos>
+			<yPos>239</yPos>
+		</room>
+		<room id="T363">
+			<xPos>539</xPos>
+			<yPos>148</yPos>
+		</room>
+		<room id="T364">
+			<xPos>662</xPos>
+			<yPos>147</yPos>
+		</room>
+		<room id="T367">
+			<xPos>533</xPos>
+			<yPos>49</yPos>
+		</room>
+	</floor>
+	<floor id="4">
+		<room id="T404">
+			<xPos>249</xPos>
+			<yPos>482</yPos>
+		</room>
+		<room id="T405">
+			<xPos>102</xPos>
+			<yPos>465</yPos>
+		</room>
+		<room id="T406">
+			<xPos>249</xPos>
+			<yPos>428</yPos>
+		</room>
+		<room id="T408">
+			<xPos>249</xPos>
+			<yPos>392</yPos>
+		</room>
+		<room id="T407">
+			<xPos>103</xPos>
+			<yPos>375</yPos>
+		</room>
+		<room id="T407a">
+			<xPos>177</xPos>
+			<yPos>389</yPos>
+		</room>
+		<room id="T409a">
+			<xPos>177</xPos>
+			<yPos>354</yPos>
+		</room>
+		<room id="T413">
+			<xPos>106</xPos>
+			<yPos>302</yPos>
+		</room>
+		<room id="T414">
+			<xPos>249</xPos>
+			<yPos>283</yPos>
+		</room>
+		<room id="T415">
+			<xPos>107</xPos>
+			<yPos>212</yPos>
+		</room>
+		<room id="T416">
+			<xPos>249</xPos>
+			<yPos>213</yPos>
+		</room>
+		<room id="T418">
+			<xPos>248</xPos>
+			<yPos>122</yPos>
+		</room>
+		<room id="T423">
+			<xPos>108</xPos>
+			<yPos>119</yPos>
+		</room>
+		<room id="T431">
+			<xPos>340</xPos>
+			<yPos>394</yPos>
+		</room>
+		<room id="T432">
+			<xPos>448</xPos>
+			<yPos>394</yPos>
+		</room>
+		<room id="T442">
+			<xPos>682</xPos>
+			<yPos>484</yPos>
+		</room>
+		<room id="T443">
+			<xPos>537</xPos>
+			<yPos>486</yPos>
+		</room>
+		<room id="T446">
+			<xPos>682</xPos>
+			<yPos>357</yPos>
+		</room>
+		<room id="T447">
+			<xPos>536</xPos>
+			<yPos>410</yPos>
+		</room>
+		<room id="T448">
+			<xPos>682</xPos>
+			<yPos>410</yPos>
+		</room>
+		<room id="T452">
+			<xPos>699</xPos>
+			<yPos>267</yPos>
+		</room>
+		<room id="T453">
+			<xPos>538</xPos>
+			<yPos>283</yPos>
+		</room>
+		<room id="T454">
+			<xPos>663</xPos>
+			<yPos>266</yPos>
+		</room>
+		<room id="T456">
+			<xPos>628</xPos>
+			<yPos>266</yPos>
+		</room>
+		<room id="T457">
+			<xPos>537</xPos>
+			<yPos>246</yPos>
+		</room>
+		<room id="T458">
+			<xPos>628</xPos>
+			<yPos>193</yPos>
+		</room>
+		<room id="T459">
+			<xPos>538</xPos>
+			<yPos>195</yPos>
+		</room>
+		<room id="T461">
+			<xPos>538</xPos>
+			<yPos>140</yPos>
+		</room>
+		<room id="T462">
+			<xPos>682</xPos>
+			<yPos>176</yPos>
+		</room>
+		<room id="T463">
+			<xPos>538</xPos>
+			<yPos>103</yPos>
+		</room>
+		<room id="T464">
+			<xPos>682</xPos>
+			<yPos>101</yPos>
+		</room>
+		<room id="T465">
+			<xPos>538</xPos>
+			<yPos>450</yPos>
+		</room>
+		<room id="T466">
+			<xPos>683</xPos>
+			<yPos>56</yPos>
+		</room>
+		<room id="T468">
+			<xPos>683</xPos>
+			<yPos>31</yPos>
+		</room>
+	</floor>
+	<floor id="5">
+		<room id="T502">
+			<xPos>248</xPos>
+			<yPos>447</yPos>
+		</room>
+		<room id="T503">
+			<xPos>103</xPos>
+			<yPos>474</yPos>
+		</room>
+		<room id="T507">
+			<xPos>102</xPos>
+			<yPos>410</yPos>
+		</room>
+		<room id="T511">
+			<xPos>102</xPos>
+			<yPos>348</yPos>
+		</room>
+		<room id="T530">
+			<xPos>177</xPos>
+			<yPos>412</yPos>
+		</room>
+		<room id="T531">
+			<xPos>177</xPos>
+			<yPos>376</yPos>
+		</room>
+		<room id="T514">
+			<xPos>249</xPos>
+			<yPos>284</yPos>
+		</room>
+		<room id="T515">
+			<xPos>101</xPos>
+			<yPos>283</yPos>
+		</room>
+		<room id="T516">
+			<xPos>246</xPos>
+			<yPos>247</yPos>
+		</room>
+		<room id="T517">
+			<xPos>103</xPos>
+			<yPos>248</yPos>
+		</room>
+		<room id="T518">
+			<xPos>248</xPos>
+			<yPos>211</yPos>
+		</room>
+		<room id="T519">
+			<xPos>103</xPos>
+			<yPos>211</yPos>
+		</room>
+		<room id="T520">
+			<xPos>249</xPos>
+			<yPos>176</yPos>
+		</room>
+		<room id="T521">
+			<xPos>104</xPos>
+			<yPos>175</yPos>
+		</room>
+		<room id="T522">
+			<xPos>250</xPos>
+			<yPos>138</yPos>
+		</room>
+		<room id="T523">
+			<xPos>103</xPos>
+			<yPos>139</yPos>
+		</room>
+		<room id="T524">
+			<xPos>251</xPos>
+			<yPos>102</yPos>
+		</room>
+		<room id="T525">
+			<xPos>104</xPos>
+			<yPos>103</yPos>
+		</room>
+		<room id="T533">
+			<xPos>343</xPos>
+			<yPos>391</yPos>
+		</room>
+		<room id="T535">
+			<xPos>444</xPos>
+			<yPos>391</yPos>
+		</room>
+		<room id="T547a">
+			<xPos>520</xPos>
+			<yPos>395</yPos>
+		</room>
+		<room id="T547b">
+			<xPos>555</xPos>
+			<yPos>395</yPos>
+		</room>
+		<room id="T541">
+			<xPos>537</xPos>
+			<yPos>468</yPos>
+		</room>
+		<room id="T544">
+			<xPos>682</xPos>
+			<yPos>481</yPos>
+		</room>
+		<room id="T548">
+			<xPos>682</xPos>
+			<yPos>410</yPos>
+		</room>
+		<room id="T550">
+			<xPos>684</xPos>
+			<yPos>356</yPos>
+		</room>
+		<room id="T553">
+			<xPos>535</xPos>
+			<yPos>283</yPos>
+		</room>
+		<room id="T554">
+			<xPos>684</xPos>
+			<yPos>238</yPos>
+		</room>
+		<room id="T555">
+			<xPos>539</xPos>
+			<yPos>209</yPos>
+		</room>
+		<room id="T561">
+			<xPos>539</xPos>
+			<yPos>121</yPos>
+		</room>
+		<room id="T562">
+			<xPos>683</xPos>
+			<yPos>141</yPos>
+		</room>
+		<room id="T565">
+			<xPos>539</xPos>
+			<yPos>47</yPos>
+		</room>
+		<room id="T566">
+			<xPos>684</xPos>
+			<yPos>45</yPos>
+		</room>
+	</floor>
+</building>

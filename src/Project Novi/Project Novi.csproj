@@ -13,6 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +26,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -87,6 +87,9 @@
     <Compile Include="Modules\Home\HomeModule.cs" />
     <Compile Include="Modules\Home\HomeView.cs" />
     <Compile Include="Modules\Home\HomeTileLocation.cs" />
+    <Compile Include="Modules\Map\NumPad.cs" />
+    <Compile Include="Modules\Map\NumPadOutput.cs" />
+    <Compile Include="Modules\Map\TouchButton.cs" />
     <Compile Include="Modules\Map\MapModule.cs" />
     <Compile Include="Modules\Map\MapView.cs" />
     <Compile Include="NoviController.cs" />
@@ -139,6 +142,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -214,10 +218,29 @@
   <ItemGroup>
     <None Include="Resources\pakket.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T0x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T1x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T3x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T4x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T5x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T2x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">
     <Copy SourceFiles="AvatarTekst.xml" DestinationFolder="$(OutputPath)" />
     <Copy SourceFiles="TileLocations.xml" DestinationFolder="$(OutputPath)" />
-	<Copy SourceFiles="TwitterSettings.xml" DestinationFolder="$(OutputPath)" />
+    <Copy SourceFiles="TwitterSettings.xml" DestinationFolder="$(OutputPath)" />
+    <Copy SourceFiles="room_mapping.xml" DestinationFolder="$(OutputPath)" />
   </Target>
 </Project>
