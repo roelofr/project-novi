@@ -10,6 +10,11 @@ namespace Project_Novi.Modules.Map
             get { return "Map"; }
         }
 
+        public string DisplayName
+        {
+            get { return "Kaart"; }
+        }
+
         public void Initialize(IController controller)
         {
             _controller = controller;

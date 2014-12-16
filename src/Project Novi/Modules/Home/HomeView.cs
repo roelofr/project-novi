@@ -148,7 +148,12 @@ namespace Project_Novi.Modules.Home
             int count = 1;
             foreach (HomeTileLocation tile in HomeTileLocations)
             {
-                var btn = new TileButton(_controller, tile.ModuleName, Properties.Resources.icon_maps);
+                string tileModuleName = null;
+                if (tile.ModuleName != null)
+                {
+                    tileModuleName = _controller.ModuleManager.GetModule(tile.ModuleName).DisplayName;
+                }
+                var btn = new TileButton(_controller, tileModuleName, Properties.Resources.icon_maps);
                 btn.Location = tile.Rectangle.Location;
                 btn.Size = tile.Rectangle.Size;
 

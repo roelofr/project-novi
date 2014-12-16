@@ -34,7 +34,7 @@ namespace Project_Novi.Render.UI
 
             graphics.DrawImage(Icon, iconLocation);
 
-            DrawText(graphics, Text, textLocation, 15);
+            DrawText(graphics, Text, textLocation, 22);
 
         }
     }
