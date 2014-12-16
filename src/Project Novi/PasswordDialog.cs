@@ -25,7 +25,9 @@ namespace Project_Novi
                     if (textboxPassInput.Text == "novi")
                     {
                         Controlpanel cp = new Controlpanel();
-                        cp.Show();
+                        Close();
+                        cp.ShowDialog();
+                        cp.BringToFront();
                     }
                     break;
                 case Keys.Escape:

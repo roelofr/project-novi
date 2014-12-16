@@ -116,6 +116,7 @@
             this.button1.Text = "Enter to save";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Controlpanel_KeyDown);
+            this.button1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Controlpanel_KeyDown);
             // 
             // Controlpanel
             // 
