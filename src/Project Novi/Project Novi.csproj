@@ -104,17 +104,35 @@
     <Compile Include="Background\MainBackground.cs" />
     <Compile Include="Background\SubBackground.cs" />
     <Compile Include="ModuleManager.cs" />
+    <Compile Include="IdleManager.cs" />
+    <Compile Include="Controlpanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controlpanel.Designer.cs">
+      <DependentUpon>Controlpanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Home\HomeModule.cs" />
     <Compile Include="Modules\Home\HomeView.cs" />
+    <Compile Include="Modules\Home\HomeTileLocation.cs" />
     <Compile Include="Modules\Map\MapModule.cs" />
     <Compile Include="Modules\Map\MapView.cs" />
     <Compile Include="NoviController.cs" />
+    <Compile Include="PasswordDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PasswordDialog.Designer.cs">
+      <DependentUpon>PasswordDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Render\Avatar.cs" />
+    <Compile Include="Render\UI\Button.cs" />
+    <Compile Include="Render\UI\IButton.cs" />
+    <Compile Include="Render\UI\BasicButton.cs" />
+    <Compile Include="Render\UI\TileButton.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Text\TextUtils.cs" />
     <Compile Include="Text\TTS.cs" />
@@ -136,8 +154,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Controlpanel.resx">
+      <DependentUpon>Controlpanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Novi.resx">
       <DependentUpon>Novi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PasswordDialog.resx">
+      <DependentUpon>PasswordDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -149,7 +173,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Resources\OpenSans-Light.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -213,9 +236,17 @@
   <ItemGroup>
     <None Include="Resources\Design\home-button.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Arrow-Up-Right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pakket.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">
     <Copy SourceFiles="AvatarTekst.xml" DestinationFolder="$(OutputPath)" />
+    <Copy SourceFiles="TileLocations.xml" DestinationFolder="$(OutputPath)" />
+	<Copy SourceFiles="TwitterSettings.xml" DestinationFolder="$(OutputPath)" />
   </Target>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">

@@ -29,6 +29,7 @@ Hier komt ons Use-Case Diagram
 
 # Zichtbare avatar
 Als gebruiker willen we een zichtbare avatar op het scherm zien. In onderstaande afbeelding is te zien hoe de avatar er standaard uit ziet.
+
 ![Uiterlijk avatar](images/avatar.png)
 
 ## Omschrijving
@@ -98,7 +99,7 @@ Als gebruiker wil ik een overzicht van alle lokalen in het T gebouw zodat ik kan
 ![Mockup tekst weergeven](images/schermontwerpen/mockup_selectverdieping.png)
 ## Bruikbaar maken data
 ### Toelichting
-Om het overzicht van alle lokalen te kunnen realiseren zullen de aangeleverde kaarten en coördinaten  kloppend moeten zijn en zodanig zijn aangepast dat het toegpast kan worden in de applicatie.
+Om het overzicht van alle lokalen te kunnen realiseren zullen de aangeleverde kaarten en coÃ¶rdinaten  kloppend moeten zijn en zodanig zijn aangepast dat het toegpast kan worden in de applicatie.
 
 
 ## Weergave plattegrond
@@ -116,3 +117,35 @@ Om de kaarten overzichtelijk te houden kan de gebruiker zelf aangeven van welke 
 | Per verdieping wordt de juiste kaart aangeroepen | Pass |
 | Het is niet mogelijk om meerdere kaarten tegelijk te zien | Pass |
 | De kaarten zijn goed leesbaar | Pass |
+
+
+#Idle
+
+##Transitie & Detectie
+###Toelichting
+Om ervoor te zorgen dat elke nieuwe gebruiker wel weer vanaf het hoofdscherm begint, moet het scherm na inactiviteit voor een bepaalde tijd weer terugkeren naar het hoofscherm.
+
+
+##Testscenario's
+
+|Scenario | Verwachte uitkomst |
+|:---|:---|
+| De applicatie keert weer terug naar het hoofdscherm na een bepaalde tijd | Pass |
+| De applicatie keert wel terug naar het hoofscherm, maar houdt geen rekening met de tijd  | Fail |
+| Bij terugkeren naar het hoofdscherm werkt de applicatie hetzelfde als dat hij opnieuw wordt opgestart | Pass |
+
+
+#Twitter feed
+Als gebruiker wil ik de avatar om de twitterfeed van de ICT-opleiding van Windesheim kunnen vragen
+
+##Feed weergeven
+### Toelichting
+De module geeft de tweets weer gebaseerd op de standaard grafische interface van twitter.com. 
+
+##control panel twitter feed
+### Toelichting
+In het controle paneel kan ingevoerd worden welke feeds getoont dienen te worden. 
+
+##Testscenarios
+|Scenario | Verwachte uitkomst |
+|:---|:---|

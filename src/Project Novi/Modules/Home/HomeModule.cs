@@ -11,22 +11,27 @@ namespace Project_Novi.Modules.Home
             get { return "Home"; }
         }
 
+        public string DisplayName
+        {
+            get { return "Home"; }
+        }
+
         public void Initialize(IController controller)
         {
             _controller = controller;
         }
 
         private void controller_Touch(System.Drawing.Point point)
-        {
-            _controller.SelectModule(_controller.ModuleManager.GetModule("twitter"));
-        }
+		{
+			_controller.SelectModule(_controller.ModuleManager.GetModule("twitter"));
+		}
 
         public void Start()
         {
-            _controller.Touch += controller_Touch;
             //Available categories: Welkom, Poke, Idle, Kaart, RouteVragen, RouteBerekenen en BerekendeRoute
             //Let op: Exact overnemen!!!
             AvatarText = Text.TextManager.GetText("Welkom");
+            _controller.Touch += controller_Touch;
         }
 
         public void Stop() { }

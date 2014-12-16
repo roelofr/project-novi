@@ -48,18 +48,16 @@ namespace Twitter
 
         public void Render(Graphics graphics, Rectangle rectangle)
         {
-            var yPos = rectangle.Y;
+            var yPos = 20;
             var stringFormat = new StringFormat { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Near };
             var strFont = new Font("Arial", 18);
             
-            
-
             foreach (var v in _module.tweets)
             {
-                var textRect = new Rectangle(rectangle.X + 200, yPos, 600, 200);
-                var tekstRect = new Rectangle(rectangle.X + 300, yPos, 600, 200);
-                var imgRect = new Rectangle(rectangle.X + 130, yPos, 50, 50);
-                var backgroundRect = new Rectangle(rectangle.X + 110, yPos - 20, 720, 240);
+                var textRect = new Rectangle(200, yPos, 600, 200);
+                var tekstRect = new Rectangle(300, yPos, 600, 200);
+                var imgRect = new Rectangle(130, yPos, 50, 50);
+                var backgroundRect = new Rectangle(110, yPos - 20, 720, 240);
 
                 graphics.FillRectangle(Brushes.LightBlue, backgroundRect);
                 graphics.FillRectangle(Brushes.White, textRect);

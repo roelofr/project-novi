@@ -31,6 +31,31 @@ namespace Project_Novi.Render
 
         private TTS _tts;
 
+        private readonly List<Bitmap> _leftEyePinch = new List<Bitmap>()
+        {
+            Properties.Resources.left_eye_blink1,
+            Properties.Resources.left_eye_pinch,
+            Properties.Resources.left_eye_pinch,
+            Properties.Resources.left_eye_blink1
+        };
+
+        private readonly List<Bitmap> _rightEyePinch = new List<Bitmap>()
+        {
+            Properties.Resources.right_eye_blink1,
+            Properties.Resources.right_eye_pinch,
+            Properties.Resources.right_eye_pinch,
+            Properties.Resources.right_eye_blink1
+        };
+
+        private readonly List<Bitmap> _pupilsPinch = new List<Bitmap> {
+            Properties.Resources.pupils,
+            Properties.Resources.blank,
+            Properties.Resources.blank,
+            Properties.Resources.pupils
+        };
+
+        public string Saying { get; set; }
+
         /// <summary>
         /// An animation for the blinking of the left eye.
         /// </summary>
@@ -92,6 +117,12 @@ namespace Project_Novi.Render
             { Animated.RightEye, new List<Bitmap>() },
             { Animated.Nose, new List<Bitmap>() }
         };
+
+        public bool Talking
+        {
+            get { return _tts.Talking; }
+            set { _tts.Talking = value; }
+        }
 
         public Avatar(IController controller)
         {
@@ -200,6 +231,7 @@ namespace Project_Novi.Render
         /// <param name="text">The text to speak.</param>
         public void Say(string text)
         {
+            Saying = text;
             if (_tts != null)
                 _tts.Talking = false;
 
@@ -218,6 +250,13 @@ namespace Project_Novi.Render
             Animate(Animated.RightEye, _rightEyeBlink);
             Animate(Animated.LeftEye, _leftEyeBlink);
             Animate(Animated.Pupils, _pupilsBlink);
+        }
+
+        public void Pinch()
+        {
+            Animate(Animated.LeftEye, _leftEyePinch);
+            Animate(Animated.RightEye, _rightEyePinch);
+            Animate(Animated.Pupils, _pupilsPinch);
         }
 
         private Point GetAnimationOffset(Animated animated)

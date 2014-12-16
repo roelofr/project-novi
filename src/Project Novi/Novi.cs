@@ -17,18 +17,27 @@ namespace Project_Novi
             InitializeComponent();
             DoubleBuffered = true;
             _controller = controller;
+
+            // Add event hooks
+            this.Paint += Novi_Paint;
+            this.MouseClick += Novi_Click;
+            this.MouseUp += Novi_MouseUp;
+            this.MouseDown += Novi_MouseDown;
+            this.MouseMove += Novi_MouseMove;
         }
+
 
         private void Novi_Paint(object sender, PaintEventArgs e)
         {
-            if (!Visible) return;
+            if (!Visible || View == null)
+                return;
 
             var rect = e.ClipRectangle;
             var g = e.Graphics;
 
             // Automatically scale drawing to the size of the form
-            var scaleX = (float)(rect.Width / 1920d);
-            var scaleY = (float)(rect.Height / 1080d);
+            var scaleX = (float) (rect.Width/1920d);
+            var scaleY = (float) (rect.Height/1080d);
             var scale = Math.Min(scaleX, scaleY);
             g.ScaleTransform(scale, scale);
 
@@ -37,23 +46,62 @@ namespace Project_Novi
             if (BackgroundView != null)
             {
                 BackgroundView.Render(g, windowRectangle);
-                View.Render(g, BackgroundView.GetModuleRectangle(windowRectangle));
+                var moduleRect = BackgroundView.GetModuleRectangle(windowRectangle);
+                
+                // Make the module believe it's drawing at 0,0
+                g.TranslateTransform(moduleRect.X, moduleRect.Y);
+                moduleRect.X = 0;
+                moduleRect.Y = 0;
+
+                // and disallow any drawing outside of the reserved space.
+                g.SetClip(moduleRect);
+                View.Render(g, moduleRect);
             }
             else
                 View.Render(g, windowRectangle);
         }
 
-        private void Novi_Click(object sender, MouseEventArgs e)
+        private Point scalePoint(Point original)
         {
             var sizeY = Bounds.Height;
             var sizeX = Bounds.Width;
             var scaleX = (float)(1920d / sizeX);
             var scaleY = (float)(1080d / sizeY);
             var scale = Math.Min(scaleX, scaleY);
-            sizeY = (int)(scale * e.Location.Y);
-            sizeX = (int)(scale * e.Location.X);
+            sizeY = (int)(scale * original.Y);
+            sizeX = (int)(scale * original.X);
 
-            _controller.HandleTouch(new Point(sizeX, sizeY));
+            var moduleRect = BackgroundView.GetModuleRectangle(Bounds);
+            sizeX -= moduleRect.X;
+            sizeY -= moduleRect.Y;
+            return new Point(sizeX, sizeY);
+        }
+
+        private void Novi_Click(object sender, MouseEventArgs e)
+        {
+            _controller.HandleTouch(scalePoint(e.Location));
+        }
+
+        private void Novi_MouseDown(object sender, MouseEventArgs e)
+        {
+            _controller.HandleTouchStart(scalePoint(e.Location));
+        }
+
+        private void Novi_MouseMove(object sender, MouseEventArgs e)
+        {
+            _controller.HandleTouchMove(scalePoint(e.Location));
+        }
+
+        private void Novi_MouseUp(object sender, MouseEventArgs e)
+        {
+            _controller.HandleTouchEnd(scalePoint(e.Location));
+        }
+
+        private void Novi_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!e.Control || e.KeyCode != Keys.N) return;
+            PasswordDialog pd = new PasswordDialog();
+            pd.ShowDialog();
         }
     }
 }

@@ -12,6 +12,11 @@
         string Name { get; }
 
         /// <summary>
+        /// The display name of the module. Will be shown on the front-end
+        /// </summary>
+        string DisplayName { get; }
+
+        /// <summary>
         /// Called when the module is loaded into the application.
         /// Note that this does not mean the module will actually be used at this time.
         /// </summary>

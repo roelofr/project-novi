@@ -18,6 +18,28 @@ namespace Project_Novi
         public event TickHandler Tick;
         public event TouchHandler Touch;
 
+        public event TouchHandler DragStart;
+        public event TouchHandler DragEnd;
+        public event DragHandler Drag;
+
+        /// <summary>
+        /// Set to true when the user touches down on the screen or when the mouse goes down
+        /// </summary>
+        private bool isMouseDown = false;
+        /// <summary>
+        /// Contains the location where the drag event started
+        /// </summary>
+        private Point dragOrigin;
+        /// <summary>
+        /// Set to true if the user is dragging, causes a DragEnd event to fire on the _controller
+        /// </summary>
+        private bool isDragging = false;
+
+        /// <summary>
+        /// The minimum distance to move before starting a drag
+        /// </summary>
+        private readonly Point DragMargin = new Point(4, 4);
+
         public NoviController()
         {
             _form = new Novi(this);
@@ -40,6 +62,7 @@ namespace Project_Novi
         {
             if (Tick != null) Tick();
             _form.Invalidate(true);
+            GoIdle();
         }
 
         public void SelectModule(IModule module)
@@ -64,13 +87,57 @@ namespace Project_Novi
             _form.View = view;
         }
 
-
         public void HandleTouch(Point point)
         {
             if (Touch != null)
             {
                 Touch(point);
             }
+        }
+
+        public void GoIdle()
+        {
+            if (IdleManager.CheckIdle())
+            {
+                SelectModule(ModuleManager.GetModule("Home"));
+            }
+        }
+
+        public void HandleTouchStart(Point point)
+        {
+            isMouseDown = true;
+            dragOrigin = point;
+        }
+
+        public void HandleTouchMove(Point point)
+        {
+            if (!isMouseDown)
+                return;
+
+            if (!isDragging)
+            {
+                if (Math.Abs(point.X - dragOrigin.X) > DragMargin.X)
+                    isDragging = true;
+                else if (Math.Abs(point.Y - dragOrigin.Y) > DragMargin.Y)
+                    isDragging = true;
+                else
+                    return;
+
+                if (DragStart != null)
+                    DragStart(dragOrigin);
+            }
+
+            if (Drag != null)
+                Drag(point, dragOrigin);
+        }
+
+        public void HandleTouchEnd(Point point)
+        {
+            if (isDragging && DragEnd != null)
+                DragEnd(point);
+                
+            isMouseDown = false;
+            isDragging = false;
         }
     }
 }

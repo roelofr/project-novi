@@ -27,6 +27,11 @@ namespace Twitter
             get { return "Twitter"; }
         }
 
+        public string DisplayName
+        {
+            get { return "Twitter"; }
+        }
+
         public void Initialize(IController controller)
         {
         }

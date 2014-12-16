@@ -14,7 +14,7 @@ namespace Project_Novi.Text
     /// </summary>
     class TTS
     {
-        private const string BaseUrl = "http://translate.google.com/translate_tts?tl={0}&q={1}";
+        private const string BaseUrl = "https://translate.google.com/translate_tts?tl={0}&q={1}";
 
         /// <summary>
         /// Build the Url to make a request to Google Translate.
