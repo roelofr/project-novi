@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Windows.Forms;
 using Project_Novi.Text;
 
 namespace Project_Novi.Background
@@ -117,16 +116,6 @@ namespace Project_Novi.Background
         public static void DrawBackground(Graphics g)
         {
             g.DrawImage(Properties.Resources.ontwerpWithBorder, 0, 0, 1920, 1080);
-        }
-
-        public static void DrawReleaseVersion(Graphics g)
-        {
-            string prodVersion = "beta-release" + Application.ProductVersion;
-            var strFont = TextUtils.GetFont(18) ??
-                          new Font(SystemFonts.DefaultFont.Name, 18, FontStyle.Regular);
-            Brush specialBrush = new SolidBrush(Color.FromArgb(153, 255, 255, 255));
-            var versionSize = g.MeasureString(prodVersion, strFont, 1980); 
-            g.DrawString(prodVersion, strFont, specialBrush, 1920 - versionSize.Width, 1080 - versionSize.Height);     
         }
 
         public static void DrawClock(Graphics graphics)

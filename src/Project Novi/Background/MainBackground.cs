@@ -9,7 +9,6 @@ namespace Project_Novi.Background
         {
             BackgroundUtils.DrawBackground(graphics);
             BackgroundUtils.DrawClock(graphics);
-            BackgroundUtils.DrawReleaseVersion(graphics);
         }
 
         public Rectangle GetModuleRectangle(Rectangle fullRectangle)
