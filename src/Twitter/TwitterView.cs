@@ -50,25 +50,31 @@ namespace Twitter
         {
             var yPos = 20;
             var stringFormat = new StringFormat { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Near };
-            var strFont = new Font("Arial", 18);
+            var stringFormat3 = new StringFormat { Alignment = StringAlignment.Far, LineAlignment = StringAlignment.Near };
+            var stringFormat2 = new StringFormat { Alignment = StringAlignment.Far, LineAlignment = StringAlignment.Far };
+            var dateFont = new Font("Arial", 18, FontStyle.Italic);
+            var textFont = new Font("Arial", 18);
+            var headFont = new Font("Arial", 18, FontStyle.Bold);
             
             foreach (var v in _module.tweets)
             {
-                var textRect = new Rectangle(200, yPos, 600, 200);
-                var tekstRect = new Rectangle(300, yPos, 600, 200);
+                var NameBar = new Rectangle(200, yPos, 600, 200);
+                var tekstRect = new Rectangle(200, yPos + 35, 600, 200);
                 var imgRect = new Rectangle(130, yPos, 50, 50);
                 var backgroundRect = new Rectangle(110, yPos - 20, 720, 240);
 
                 graphics.FillRectangle(Brushes.LightBlue, backgroundRect);
-                graphics.FillRectangle(Brushes.White, textRect);
+                graphics.FillRectangle(Brushes.White, NameBar);
 
                 foreach (var pic in _module.pictures)
                 {
                     graphics.DrawImage(pic, imgRect);
                 }
 
-                graphics.DrawString(v.ScreenName.ToString(), strFont, Brushes.Black, textRect, stringFormat);
-                graphics.DrawString(v.Text, strFont, Brushes.Black, tekstRect, stringFormat);
+                graphics.DrawString(v.ScreenName, headFont, Brushes.Black, NameBar, stringFormat);
+                graphics.DrawString("@" + _module.twitteraccount, textFont, Brushes.Gray, NameBar, stringFormat3);
+                graphics.DrawString(v.Text, textFont, Brushes.Black, tekstRect, stringFormat);
+                graphics.DrawString(v.CreatedAt.ToString(), dateFont, Brushes.Black, NameBar, stringFormat2);
 
                 yPos += 300;
             }

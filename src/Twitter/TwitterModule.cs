@@ -18,7 +18,7 @@ namespace Twitter
         public List<Image> pictures = new List<Image>();
         public List<Tweet> tweets = new List<Tweet>();
 
-        private string twitteraccount = "windesheimICT";
+        public string twitteraccount = "windesheimICT";
         private Tweet tweet;
 
 
