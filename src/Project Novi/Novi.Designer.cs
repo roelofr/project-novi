@@ -39,6 +39,8 @@
             this.Name = "Novi";
             this.Text = "Novi";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Novi_KeyDown);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Novi_Click);
             this.ResumeLayout(false);
 
         }

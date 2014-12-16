@@ -36,8 +36,8 @@ namespace Project_Novi
             var g = e.Graphics;
 
             // Automatically scale drawing to the size of the form
-            var scaleX = (float)(rect.Width / 1920d);
-            var scaleY = (float)(rect.Height / 1080d);
+            var scaleX = (float) (rect.Width/1920d);
+            var scaleY = (float) (rect.Height/1080d);
             var scale = Math.Min(scaleX, scaleY);
             g.ScaleTransform(scale, scale);
 
@@ -95,6 +95,13 @@ namespace Project_Novi
         private void Novi_MouseUp(object sender, MouseEventArgs e)
         {
             _controller.HandleTouchEnd(scalePoint(e.Location));
+        }
+
+        private void Novi_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!e.Control || e.KeyCode != Keys.N) return;
+            PasswordDialog pd = new PasswordDialog();
+            pd.ShowDialog();
         }
     }
 }

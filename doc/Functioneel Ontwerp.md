@@ -99,7 +99,7 @@ Als gebruiker wil ik een overzicht van alle lokalen in het T gebouw zodat ik kan
 ![Mockup tekst weergeven](images/schermontwerpen/mockup_selectverdieping.png)
 ## Bruikbaar maken data
 ### Toelichting
-Om het overzicht van alle lokalen te kunnen realiseren zullen de aangeleverde kaarten en coördinaten  kloppend moeten zijn en zodanig zijn aangepast dat het toegpast kan worden in de applicatie.
+Om het overzicht van alle lokalen te kunnen realiseren zullen de aangeleverde kaarten en coÃ¶rdinaten  kloppend moeten zijn en zodanig zijn aangepast dat het toegpast kan worden in de applicatie.
 
 
 ## Weergave plattegrond
@@ -133,3 +133,19 @@ Om ervoor te zorgen dat elke nieuwe gebruiker wel weer vanaf het hoofdscherm beg
 | De applicatie keert weer terug naar het hoofdscherm na een bepaalde tijd | Pass |
 | De applicatie keert wel terug naar het hoofscherm, maar houdt geen rekening met de tijd  | Fail |
 | Bij terugkeren naar het hoofdscherm werkt de applicatie hetzelfde als dat hij opnieuw wordt opgestart | Pass |
+
+
+#Twitter feed
+Als gebruiker wil ik de avatar om de twitterfeed van de ICT-opleiding van Windesheim kunnen vragen
+
+##Feed weergeven
+### Toelichting
+De module geeft de tweets weer gebaseerd op de standaard grafische interface van twitter.com. 
+
+##control panel twitter feed
+### Toelichting
+In het controle paneel kan ingevoerd worden welke feeds getoont dienen te worden. 
+
+##Testscenarios
+|Scenario | Verwachte uitkomst |
+|:---|:---|
