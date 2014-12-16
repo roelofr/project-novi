@@ -7,6 +7,8 @@ using Project_Novi.Api;
 using System.Drawing;
 using Project_Novi.Background;
 using Project_Novi.Text;
+using System.Net;
+using System.IO;
 
 namespace Twitter
 {
@@ -46,29 +48,31 @@ namespace Twitter
 
         public void Render(Graphics graphics, Rectangle rectangle)
         {
-
-            // Create font and brush.
-
-            var rectY = 300;
-            var stringFormat = new StringFormat { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Far };
-
+            var yPos = rectangle.Y;
+            var stringFormat = new StringFormat { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Near };
+            var strFont = new Font("Arial", 18);
             
-           // Image twitIcon = Image.FromFile("twitter-icon.png");
             
 
-            var strFont = new Font("Arial", 24);
-
-
-            foreach (var v in _module.berichten)
+            foreach (var v in _module.tweets)
             {
-                var rectText = new Rectangle(700, 100, 700, rectY);
-                var imgRect = new Rectangle(600, 100, 100, rectY);
+                var textRect = new Rectangle(rectangle.X + 200, yPos, 600, 200);
+                var tekstRect = new Rectangle(rectangle.X + 300, yPos, 600, 200);
+                var imgRect = new Rectangle(rectangle.X + 130, yPos, 50, 50);
+                var backgroundRect = new Rectangle(rectangle.X + 110, yPos - 20, 720, 240);
 
-                graphics.DrawString(v, strFont, Brushes.White, rectText, stringFormat);
+                graphics.FillRectangle(Brushes.LightBlue, backgroundRect);
+                graphics.FillRectangle(Brushes.White, textRect);
 
-                //graphics.DrawImage(twitIcon, imgRect);
+                foreach (var pic in _module.pictures)
+                {
+                    graphics.DrawImage(pic, imgRect);
+                }
 
-                rectY += 300;
+                graphics.DrawString(v.ScreenName.ToString(), strFont, Brushes.Black, textRect, stringFormat);
+                graphics.DrawString(v.Text, strFont, Brushes.Black, tekstRect, stringFormat);
+
+                yPos += 300;
             }
         }
     }
