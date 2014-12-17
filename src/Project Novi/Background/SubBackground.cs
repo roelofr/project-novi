@@ -71,8 +71,7 @@ namespace Project_Novi.Background
             {
                 _controller.SelectModule(_controller.ModuleManager.GetModule("Home"));
             }
-
-            if (_avatar.Contains(point))
+            else if (_avatar.Contains(point))
             {
                 if (_controller.Avatar.Talking)
                 {
