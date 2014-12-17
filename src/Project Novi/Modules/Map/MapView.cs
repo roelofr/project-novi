@@ -119,6 +119,7 @@ namespace Project_Novi.Modules.Map
             CreateFloorButtons(_xposFloorButtons, _yposFloorButtons, WidthFloorButtons, HeightFloorButtons, MarginFloorButtons, _numberFloorButtons);
 
             ButtonControl(_floorSelectNumpad, _floorSelectOutput);
+            _controller.Avatar.Say(Text.TextManager.GetText("RouteVragen"));
         }
 
         public void Detach()

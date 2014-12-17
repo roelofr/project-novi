@@ -24,22 +24,11 @@
   </Kaart>
 
   <RouteVragen>
-    <String>Waar wilt u naartoe?</String>
-    <String>Waar kan ik u naartoe brengen?</String>
-    <String>Bent u verdwaald?</String>
+    <String>Waar wilt u naartoe? Selecteer een verdieping of voer een lokaal in</String>
+    <String>Waar kan ik u naartoe brengen? Selecteer een verdieping of voer een lokaal in</String>
+    <String>Zal ik u de weg wijzen? Selecteer een verdieping of voer een lokaal in</String>
   </RouteVragen>
 
-  <RouteBerekenen>
-    <String>Oke, ik zal de route berekenen</String>
-    <String>Ik zal eens kijken hoe u daar het snelst komt</String>
-    <String>Een moment geduld alstublieft</String>
-  </RouteBerekenen>
-
-  <BerekendeRoute>
-    <String>Hier is uw route, misschien kunt u beter met de lift gaan</String>
-    <String>Deze route kunt u het beste nemen, maar ik raad wel de trap aan</String>
-  </BerekendeRoute>
-  
   <MapF0>
 	<String>Dat is op deze verdieping.</String>
 	<String>Dat lokaal is op deze verdieping.</String>
