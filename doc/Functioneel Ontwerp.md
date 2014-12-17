@@ -142,10 +142,22 @@ Als gebruiker wil ik de avatar om de twitterfeed van de ICT-opleiding van Windes
 ### Toelichting
 De module geeft de tweets weer gebaseerd op de standaard grafische interface van twitter.com. 
 
-##control panel twitter feed
+##Control panel twitter feed
 ### Toelichting
 In het controle paneel kan ingevoerd worden welke feeds getoont dienen te worden. 
 
 ##Testscenarios
 |Scenario | Verwachte uitkomst |
 |:---|:---|
+
+
+#Weergave route
+### Toelichting
+Als een gebruiker een lokaal heeft geselecteerd, geeft de avatar een beschrijving van hoe de gebruiker bij dat ingevoerde lokaal kan komen.
+
+## Testscenarios
+|Scenario | Verwachte uitkomst |
+|:---|:---|
+| Bij invoer van een lokaal geeft de avatar de juiste combinatie van teksten weer | Pass |
+| Bij invoer van een lokaal op de tweede of derde verdieping wordt de trap aangeraden  | Pass |
+| Bij invoer van een lokaal op de vierde of vijfde verdieping wordt de lift aangeraden | Pass |
