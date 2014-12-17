@@ -98,4 +98,19 @@
 	<String> U kan het lokaal in de gang vinden.</String>
 	<String> Het lokaal is in het middenste deel van het gebouw.</String>
   </MapMidden>
+
+  <MapBeganeGrondRechts>
+	<String> U kan het lokaal aan uw rechter hand vinden.</String>
+	<String> Dit lokaal bevindt zich aan uw rechter hand.</String>
+  </MapBeganeGrondRechts>
+
+  <MapBeganeGrondMidden>
+	<String> U kan het lokaal achter u vinden.</String>
+	<String> Dit lokaal bevindt zich achter u.</String>
+  </MapBeganeGrondMidden>
+
+  <MapBeganeGrondLinks>
+	<String> U kan het lokaal aan uw linker hand vinden.</String>
+	<String> Dit lokaal bevindt zich aan uw linker hand.</String>
+  </MapBeganeGrondLinks>
 </Strings>
