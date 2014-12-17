@@ -18,7 +18,7 @@ namespace Twitter
         public List<Image> pictures = new List<Image>();
         public List<Tweet> tweets = new List<Tweet>();
 
-        public string twitteraccount = "windesheimICT";
+        public string twitterAccountToDisplay = "windesheimICT";
         private Tweet tweet;
 
 
@@ -43,8 +43,6 @@ namespace Twitter
             const string consumerKey = "qM7PpwbKslZjnKEBUJ85sOUic";
             const string consumerSecret = "FlBXh2FTQrDqXTTge4vB7I1kmCHii67qF04BQ7I6z7zIWjrYDL";
 
-            const string twitterAccountToDisplay = "windesheimICT";
-
             var authorizer = new SingleUserAuthorizer
             {
                 CredentialStore = new InMemoryCredentialStore
@@ -65,27 +63,16 @@ namespace Twitter
                                        tweet.IncludeEntities == true
                                select tweet;
 
-
-
             foreach (var statusTweet in statusTweets)
             {
-                string bericht = string.Format("@{3} {0} - {1}: \n\n{2}", statusTweet.ScreenName, statusTweet.CreatedAt, statusTweet.Text, twitteraccount);
-                berichten.Add(bericht);
-
                 tweet = new Tweet(statusTweet.ScreenName, statusTweet.CreatedAt, statusTweet.Text);
-
-                tweets.Add(tweet);
-                
-       
-                
+                tweets.Add(tweet);  
             }
-
 
             var profilePicture = from tweet in twitterContext.User
                                  where tweet.Type == UserType.Show &&
                                         tweet.ScreenName == twitterAccountToDisplay
                                  select tweet.ProfileImageUrl;
-
 
             foreach (var pic in profilePicture)
             {
@@ -99,6 +86,7 @@ namespace Twitter
 
         public void Stop()
         {
+            tweets.Clear();
         }
     }
 }

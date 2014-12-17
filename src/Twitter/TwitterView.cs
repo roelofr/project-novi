@@ -49,21 +49,23 @@ namespace Twitter
         public void Render(Graphics graphics, Rectangle rectangle)
         {
             var yPos = 20;
+
             var stringFormat = new StringFormat { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Near };
-            var stringFormat3 = new StringFormat { Alignment = StringAlignment.Far, LineAlignment = StringAlignment.Near };
             var stringFormat2 = new StringFormat { Alignment = StringAlignment.Far, LineAlignment = StringAlignment.Far };
-            var dateFont = new Font("Arial", 18, FontStyle.Italic);
-            var textFont = new Font("Arial", 18);
+            var stringFormat3 = new StringFormat { Alignment = StringAlignment.Far, LineAlignment = StringAlignment.Near };
+
+            var dateFont = new Font("Arial", 14, FontStyle.Italic);
+            var textFont = new Font("Arial", 16);
             var headFont = new Font("Arial", 18, FontStyle.Bold);
             
-            foreach (var v in _module.tweets)
+            foreach (var tweet in _module.tweets)
             {
                 var NameBar = new Rectangle(200, yPos, 600, 200);
                 var tekstRect = new Rectangle(200, yPos + 35, 600, 200);
                 var imgRect = new Rectangle(130, yPos, 50, 50);
                 var backgroundRect = new Rectangle(110, yPos - 20, 720, 240);
 
-                graphics.FillRectangle(Brushes.LightBlue, backgroundRect);
+                graphics.FillRectangle(Brushes.SteelBlue, backgroundRect);
                 graphics.FillRectangle(Brushes.White, NameBar);
 
                 foreach (var pic in _module.pictures)
@@ -71,10 +73,10 @@ namespace Twitter
                     graphics.DrawImage(pic, imgRect);
                 }
 
-                graphics.DrawString(v.ScreenName, headFont, Brushes.Black, NameBar, stringFormat);
-                graphics.DrawString("@" + _module.twitteraccount, textFont, Brushes.Gray, NameBar, stringFormat3);
-                graphics.DrawString(v.Text, textFont, Brushes.Black, tekstRect, stringFormat);
-                graphics.DrawString(v.CreatedAt.ToString(), dateFont, Brushes.Black, NameBar, stringFormat2);
+                graphics.DrawString(tweet.ScreenName, headFont, Brushes.YellowGreen, NameBar, stringFormat);
+                graphics.DrawString("@" + _module.twitterAccountToDisplay, textFont, Brushes.Gray, NameBar, stringFormat3);
+                graphics.DrawString(tweet.Text, textFont, Brushes.Black, tekstRect, stringFormat);
+                graphics.DrawString(tweet.CreatedAt.ToString(), dateFont, Brushes.Black, NameBar, stringFormat2);
 
                 yPos += 300;
             }
