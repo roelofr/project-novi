@@ -74,29 +74,29 @@
   
   <MapTrapRechts>
 	<String> Als u met de trap gaat is het lokaal aan uw rechterkant zodra u het trappenhuis uit loopt.</String>
-	<String> Zodra u op de verdieping bent is het lokaal aan uw rechterkant mits u met de trap gaat.</String>
+	<String> Zodra u op de verdieping bent is het lokaal aan uw rechterkant als u met de trap gaat.</String>
 	<String> Het lokaal is aan uw rechterkant zodra u het trappenhuis uit loopt.</String>
   </MapTrapRechts>
   
   <MapTrapLinks>
 	<String> Als u met de trap gaat is het lokaal aan uw linkerkant zodra u het trappenhuis uit loopt.</String>
-	<String> Zodra u op de verdieping bent is het lokaal aan uw linkerkant mits u met de trap gaat.</String>
+	<String> Zodra u op de verdieping bent is het lokaal aan uw linkerkant als u met de trap gaat.</String>
 	<String> Het lokaal is aan uw linkerkant zodra u het trappenhuis uit loopt.</String>
   </MapTrapLinks>
   
   <MapLiftRechts>
 	<String> Het lokaal is aan uw rechterkant zodra u de lift uit komt.</String>
-	<String> Zodra u op de verdieping bent is het lokaal aan uw rechterkant mits u met de lift gaat.</String>
+	<String> Zodra u op de verdieping bent is het lokaal aan uw rechterkant als u met de lift gaat.</String>
   </MapLiftRechts>
   
   <MapLiftLinks>
 	<String> Het lokaal is aan uw linkerkant zodra u de lift uit komt.</String>
-	<String> Zodra u op de verdieping bent is het lokaal aan uw linkerkant mits u met de lift gaat.</String>
+	<String> Zodra u op de verdieping bent is het lokaal aan uw linkerkant als u met de lift gaat.</String>
   </MapLiftLinks>
   
   <MapMidden>
 	<String> U kan het lokaal in de gang vinden.</String>
-	<String> Het lokaal is in het middenste deel van het gebouw.</String>
+	<String> Het lokaal is in het middelste deel van het gebouw.</String>
   </MapMidden>
 
   <MapBeganeGrondRechts>
