@@ -13,7 +13,8 @@ namespace Project_Novi.Modules.Map
     {
         private readonly Color _buttonColor = Color.Black;
         private readonly Color _textColor = Color.White;
-        private readonly SolidBrush _markerBrush = new SolidBrush(Color.FromArgb(100, Color.DimGray));
+        private readonly SolidBrush _markerBrush = new SolidBrush(Color.FromArgb(100, Color.Red));
+        private readonly SolidBrush _arrowBrush = new SolidBrush(Color.FromArgb(100, Color.Black));
         private readonly Font _floorFont = new Font("Segoe UI", 30);
         private readonly StringFormat _formatText = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
         private string _activeFloor;
@@ -84,7 +85,7 @@ namespace Project_Novi.Modules.Map
             _yposFloorButtons = MarginFloorButtons;
 
             XposNumPad = XposMap + ((Properties.Resources.T5x.Width*scale/100)/2) - (WidthNumPad / 2);
-            YposNumPad = _modularRectangle.Height - (_modularRectangle.Height - (YposMap + Properties.Resources.T5x.Height*scale/100)) / 2 - HeightNumPad/2 + 50;
+            YposNumPad = _modularRectangle.Height - (_modularRectangle.Height - (YposMap + Properties.Resources.T5x.Height*scale/100)) / 2 - HeightNumPad/2;
             _floorButtons = new List<TouchButton>();
             _numberFloorButtons = _floorNames.Length;
 
@@ -93,6 +94,17 @@ namespace Project_Novi.Modules.Map
             _floorSelectOutput.TouchButtons[0].Xpos += _floorSelectOutput.TouchButtons[0].Width;
             _floorSelectOutput.TouchButtons[1].Xpos += 2 * _floorSelectOutput.TouchButtons[1].Width;
             _floorSelectOutput.TouchButtons[2].Xpos += 2 * _floorSelectOutput.TouchButtons[2].Width;
+
+            YposNumPad += _floorSelectOutput.TouchButtons[0].Height / 2;
+            foreach (var button in _floorSelectOutput.TouchButtons)
+            {
+                button.Ypos += _floorSelectOutput.TouchButtons[0].Height/2;
+            }
+
+            foreach (var button in _floorSelectNumpad.TouchButtons)
+            {
+                button.Ypos += _floorSelectOutput.TouchButtons[0].Height / 2;
+            }
 
             _backspace = new TouchButton(XposNumPad + 5 * _floorSelectOutput.TouchButtons[0].Width, YposNumPad - (1 * _floorSelectNumpad.TouchButtons[0].Height), _floorSelectOutput.TouchButtons[0].Width, _floorSelectOutput.TouchButtons[0].Height, "←", _buttonColor, _textColor, new Font(_floorFont.FontFamily, (int)(0.8 * (_floorSelectOutput.TouchButtons[0].Width))));
             _tIndicator = new TouchButton(XposNumPad, YposNumPad - (1 * _floorSelectNumpad.TouchButtons[0].Height), _floorSelectOutput.TouchButtons[0].Width, _floorSelectOutput.TouchButtons[0].Height, "T", _buttonColor, _textColor, new Font(_floorFont.FontFamily, (int)(0.8 * (_floorSelectOutput.TouchButtons[0].Width))));
@@ -202,9 +214,9 @@ namespace Project_Novi.Modules.Map
                 if (_activeFloor.Equals("T" + (_numberFloorButtons - 1 - _floorButtons.IndexOf(button)).ToString()))
                 {
                     _activeFloorArrow[0].X = button.Xpos;
-                    _activeFloorArrow[0].Y = button.Ypos;
+                    _activeFloorArrow[0].Y = button.Ypos - 2;
                     _activeFloorArrow[1].X = button.Xpos;
-                    _activeFloorArrow[1].Y = button.Ypos + HeightFloorButtons;
+                    _activeFloorArrow[1].Y = button.Ypos + HeightFloorButtons + 1;
                     _activeFloorArrow[2].X = button.Xpos - (5 * MarginFloorButtons);
                     _activeFloorArrow[2].Y = (button.Ypos + button.Ypos + HeightFloorButtons) / 2;
                 }                
@@ -215,7 +227,7 @@ namespace Project_Novi.Modules.Map
             // Display arrow for active floor
             if (_floorTimer.IsRunning && _floorTimer.ElapsedMilliseconds / 500 % 2 == 0)
             {
-                graphics.FillPolygon(_markerBrush, _activeFloorArrow);
+                graphics.FillPolygon(_arrowBrush, _activeFloorArrow);
             }
             
 
