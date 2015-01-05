@@ -32,43 +32,41 @@ namespace Project_Novi.Modules.Home
             if (HomeTileLocations.Count > 0)
                 return;
 
-            var errors = new List<String>();
+            var xmlDoc = new XmlDocument();
 
             try
             {
-                var xmlDoc = new XmlDocument();
                 xmlDoc.Load("TileLocations.xml");
-
-                var nodeList = xmlDoc.DocumentElement.SelectNodes("/tiles/tile");
-
-                foreach (XmlNode node in nodeList)
-                {
-                    var x = node.SelectSingleNode("x");
-                    var y = node.SelectSingleNode("y");
-                    var w = node.SelectSingleNode("width");
-                    var h = node.SelectSingleNode("height");
-
-                    var xOut = x != null ? Int32.Parse(x.InnerText) : 0;
-                    var yOut = y != null ? Int32.Parse(y.InnerText) : 0;
-                    var wOut = w != null ? Int32.Parse(w.InnerText) : 0;
-                    var hOut = h != null ? Int32.Parse(h.InnerText) : 0;
-                    var rect = new Rectangle(xOut, yOut, wOut, hOut);
-
-                    var homeTile = new HomeTileLocation(rect, null);
-                    HomeTileLocations.Add(homeTile);
-                }
             }
             catch (Exception e)
             {
                 var msg = String.Format("An error occurred: {0}", e.Message);
-                errors.Add(msg);
+                Alert(msg);
+                return;
             }
 
-            if (errors.Count > 0)
-            {
+            var docBody = xmlDoc.DocumentElement;
 
-                var output = String.Format("Number of errors: {0}\r\n-----------------------------\r\n\r\n{1}", errors.Count, String.Join("\r\n", errors));
-                Alert(output);
+            var nodeList = docBody != null ? docBody.SelectNodes("/tiles/tile") : null;
+
+            if (nodeList == null)
+                return;
+
+            foreach (XmlNode node in nodeList)
+            {
+                var x = node.SelectSingleNode("x");
+                var y = node.SelectSingleNode("y");
+                var w = node.SelectSingleNode("width");
+                var h = node.SelectSingleNode("height");
+
+                var xOut = x != null ? Int32.Parse(x.InnerText) : 0;
+                var yOut = y != null ? Int32.Parse(y.InnerText) : 0;
+                var wOut = w != null ? Int32.Parse(w.InnerText) : 0;
+                var hOut = h != null ? Int32.Parse(h.InnerText) : 0;
+                var rect = new Rectangle(xOut, yOut, wOut, hOut);
+
+                var homeTile = new HomeTileLocation(rect, null);
+                HomeTileLocations.Add(homeTile);
             }
         }
         private static void Alert(String message)
@@ -151,7 +149,7 @@ namespace Project_Novi.Modules.Home
                 {
                     var mod = _controller.ModuleManager.GetModule(tile.ModuleName);
                     tileModuleName = mod.DisplayName;
-                    tileModuleIcon = mod.Icon;
+                    tileModuleIcon = mod.Icon ?? Properties.Resources.tileIcon;
                 }
                 var btn = new TileButton(_controller, tileModuleName, tileModuleIcon);
 
