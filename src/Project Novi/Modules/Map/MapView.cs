@@ -59,7 +59,7 @@ namespace Project_Novi.Modules.Map
 
         public void Initialize(IController controller)
         {
-            BackgroundView = new SubBackground(controller);
+            BackgroundView = new SubBackground(controller, true);
             _controller = controller;
 
             _xmlDoc = new XmlDocument();
