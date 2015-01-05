@@ -21,11 +21,17 @@ namespace Project_Novi.Background
         private readonly Font _strFont = TextUtils.GetFont(FontSize) ??
                           new Font(SystemFonts.DefaultFont.Name, FontSize, FontStyle.Regular);
 
-        public string AvatarText { get; set; }
+        private bool _keepTextInView = false;
 
         public SubBackground(IController controller)
         {
             _controller = controller;
+        }
+
+        public SubBackground(IController controller, bool keepTextInView)
+        {
+            _controller = controller;
+            _keepTextInView = keepTextInView;
         }
 
         public void Render(Graphics graphics, Rectangle rectangle)
@@ -40,7 +46,7 @@ namespace Project_Novi.Background
 
             _controller.Avatar.Render(graphics, _avatar);
             graphics.DrawImage(Properties.Resources.home_button, _backButton);
-            if (_controller.Avatar.Talking)
+            if (_controller.Avatar.Talking || _keepTextInView)
             {
                 graphics.DrawString(_controller.Avatar.Saying, _strFont, Brushes.White, _textRect, _stringFormat);
             }
