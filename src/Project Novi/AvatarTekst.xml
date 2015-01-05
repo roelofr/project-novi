@@ -13,15 +13,15 @@
   </Poke>
 
   <Idle>
-    <String>Een mooie dag om rond te hangen.</String>
+    <String>Een mooie dag om rond te hangen</String>
     <String>Is daar iemand?</String>
     <String>Ik hang hier niet voor niets hoor!</String>
   </Idle>
 
   <RouteVragen>
-    <String>Waar wilt u naartoe? Selecteer een verdieping of voer een lokaal in.</String>
-    <String>Waar kan ik u naartoe brengen? Selecteer een verdieping of voer een lokaal in.</String>
-    <String>Zal ik u de weg wijzen? Selecteer een verdieping of voer een lokaal in.</String>
+    <String>Waar wilt u naartoe? Selecteer een verdieping of voer een lokaal in</String>
+    <String>Waar kan ik u naartoe brengen? Selecteer een verdieping of voer een lokaal in</String>
+    <String>Zal ik u de weg wijzen? Selecteer een verdieping of voer een lokaal in</String>
   </RouteVragen>
 
   <MapF0>
