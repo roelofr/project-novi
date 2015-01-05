@@ -148,12 +148,6 @@
   <data name="left_eye_open" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Avatar\Head\Face\Eyes\left-eye-open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="left_eye_pinch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Head\Face\Eyes\left-eye-pinch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="nose" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Head\Face\nose.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="open_happy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Avatar\Head\Face\Mouths\open-happy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -162,9 +156,6 @@
   </data>
   <data name="open_sad" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Avatar\Head\Face\Mouths\open-sad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="pupils" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Head\Face\Eyes\pupils.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="right_eye_blink1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Avatar\Head\Face\Eyes\right-eye-blink1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -177,15 +168,6 @@
   </data>
   <data name="right_eye_open" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Avatar\Head\Face\Eyes\right-eye-open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="right_eye_pinch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Head\Face\Eyes\right-eye-pinch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="roundneck_green" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Clothes\roundneck-green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="vneck_green" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Clothes\vneck-green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ontwerpWithBorder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\design\ontwerpwithborder.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
