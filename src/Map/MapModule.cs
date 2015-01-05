@@ -1,3 +1,4 @@
+using System.Drawing;
 using System.Text;
 using Project_Novi.Api;
 using Project_Novi.Text;
@@ -10,6 +11,11 @@ namespace Map
         public string Name
         {
             get { return "Map"; }
+        }
+
+        public Bitmap Icon
+        {
+            get { return Properties.Resources.Icon; }
         }
 
         public string DisplayName

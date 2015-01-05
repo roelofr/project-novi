@@ -122,16 +122,6 @@ namespace Project_Novi.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_maps {
-            get {
-                object obj = ResourceManager.GetObject("icon_maps", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap left_eye_blink1 {
             get {
                 object obj = ResourceManager.GetObject("left_eye_blink1", resourceCulture);
@@ -314,6 +304,16 @@ namespace Project_Novi.Properties {
         internal static System.Drawing.Bitmap roundneck_green {
             get {
                 object obj = ResourceManager.GetObject("roundneck_green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tileIcon {
+            get {
+                object obj = ResourceManager.GetObject("tileIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
