@@ -113,11 +113,11 @@ namespace Project_Novi.Modules.Home
                 {
                     var content = moduleNames[0];
                     moduleNames.RemoveAt(0);
-                    tile.SetModuleName(content);
+                    tile.ModuleName = content;
                 }
                 else
                 {
-                    tile.SetModuleName();
+                    tile.ModuleName = null;
                 }
 
             }
@@ -146,11 +146,14 @@ namespace Project_Novi.Modules.Home
             foreach (HomeTileLocation tile in HomeTileLocations)
             {
                 string tileModuleName = null;
+                Bitmap tileModuleIcon = null;
                 if (tile.ModuleName != null)
                 {
-                    tileModuleName = _controller.ModuleManager.GetModule(tile.ModuleName).DisplayName;
+                    var mod = _controller.ModuleManager.GetModule(tile.ModuleName);
+                    tileModuleName = mod.DisplayName;
+                    tileModuleIcon = mod.Icon;
                 }
-                var btn = new TileButton(_controller, tileModuleName, Properties.Resources.icon_maps);
+                var btn = new TileButton(_controller, tileModuleName, tileModuleIcon);
 
                 if (tile.ModuleName == null)
                     btn.IsReleased = false;
