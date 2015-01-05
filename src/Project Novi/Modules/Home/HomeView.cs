@@ -71,11 +71,11 @@ namespace Project_Novi.Modules.Home
                 Alert(output);
             }
         }
+
         private static void Alert(String message)
         {
             MessageBox.Show(message);
         }
-
 
         public IModule Module
         {
