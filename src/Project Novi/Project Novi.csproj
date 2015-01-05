@@ -180,7 +180,6 @@
     <Resource Include="Resources\Avatar\Clothes\roundneck-green.png" />
     <Resource Include="Resources\Avatar\Clothes\vneck-green.png" />
     <Resource Include="Resources\Avatar\Head\Base\base.png" />
-    <Resource Include="Resources\Avatar\Head\Face\nose.png" />
     <Resource Include="Resources\Avatar\Head\Face\Mouths\closed-happy.png" />
     <Resource Include="Resources\Avatar\Head\Face\Mouths\closed-sad.png" />
     <Resource Include="Resources\Avatar\Head\Face\Mouths\open-happy.png" />
@@ -195,13 +194,10 @@
     <Resource Include="Resources\Avatar\Head\Face\Eyes\left-eye-blink2.png" />
     <Resource Include="Resources\Avatar\Head\Face\Eyes\left-eye-blink3.png" />
     <Resource Include="Resources\Avatar\Head\Face\Eyes\left-eye-open.png" />
-    <Resource Include="Resources\Avatar\Head\Face\Eyes\left-eye-pinch.png" />
-    <Resource Include="Resources\Avatar\Head\Face\Eyes\pupils.png" />
     <Resource Include="Resources\Avatar\Head\Face\Eyes\right-eye-blink1.png" />
     <Resource Include="Resources\Avatar\Head\Face\Eyes\right-eye-blink2.png" />
     <Resource Include="Resources\Avatar\Head\Face\Eyes\right-eye-blink3.png" />
     <Resource Include="Resources\Avatar\Head\Face\Eyes\right-eye-open.png" />
-    <Resource Include="Resources\Avatar\Head\Face\Eyes\right-eye-pinch.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Design\ontwerpWithBorder.jpg" />
