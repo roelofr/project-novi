@@ -43,22 +43,19 @@ namespace Project_Novi.Modules.Home
 
                 foreach (XmlNode node in nodeList)
                 {
-                    try
-                    {
-                        var x = Int32.Parse(node.SelectSingleNode("x").InnerText);
-                        var y = Int32.Parse(node.SelectSingleNode("y").InnerText);
-                        var w = Int32.Parse(node.SelectSingleNode("width").InnerText);
-                        var h = Int32.Parse(node.SelectSingleNode("height").InnerText);
-                        var rect = new Rectangle(x, y, w, h);
+                    var x = node.SelectSingleNode("x");
+                    var y = node.SelectSingleNode("y");
+                    var w = node.SelectSingleNode("width");
+                    var h = node.SelectSingleNode("height");
 
-                        var homeTile = new HomeTileLocation(rect, null);
-                        HomeTileLocations.Add(homeTile);
-                    }
-                    catch (Exception e)
-                    {
-                        errors.Add(String.Format("Error: {0}", e.Message));
-                        continue;
-                    }
+                    var xOut = x != null ? Int32.Parse(x.InnerText) : 0;
+                    var yOut = y != null ? Int32.Parse(y.InnerText) : 0;
+                    var wOut = w != null ? Int32.Parse(w.InnerText) : 0;
+                    var hOut = h != null ? Int32.Parse(h.InnerText) : 0;
+                    var rect = new Rectangle(xOut, yOut, wOut, hOut);
+
+                    var homeTile = new HomeTileLocation(rect, null);
+                    HomeTileLocations.Add(homeTile);
                 }
             }
             catch (Exception e)
@@ -131,12 +128,12 @@ namespace Project_Novi.Modules.Home
         {
             var homeModule = module as HomeModule;
             if (homeModule == null)
-                throw new ArgumentException("A MapView can only render the interface for a MapModule");
+                throw new ArgumentException("A HomeView can only render the interface for a HomeModule");
 
             _module = homeModule;
 
             RegisterTilesToModules(_controller);
-            
+
             if (DateTime.Now.Subtract(_lastSpokenTime).TotalMinutes > 10)
             {
                 _controller.Avatar.Say(_module.AvatarText);
@@ -154,13 +151,15 @@ namespace Project_Novi.Modules.Home
                     tileModuleName = _controller.ModuleManager.GetModule(tile.ModuleName).DisplayName;
                 }
                 var btn = new TileButton(_controller, tileModuleName, Properties.Resources.icon_maps);
-                btn.Location = tile.Rectangle.Location;
-                btn.Size = tile.Rectangle.Size;
 
                 if (tile.ModuleName == null)
                     btn.IsReleased = false;
                 else
                     btn.Click += btn_Click;
+
+                btn.Location = tile.Rectangle.Location;
+                btn.Size = tile.Rectangle.Size;
+
                 buttons.Add(btn);
                 count++;
             }
