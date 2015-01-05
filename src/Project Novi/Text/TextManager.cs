@@ -3,7 +3,7 @@ using System.Xml;
 
 namespace Project_Novi.Text
 {
-    static class TextManager
+    public static class TextManager
     {
         public static String GetText(string category)
         {

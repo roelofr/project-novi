@@ -1,13 +1,8 @@
-using Project_Novi.Api;
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms.VisualStyles;
+using Project_Novi.Api;
 using Project_Novi.Text;
 
-namespace Project_Novi.Modules.Map
+namespace Map
 {
     class MapModule : IModule
     {

@@ -87,11 +87,6 @@
     <Compile Include="Modules\Home\HomeModule.cs" />
     <Compile Include="Modules\Home\HomeView.cs" />
     <Compile Include="Modules\Home\HomeTileLocation.cs" />
-    <Compile Include="Modules\Map\NumPad.cs" />
-    <Compile Include="Modules\Map\NumPadOutput.cs" />
-    <Compile Include="Modules\Map\TouchButton.cs" />
-    <Compile Include="Modules\Map\MapModule.cs" />
-    <Compile Include="Modules\Map\MapView.cs" />
     <Compile Include="NoviController.cs" />
     <Compile Include="PasswordDialog.cs">
       <SubType>Form</SubType>
@@ -217,24 +212,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\pakket.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\T0x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\T1x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\T3x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\T4x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\T5x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\T2x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">

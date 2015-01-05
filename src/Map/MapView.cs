@@ -6,8 +6,9 @@ using System.Linq;
 using System.Xml;
 using Project_Novi.Api;
 using Project_Novi.Background;
+using Project_Novi.Text;
 
-namespace Project_Novi.Modules.Map
+namespace Map
 {
     class MapView : IView
     {
@@ -106,7 +107,7 @@ namespace Project_Novi.Modules.Map
                 button.Ypos += _floorSelectOutput.TouchButtons[0].Height / 2;
             }
 
-            _backspace = new TouchButton(XposNumPad + 5 * _floorSelectOutput.TouchButtons[0].Width, YposNumPad - (1 * _floorSelectNumpad.TouchButtons[0].Height), _floorSelectOutput.TouchButtons[0].Width, _floorSelectOutput.TouchButtons[0].Height, "←", _buttonColor, _textColor, new Font(_floorFont.FontFamily, (int)(0.8 * (_floorSelectOutput.TouchButtons[0].Width))));
+            _backspace = new TouchButton(XposNumPad + 5 * _floorSelectOutput.TouchButtons[0].Width, YposNumPad - (1 * _floorSelectNumpad.TouchButtons[0].Height), _floorSelectOutput.TouchButtons[0].Width, _floorSelectOutput.TouchButtons[0].Height, "\u2190", _buttonColor, _textColor, new Font(_floorFont.FontFamily, (int)(0.8 * (_floorSelectOutput.TouchButtons[0].Width))));
             _tIndicator = new TouchButton(XposNumPad, YposNumPad - (1 * _floorSelectNumpad.TouchButtons[0].Height), _floorSelectOutput.TouchButtons[0].Width, _floorSelectOutput.TouchButtons[0].Height, "T", _buttonColor, _textColor, new Font(_floorFont.FontFamily, (int)(0.8 * (_floorSelectOutput.TouchButtons[0].Width))));
             _tIndicator.Enabled = false;
             _pIndicator = new TouchButton(XposNumPad + 2 * _floorSelectOutput.TouchButtons[0].Width, YposNumPad - (1 * _floorSelectNumpad.TouchButtons[0].Height), _floorSelectOutput.TouchButtons[0].Width, _floorSelectOutput.TouchButtons[0].Height, ".", _buttonColor, _textColor, new Font(_floorFont.FontFamily, (int)(0.8 * (_floorSelectOutput.TouchButtons[0].Width))));
@@ -119,7 +120,7 @@ namespace Project_Novi.Modules.Map
             CreateFloorButtons(_xposFloorButtons, _yposFloorButtons, WidthFloorButtons, HeightFloorButtons, MarginFloorButtons, _numberFloorButtons);
 
             ButtonControl(_floorSelectNumpad, _floorSelectOutput);
-            _controller.Avatar.Say(Text.TextManager.GetText("RouteVragen"));
+            _controller.Avatar.Say(TextManager.GetText("RouteVragen"));
         }
 
         public void Detach()
