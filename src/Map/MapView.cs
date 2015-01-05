@@ -6,8 +6,9 @@ using System.Linq;
 using System.Xml;
 using Project_Novi.Api;
 using Project_Novi.Background;
+using Project_Novi.Text;
 
-namespace Project_Novi.Modules.Map
+namespace Map
 {
     class MapView : IView
     {
@@ -119,7 +120,7 @@ namespace Project_Novi.Modules.Map
             CreateFloorButtons(_xposFloorButtons, _yposFloorButtons, WidthFloorButtons, HeightFloorButtons, MarginFloorButtons, _numberFloorButtons);
 
             ButtonControl(_floorSelectNumpad, _floorSelectOutput);
-            _controller.Avatar.Say(Text.TextManager.GetText("RouteVragen"));
+            _controller.Avatar.Say(TextManager.GetText("RouteVragen"));
         }
 
         public void Detach()
