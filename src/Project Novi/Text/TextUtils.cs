@@ -2,7 +2,7 @@
 
 namespace Project_Novi.Text
 {
-    class TextUtils
+    public static class TextUtils
     {
         private static FontFamily _font;
         public static Font GetFont(int size)

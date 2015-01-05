@@ -78,26 +78,40 @@ namespace Project_Novi
             LoadLocalModules();
             var path = Application.StartupPath + @"\modules\";
             Directory.CreateDirectory(path);
-            var pluginFiles = Directory.GetFiles(path, "*.dll");
+            var pluginFiles = Directory.GetFiles(path, @"*.dll", SearchOption.AllDirectories);
+
+            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
 
             foreach (var args in pluginFiles)
             {
                 var assembly = Assembly.LoadFile(args);
-
-                foreach (var t in assembly.GetTypes())
+                try
                 {
-                    if (t.GetInterface(typeof(IModule).Name) != null)
+                    foreach (var t in assembly.GetTypes())
                     {
-                        AddModule((IModule)Activator.CreateInstance(t));
-                    }
+                        if (t.GetInterface(typeof (IModule).Name) != null)
+                        {
+                            AddModule((IModule) Activator.CreateInstance(t));
+                        }
 
-                    if (t.GetInterface(typeof(IView).Name) != null)
-                    {
-                        AddView((IView)Activator.CreateInstance(t));
+                        if (t.GetInterface(typeof (IView).Name) != null)
+                        {
+                            AddView((IView) Activator.CreateInstance(t));
+                        }
                     }
                 }
+                catch { }
             }
 
+        }
+
+        static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            char[] splitter = {','};
+            var name = args.Name.Split(splitter)[0] + ".dll";
+            var file = 
+                Directory.GetFiles(Application.StartupPath, name, SearchOption.AllDirectories)[0];
+            return Assembly.LoadFrom(file);
         }
     }
 }
