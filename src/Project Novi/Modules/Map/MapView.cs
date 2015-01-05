@@ -120,6 +120,7 @@ namespace Project_Novi.Modules.Map
             CreateFloorButtons(_xposFloorButtons, _yposFloorButtons, WidthFloorButtons, HeightFloorButtons, MarginFloorButtons, _numberFloorButtons);
 
             ButtonControl(_floorSelectNumpad, _floorSelectOutput);
+            _controller.Avatar.Say(Text.TextManager.GetText("RouteVragen"));
         }
 
         public void Detach()
@@ -174,8 +175,18 @@ namespace Project_Novi.Modules.Map
                 _floorSelectOutput.BuildOutput();
                 ButtonControl(_floorSelectNumpad, _floorSelectOutput);
             }
-            
 
+            if (p.X > XposMap && p.X < XposMap + Properties.Resources.T1x.Width*scale / 100 && p.Y > YposMap && p.Y < Properties.Resources.T1x.Height * scale / 100)
+            {
+                //var roomDict = GetRoomLocationsOnFloor(Convert.ToInt32(_activeFloor[1]));
+                var roomDict = GetRoomLocationsOnFloor(0);
+                string room;
+                roomDict.TryGetValue(new Point(107, 468), out room);
+                var roomList = roomDict.Keys;
+                var closest = GetClosestPoint(roomList, p);
+                //do something or the other to mark the classroom and change the numpad input to the code
+                //Console.WriteLine(room);
+            }
         }
 
         public void Render(Graphics graphics, Rectangle rectangle)
@@ -257,9 +268,6 @@ namespace Project_Novi.Modules.Map
 
         }
 
-
-
-
         // Create all buttons for selecting floor
         public void CreateFloorButtons(int xpos, int ypos, int width, int height, int margin, int number)
         {
@@ -285,12 +293,69 @@ namespace Project_Novi.Modules.Map
 
         public Point GetRoomLocation(string name)
         {
-            
             var nodeList = _xmlDoc.DocumentElement.SelectNodes(String.Format("/building/floor/room[starts-with(@id, 'T{0}')]", name));
             var x = Convert.ToInt32(nodeList[0].SelectSingleNode("xPos").InnerText);
             var y = Convert.ToInt32(nodeList[0].SelectSingleNode("yPos").InnerText);
 
-            return new Point(x, y);
+            return new Point(x, y); 
+        }
+
+        /// <summary>
+        /// Returns all the classroomcodes and their locations for a given floor
+        /// </summary>
+        /// <param name="floor"></param>
+        /// <returns></returns>
+        public Dictionary<Point, string> GetRoomLocationsOnFloor(int floor)
+        {
+            var nodeList = _xmlDoc.DocumentElement.SelectNodes(String.Format("/building/floor[@id='{0}']/room", floor));
+
+            return nodeList.Cast<XmlNode>().ToDictionary(room => new Point(Convert.ToInt32(room.SelectSingleNode("xPos").InnerText), Convert.ToInt32(room.SelectSingleNode("yPos").InnerText)), room => room.Attributes[0].InnerXml);
+        }
+
+        /// <summary>
+        /// Calculates which point from a given list is closest to the given point
+        /// </summary>
+        /// <param name="pointList">List of points to compare to given point</param>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public Point GetClosestPoint(IEnumerable<Point> pointList, Point point)
+        {
+            var closest = pointList.First();
+            var closestDist = CalculateDist(pointList.First(), point);
+
+            foreach (var _point in pointList)
+            {
+                var newDist = CalculateDist(_point, point);
+                if (newDist < closestDist)
+                {
+                    closest = _point;
+                    closestDist = newDist;
+                }
+            }
+
+            return closest;
+        }
+
+        /// <summary>
+        /// Calculates the distance between two given points
+        /// </summary>
+        /// <param name="p1"></param>
+        /// <param name="p2"></param>
+        /// <returns></returns>
+        public double CalculateDist(Point p1, Point p2)
+        {
+            double distX, distY;
+            if (p1.X > p2.X)
+                distX = p1.X - p2.X;
+            else
+                distX = p2.X - p1.X;
+
+            if (p1.Y > p2.Y)
+                distY = p1.Y - p2.Y;
+            else
+                distY = p2.Y - p1.Y;
+
+            return Math.Sqrt(distX + distY);
         }
 
         public void ButtonControl(NumPad numPad, NumPadOutput numPadOutput)
