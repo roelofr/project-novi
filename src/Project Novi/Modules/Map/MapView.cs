@@ -80,22 +80,25 @@ namespace Project_Novi.Modules.Map
             else
                 throw new ArgumentException("A MapView can only render the interface for a MapModule");
 
+            // Display floor T0 upon attaching module
             _activeFloor = "T0";
 
+            // Buttons for selecting floor in top right corner
             _xposFloorButtons = _modularRectangle.Width - WidthFloorButtons - MarginFloorButtons;
             _yposFloorButtons = MarginFloorButtons;
+            _floorButtons = new List<TouchButton>();
 
+            // Placing numpad between map and bottom of module, centering
             _xposNumPad = XposMap + MarginMap + ((Properties.Resources.T5x.Width*scale/100)/2) - (WidthNumPad / 2);
             _yposNumPad = _modularRectangle.Height - (_modularRectangle.Height - (YposMap + 2 * MarginMap + Properties.Resources.T5x.Height*scale/100)) / 2 - HeightNumPad/2;
-            _floorButtons = new List<TouchButton>();
+                        
+            // Create and place numpad and output for numpad
             _numberFloorButtons = _floorNames.Length;
-
             _floorSelectNumpad = new NumPad(_xposNumPad, _yposNumPad, WidthNumPad, HeightNumPad, _numPadInputs, _buttonColor, _textColor, _floorFont);
             _floorSelectOutput = new NumPadOutput(_xposNumPad, _yposNumPad - (1 * _floorSelectNumpad.TouchButtons[0].Height), (3 * _floorSelectNumpad.TouchButtons[0].Width) / 2, _floorSelectNumpad.TouchButtons[0].Height, 3, _floorSelectNumpad);
             _floorSelectOutput.TouchButtons[0].Xpos += _floorSelectOutput.TouchButtons[0].Width;
             _floorSelectOutput.TouchButtons[1].Xpos += 2 * _floorSelectOutput.TouchButtons[1].Width;
             _floorSelectOutput.TouchButtons[2].Xpos += 2 * _floorSelectOutput.TouchButtons[2].Width;
-
             _yposNumPad += _floorSelectOutput.TouchButtons[0].Height / 2;
             foreach (var button in _floorSelectOutput.TouchButtons)
             {
@@ -107,11 +110,13 @@ namespace Project_Novi.Modules.Map
                 button.Ypos += _floorSelectOutput.TouchButtons[0].Height / 2;
             }
 
+            //Place backspace, T and . symbol
             _backspace = new TouchButton(_xposNumPad + 5 * _floorSelectOutput.TouchButtons[0].Width, _yposNumPad - (1 * _floorSelectNumpad.TouchButtons[0].Height), _floorSelectOutput.TouchButtons[0].Width, _floorSelectOutput.TouchButtons[0].Height, "←", _buttonColor, _textColor, new Font(_floorFont.FontFamily, (int)(0.8 * (_floorSelectOutput.TouchButtons[0].Width))));
             _tIndicator = new TouchButton(_xposNumPad, _yposNumPad - (1 * _floorSelectNumpad.TouchButtons[0].Height), _floorSelectOutput.TouchButtons[0].Width, _floorSelectOutput.TouchButtons[0].Height, "T", _buttonColor, _textColor, new Font(_floorFont.FontFamily, (int)(0.8 * (_floorSelectOutput.TouchButtons[0].Width))));
             _tIndicator.Enabled = false;
             _pIndicator = new TouchButton(_xposNumPad + 2 * _floorSelectOutput.TouchButtons[0].Width, _yposNumPad - (1 * _floorSelectNumpad.TouchButtons[0].Height), _floorSelectOutput.TouchButtons[0].Width, _floorSelectOutput.TouchButtons[0].Height, ".", _buttonColor, _textColor, new Font(_floorFont.FontFamily, (int)(0.8 * (_floorSelectOutput.TouchButtons[0].Width))));
             _pIndicator.Enabled = false;
+
             _activeTimer = new Stopwatch();
             _floorTimer = new Stopwatch();
             _floorTimer.Start();
@@ -119,7 +124,9 @@ namespace Project_Novi.Modules.Map
             // Create all buttons for selecting floors
             CreateFloorButtons(_xposFloorButtons, _yposFloorButtons, WidthFloorButtons, HeightFloorButtons, MarginFloorButtons, _numberFloorButtons);
 
+            // Disable/Enable correct buttons in numpad for T0
             ButtonControl(_floorSelectNumpad, _floorSelectOutput);
+
             _controller.Avatar.Say(Text.TextManager.GetText("RouteVragen"));
         }
 
@@ -146,6 +153,7 @@ namespace Project_Novi.Modules.Map
                 }
             }
 
+            // Check if a button in the output field has been pressed
             foreach (var button in _floorSelectOutput.TouchButtons)
             {
                 if (button.IsClicked(p))
@@ -158,6 +166,7 @@ namespace Project_Novi.Modules.Map
                 }
             }
 
+            // Check if a button on the numpad has been pressed
             foreach (var button in _floorSelectNumpad.TouchButtons)
             {
                 if (button.IsClicked(p))
@@ -168,6 +177,8 @@ namespace Project_Novi.Modules.Map
                     ButtonControl(_floorSelectNumpad, _floorSelectOutput);
                 }
             }
+
+            // Check if backspace has been pressed
             if (_backspace.IsClicked(p))
             {
                 _floorSelectOutput.DeleteOutputDigit();
@@ -176,16 +187,30 @@ namespace Project_Novi.Modules.Map
                 ButtonControl(_floorSelectNumpad, _floorSelectOutput);
             }
 
-            if (p.X > XposMap && p.X < XposMap + Properties.Resources.T1x.Width*scale / 100 && p.Y > YposMap && p.Y < Properties.Resources.T1x.Height * scale / 100)
+            // Check if the map has been pressed
+            if (p.X > XposMap + MarginMap && p.X < XposMap + MarginMap + Properties.Resources.T1x.Width*scale / 100 && p.Y > YposMap + MarginMap && p.Y < YposMap + MarginMap + Properties.Resources.T1x.Height * scale / 100)
             {
-                //var roomDict = GetRoomLocationsOnFloor(Convert.ToInt32(_activeFloor[1]));
-                var roomDict = GetRoomLocationsOnFloor(0);
-                string room;
-                roomDict.TryGetValue(new Point(107, 468), out room);
+                var roomDict = GetRoomLocationsOnFloor(Convert.ToInt32(_activeFloor[1].ToString()));              
                 var roomList = roomDict.Keys;
                 var closest = GetClosestPoint(roomList, p);
-                //do something or the other to mark the classroom and change the numpad input to the code
-                //Console.WriteLine(room);
+                string room;
+                roomDict.TryGetValue(new Point(closest.X, closest.Y), out room);
+
+                _floorSelectOutput.SetActive(2);
+                _floorSelectOutput.TouchButtons.ElementAt(_floorSelectOutput.ActiveDigit).ActiveTimer.Reset();
+
+                _floorSelectOutput.TouchButtons[0].Value = room[1].ToString();
+                _floorSelectOutput.TouchButtons[1].Value = room[2].ToString();
+                _floorSelectOutput.TouchButtons[2].Value = "_";
+                _floorSelectOutput.BuildOutput();
+                ButtonControl(_floorSelectNumpad, _floorSelectOutput);
+
+                _floorSelectOutput.TouchButtons[2].Value = room[3].ToString();
+
+                _floorSelectOutput.BuildOutput();
+                ButtonControl(_floorSelectNumpad, _floorSelectOutput);
+                
+                
             }
         }
 
@@ -224,6 +249,7 @@ namespace Project_Novi.Modules.Map
                     break;
             }
             graphics.DrawImage(bm, XposMap + MarginMap, YposMap + MarginMap, bm.Width * scale / 100, bm.Height * scale / 100);
+
             // Display all floor buttons
             foreach (var button in _floorButtons) {
                 if (_activeFloor.Equals("T" + (_numberFloorButtons - 1 - _floorButtons.IndexOf(button)).ToString()))
@@ -236,7 +262,6 @@ namespace Project_Novi.Modules.Map
                     _activeFloorArrow[2].Y = (button.Ypos + button.Ypos + HeightFloorButtons) / 2;
                 }                
                 button.DrawButton(graphics);
-                //graphics.DrawString(_floorNames[_floorButtons.IndexOf(button)], _floorFont, _floorTextBrush, button, _formatText);
             }
 
             // Display arrow for active floor
@@ -245,7 +270,7 @@ namespace Project_Novi.Modules.Map
                 graphics.FillPolygon(_arrowBrush, _activeFloorArrow);
             }
             
-
+            // Display marker if a room has been selected
             if (_floorSelectOutput.Output.Length == _floorSelectOutput.Digits)
             {
                 if (!_activeTimer.IsRunning)
@@ -279,6 +304,7 @@ namespace Project_Novi.Modules.Map
             }
         }
 
+        // Collect all available/allowed digits that can be pressed next
         public char[] GetNextDigits(string start)
         {
             var xmlDoc = new XmlDocument();
@@ -291,6 +317,7 @@ namespace Project_Novi.Modules.Map
             return next.ToArray();
         }
 
+        // Collect coordinates from a selected room
         public Point GetRoomLocation(string name)
         {
             var nodeList = _xmlDoc.DocumentElement.SelectNodes(String.Format("/building/floor/room[starts-with(@id, 'T{0}')]", name));
@@ -343,23 +370,15 @@ namespace Project_Novi.Modules.Map
         /// <param name="p2"></param>
         /// <returns></returns>
         public double CalculateDist(Point p1, Point p2)
-        {
-            double distX, distY;
-            if (p1.X > p2.X)
-                distX = p1.X - p2.X;
-            else
-                distX = p2.X - p1.X;
+        {        
 
-            if (p1.Y > p2.Y)
-                distY = p1.Y - p2.Y;
-            else
-                distY = p2.Y - p1.Y;
-
-            return Math.Sqrt(distX + distY);
+            return Math.Sqrt(Math.Pow(Math.Abs((p1.X + XposMap + MarginMap) - p2.X), 2) + Math.Pow(Math.Abs((p1.Y + YposMap + MarginMap)- p2.Y), 2));
         }
 
+        // Disable/Enable buttons and check output
         public void ButtonControl(NumPad numPad, NumPadOutput numPadOutput)
         {
+            // Check if output entirely filled
             if (numPadOutput.Output.Length < numPadOutput.Digits)
             {
                 foreach (var button in numPad.TouchButtons)
@@ -367,24 +386,30 @@ namespace Project_Novi.Modules.Map
                     button.Enabled = false;
                     foreach (var c in GetNextDigits(numPadOutput.Output))
                     {
+                        //Enable all allowed digits
                         if (button.Value.Equals(c.ToString()))
-                        {
+                        {                            
                             button.Enabled = true;
                         }
                     }
                 }
             }
+
+            // Check if output is filled
             if (numPadOutput.Output.Length <= numPadOutput.Digits)
             {
                 foreach (var button in numPadOutput.TouchButtons)
                 {
                     button.Enabled = false;
+                    // Enable all filled in numbers in output field
                     if (!button.Value.Equals("_"))
                     {
                         button.Enabled = true;
                     }
                 }
             }
+
+            // Check if at least one number has been filled to allow backspace
             if (numPadOutput.Output.Length > 0)
             {
                 _activeFloor = "T" + numPadOutput.Output[0];
@@ -399,6 +424,7 @@ namespace Project_Novi.Modules.Map
                 
             }
 
+            // Check if a room has been filled in
             if (numPadOutput.Output.Length == numPadOutput.Digits)
             {
                 var roomPos = GetRoomLocation(numPadOutput.Output);
