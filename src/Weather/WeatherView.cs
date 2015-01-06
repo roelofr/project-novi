@@ -2,9 +2,6 @@
 using Project_Novi.Api;
 using Project_Novi.Background;
 using System.Drawing;
-using System.Drawing.Text;
-using System.Runtime.CompilerServices;
-using System.Runtime.Remoting.Channels;
 using ForecastIO;
 using Project_Novi.Text;
 
@@ -35,7 +32,6 @@ namespace Weather
                 throw new ArgumentException("A WeatherView can only render the interface for a WeatherModule");
 
             _module = weatherModule;
-            _controller.Avatar.Say(_module.WeatherResponse.hourly.summary);
         }
 
         public void Detach()
@@ -50,26 +46,10 @@ namespace Weather
             return dtDateTime;
         }
 
-        private static Bitmap GetWeatherImage(string icon)
-        {
-            if (icon == "clear-day") return Properties.Resources.sun_weather;
-            if (icon == "clearn-night") return Properties.Resources.sun_weather;
-            if (icon == "rain") return Properties.Resources.raining_weather;
-            if (icon == "snow") return Properties.Resources.snowing_weather;
-            if (icon == "sleet") return Properties.Resources.sleet_weather;
-            if (icon == "wind") return Properties.Resources.cloudy_weather;
-            if (icon == "fog") return Properties.Resources.cloudy_weather;
-            if (icon == "cloudy") return Properties.Resources.cloudy_weather;
-            if (icon == "partly-cloudy-day") return Properties.Resources.mostly_sunny_weather;
-            if (icon == "partly-cloudy-night") return Properties.Resources.mostly_cloudy_weather;
-
-            return Properties.Resources.mostly_sunny_weather;
-        }
-
         private static void RenderDay(Graphics graphics, DailyForecast day, Rectangle rectangle)
         {
             var font = TextUtils.GetFont(30);
-            var image = GetWeatherImage(day.icon);
+            var image = WeatherModule.GetWeatherImage(day.icon);
             var width = (int)(rectangle.Width * 0.7);
             var height = (int)(image.Height * ((float)width / image.Width));
 
@@ -83,7 +63,7 @@ namespace Weather
         private static void RenderDay(Graphics graphics, Currently today, Rectangle rectangle)
         {
             var font = TextUtils.GetFont(30);
-            var image = GetWeatherImage(today.icon);
+            var image = WeatherModule.GetWeatherImage(today.icon);
             var width = (int)(rectangle.Width*0.7);
             var height = (int)(image.Height * ((float)width / image.Width));
 

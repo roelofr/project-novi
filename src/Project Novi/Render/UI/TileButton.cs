@@ -9,12 +9,12 @@ namespace Project_Novi.Render.UI
         private const int IconSize = 64;
 
         public Boolean IsReleased = true;
-        public Bitmap Icon { get; set; }
+        private IModule _module;
 
-        public TileButton(IController ctrl, String text, Bitmap icon)
+        public TileButton(IController ctrl, String text, IModule module)
             : base(ctrl, text)
         {
-            Icon = icon;
+            _module = module;
 
             this.Size = new Size(200, 80);
         }
@@ -68,7 +68,7 @@ namespace Project_Novi.Render.UI
             }
             DrawBackground(graphics, drawRect);
 
-            graphics.DrawImage(Icon, iconLocation);
+            graphics.DrawImage(_module.Icon ?? Properties.Resources.tileIcon, iconLocation);
 
             DrawText(graphics, Text, textLocation, 22);
 
