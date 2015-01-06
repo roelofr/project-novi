@@ -25,11 +25,16 @@ namespace Project_Novi.Render
             Nose
         }
 
+        public string Saying { get; set; }
+
         private int _blinkDelay;
         private readonly Random _rand;
 
         private TTS _tts;
 
+        /// <summary>
+        /// Animation for pinching the left eye
+        /// </summary>
         private readonly List<Bitmap> _leftEyePinch = new List<Bitmap>()
         {
             Properties.Resources.left_eye_blink1,
@@ -38,6 +43,9 @@ namespace Project_Novi.Render
             Properties.Resources.left_eye_blink1
         };
 
+        /// <summary>
+        /// Animation for pinching the right eye
+        /// </summary>
         private readonly List<Bitmap> _rightEyePinch = new List<Bitmap>()
         {
             Properties.Resources.right_eye_blink1,
@@ -45,8 +53,6 @@ namespace Project_Novi.Render
             Properties.Resources.right_eye_blink3,
             Properties.Resources.right_eye_blink1
         };
-
-        public string Saying { get; set; }
 
         /// <summary>
         /// An animation for the blinking of the left eye.
@@ -229,6 +235,9 @@ namespace Project_Novi.Render
             Animate(Animated.LeftEye, _leftEyeBlink);
         }
 
+        /// <summary>
+        /// Make the avatar's eyes pinch.
+        /// </summary>
         public void Pinch()
         {
             Animate(Animated.LeftEye, _leftEyePinch);

@@ -97,26 +97,34 @@ De teksten moeten op het juiste moment op de juiste manier getoond worden. De te
 Als gebruiker wil ik een overzicht van alle lokalen in het T gebouw zodat ik kan opzoeken waar ik moet zijn.
 
 ![Mockup tekst weergeven](images/schermontwerpen/mockup_selectverdieping.png)
-## Bruikbaar maken data
+
 ### Toelichting
-Om het overzicht van alle lokalen te kunnen realiseren zullen de aangeleverde kaarten en coördinaten  kloppend moeten zijn en zodanig zijn aangepast dat het toegpast kan worden in de applicatie.
+Voor mensen die onbekend zijn in het gebouw, is het handig om een overzicht te hebben van de plattegrond.
+Er moet daarom een module komen waarop gebruikers een overzicht kunnen vinden van alle lokalen die aanwezig zijn.
+Dit moet per verdieping kunnen gebeuren, dus gebruikers hebben de mogelijkheid om deze te kunnen selecteren.
 
-
-## Weergave plattegrond
-### Toelichting
-Nadat de kaarten kloppend zijn gemaakt moeten ze in de applicatie komen te staan en op het juiste moment weergegeven worden.
-
-## Selecteren verdieping
-### Toelichting
-Om de kaarten overzichtelijk te houden kan de gebruiker zelf aangeven van welke verdieping hij de kaart wil zien.
-
-
-##Testscenarios
+###Testscenarios
 |Scenario | Verwachte uitkomst |
 |:---|:---|
 | Per verdieping wordt de juiste kaart aangeroepen | Pass |
 | Het is niet mogelijk om meerdere kaarten tegelijk te zien | Pass |
 | De kaarten zijn goed leesbaar | Pass |
+
+#Selecteren lokaal
+Als gebruiker wil ik een lokaal selecteren, zodat ik op kan zoeken waar ik moet zijn.
+
+![Mockup tekst weergeven](images/schermontwerpen/mockup_selectroom.png)
+
+### Toelichting
+De gebruiker moet een specifiek lokaal kunnen selecteren, zodat een lokaal makkelijker gevonden kan worden.
+Dit kan handig zijn voor mensen die onbekend zijn in het gebouw, maar ook door studenten die een lokaal zoeken.
+
+###Testscenarios
+|Scenario | Verwachte uitkomst |
+|:---|:---|
+| Het gekozen lokaal wordt gemarkeerd op de plattegrond | Pass |
+| Voer een lokaal in dat niet bestaat | Fail |
+| De kaart van de corresponderende verdieping wordt weergeven | Pass |
 
 
 #Idle
@@ -126,7 +134,7 @@ Om de kaarten overzichtelijk te houden kan de gebruiker zelf aangeven van welke 
 Om ervoor te zorgen dat elke nieuwe gebruiker wel weer vanaf het hoofdscherm begint, moet het scherm na inactiviteit voor een bepaalde tijd weer terugkeren naar het hoofscherm.
 
 
-##Testscenario's
+###Testscenario's
 
 |Scenario | Verwachte uitkomst |
 |:---|:---|
