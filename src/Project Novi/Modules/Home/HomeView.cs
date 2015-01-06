@@ -32,53 +32,48 @@ namespace Project_Novi.Modules.Home
             if (HomeTileLocations.Count > 0)
                 return;
 
-            var errors = new List<String>();
+            var xmlDoc = new XmlDocument();
 
             try
             {
-                var xmlDoc = new XmlDocument();
                 xmlDoc.Load("TileLocations.xml");
-
-                var nodeList = xmlDoc.DocumentElement.SelectNodes("/tiles/tile");
-
-                foreach (XmlNode node in nodeList)
-                {
-                    try
-                    {
-                        var x = Int32.Parse(node.SelectSingleNode("x").InnerText);
-                        var y = Int32.Parse(node.SelectSingleNode("y").InnerText);
-                        var w = Int32.Parse(node.SelectSingleNode("width").InnerText);
-                        var h = Int32.Parse(node.SelectSingleNode("height").InnerText);
-                        var rect = new Rectangle(x, y, w, h);
-
-                        var homeTile = new HomeTileLocation(rect, null);
-                        HomeTileLocations.Add(homeTile);
-                    }
-                    catch (Exception e)
-                    {
-                        errors.Add(String.Format("Error: {0}", e.Message));
-                        continue;
-                    }
-                }
             }
             catch (Exception e)
             {
                 var msg = String.Format("An error occurred: {0}", e.Message);
-                errors.Add(msg);
+                Alert(msg);
+                return;
             }
 
-            if (errors.Count > 0)
-            {
+            var docBody = xmlDoc.DocumentElement;
 
-                var output = String.Format("Number of errors: {0}\r\n-----------------------------\r\n\r\n{1}", errors.Count, String.Join("\r\n", errors));
-                Alert(output);
+            var nodeList = docBody != null ? docBody.SelectNodes("/tiles/tile") : null;
+
+            if (nodeList == null)
+                return;
+
+            foreach (XmlNode node in nodeList)
+            {
+                var x = node.SelectSingleNode("x");
+                var y = node.SelectSingleNode("y");
+                var w = node.SelectSingleNode("width");
+                var h = node.SelectSingleNode("height");
+
+                var xOut = x != null ? Int32.Parse(x.InnerText) : 0;
+                var yOut = y != null ? Int32.Parse(y.InnerText) : 0;
+                var wOut = w != null ? Int32.Parse(w.InnerText) : 0;
+                var hOut = h != null ? Int32.Parse(h.InnerText) : 0;
+                var rect = new Rectangle(xOut, yOut, wOut, hOut);
+
+                var homeTile = new HomeTileLocation(rect, null);
+                HomeTileLocations.Add(homeTile);
             }
         }
+
         private static void Alert(String message)
         {
             MessageBox.Show(message);
         }
-
 
         public IModule Module
         {
@@ -116,11 +111,11 @@ namespace Project_Novi.Modules.Home
                 {
                     var content = moduleNames[0];
                     moduleNames.RemoveAt(0);
-                    tile.SetModuleName(content);
+                    tile.ModuleName = content;
                 }
                 else
                 {
-                    tile.SetModuleName();
+                    tile.ModuleName = null;
                 }
 
             }
@@ -131,12 +126,12 @@ namespace Project_Novi.Modules.Home
         {
             var homeModule = module as HomeModule;
             if (homeModule == null)
-                throw new ArgumentException("A MapView can only render the interface for a MapModule");
+                throw new ArgumentException("A HomeView can only render the interface for a HomeModule");
 
             _module = homeModule;
 
             RegisterTilesToModules(_controller);
-            
+
             if (DateTime.Now.Subtract(_lastSpokenTime).TotalMinutes > 10)
             {
                 _controller.Avatar.Say(_module.AvatarText);
@@ -149,18 +144,23 @@ namespace Project_Novi.Modules.Home
             foreach (HomeTileLocation tile in HomeTileLocations)
             {
                 string tileModuleName = null;
+                Bitmap tileModuleIcon = null;
                 if (tile.ModuleName != null)
                 {
-                    tileModuleName = _controller.ModuleManager.GetModule(tile.ModuleName).DisplayName;
+                    var mod = _controller.ModuleManager.GetModule(tile.ModuleName);
+                    tileModuleName = mod.DisplayName;
+                    tileModuleIcon = mod.Icon ?? Properties.Resources.tileIcon;
                 }
-                var btn = new TileButton(_controller, tileModuleName, Properties.Resources.icon_maps);
-                btn.Location = tile.Rectangle.Location;
-                btn.Size = tile.Rectangle.Size;
+                var btn = new TileButton(_controller, tileModuleName, tileModuleIcon);
 
                 if (tile.ModuleName == null)
                     btn.IsReleased = false;
                 else
                     btn.Click += btn_Click;
+
+                btn.Location = tile.Rectangle.Location;
+                btn.Size = tile.Rectangle.Size;
+
                 buttons.Add(btn);
                 count++;
             }

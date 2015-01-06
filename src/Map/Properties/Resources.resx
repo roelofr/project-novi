@@ -117,68 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AppDataFolder" xml:space="preserve">
-    <value>project-novi</value>
-  </data>
-  <data name="ProgramName" xml:space="preserve">
-    <value>Project Novi</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="based" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Head\Base\base.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mapicon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="blank" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\blank.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="T0x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\T0x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="closed_happy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Head\Face\Mouths\closed-happy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="T1x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\t1x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="closed_sad" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Head\Face\Mouths\closed-sad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="T2x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\t2x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="left_eye_blink1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Head\Face\Eyes\left-eye-blink1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="T3x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\t3x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="left_eye_blink2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Head\Face\Eyes\left-eye-blink2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="T4x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\t4x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="left_eye_blink3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Head\Face\Eyes\left-eye-blink3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="left_eye_open" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Head\Face\Eyes\left-eye-open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="open_happy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Head\Face\Mouths\open-happy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="open_round" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Head\Face\Mouths\open-round.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="open_sad" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Head\Face\Mouths\open-sad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="right_eye_blink1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Head\Face\Eyes\right-eye-blink1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="right_eye_blink2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Head\Face\Eyes\right-eye-blink2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="right_eye_blink3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Head\Face\Eyes\right-eye-blink3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="right_eye_open" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Avatar\Head\Face\Eyes\right-eye-open.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ontwerpWithBorder" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\design\ontwerpwithborder.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="home_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Design\home-button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tileIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Arrow-Up-Right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="pakket" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pakket.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="T5x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\t5x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

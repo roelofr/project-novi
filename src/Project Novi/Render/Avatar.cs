@@ -20,7 +20,6 @@ namespace Project_Novi.Render
         public enum Animated
         {
             Mouth,
-            Pupils,
             LeftEye,
             RightEye,
             Nose
@@ -34,24 +33,17 @@ namespace Project_Novi.Render
         private readonly List<Bitmap> _leftEyePinch = new List<Bitmap>()
         {
             Properties.Resources.left_eye_blink1,
-            Properties.Resources.left_eye_pinch,
-            Properties.Resources.left_eye_pinch,
+            Properties.Resources.left_eye_blink3,
+            Properties.Resources.left_eye_blink3,
             Properties.Resources.left_eye_blink1
         };
 
         private readonly List<Bitmap> _rightEyePinch = new List<Bitmap>()
         {
             Properties.Resources.right_eye_blink1,
-            Properties.Resources.right_eye_pinch,
-            Properties.Resources.right_eye_pinch,
+            Properties.Resources.right_eye_blink3,
+            Properties.Resources.right_eye_blink3,
             Properties.Resources.right_eye_blink1
-        };
-
-        private readonly List<Bitmap> _pupilsPinch = new List<Bitmap> {
-            Properties.Resources.pupils,
-            Properties.Resources.blank,
-            Properties.Resources.blank,
-            Properties.Resources.pupils
         };
 
         public string Saying { get; set; }
@@ -81,25 +73,12 @@ namespace Project_Novi.Render
         };
 
         /// <summary>
-        /// An animation for the blinking of the pupils.
-        /// </summary>
-        private readonly List<Bitmap> _pupilsBlink = new List<Bitmap> {
-            Properties.Resources.pupils,
-            Properties.Resources.pupils,
-            Properties.Resources.blank,
-            Properties.Resources.blank,
-            Properties.Resources.pupils,
-            Properties.Resources.pupils
-        };
-
-        /// <summary>
         /// A collection of animations for the different animated parts of the face.
         /// Every value is a list of points along which the element will be animated.
         /// </summary>
         private readonly Dictionary<Animated, List<Point>> _offsetAnimations = new Dictionary<Animated, List<Point>>
         {
             { Animated.Mouth, new List<Point>() },
-            { Animated.Pupils, new List<Point>() },
             { Animated.LeftEye, new List<Point>() },
             { Animated.RightEye, new List<Point>() },
             { Animated.Nose, new List<Point>() }
@@ -112,7 +91,6 @@ namespace Project_Novi.Render
         private readonly Dictionary<Animated, List<Bitmap>> _bitmapAnimations = new Dictionary<Animated, List<Bitmap>>
         {
             { Animated.Mouth, new List<Bitmap>() },
-            { Animated.Pupils, new List<Bitmap>() },
             { Animated.LeftEye, new List<Bitmap>() },
             { Animated.RightEye, new List<Bitmap>() },
             { Animated.Nose, new List<Bitmap>() }
@@ -249,14 +227,12 @@ namespace Project_Novi.Render
         {
             Animate(Animated.RightEye, _rightEyeBlink);
             Animate(Animated.LeftEye, _leftEyeBlink);
-            Animate(Animated.Pupils, _pupilsBlink);
         }
 
         public void Pinch()
         {
             Animate(Animated.LeftEye, _leftEyePinch);
             Animate(Animated.RightEye, _rightEyePinch);
-            Animate(Animated.Pupils, _pupilsPinch);
         }
 
         private Point GetAnimationOffset(Animated animated)
@@ -274,33 +250,36 @@ namespace Project_Novi.Render
             // Every part of the face should be scaled to make it look right.
             var scale = Math.Min(rectangle.Width / (float)Width,
                                  rectangle.Height / (float)Height);
-            var pupilOffset = GetAnimationOffset(Animated.Pupils);
             var faceOffset = GetAnimationOffset(Animated.LeftEye);
 
             var faceOffsetX = (int)(165 * scale + faceOffset.X * scale);
             var faceOffsetY = (int)(190 * scale + faceOffset.Y * scale);
-            var faceWidth = (int)(224 * scale);
-            var faceHeight = (int)(158 * scale);
-
-            var pupilOffsetX = faceOffsetX + (int)(33 * scale + pupilOffset.X * scale);
-            var pupilOffsetY = faceOffsetY + (int)(33 * scale + pupilOffset.Y * scale);
-            var pupilWidth = (int)(160 * scale);
-            var pupilHeight = (int)(18 * scale);
+            //var faceWidth = (int)(224 * scale);
+            //var faceHeight = (int)(158 * scale);
+            var leftEyeOffsetX = (int)(0 * scale);
+            var leftEyeOffsetY = (int)(47 * scale);
+            var rightEyeOffsetX = (int)(149 * scale);
+            var rightEyeOffsetY = (int)(50 * scale);
+            var eyeSizeX = (int)(85 * scale);
+            var eyeSizeY = (int)(47 * scale);
+            var mouthOffsetX = (int)(67 * scale); //67
+            var mouthOffsetY = (int)(170 * scale); //170
+            var mouthSizeX = (int)(100 * scale); //100
+            var mouthSizeY = (int)(46 * scale); //46
 
             var offsetX = (int)(rectangle.X + rectangle.Width / 2 - (Width / 2) * scale);
             var offsetY = (int)(rectangle.Bottom - Height * scale);
 
             var avatarRect = new Rectangle(offsetX, offsetY, (int)(Width * scale), (int)(Height * scale));
-            var faceRect = new Rectangle(offsetX + faceOffsetX, offsetY + faceOffsetY, faceWidth, faceHeight);
-            var pupilRect = new Rectangle(offsetX + pupilOffsetX, offsetY + pupilOffsetY, pupilWidth, pupilHeight);
+            //var faceRect = new Rectangle(offsetX + faceOffsetX, offsetY + faceOffsetY, faceWidth, faceHeight);
+            var leftEyeRect = new Rectangle(offsetX + faceOffsetX + leftEyeOffsetX, offsetY + faceOffsetY + leftEyeOffsetY, eyeSizeX, eyeSizeY);
+            var rightEyeRect = new Rectangle(offsetX + faceOffsetX + rightEyeOffsetX, offsetY + faceOffsetY + rightEyeOffsetY, eyeSizeX, eyeSizeY);
+            var mouthRect = new Rectangle(offsetX + faceOffsetX + mouthOffsetX, offsetY + faceOffsetY + mouthOffsetY, mouthSizeX, mouthSizeY);
 
             graphics.DrawImage(Properties.Resources.based, avatarRect);
-            graphics.DrawImage(Properties.Resources.vneck_green, avatarRect);
-            graphics.DrawImage(GetAnimationBitmap(Animated.LeftEye, Properties.Resources.left_eye_open), faceRect);
-            graphics.DrawImage(GetAnimationBitmap(Animated.RightEye, Properties.Resources.right_eye_open), faceRect);
-            graphics.DrawImage(GetAnimationBitmap(Animated.Pupils, Properties.Resources.pupils), pupilRect);
-            graphics.DrawImage(GetAnimationBitmap(Animated.Nose, Properties.Resources.nose), faceRect);
-            graphics.DrawImage(GetAnimationBitmap(Animated.Mouth, Properties.Resources.closed_happy), faceRect);
+            graphics.DrawImage(GetAnimationBitmap(Animated.LeftEye, Properties.Resources.left_eye_open), leftEyeRect);
+            graphics.DrawImage(GetAnimationBitmap(Animated.RightEye, Properties.Resources.right_eye_open), rightEyeRect);
+            graphics.DrawImage(GetAnimationBitmap(Animated.Mouth, Properties.Resources.closed_happy), mouthRect);
         }
     }
 }

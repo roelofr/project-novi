@@ -1,4 +1,5 @@
-﻿using Project_Novi.Api;
+﻿using System.Drawing;
+using Project_Novi.Api;
 using ForecastIO;
 
 namespace Weather
@@ -11,6 +12,11 @@ namespace Weather
         public string Name
         {
             get { return "Weather"; }
+        }
+
+        public Bitmap Icon
+        {
+            get { return null; }
         }
 
         public string DisplayName

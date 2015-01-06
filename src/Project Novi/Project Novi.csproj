@@ -91,11 +91,6 @@
     <Compile Include="Modules\Home\HomeModule.cs" />
     <Compile Include="Modules\Home\HomeView.cs" />
     <Compile Include="Modules\Home\HomeTileLocation.cs" />
-    <Compile Include="Modules\Map\NumPad.cs" />
-    <Compile Include="Modules\Map\NumPadOutput.cs" />
-    <Compile Include="Modules\Map\TouchButton.cs" />
-    <Compile Include="Modules\Map\MapModule.cs" />
-    <Compile Include="Modules\Map\MapView.cs" />
     <Compile Include="NoviController.cs" />
     <Compile Include="PasswordDialog.cs">
       <SubType>Form</SubType>
@@ -184,7 +179,6 @@
     <Resource Include="Resources\Avatar\Clothes\roundneck-green.png" />
     <Resource Include="Resources\Avatar\Clothes\vneck-green.png" />
     <Resource Include="Resources\Avatar\Head\Base\base.png" />
-    <Resource Include="Resources\Avatar\Head\Face\nose.png" />
     <Resource Include="Resources\Avatar\Head\Face\Mouths\closed-happy.png" />
     <Resource Include="Resources\Avatar\Head\Face\Mouths\closed-sad.png" />
     <Resource Include="Resources\Avatar\Head\Face\Mouths\open-happy.png" />
@@ -199,13 +193,10 @@
     <Resource Include="Resources\Avatar\Head\Face\Eyes\left-eye-blink2.png" />
     <Resource Include="Resources\Avatar\Head\Face\Eyes\left-eye-blink3.png" />
     <Resource Include="Resources\Avatar\Head\Face\Eyes\left-eye-open.png" />
-    <Resource Include="Resources\Avatar\Head\Face\Eyes\left-eye-pinch.png" />
-    <Resource Include="Resources\Avatar\Head\Face\Eyes\pupils.png" />
     <Resource Include="Resources\Avatar\Head\Face\Eyes\right-eye-blink1.png" />
     <Resource Include="Resources\Avatar\Head\Face\Eyes\right-eye-blink2.png" />
     <Resource Include="Resources\Avatar\Head\Face\Eyes\right-eye-blink3.png" />
     <Resource Include="Resources\Avatar\Head\Face\Eyes\right-eye-open.png" />
-    <Resource Include="Resources\Avatar\Head\Face\Eyes\right-eye-pinch.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Design\ontwerpWithBorder.jpg" />
@@ -221,24 +212,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\pakket.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\T0x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\T1x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\T3x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\T4x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\T5x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\T2x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild">
