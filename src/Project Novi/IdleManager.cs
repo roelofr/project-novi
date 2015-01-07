@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project_Novi.Api;
+using System;
 using System.Runtime.InteropServices;
 
 namespace Project_Novi
@@ -36,9 +37,21 @@ namespace Project_Novi
             return (uint)idleTicks;
         }
 
-        public static bool CheckIdle()
+        public static bool CheckIdle(IModule module)
         {
-            if (GetIdleTime() > 60)
+            if (module.Name.Equals("Home"))
+            {
+                return CheckIdleTime(10);
+            }
+            else
+            {
+                return CheckIdleTime(3);
+            }            
+        }
+
+        private static bool CheckIdleTime(int time)
+        {
+            if (GetIdleTime() > time)
             {
                 if (_isIdle)
                 {
@@ -52,5 +65,6 @@ namespace Project_Novi
             }
             return _isIdle;
         }
+            
     }
 }

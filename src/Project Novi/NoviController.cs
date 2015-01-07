@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using Project_Novi.Api;
 using Project_Novi.Render;
+using System.Collections.Generic;
 
 namespace Project_Novi
 {
@@ -97,9 +98,25 @@ namespace Project_Novi
 
         public void GoIdle()
         {
-            if (IdleManager.CheckIdle())
+            if (IdleManager.CheckIdle(_module))
             {
-                SelectModule(ModuleManager.GetModule("Home"));
+                List<String> moduleNames = ModuleManager.GetModuleNameList();
+                List<IModule> modules = new List<IModule>();
+                List<IModule> rotatableModules = new List<IModule>();
+                foreach (var name in moduleNames)
+                {
+                    modules.Add(ModuleManager.GetModule(name));
+                }
+                foreach (var module in modules)
+                {
+                    if (module.Rotatable && module != _module)
+                    {
+                        rotatableModules.Add(module);
+                    }
+                }
+                Random rand = new Random();
+                var randomModule = rand.Next(0, rotatableModules.Count);
+                SelectModule(ModuleManager.GetModule(rotatableModules[randomModule].Name));
             }
         }
 
