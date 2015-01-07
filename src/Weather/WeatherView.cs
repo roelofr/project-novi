@@ -12,6 +12,11 @@ namespace Weather
         private IController _controller;
         private WeatherModule _module;
 
+        private static readonly string[] _directions =
+        {
+            "N", "NO", "O", "ZO", "Z", "ZW", "W", "NW"
+        };
+
         public Type ModuleType
         {
             get { return typeof(WeatherModule); }
@@ -57,11 +62,17 @@ namespace Weather
             var culture = new System.Globalization.CultureInfo("nl-NL");
             var dayName = culture.DateTimeFormat.GetDayName(UnixTimeStampToDateTime(day.time).DayOfWeek);
 
+            var str = String.Format("{0}\n{1}°C tot {2}°C\n\n\nwindsnelheid:{3} km/u {4}", dayName,
+                Math.Round(day.temperatureMin),
+                Math.Round(day.temperatureMax),
+                Math.Round(day.windSpeed * 3.6),
+                _directions[(int)Math.Round(day.windBearing / 360 * 8) % 8]);
+
             graphics.DrawImage(image, rectangle.X, rectangle.Y, width, height);
-            graphics.DrawString(String.Format("{0}\n{1}°C tot {2}°C", dayName, Math.Round(day.temperatureMin), Math.Round(day.temperatureMax)),
+            graphics.DrawString(
+                str,
                 font, Brushes.White,
                 new Rectangle(rectangle.X, rectangle.Y + height, width, rectangle.Height - height));
-
         }
 
         private static void RenderDay(Graphics graphics, Currently today, Rectangle rectangle)
@@ -71,8 +82,15 @@ namespace Weather
             var width = (int)(rectangle.Width * 0.7);
             var height = (int)(image.Height * ((float)width / image.Width));
 
+            var str = String.Format("{0}\n{1}°C\nvoelt als {2}°C\n\nwindsnelheid:\n{3} km/u {4}", "vandaag",
+                Math.Round(today.temperature),
+                Math.Round(today.apparentTemperature),
+                Math.Round(today.windSpeed * 3.6),
+                _directions[(int)Math.Round(today.windBearing / 360 * 8) % 8]);
+
             graphics.DrawImage(image, rectangle.X, rectangle.Y, width, height);
-            graphics.DrawString(String.Format("{0}\n{1}°C\nvoelt als {2}°C", "vandaag", Math.Round(today.temperature), Math.Round(today.apparentTemperature)),
+            graphics.DrawString(
+                str,
                 font, Brushes.White,
                 new Rectangle(rectangle.X, rectangle.Y + height, rectangle.Width, rectangle.Height - height));
         }
