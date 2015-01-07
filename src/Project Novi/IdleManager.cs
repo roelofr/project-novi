@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Project_Novi.Api;
+using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace Project_Novi
@@ -6,45 +8,64 @@ namespace Project_Novi
     class IdleManager
     {
         private static bool _isIdle;
-        [DllImport("user32.dll")]
-        public static extern Boolean GetLastInputInfo(ref LastInputInfo plii);
-        internal struct LastInputInfo
+        //[DllImport("user32.dll")]
+        //public static extern Boolean GetLastInputInfo(ref LastInputInfo plii);
+        //internal struct LastInputInfo
+        //{
+        //    public uint CbSize;
+
+        //    public uint DwTime;
+        //}
+
+        //public static uint GetIdleTime()
+        //{   
+        //    // The number of ticks that passed since last input    
+        //    long idleTicks = 0;
+        //    // Set the struct    
+        //    LastInputInfo lastInputInfo = new LastInputInfo();
+        //    lastInputInfo.CbSize = (uint)Marshal.SizeOf(lastInputInfo);
+        //    lastInputInfo.DwTime = 0;
+
+        //    // If we have a value from the function    
+        //    if (GetLastInputInfo(ref lastInputInfo))
+        //    {
+        //        // Get the number of ticks at the point when the last activity was seen    
+        //        var lastInputTicks = lastInputInfo.DwTime;
+        //        // Number of idle ticks = system uptime ticks - number of ticks at last input    
+        //        idleTicks = (Environment.TickCount - lastInputTicks) / 1000;
+        //    }
+
+        //    return (uint)idleTicks;
+        //}
+        public static Stopwatch idleTimer { get; set; }
+
+        public static bool CheckIdle(IModule module)
         {
-            public uint CbSize;
-
-            public uint DwTime;
-        }
-
-        public static uint GetIdleTime()
-        {   
-            // The number of ticks that passed since last input    
-            long idleTicks = 0;
-            // Set the struct    
-            LastInputInfo lastInputInfo = new LastInputInfo();
-            lastInputInfo.CbSize = (uint)Marshal.SizeOf(lastInputInfo);
-            lastInputInfo.DwTime = 0;
-
-            // If we have a value from the function    
-            if (GetLastInputInfo(ref lastInputInfo))
+            if (idleTimer == null)
             {
-                // Get the number of ticks at the point when the last activity was seen    
-                var lastInputTicks = lastInputInfo.DwTime;
-                // Number of idle ticks = system uptime ticks - number of ticks at last input    
-                idleTicks = (Environment.TickCount - lastInputTicks) / 1000;
+                idleTimer = new Stopwatch();
+                idleTimer.Start();
             }
-
-            return (uint)idleTicks;
+            if (module.Name.Equals("Home"))
+            {
+                return CheckIdleTime(120);
+            }
+            else
+            {
+                return CheckIdleTime(60);
+            }            
         }
 
-        public static bool CheckIdle()
+        private static bool CheckIdleTime(int time)
         {
-            if (GetIdleTime() > 60)
+            if (idleTimer.ElapsedMilliseconds > time * 1000)
             {
                 if (_isIdle)
                 {
                     return false;
                 }
                 _isIdle = true;
+                idleTimer.Restart();
             }
             else
             {
@@ -52,5 +73,6 @@ namespace Project_Novi
             }
             return _isIdle;
         }
+            
     }
 }

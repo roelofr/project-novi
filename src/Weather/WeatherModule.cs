@@ -33,6 +33,11 @@ namespace Weather
             get { return "Weer"; }
         }
 
+        public bool Rotatable
+        {
+            get { return false; }
+        }
+
         public void Initialize(IController controller)
         {
             _controller = controller;

@@ -23,6 +23,11 @@ namespace Map
             get { return "Kaart"; }
         }
 
+        public bool Rotatable
+        {
+            get { return false; }
+        }
+
         public void Initialize(IController controller)
         {
             _controller = controller;

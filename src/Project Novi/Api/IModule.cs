@@ -24,6 +24,11 @@ namespace Project_Novi.Api
         string DisplayName { get; }
 
         /// <summary>
+        /// Defines if module can be used upon idle
+        /// </summary>
+        bool Rotatable { get; }
+
+        /// <summary>
         /// Called when the module is loaded into the application.
         /// Note that this does not mean the module will actually be used at this time.
         /// </summary>
