@@ -1,25 +1,32 @@
 <Strings>
   <username1>
+	<tag>WindesheimICT</tag>
     <Username>WindesheimICT</Username>
   </username1>
 
   <username2>
+	<tag>Windesheiminfo</tag>
     <Username>Windesheiminfo</Username>
   </username2>
 
   <username3>
+	<tag>NUnl</tag>
     <Username>NUnl</Username>
   </username3>
 
-  <hashtag1>
-    <Hashtag>Windesheim</Hashtag>
-  </hashtag1>
+  <username4>
+	<type>Windesheim</type>
+    <Username>Windesheim</Username>
+  </username4>
 
-  <hashtag2>
-    <Hashtag>ICT</Hashtag>
-  </hashtag2>
+  <username5>
+	<type>ICT</type>
+    <Username>ICT</Username>
+  </username5>
+  
 
-  <hashtag3>
-    <Hashtag>Zwolle</Hashtag>
-  </hashtag3>
+  <username6>
+	<type>Zwolle</type>
+    <Username>Zwolle</Username>
+  </username6>
 </Strings>

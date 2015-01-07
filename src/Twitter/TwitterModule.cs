@@ -18,7 +18,7 @@ namespace Twitter
 {
     public class TwitterModule : IModule
     {
-        
+
         public List<Tweet> tweets1 = new List<Tweet>();
         public List<Tweet> tweets2 = new List<Tweet>();
         public List<Tweet> tweets3 = new List<Tweet>();
@@ -33,23 +33,25 @@ namespace Twitter
         public Image usernameImage2;
         public Image usernameImage3;
 
+        WebClient wc = new WebClient();
+
         public List<Image> hashtagImage1 = new List<Image>();
         public List<Image> hashtagImage2 = new List<Image>();
         public List<Image> hashtagImage3 = new List<Image>();
 
 
         private Tweet tweet;
-        WebClient wc = new WebClient();
+
 
         private const string Username1 = "1";
         private const string Username2 = "2";
         private const string Username3 = "3";
+        private const string Username4 = "4";
+
+        private const string Username5 = "5";
+        private const string Username6 = "6";
         public string twitterAccountToDisplay = GetUsernameTwitter("username" + Username1);
 
-        private const string Hashtag1 = "1";
-        private const string Hashtag2 = "2";
-        private const string Hashtag3 = "3";
-        public string twitterHashtagToDisplay;
 
 
         public string Name
@@ -80,11 +82,6 @@ namespace Twitter
 
         private void Update()
         {
-            tweets1.Clear();
-            tweets2.Clear();
-            tweets3.Clear();
-            accounts.Clear();
-            hashtags.Clear();
             const string accessToken = "2913538690-VtwNfPvdm17B16HmUwTMYbOUnXxxAXg3nJCPQG0";
             const string accessTokenSecret = "lRl45rfuVtwDNqiG0n0ioMOuwyKyvIqzOyZi3owczM43d";
             const string consumerKey = "HmvQgWj0nSthuP31zFV0dURCY";
@@ -106,7 +103,7 @@ namespace Twitter
             var xmlDoc = new XmlDocument();
             xmlDoc.Load("TwitterSettings.xml");
             XmlElement root = xmlDoc.DocumentElement;
-            XmlNodeList elemList = root.GetElementsByTagName("Username");
+            XmlNodeList elemList = root.GetElementsByTagName("tag");
             Console.WriteLine(elemList.Count);
             for (int i = 0; i < elemList.Count; i++)
             {
@@ -163,20 +160,22 @@ namespace Twitter
                     }
                 }
             }
-                XmlNodeList elemList2 = root.GetElementsByTagName("Hashtag");
-                Console.WriteLine(elemList2.Count);
-                for (int i = 0; i < elemList2.Count; i++)
-                {
-                    hashtags.Add(elemList2[i].InnerXml);
-                    var hashtagss = from tweet in twitterContext.Search
-                                    where tweet.Type == SearchType.Search &&
-                                          tweet.Query == "#" + elemList2[i].InnerXml &&
-                                          tweet.Count == 4 &&
-                                          tweet.IncludeEntities == true
-                                    select tweet;
+            XmlNodeList elemList2 = root.GetElementsByTagName("type");
+            Console.WriteLine(elemList2.Count);
+            for (int i = 0; i < elemList2.Count; i++)
+            {
+                hashtags.Add(elemList2[i].InnerXml);
+                var hashtagtweet = from tweet in twitterContext.Search
+                                   where tweet.Type == SearchType.Search &&
+                                         tweet.Query == "#" + elemList2[i].InnerXml &&
+                                         tweet.Count == 4 &&
+                                         tweet.IncludeEntities == true
+                                   select tweet;
 
-                    int j = 0;
-                    foreach (var twit in hashtagss)
+
+                foreach (var twit in hashtagtweet)
+                {
+                    for (int j = 0; j < 4; j++)
                     {
                         tweet = new Tweet(twit.Statuses[j].User.Name, twit.Statuses[j].CreatedAt, twit.Statuses[j].Text);
 
@@ -192,7 +191,9 @@ namespace Twitter
                         {
                             hashtags3.Add(tweet);
                         }
-
+                    }
+                    for (int j = 0; j < 4; j++)
+                    {
                         byte[] bytes = wc.DownloadData(twit.Statuses[j].User.ProfileImageUrl);
                         MemoryStream ms = new MemoryStream(bytes);
                         System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
@@ -201,22 +202,17 @@ namespace Twitter
                         {
                             hashtagImage1.Add(img);
                         }
-                        if (i == 0)
+                        if (i == 1)
                         {
                             hashtagImage2.Add(img);
                         }
-                        if (i == 0)
+                        if (i == 2)
                         {
                             hashtagImage3.Add(img);
                         }
-
-
-                        j++;
                     }
-
                 }
-
-            
+            }
         }
 
         private void UpdateThread()
@@ -233,7 +229,7 @@ namespace Twitter
                     previousUpdate = DateTime.Now;
                 }
             }
-           
+
 
         }
 
@@ -250,19 +246,6 @@ namespace Twitter
             return nodeList[0].InnerText;
         }
 
-        public static string GetHashtagTwitter(string hashtagNumber)
-        {
-            //username1
-            //username2
-            //username3
-            var xmlDoc = new XmlDocument();
-            xmlDoc.Load("TwitterSettings.xml");
-
-            var nodeList = xmlDoc.DocumentElement.SelectNodes(String.Format("/Strings/{0}/Hashtag", hashtagNumber));
-
-            return nodeList[0].InnerText;
-        }
-
         public void Start()
         {
 
@@ -270,7 +253,18 @@ namespace Twitter
 
         public void Stop()
         {
+            //tweets1.Clear();
+            //tweets2.Clear();
+            //tweets3.Clear();
+            //accounts.Clear();
+            //hashtags.Clear();
+            //hashtagImage1.Clear();
+            //hashtagImage2.Clear();
+            //hashtagImage3.Clear();
 
+            //hashtags1.Clear();
+            //hashtags2.Clear();
+            //hashtags3.Clear();
         }
     }
 }
