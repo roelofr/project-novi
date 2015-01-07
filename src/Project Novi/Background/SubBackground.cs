@@ -11,10 +11,10 @@ namespace Project_Novi.Background
         private const int ModuleOffsetX = 500;
         private const int ModuleOffsetY = 200;
         private const int FontSize = 30;
-        private const int BackButtonSize = 150;
+        private const int BackButtonSize = 90;
 
         private Rectangle _avatar;
-        private readonly Rectangle _backButton = new Rectangle(20, 1080 - BackButtonSize, BackButtonSize, BackButtonSize);
+        private readonly Rectangle _backButton = new Rectangle(20, 1070 - BackButtonSize, BackButtonSize, BackButtonSize);
 
         private Rectangle _textRect = new Rectangle(0, 100, ModuleOffsetX, 500);
         private readonly StringFormat _stringFormat = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
