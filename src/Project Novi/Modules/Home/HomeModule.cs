@@ -22,6 +22,11 @@ namespace Project_Novi.Modules.Home
             get { return "Home"; }
         }
 
+        public bool Rotatable
+        {
+            get { return true; }
+        }
+
         public void Initialize(IController controller)
         {
             _controller = controller;

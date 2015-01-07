@@ -16,9 +16,9 @@ namespace Map
         public bool Enabled { get; set; }
         private readonly Stopwatch _touchTimer;
         public Stopwatch ActiveTimer;
-        private const int EnabledButton = 200;
-        private const int DisabledButton = 150;
-        private const int TouchedButton = 255;
+        private const int EnabledButton = 150;
+        private const int DisabledButton = 100;
+        private const int TouchedButton = 200;
 
         private readonly StringFormat _formatText = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
         public TouchButton(int x, int y, int width, int height, string value, Color buttoncolor, Color textcolor, Font font)
