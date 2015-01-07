@@ -9,17 +9,28 @@ using Project_Novi.Background;
 using System.Net;
 using System.IO;
 using System.Drawing;
+using System.Xml;
+using Project_Novi;
 
 namespace Twitter
 {
     public class TwitterModule : IModule
     {
-        public List<string> berichten = new List<string>();
-        public List<Image> pictures = new List<Image>();
-        public List<Tweet> tweets = new List<Tweet>();
+        
+        public List<Tweet> tweets1 = new List<Tweet>();
+        public List<Tweet> tweets2 = new List<Tweet>();
+        public List<Tweet> tweets3 = new List<Tweet>();
+        public List<string> accounts = new List<string>();
 
-        public string twitterAccountToDisplay = "windesheimICT";
+        public Image usernameImage1;
+        public Image usernameImage2;
+        public Image usernameImage3;
         private Tweet tweet;
+        WebClient wc = new WebClient();
+        private const string Username1 = "1";
+        private const string Username2 = "2";
+        private const string Username3 = "3";
+        public string twitterAccountToDisplay = GetUsernameTwitter("username" + Username2);
 
 
         public string Name
@@ -36,12 +47,26 @@ namespace Twitter
         {
         }
 
-        public void Start(){
+        public static string GetUsernameTwitter(string usernameNumber)
+        {
+            //username1
+            //username2
+            //username3
+            var xmlDoc = new XmlDocument();
+            xmlDoc.Load("TwitterSettings.xml");
 
-            const string accessToken = "233587186-jNv7a0eqNBYlSwhYpmI8eg4OOkztPQ7YOrgMkRBf";
-            const string accessTokenSecret = "j856eyllBbhNzClgwjJH7va1xqjxyLzl3qLHUd9guCqq0";
-            const string consumerKey = "qM7PpwbKslZjnKEBUJ85sOUic";
-            const string consumerSecret = "FlBXh2FTQrDqXTTge4vB7I1kmCHii67qF04BQ7I6z7zIWjrYDL";
+            var nodeList = xmlDoc.DocumentElement.SelectNodes(String.Format("/Strings/{0}/String", usernameNumber));
+
+            return nodeList[0].InnerText;
+        }
+
+        public void Start()
+        {
+
+            const string accessToken = "2913538690-VtwNfPvdm17B16HmUwTMYbOUnXxxAXg3nJCPQG0";
+            const string accessTokenSecret = "lRl45rfuVtwDNqiG0n0ioMOuwyKyvIqzOyZi3owczM43d";
+            const string consumerKey = "HmvQgWj0nSthuP31zFV0dURCY";
+            const string consumerSecret = "TejpuAZ51rmoVxizZxkL7pHvIGArCEKMYUv4xi1THvCKyGIYFE";
 
             var authorizer = new SingleUserAuthorizer
             {
@@ -55,38 +80,76 @@ namespace Twitter
             };
             var twitterContext = new TwitterContext(authorizer);
 
-            var statusTweets = from tweet in twitterContext.Status
-                               where tweet.Type == StatusType.User &&
-                                       tweet.ScreenName == twitterAccountToDisplay &&
-                                       tweet.IncludeContributorDetails == true &&
-                                       tweet.Count == 5 &&
-                                       tweet.IncludeEntities == true
-                               select tweet;
 
-            foreach (var statusTweet in statusTweets)
+            var xmlDoc = new XmlDocument();
+            xmlDoc.Load("TwitterSettings.xml");
+            XmlElement root = xmlDoc.DocumentElement;
+            XmlNodeList elemList = root.GetElementsByTagName("String");
+            Console.WriteLine(elemList.Count);
+            for (int i = 0; i < elemList.Count; i++)
             {
-                tweet = new Tweet(statusTweet.ScreenName, statusTweet.CreatedAt, statusTweet.Text);
-                tweets.Add(tweet);  
-            }
+                accounts.Add(elemList[i].InnerXml);
 
-            var profilePicture = from tweet in twitterContext.User
-                                 where tweet.Type == UserType.Show &&
-                                        tweet.ScreenName == twitterAccountToDisplay
-                                 select tweet.ProfileImageUrl;
+                var statusTweets = from tweet in twitterContext.Status
+                                   where tweet.Type == StatusType.User &&
+                                         tweet.ScreenName == elemList[i].InnerXml &&
+                                         tweet.IncludeContributorDetails == true &&
+                                         tweet.Count == 3 &&
+                                         tweet.IncludeEntities == true
+                                   select tweet;
 
-            foreach (var pic in profilePicture)
-            {
-                WebClient wc = new WebClient();
-                byte[] bytes = wc.DownloadData(pic);
-                MemoryStream ms = new MemoryStream(bytes);
-                System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
-                pictures.Add(img);
+                foreach (var statusTweet in statusTweets)
+                {
+                    tweet = new Tweet(statusTweet.ScreenName, statusTweet.CreatedAt, statusTweet.Text);
+                    if (i == 0)
+                    {
+                        tweets1.Add(tweet);
+                    }
+                    if (i == 1)
+                    {
+                        tweets2.Add(tweet);
+                    }
+                    if (i == 2)
+                    {
+                        tweets3.Add(tweet);
+                    }
+                    
+                }
+
+                var profilePicture = from tweet in twitterContext.User
+                                     where tweet.Type == UserType.Show &&
+                                     tweet.ScreenName == elemList[i].InnerXml
+                                     select tweet.ProfileImageUrl;
+
+                foreach (var pic in profilePicture)
+                {
+                    byte[] bytes = wc.DownloadData(pic);
+                    MemoryStream ms = new MemoryStream(bytes);
+                    System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
+                  
+                    if (i == 0)
+                    {
+                        usernameImage1 = img;
+                    }
+                    if (i == 1)
+                    {
+                        usernameImage2 = img;
+                    }
+                    if (i == 2)
+                    {
+                        usernameImage3 = img;
+                    }
+                }
+                
             }
         }
-
         public void Stop()
         {
-            tweets.Clear();
+            tweets1.Clear();
+            tweets2.Clear();
+            tweets3.Clear();
+            accounts.Clear();
+            
         }
     }
 }
