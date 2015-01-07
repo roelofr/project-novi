@@ -45,7 +45,7 @@ namespace Project_Novi
 
             if (BackgroundView != null)
             {
-                BackgroundView.Render(g, windowRectangle);
+                BackgroundView.Render(g, windowRectangle, _controller);
                 var moduleRect = BackgroundView.GetModuleRectangle(windowRectangle);
                 
                 // Make the module believe it's drawing at 0,0

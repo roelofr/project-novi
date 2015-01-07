@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using Project_Novi.Api;
 using Project_Novi.Text;
 
 namespace Project_Novi.Background
@@ -123,8 +124,8 @@ namespace Project_Novi.Background
             var timeFormat = new StringFormat { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Center };
             var dateFormat = new StringFormat { Alignment = StringAlignment.Far, LineAlignment = StringAlignment.Center };
 
-            var timeRect = new Rectangle(1620, 40, 300, 40);
-            var dateRect = new Rectangle(0, 40, 1620, 40);
+            var timeRect = new Rectangle(1700, 40, 300, 40);
+            var dateRect = new Rectangle(0, 40, 1700, 40);
             var specialDayRect = new Rectangle(dateRect.X, dateRect.Y + 40, dateRect.Width, dateRect.Height);
 
             var timeText = GetTime();
@@ -141,6 +142,17 @@ namespace Project_Novi.Background
             graphics.DrawString(timeText, strFont, Brushes.White, timeRect, timeFormat);
             graphics.DrawString(dateText, strFont, Brushes.White, dateRect, dateFormat);
             graphics.DrawString(specialText, strFont, specialBrush, specialDayRect, dateFormat);
+        }
+
+        public static void DrawWidgets(Graphics graphics, List<IBackgroundWidget> widgets)
+        {
+            int widgetX = 100;
+            foreach (var widget in widgets)
+            {
+                var rect = new Rectangle(widgetX, 5, 200, 100);
+                widget.Render(graphics, rect);
+                widgetX += 200;
+            }
         }
 
     }

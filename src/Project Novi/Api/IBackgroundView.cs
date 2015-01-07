@@ -23,7 +23,7 @@ namespace Project_Novi.Api
         /// </summary>
         /// <param name="graphics">The Graphics to use for drawing.</param>
         /// <param name="rectangle">The Rectangle within which the background should be drawn.</param>
-        void Render(Graphics graphics, Rectangle rectangle);
+        void Render(Graphics graphics, Rectangle rectangle, IController controller);
 
         /// <summary>
         /// This background view becomes the active background view.

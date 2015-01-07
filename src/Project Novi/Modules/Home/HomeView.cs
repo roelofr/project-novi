@@ -143,15 +143,17 @@ namespace Project_Novi.Modules.Home
             int count = 1;
             foreach (HomeTileLocation tile in HomeTileLocations)
             {
-                string tileModuleName = null;
-                Bitmap tileModuleIcon = null;
+                TileButton btn = null;
+
                 if (tile.ModuleName != null)
                 {
                     var mod = _controller.ModuleManager.GetModule(tile.ModuleName);
-                    tileModuleName = mod.DisplayName;
-                    tileModuleIcon = mod.Icon ?? Properties.Resources.tileIcon;
+                    btn = new TileButton(_controller, mod.DisplayName, mod);
                 }
-                var btn = new TileButton(_controller, tileModuleName, tileModuleIcon);
+                else
+                {
+                    btn = new TileButton(_controller, null, null);
+                }
 
                 if (tile.ModuleName == null)
                     btn.IsReleased = false;
