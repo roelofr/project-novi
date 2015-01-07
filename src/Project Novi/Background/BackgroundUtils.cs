@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
+using Project_Novi.Properties;
 using Project_Novi.Text;
 
 namespace Project_Novi.Background
@@ -16,9 +18,10 @@ namespace Project_Novi.Background
             "juli", "augustus", "september",
             "oktober", "november", "december"
         };
+
         private static readonly String[] DaysOfWeeks =
         {
-            "zondag", "maandag", "dinsdag","woensdag","donderdag","vrijdag","zaterdag"
+            "zondag", "maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag"
         };
 
         private static DateTime _currentDate = DateTime.MinValue;
@@ -52,10 +55,11 @@ namespace Project_Novi.Background
         {
             try
             {
-                var timeString = String.Format("{2}-{1}-{0} 00:00:00Z", ZeroFill(Day), ZeroFill(Month), DateTime.Now.Year);
+                var timeString = String.Format("{2}-{1}-{0} 00:00:00Z", ZeroFill(Day), ZeroFill(Month),
+                    DateTime.Now.Year);
                 Console.WriteLine("Parsing {0} for {1}", timeString, description);
 
-                var output = DateTime.ParseExact(timeString, "u", System.Globalization.CultureInfo.InvariantCulture);
+                var output = DateTime.ParseExact(timeString, "u", CultureInfo.InvariantCulture);
                 var da = new DateAssociation(output, description);
 
                 Dates.Add(da);
@@ -98,15 +102,23 @@ namespace Project_Novi.Background
 
         public static String GetDate()
         {
-            var now = DateTime.Now;
-            return String.Format("{0} {1} {2} {3}", DaysOfWeeks[(int)now.DayOfWeek], now.Day, Months[now.Month - 1], now.Year);
+            return GetDate(DateTime.Now);
+        }
+
+        public static String GetDate(DateTime time)
+        {
+            return String.Format("{0} {1} {2} {3}", DaysOfWeeks[(int) time.DayOfWeek], time.Day, Months[time.Month - 1],
+                time.Year);
         }
 
         public static String GetTime()
         {
-            var now = DateTime.Now;
-            return String.Format("{0}:{1}:{2}", now.Hour, ZeroFill(now.Minute), ZeroFill(now.Second));
+            return GetTime(DateTime.Now);
+        }
 
+        public static String GetTime(DateTime time)
+        {
+            return String.Format("{0}:{1}:{2}", time.Hour, ZeroFill(time.Minute), ZeroFill(time.Second));
         }
 
         /**
@@ -115,13 +127,13 @@ namespace Project_Novi.Background
 
         public static void DrawBackground(Graphics g)
         {
-            g.DrawImage(Properties.Resources.ontwerpWithBorder, 0, 0, 1920, 1080);
+            g.DrawImage(Resources.ontwerpWithBorder, 0, 0, 1920, 1080);
         }
 
         public static void DrawClock(Graphics graphics)
         {
-            var timeFormat = new StringFormat { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Center };
-            var dateFormat = new StringFormat { Alignment = StringAlignment.Far, LineAlignment = StringAlignment.Center };
+            var timeFormat = new StringFormat {Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Center};
+            var dateFormat = new StringFormat {Alignment = StringAlignment.Far, LineAlignment = StringAlignment.Center};
 
             var timeRect = new Rectangle(1620, 40, 300, 40);
             var dateRect = new Rectangle(0, 40, 1620, 40);
@@ -142,6 +154,5 @@ namespace Project_Novi.Background
             graphics.DrawString(dateText, strFont, Brushes.White, dateRect, dateFormat);
             graphics.DrawString(specialText, strFont, specialBrush, specialDayRect, dateFormat);
         }
-
     }
 }
