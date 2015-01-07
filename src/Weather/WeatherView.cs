@@ -32,6 +32,7 @@ namespace Weather
                 throw new ArgumentException("A WeatherView can only render the interface for a WeatherModule");
 
             _module = weatherModule;
+            _controller.Avatar.Say(_module.WeatherResponse.currently.summary);
         }
 
         public void Detach()
@@ -53,8 +54,11 @@ namespace Weather
             var width = (int)(rectangle.Width * 0.7);
             var height = (int)(image.Height * ((float)width / image.Width));
 
+            var culture = new System.Globalization.CultureInfo("nl-NL");
+            var dayName = culture.DateTimeFormat.GetDayName(UnixTimeStampToDateTime(day.time).DayOfWeek);
+
             graphics.DrawImage(image, rectangle.X, rectangle.Y, width, height);
-            graphics.DrawString(String.Format("{0}\n{1}°C tot {2}°C", UnixTimeStampToDateTime(day.time).DayOfWeek, Math.Round(day.temperatureMin), Math.Round(day.temperatureMax)),
+            graphics.DrawString(String.Format("{0}\n{1}°C tot {2}°C", dayName, Math.Round(day.temperatureMin), Math.Round(day.temperatureMax)),
                 font, Brushes.White,
                 new Rectangle(rectangle.X, rectangle.Y + height, width, rectangle.Height - height));
 
@@ -68,7 +72,7 @@ namespace Weather
             var height = (int)(image.Height * ((float)width / image.Width));
 
             graphics.DrawImage(image, rectangle.X, rectangle.Y, width, height);
-            graphics.DrawString(String.Format("{0}\n{1}°C\nvoelt als {2}°C", "Vandaag", Math.Round(today.temperature), Math.Round(today.apparentTemperature)),
+            graphics.DrawString(String.Format("{0}\n{1}°C\nvoelt als {2}°C", "vandaag", Math.Round(today.temperature), Math.Round(today.apparentTemperature)),
                 font, Brushes.White,
                 new Rectangle(rectangle.X, rectangle.Y + height, rectangle.Width, rectangle.Height - height));
         }
