@@ -5,7 +5,6 @@ using System.Reflection;
 using System.Windows.Forms;
 using Project_Novi.Api;
 using Project_Novi.Modules.Home;
-using Project_Novi.Modules.Map;
 
 namespace Project_Novi
 {
@@ -68,9 +67,6 @@ namespace Project_Novi
         {
             AddModule(new HomeModule());
             AddView(new HomeView());
-
-            AddModule(new MapModule());
-            AddView(new MapView());
         }
 
         internal void LoadModules()
@@ -78,12 +74,13 @@ namespace Project_Novi
             LoadLocalModules();
             var path = Application.StartupPath + @"\modules\";
             Directory.CreateDirectory(path);
-            var pluginFiles = Directory.GetFiles(path, "*.dll");
+            var pluginFiles = Directory.GetFiles(path, @"*.dll", SearchOption.AllDirectories);
+
+            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
 
             foreach (var args in pluginFiles)
             {
                 var assembly = Assembly.LoadFile(args);
-
                 try
                 {
                     foreach (var t in assembly.GetTypes())
@@ -102,6 +99,15 @@ namespace Project_Novi
                 catch { }
             }
 
+        }
+
+        static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            char[] splitter = { ',' };
+            var name = args.Name.Split(splitter)[0] + ".dll";
+            var file =
+                Directory.GetFiles(Application.StartupPath, name, SearchOption.AllDirectories)[0];
+            return Assembly.LoadFrom(file);
         }
     }
 }

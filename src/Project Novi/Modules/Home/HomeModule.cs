@@ -1,4 +1,5 @@
-﻿using Project_Novi.Api;
+﻿using System.Drawing;
+using Project_Novi.Api;
 
 namespace Project_Novi.Modules.Home
 {
@@ -9,6 +10,11 @@ namespace Project_Novi.Modules.Home
         public string Name
         {
             get { return "Home"; }
+        }
+
+        public Bitmap Icon
+        {
+            get { return null; }
         }
 
         public string DisplayName
@@ -28,7 +34,7 @@ namespace Project_Novi.Modules.Home
 
         public void Start()
         {
-            //Available categories: Welkom, Poke, Idle, Kaart, RouteVragen, RouteBerekenen en BerekendeRoute
+            //Available categories: Welkom, Poke, Idle, Kaart, RouteVragen
             //Let op: Exact overnemen!!!
             AvatarText = Text.TextManager.GetText("Welkom");
             _controller.Touch += controller_Touch;

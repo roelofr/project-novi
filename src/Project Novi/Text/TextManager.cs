@@ -3,7 +3,7 @@ using System.Xml;
 
 namespace Project_Novi.Text
 {
-    static class TextManager
+    public static class TextManager
     {
         public static String GetText(string category)
         {
@@ -12,7 +12,7 @@ namespace Project_Novi.Text
 
             var nodeList = xmlDoc.DocumentElement.SelectNodes(String.Format("/Strings/{0}/String", category));
             var random = new Random();
-            return nodeList[random.Next(nodeList.Count)].InnerText;          
+            return nodeList[random.Next(nodeList.Count)].InnerText;
         }
     }
 }

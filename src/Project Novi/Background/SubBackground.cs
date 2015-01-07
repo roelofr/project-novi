@@ -10,7 +10,7 @@ namespace Project_Novi.Background
 
         private const int ModuleOffsetX = 500;
         private const int ModuleOffsetY = 200;
-        private const int FontSize = 35;
+        private const int FontSize = 30;
         private const int BackButtonSize = 50;
 
         private Rectangle _avatar;
@@ -21,11 +21,17 @@ namespace Project_Novi.Background
         private readonly Font _strFont = TextUtils.GetFont(FontSize) ??
                           new Font(SystemFonts.DefaultFont.Name, FontSize, FontStyle.Regular);
 
-        public string AvatarText { get; set; }
+        private bool _keepTextInView = false;
 
         public SubBackground(IController controller)
         {
             _controller = controller;
+        }
+
+        public SubBackground(IController controller, bool keepTextInView)
+        {
+            _controller = controller;
+            _keepTextInView = keepTextInView;
         }
 
         public void Render(Graphics graphics, Rectangle rectangle)
@@ -33,15 +39,17 @@ namespace Project_Novi.Background
             BackgroundUtils.DrawBackground(graphics);
             BackgroundUtils.DrawClock(graphics);
 
-            _avatar = new Rectangle(rectangle.X + _backButton.Width + 50,
+            _avatar = new Rectangle(rectangle.X + _backButton.Width,
                 rectangle.Y + 600,
                 ModuleOffsetX - _backButton.Width,
                 rectangle.Height - 600);
-            _textRect.X = _avatar.X;
 
             _controller.Avatar.Render(graphics, _avatar);
             graphics.DrawImage(Properties.Resources.home_button, _backButton);
-            graphics.DrawString(_controller.Avatar.Saying, _strFont, Brushes.White, _textRect, _stringFormat);
+            if (_controller.Avatar.Talking || _keepTextInView)
+            {
+                graphics.DrawString(_controller.Avatar.Saying, _strFont, Brushes.White, _textRect, _stringFormat);
+            }
         }
 
         public Rectangle GetModuleRectangle(Rectangle fullRectangle)
@@ -69,8 +77,7 @@ namespace Project_Novi.Background
             {
                 _controller.SelectModule(_controller.ModuleManager.GetModule("Home"));
             }
-
-            if (_avatar.Contains(point))
+            else if (_avatar.Contains(point))
             {
                 if (_controller.Avatar.Talking)
                 {

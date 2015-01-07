@@ -38,6 +38,14 @@ namespace Twitter
             get { return "Twitter"; }
         }
 
+        public Bitmap Icon
+        {
+            get
+            {
+                return Properties.Resources.twittericon;
+            }
+        }
+
         public string DisplayName
         {
             get { return "Twitter"; }
@@ -55,7 +63,7 @@ namespace Twitter
             var xmlDoc = new XmlDocument();
             xmlDoc.Load("TwitterSettings.xml");
 
-            var nodeList = xmlDoc.DocumentElement.SelectNodes(String.Format("/Strings/{0}/String", usernameNumber));
+            var nodeList = xmlDoc.DocumentElement.SelectNodes(String.Format("/Strings/{0}/Username", usernameNumber));
 
             return nodeList[0].InnerText;
         }
@@ -84,7 +92,7 @@ namespace Twitter
             var xmlDoc = new XmlDocument();
             xmlDoc.Load("TwitterSettings.xml");
             XmlElement root = xmlDoc.DocumentElement;
-            XmlNodeList elemList = root.GetElementsByTagName("String");
+            XmlNodeList elemList = root.GetElementsByTagName("Username");
             Console.WriteLine(elemList.Count);
             for (int i = 0; i < elemList.Count; i++)
             {

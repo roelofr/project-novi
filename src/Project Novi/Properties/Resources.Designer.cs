@@ -118,13 +118,6 @@ namespace Project_Novi.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-
-        internal static System.Drawing.Bitmap icon_maps {
-            get {
-                object obj = ResourceManager.GetObject("icon_maps", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
@@ -162,26 +155,6 @@ namespace Project_Novi.Properties {
         internal static System.Drawing.Bitmap left_eye_open {
             get {
                 object obj = ResourceManager.GetObject("left_eye_open", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap left_eye_pinch {
-            get {
-                object obj = ResourceManager.GetObject("left_eye_pinch", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap nose {
-            get {
-                object obj = ResourceManager.GetObject("nose", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -248,16 +221,6 @@ namespace Project_Novi.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pupils {
-            get {
-                object obj = ResourceManager.GetObject("pupils", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap right_eye_blink1 {
             get {
                 object obj = ResourceManager.GetObject("right_eye_blink1", resourceCulture);
@@ -298,29 +261,9 @@ namespace Project_Novi.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap right_eye_pinch {
+        internal static System.Drawing.Bitmap tileIcon {
             get {
-                object obj = ResourceManager.GetObject("right_eye_pinch", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap roundneck_green {
-            get {
-                object obj = ResourceManager.GetObject("roundneck_green", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap vneck_green {
-            get {
-                object obj = ResourceManager.GetObject("vneck_green", resourceCulture);
+                object obj = ResourceManager.GetObject("tileIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

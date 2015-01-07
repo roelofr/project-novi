@@ -57,7 +57,7 @@ namespace Twitter
             var xmlDoc = new XmlDocument();
             xmlDoc.Load("TwitterSettings.xml");
 
-            var nodeList = xmlDoc.DocumentElement.SelectNodes(String.Format("/Strings/{0}/String", usernameNumber));
+            var nodeList = xmlDoc.DocumentElement.SelectNodes(String.Format("/Strings/{0}/Username", usernameNumber));
 
             return nodeList[0].InnerText;
         }

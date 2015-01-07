@@ -1,4 +1,6 @@
-﻿namespace Project_Novi.Api
+﻿using System.Drawing;
+
+namespace Project_Novi.Api
 {
     /// <summary>
     /// IModule is the basic interface which all modules should implement.
@@ -10,6 +12,11 @@
         /// The name of the module. Other modules will use this name when referring to this module.
         /// </summary>
         string Name { get; }
+
+        /// <summary>
+        /// The icon to be displayed for the module. Should be of size 64 x 64.
+        /// </summary>
+        Bitmap Icon { get; }
 
         /// <summary>
         /// The display name of the module. Will be shown on the front-end
