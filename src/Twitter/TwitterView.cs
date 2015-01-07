@@ -20,6 +20,11 @@ namespace Twitter
         Rectangle usernameRect1 = new Rectangle(1000, 0, 330, 130);
         Rectangle usernameRect2 = new Rectangle(1000, 150, 330, 130);
         Rectangle usernameRect3 = new Rectangle(1000, 300, 330, 130);
+
+        Rectangle hashtagRect1 = new Rectangle(1000, 500, 330, 50);
+        Rectangle hashtagRect2 = new Rectangle(1000, 560, 330, 50);
+        Rectangle hashtagRect3 = new Rectangle(1000, 620, 330, 50);
+
         public Type ModuleType
         {
             get { return typeof(TwitterModule); }
@@ -31,7 +36,7 @@ namespace Twitter
         {
             _controller = controller;
             BackgroundView = new SubBackground(controller);
-            
+
         }
 
         private void ControllerOnTouch(Point point)
@@ -48,6 +53,18 @@ namespace Twitter
             {
                 _module.twitterAccountToDisplay = GetUsernameTwitter("username3");
             }
+            if (hashtagRect1.Contains(point))
+            {
+                _module.twitterHashtagToDisplay = GetHashtagTwitter("hashtag1");
+            }
+            if (hashtagRect2.Contains(point))
+            {
+                _module.twitterHashtagToDisplay = GetHashtagTwitter("hashtag2");
+            }
+            if (hashtagRect3.Contains(point))
+            {
+                _module.twitterHashtagToDisplay = GetHashtagTwitter("hashtag3");
+            }
         }
         public static string GetUsernameTwitter(string usernameNumber)
         {
@@ -61,6 +78,20 @@ namespace Twitter
 
             return nodeList[0].InnerText;
         }
+
+        public static string GetHashtagTwitter(string hashtagNumber)
+        {
+            //hashtag1
+            //hashtag2
+            //hashtag3
+            var xmlDoc = new XmlDocument();
+            xmlDoc.Load("TwitterSettings.xml");
+
+            var nodeList = xmlDoc.DocumentElement.SelectNodes(String.Format("/Strings/{0}/Hashtag", hashtagNumber));
+
+            return nodeList[0].InnerText;
+        }
+
         public void Attach(IModule module)
         {
             _controller.Touch += ControllerOnTouch;
@@ -93,7 +124,7 @@ namespace Twitter
 
             int accounts1 = 30;
           
-            
+          
             if (_module.twitterAccountToDisplay == GetUsernameTwitter("username1"))
             {
                 var yPos = 20;
@@ -153,7 +184,9 @@ namespace Twitter
 
                     graphics.FillRectangle(brushedblack, backgroundRect);
 
+
                    graphics.DrawImage(_module.usernameImage3, imgRect);
+
 
                     graphics.DrawString(tweet.ScreenName, headFont, Brushes.YellowGreen, NameBar, stringFormat);
                     graphics.DrawString("@" + _module.twitterAccountToDisplay, textFont, Brushes.LightGray, NameBar, stringFormat3);
@@ -163,10 +196,15 @@ namespace Twitter
                     yPos += 220;
                 }
             }
+
          
             graphics.FillRectangle(brushedblack, usernameRect1);
             graphics.FillRectangle(brushedblack, usernameRect2);
             graphics.FillRectangle(brushedblack, usernameRect3);
+            graphics.FillRectangle(brushedblack, hashtagRect1);
+            graphics.FillRectangle(brushedblack, hashtagRect2);
+            graphics.FillRectangle(brushedblack, hashtagRect3);
+
             
             foreach(string account in _module.accounts)
             {
@@ -174,13 +212,107 @@ namespace Twitter
                 graphics.DrawString("@" + account, textFont, Brushes.LightGray, 1120, (accounts1 + 15), stringFormat);
                 accounts1 += 150;
             }
-                Rectangle img1 = new Rectangle(1015, 15, 100, 100);
-                Rectangle img2 = new Rectangle(1015, 165, 100, 100);
-                Rectangle img3 = new Rectangle(1015, 315, 100, 100);
-                graphics.DrawImage(_module.usernameImage1, img1);
-                graphics.DrawImage(_module.usernameImage2, img2);
-                graphics.DrawImage(_module.usernameImage3, img3);
+                
             
+
+            if (_module.twitterHashtagToDisplay == GetHashtagTwitter("hashtag1"))
+            {
+                var yPos = 20;
+                foreach (var tweet in _module.hashtags1)
+                {
+                    var NameBar = new Rectangle(200, yPos, 600, 180);
+                    var tekstRect = new Rectangle(200, yPos + 35, 600, 100);
+                    var imgRect = new Rectangle(130, yPos, 50, 50);
+                    var backgroundRect = new Rectangle(110, yPos - 20, 720, 200);
+
+
+                    graphics.FillRectangle(brushedblack, backgroundRect);
+              
+
+                    foreach (var item in _module.hashtagImage1)
+                    {
+                        graphics.DrawImage(item, imgRect);
+                    }
+
+                    graphics.DrawString(tweet.ScreenName, headFont, Brushes.YellowGreen, NameBar, stringFormat);
+                    graphics.DrawString(tweet.Text, textFont, Brushes.Black, tekstRect, stringFormat);
+                    graphics.DrawString(tweet.CreatedAt.ToString(), dateFont, Brushes.Black, NameBar, stringFormat2);
+
+                    yPos += 220;
+                }
+            }
+            if (_module.twitterHashtagToDisplay == GetHashtagTwitter("hashtag2"))
+            {
+                var yPos = 20;
+                foreach (var tweet in _module.hashtags2)
+                {
+                    var NameBar = new Rectangle(200, yPos, 600, 180);
+                    var tekstRect = new Rectangle(200, yPos + 35, 600, 100);
+                    var imgRect = new Rectangle(130, yPos, 50, 50);
+                    var backgroundRect = new Rectangle(110, yPos - 20, 720, 200);
+
+
+                    graphics.FillRectangle(brushedblack, backgroundRect);
+                 
+
+                    foreach (var item in _module.hashtagImage2)
+                    {
+                        graphics.DrawImage(item, imgRect);
+                    }
+
+                    graphics.DrawString(tweet.ScreenName, headFont, Brushes.YellowGreen, NameBar, stringFormat);
+                    graphics.DrawString(tweet.Text, textFont, Brushes.Black, tekstRect, stringFormat);
+                    graphics.DrawString(tweet.CreatedAt.ToString(), dateFont, Brushes.Black, NameBar, stringFormat2);
+
+                    yPos += 220;
+                }
+            }
+                if (_module.twitterHashtagToDisplay == GetHashtagTwitter("hashtag3"))
+                {
+                    var yPos = 20;
+                    foreach (var tweet in _module.hashtags3)
+                    {
+                        var NameBar = new Rectangle(200, yPos, 600, 180);
+                        var tekstRect = new Rectangle(200, yPos + 35, 600, 100);
+                        var imgRect = new Rectangle(130, yPos, 50, 50);
+                        var backgroundRect = new Rectangle(110, yPos - 20, 720, 200);
+
+
+                        graphics.FillRectangle(brushedblack, backgroundRect);
+                        
+                        foreach (var item in _module.hashtagImage3)
+                        {
+                            graphics.DrawImage(item, imgRect);
+                        }
+
+
+                        graphics.DrawString(tweet.ScreenName, headFont, Brushes.YellowGreen, NameBar, stringFormat);
+                        graphics.DrawString(tweet.Text, textFont, Brushes.Black, tekstRect, stringFormat);
+                        graphics.DrawString(tweet.CreatedAt.ToString(), dateFont, Brushes.Black, NameBar, stringFormat2);
+
+                        yPos += 220;
+                    }
+                }
+            
+
+                    foreach (string hashtags in _module.hashtags)
+                    {
+                        graphics.DrawString(("#" + hashtags), headFont, Brushes.Black, 1050, (accounts1 + 60), stringFormat4);
+
+                        accounts1 += 60;
+                    }
+
+
+                    Rectangle img1 = new Rectangle(1015, 15, 100, 100);
+                    Rectangle img2 = new Rectangle(1015, 165, 100, 100);
+                    Rectangle img3 = new Rectangle(1015, 315, 100, 100);
+                    graphics.DrawImage(_module.usernameImage1, img1);
+                    graphics.DrawImage(_module.usernameImage2, img2);
+                    graphics.DrawImage(_module.usernameImage3, img3);
+
+                }
+
             }
         }
-    }
+    
+
