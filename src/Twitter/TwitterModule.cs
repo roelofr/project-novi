@@ -11,6 +11,8 @@ using System.IO;
 using System.Drawing;
 using System.Xml;
 using Project_Novi;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace Twitter
 {
@@ -53,24 +55,17 @@ namespace Twitter
 
         public void Initialize(IController controller)
         {
+            var thread = new Thread(UpdateThread);
+            thread.Start();
+            Update();
         }
 
-        public static string GetUsernameTwitter(string usernameNumber)
+        private void Update()
         {
-            //username1
-            //username2
-            //username3
-            var xmlDoc = new XmlDocument();
-            xmlDoc.Load("TwitterSettings.xml");
-
-            var nodeList = xmlDoc.DocumentElement.SelectNodes(String.Format("/Strings/{0}/Username", usernameNumber));
-
-            return nodeList[0].InnerText;
-        }
-
-        public void Start()
-        {
-
+            tweets1.Clear();
+            tweets2.Clear();
+            tweets3.Clear();
+            accounts.Clear();
             const string accessToken = "2913538690-VtwNfPvdm17B16HmUwTMYbOUnXxxAXg3nJCPQG0";
             const string accessTokenSecret = "lRl45rfuVtwDNqiG0n0ioMOuwyKyvIqzOyZi3owczM43d";
             const string consumerKey = "HmvQgWj0nSthuP31zFV0dURCY";
@@ -121,7 +116,7 @@ namespace Twitter
                     {
                         tweets3.Add(tweet);
                     }
-                    
+
                 }
 
                 var profilePicture = from tweet in twitterContext.User
@@ -134,7 +129,7 @@ namespace Twitter
                     byte[] bytes = wc.DownloadData(pic);
                     MemoryStream ms = new MemoryStream(bytes);
                     System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
-                  
+
                     if (i == 0)
                     {
                         usernameImage1 = img;
@@ -148,16 +143,47 @@ namespace Twitter
                         usernameImage3 = img;
                     }
                 }
-                
+
             }
         }
+
+        private void UpdateThread()
+        {
+            var running = true;
+            Application.ApplicationExit += (sender, args) => { running = false; };
+            var previousUpdate = DateTime.Now;
+
+            while (running)
+            {
+                if ((DateTime.Now - previousUpdate).TotalSeconds > 300000)
+                {
+                    Update();
+                    previousUpdate = DateTime.Now;
+                }
+            }
+        }
+
+        public static string GetUsernameTwitter(string usernameNumber)
+        {
+            //username1
+            //username2
+            //username3
+            var xmlDoc = new XmlDocument();
+            xmlDoc.Load("TwitterSettings.xml");
+
+            var nodeList = xmlDoc.DocumentElement.SelectNodes(String.Format("/Strings/{0}/Username", usernameNumber));
+
+            return nodeList[0].InnerText;
+        }
+
+        public void Start()
+        {
+
+        }
+
         public void Stop()
         {
-            tweets1.Clear();
-            tweets2.Clear();
-            tweets3.Clear();
-            accounts.Clear();
-            
+
         }
     }
 }
