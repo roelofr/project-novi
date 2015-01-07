@@ -14,7 +14,7 @@ namespace Weather
 
         public Type ModuleType
         {
-            get { return typeof (WeatherModule); }
+            get { return typeof(WeatherModule); }
         }
 
         public IBackgroundView BackgroundView { get; private set; }
@@ -57,14 +57,14 @@ namespace Weather
             graphics.DrawString(String.Format("{0}\n{1}°C tot {2}°C", UnixTimeStampToDateTime(day.time).DayOfWeek, Math.Round(day.temperatureMin), Math.Round(day.temperatureMax)),
                 font, Brushes.White,
                 new Rectangle(rectangle.X, rectangle.Y + height, width, rectangle.Height - height));
-            
+
         }
 
         private static void RenderDay(Graphics graphics, Currently today, Rectangle rectangle)
         {
             var font = TextUtils.GetFont(30);
             var image = WeatherModule.GetWeatherImage(today.icon);
-            var width = (int)(rectangle.Width*0.7);
+            var width = (int)(rectangle.Width * 0.7);
             var height = (int)(image.Height * ((float)width / image.Width));
 
             graphics.DrawImage(image, rectangle.X, rectangle.Y, width, height);
@@ -75,7 +75,7 @@ namespace Weather
 
         public void Render(Graphics graphics, Rectangle rectangle)
         {
-            var dayWidth = rectangle.Width/ 4;
+            var dayWidth = rectangle.Width / 4;
             int x = 0;
 
             RenderDay(graphics, _module.WeatherResponse.currently, new Rectangle(x, rectangle.Y, dayWidth, rectangle.Height));

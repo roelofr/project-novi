@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
 using Project_Novi.Api;
@@ -44,6 +45,7 @@ namespace Project_Novi
         {
             _form = new Novi(this);
             Avatar = new Avatar(this);
+            BackgroundWidgets = new List<IBackgroundWidget>();
             ModuleManager = new ModuleManager(this);
         }
 
@@ -138,6 +140,14 @@ namespace Project_Novi
                 
             isMouseDown = false;
             isDragging = false;
+        }
+
+
+        public List<IBackgroundWidget> BackgroundWidgets { get; private set; }
+
+        public void RegisterBackgroundWidget(IBackgroundWidget widget)
+        {
+            BackgroundWidgets.Add(widget);
         }
     }
 }

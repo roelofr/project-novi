@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using Project_Novi.Api;
 using Project_Novi.Text;
 
 namespace Project_Novi.Background
@@ -141,6 +142,17 @@ namespace Project_Novi.Background
             graphics.DrawString(timeText, strFont, Brushes.White, timeRect, timeFormat);
             graphics.DrawString(dateText, strFont, Brushes.White, dateRect, dateFormat);
             graphics.DrawString(specialText, strFont, specialBrush, specialDayRect, dateFormat);
+        }
+
+        public static void DrawWidgets(Graphics graphics, List<IBackgroundWidget> widgets)
+        {
+            int widgetX = 20;
+            foreach (var widget in widgets)
+            {
+                var rect = new Rectangle(widgetX, 5, 200, 100);
+                widget.Render(graphics, rect);
+                widgetX += 200;
+            }
         }
 
     }

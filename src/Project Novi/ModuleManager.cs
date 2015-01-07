@@ -14,9 +14,11 @@ namespace Project_Novi
 
         private readonly Dictionary<string, IModule> _modules = new Dictionary<string, IModule>(StringComparer.InvariantCultureIgnoreCase);
         private readonly Dictionary<Type, IView> _views = new Dictionary<Type, IView>();
+        public List<IBackgroundWidget> BackgroundWidgets { get; private set; }
 
         public ModuleManager(IController controller)
         {
+            BackgroundWidgets = new List<IBackgroundWidget>();
             _controller = controller;
             LoadModules();
         }
@@ -63,6 +65,11 @@ namespace Project_Novi
             }
         }
 
+        internal void AddBackgroundWidget(IBackgroundWidget widget)
+        {
+            BackgroundWidgets.Add(widget);
+        }
+
         internal void LoadLocalModules()
         {
             AddModule(new HomeModule());
@@ -94,9 +101,19 @@ namespace Project_Novi
                         {
                             AddView((IView) Activator.CreateInstance(t));
                         }
+
+                        if (t.GetInterface(typeof(IBackgroundWidget).Name) != null)
+                        {
+                            AddBackgroundWidget((IBackgroundWidget)Activator.CreateInstance(t));
+                        }
                     }
                 }
                 catch { }
+            }
+
+            foreach (var widget in BackgroundWidgets)
+            {
+                widget.Initialize(_controller, GetModule(widget.ModuleName));
             }
 
         }

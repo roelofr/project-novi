@@ -34,10 +34,11 @@ namespace Project_Novi.Background
             _keepTextInView = keepTextInView;
         }
 
-        public void Render(Graphics graphics, Rectangle rectangle)
+        public void Render(Graphics graphics, Rectangle rectangle, IController controller)
         {
             BackgroundUtils.DrawBackground(graphics);
             BackgroundUtils.DrawClock(graphics);
+            BackgroundUtils.DrawWidgets(graphics, controller.ModuleManager.BackgroundWidgets);
 
             _avatar = new Rectangle(rectangle.X + _backButton.Width,
                 rectangle.Y + 600,

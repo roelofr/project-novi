@@ -12,7 +12,6 @@ namespace Weather
     {
         private IController _controller;
         internal ForecastIOResponse WeatherResponse;
-        private DateTime _lastRequestTime;
 
         public string Name
         {
@@ -37,6 +36,7 @@ namespace Weather
         public void Initialize(IController controller)
         {
             _controller = controller;
+
             var thread = new Thread(UpdateThread);
             thread.Start();
             Update();
