@@ -68,7 +68,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account.cs" />
     <Compile Include="Tweet.cs" />
     <Compile Include="TwitterModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
