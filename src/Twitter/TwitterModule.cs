@@ -102,7 +102,7 @@ namespace Twitter
                                    where tweet.Type == StatusType.User &&
                                          tweet.ScreenName == elemList[i].InnerXml &&
                                          tweet.IncludeContributorDetails == true &&
-                                         tweet.Count == 3 &&
+                                         tweet.Count == 4 &&
                                          tweet.IncludeEntities == true
                                    select tweet;
 
