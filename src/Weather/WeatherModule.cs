@@ -56,7 +56,7 @@ namespace Weather
 
             while (running)
             {
-                if (previousUpdate == null || (DateTime.Now - previousUpdate).TotalSeconds > 300000)
+                if ((DateTime.Now - previousUpdate).TotalSeconds > 300000)
                 {
                     Update();
                     previousUpdate = DateTime.Now;
