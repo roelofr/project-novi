@@ -93,6 +93,7 @@ namespace Project_Novi
             if (Touch != null)
             {
                 Touch(point);
+                IdleManager.idleTimer.Restart();
             }
         }
 
@@ -122,12 +123,20 @@ namespace Project_Novi
 
         public void HandleTouchStart(Point point)
         {
+            if (IdleManager.idleTimer != null)
+            {
+                IdleManager.idleTimer.Restart();
+            }  
             isMouseDown = true;
             dragOrigin = point;
         }
 
         public void HandleTouchMove(Point point)
         {
+            if (IdleManager.idleTimer != null)
+            {
+                IdleManager.idleTimer.Restart();
+            }            
             if (!isMouseDown)
                 return;
 
@@ -150,6 +159,10 @@ namespace Project_Novi
 
         public void HandleTouchEnd(Point point)
         {
+            if (IdleManager.idleTimer != null)
+            {
+                IdleManager.idleTimer.Restart();
+            }  
             if (isDragging && DragEnd != null)
                 DragEnd(point);
                 

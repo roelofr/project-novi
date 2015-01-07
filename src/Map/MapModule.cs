@@ -25,7 +25,7 @@ namespace Map
 
         public bool Rotatable
         {
-            get { return true; }
+            get { return false; }
         }
 
         public void Initialize(IController controller)
