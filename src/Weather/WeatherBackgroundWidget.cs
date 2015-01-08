@@ -25,7 +25,7 @@ namespace Weather
             var font = TextUtils.GetFont(24);
             var size = graphics.MeasureString(str, font);
 
-            graphics.DrawImage(WeatherModule.GetWeatherImage(_module.WeatherResponse.currently.icon), rectangle.X, rectangle.Y, rectangle.Height, rectangle.Height);
+            graphics.DrawImage(WeatherModule.GetWeatherImage(_module.WeatherResponse.currently.icon), rectangle.X, (rectangle.Y + 10), rectangle.Height, rectangle.Height);
             graphics.DrawString(str, font, Brushes.White, rectangle.Right - size.Width - 10, (rectangle.Y + 40));
         }
     }

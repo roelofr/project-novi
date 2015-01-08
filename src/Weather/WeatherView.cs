@@ -54,7 +54,7 @@ namespace Weather
 
         private static void RenderDay(Graphics graphics, DailyForecast day, Rectangle rectangle)
         {
-            var font = TextUtils.GetFont(30);
+            var font = TextUtils.GetFont(28);
             var image = WeatherModule.GetWeatherImage(day.icon);
             var width = (int)(rectangle.Width * 0.7);
             var height = (int)(image.Height * ((float)width / image.Width));
@@ -77,7 +77,7 @@ namespace Weather
 
         private static void RenderDay(Graphics graphics, Currently today, Rectangle rectangle)
         {
-            var font = TextUtils.GetFont(30);
+            var font = TextUtils.GetFont(28);
             var image = WeatherModule.GetWeatherImage(today.icon);
             var width = (int)(rectangle.Width * 0.7);
             var height = (int)(image.Height * ((float)width / image.Width));
