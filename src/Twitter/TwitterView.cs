@@ -192,8 +192,9 @@ namespace Twitter
                     graphics.FillRectangle(brushedblack, backgroundRect);
 
                     graphics.DrawString(tweet.ScreenName, headFont, Brushes.YellowGreen, NameBar, stringFormat);
-                    graphics.DrawString(tweet.Text, textFont, Brushes.Black, tekstRect, stringFormat);
-                    graphics.DrawString(tweet.CreatedAt.ToString(), dateFont, Brushes.Black, NameBar, stringFormat2);
+                    graphics.DrawString("#" + _module.twitterAccountToDisplay, textFont, Brushes.LightGray, NameBar, stringFormat3);
+                    graphics.DrawString(tweet.Text, textFont, Brushes.White, tekstRect, stringFormat);
+                    graphics.DrawString(tweet.CreatedAt.ToString(), dateFont, Brushes.LightGray, NameBar, stringFormat2);
 
                     yPos += 220;
                 }
@@ -218,8 +219,9 @@ namespace Twitter
                     graphics.FillRectangle(brushedblack, backgroundRect);
 
                     graphics.DrawString(tweet.ScreenName, headFont, Brushes.YellowGreen, NameBar, stringFormat);
-                    graphics.DrawString(tweet.Text, textFont, Brushes.Black, tekstRect, stringFormat);
-                    graphics.DrawString(tweet.CreatedAt.ToString(), dateFont, Brushes.Black, NameBar, stringFormat2);
+                    graphics.DrawString("#" + _module.twitterAccountToDisplay, textFont, Brushes.LightGray, NameBar, stringFormat3);
+                    graphics.DrawString(tweet.Text, textFont, Brushes.White, tekstRect, stringFormat);
+                    graphics.DrawString(tweet.CreatedAt.ToString(), dateFont, Brushes.LightGray, NameBar, stringFormat2);
 
                     yPos += 220;
                 }
@@ -244,8 +246,9 @@ namespace Twitter
                     graphics.FillRectangle(brushedblack, backgroundRect);
 
                     graphics.DrawString(tweet.ScreenName, headFont, Brushes.YellowGreen, NameBar, stringFormat);
-                    graphics.DrawString(tweet.Text, textFont, Brushes.Black, tekstRect, stringFormat);
-                    graphics.DrawString(tweet.CreatedAt.ToString(), dateFont, Brushes.Black, NameBar, stringFormat2);
+                    graphics.DrawString("#" + _module.twitterAccountToDisplay, textFont, Brushes.LightGray, NameBar, stringFormat3);
+                    graphics.DrawString(tweet.Text, textFont, Brushes.White, tekstRect, stringFormat);
+                    graphics.DrawString(tweet.CreatedAt.ToString(), dateFont, Brushes.LightGray, NameBar, stringFormat2);
 
                     yPos += 220;
                 }
@@ -274,7 +277,7 @@ namespace Twitter
 
             foreach (string hashtags in _module.hashtags)
             {
-                graphics.DrawString(("#" + hashtags), headFont, Brushes.Black, 1050, (accounts1 + 60), stringFormat4);
+                graphics.DrawString(("#" + hashtags), headFont, Brushes.YellowGreen, 1050, (accounts1 + 60), stringFormat4);
 
                 accounts1 += 60;
             }
