@@ -144,22 +144,27 @@ Om ervoor te zorgen dat elke nieuwe gebruiker wel weer vanaf het hoofdscherm beg
 
 
 #Twitter feed
-Als gebruiker wil ik de avatar om de twitterfeed van de ICT-opleiding van Windesheim kunnen vragen
+Als gebruiker wil ik de avatar om de twitterfeed van diverse accounts en hashtags kunnen vragen
+
+![Mockup tekst weergeven](images/schermontwerpen/mockup_twitter.png)
 
 ##Feed weergeven
 ### Toelichting
-De module geeft de tweets weer gebaseerd op de standaard grafische interface van twitter.com. 
+De module geeft de recentste tweets weer gebaseerd op het geselecteerde account of hashtag.
 
 ##Control panel twitter feed
 ### Toelichting
-In het controle paneel kan ingevoerd worden welke feeds getoont dienen te worden. 
+In het controle paneel kan ingevoerd worden welke feeds getoont mogen te worden. 
 
 ##Testscenarios
 |Scenario | Verwachte uitkomst |
 |:---|:---|
-
+| Bij selectie van een account worden 4 tweets van dat account getoont | Pass |
+| Bij selectie van een hashtag worden 4 tweets met die hashtag getoont  | Pass |
+| Bij heropenen van de applicatie opent zich de laatst weergegeven tweets | Pass |
 
 #Weergave route
+Als gebruiker wil ik de route naar een bepaalde ruimte kunnen vragen
 ### Toelichting
 Als een gebruiker een lokaal heeft geselecteerd, geeft de avatar een beschrijving van hoe de gebruiker bij dat ingevoerde lokaal kan komen.
 
@@ -169,3 +174,16 @@ Als een gebruiker een lokaal heeft geselecteerd, geeft de avatar een beschrijvin
 | Bij invoer van een lokaal geeft de avatar de juiste combinatie van teksten weer | Pass |
 | Bij invoer van een lokaal op de tweede of derde verdieping wordt de trap aangeraden  | Pass |
 | Bij invoer van een lokaal op de vierde of vijfde verdieping wordt de lift aangeraden | Pass |
+
+#Weeroverzicht
+Als gebruiker wil ik een overzicht van het weer kunnen zien
+
+## Testscenarios
+|Scenario | Verwachte uitkomst |
+|:---|:---|
+
+#Nieuwsoverzicht
+Als gebruiker wil ik recent nieuws kunnen zien van diverse nieuwsbronnen
+## Testscenarios
+|Scenario | Verwachte uitkomst |
+|:---|:---|
