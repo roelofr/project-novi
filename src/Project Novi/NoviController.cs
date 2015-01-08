@@ -102,6 +102,7 @@ namespace Project_Novi
             _module = module;
             _module.Start();
             Avatar.Attach();
+            Avatar.Saying = "";
 
             var view = ModuleManager.GetView(_module);
             view.Attach(_module);
