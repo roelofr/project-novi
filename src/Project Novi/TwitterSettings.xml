@@ -1,25 +1,25 @@
 <Strings>
   <username1>
-    <String>WindesheimICT</String>
+    <Username>WindesheimICT</Username>
   </username1>
 
   <username2>
-    <String>Windesheiminfo</String>
+    <Username>Windesheiminfo</Username>
   </username2>
 
   <username3>
-    <String>NUnl</String>
+    <Username>NUnl</Username>
   </username3>
 
   <hashtag1>
-    <String>WindesheimICT</String>
+    <Hashtag>WindesheimICT</Hashtag>
   </hashtag1>
 
   <hashtag2>
-    <String>Windesheiminfo</String>
+    <Hashtag>Windesheiminfo</Hashtag>
   </hashtag2>
 
   <hashtag3>
-    <String>NUnl</String>
+    <Hashtag>NUnl</Hashtag>
   </hashtag3>
 </Strings>

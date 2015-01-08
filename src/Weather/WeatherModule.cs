@@ -35,15 +35,13 @@ namespace Weather
 
         public bool Rotatable
         {
-            get { return false; }
+            get { return true; }
         }
 
         public void Initialize(IController controller)
         {
             _controller = controller;
-
-            var thread = new Thread(UpdateThread);
-            thread.Start();
+            _controller.BackgroundUpdate += Update;
             Update();
         }
 
@@ -51,22 +49,6 @@ namespace Weather
         {
             var request = new ForecastIORequest("***REMOVED***", 52.5f, 6.079f, Unit.si);
             WeatherResponse = request.Get();
-        }
-
-        private void UpdateThread()
-        {
-            var running = true;
-            Application.ApplicationExit += (sender, args) => { running = false; };
-            var previousUpdate = DateTime.Now;
-
-            while (running)
-            {
-                if ((DateTime.Now - previousUpdate).TotalSeconds > 300000)
-                {
-                    Update();
-                    previousUpdate = DateTime.Now;
-                }
-            }
         }
 
         internal static Bitmap GetWeatherImage(string icon)

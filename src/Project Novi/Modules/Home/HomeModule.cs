@@ -32,7 +32,10 @@ namespace Project_Novi.Modules.Home
             _controller = controller;
         }
 
-        private void controller_Touch(System.Drawing.Point point) { }
+        private void controller_Touch(System.Drawing.Point point)
+		{
+			_controller.SelectModule(_controller.ModuleManager.GetModule("twitter"));
+		}
 
         public void Start()
         {

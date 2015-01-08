@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Threading;
 using Project_Novi.Api;
 using Project_Novi.Render;
-using System.Collections.Generic;
+using Timer = System.Windows.Forms.Timer;
 
 namespace Project_Novi
 {
@@ -18,6 +19,7 @@ namespace Project_Novi
         private Timer _timer;
         public Avatar Avatar { get; private set; }
         public event TickHandler Tick;
+        public event BackgroundUpdateHandler BackgroundUpdate;
         public event TouchHandler Touch;
 
         public event TouchHandler DragStart;
@@ -57,6 +59,17 @@ namespace Project_Novi
             _timer = new Timer { Interval = 10 };
             _timer.Tick += TimerCallback;
             _timer.Start();
+
+            var thread = new Thread(() =>
+            {
+                while (true)
+                {
+                    Thread.Sleep(300000);
+                    if (BackgroundUpdate != null) BackgroundUpdate();
+                }
+            });
+            thread.IsBackground = true;
+            thread.Start();
 
             return _form;
         }
@@ -128,7 +141,7 @@ namespace Project_Novi
             if (IdleManager.idleTimer != null)
             {
                 IdleManager.idleTimer.Restart();
-            }  
+            }
             isMouseDown = true;
             dragOrigin = point;
         }
@@ -138,7 +151,7 @@ namespace Project_Novi
             if (IdleManager.idleTimer != null)
             {
                 IdleManager.idleTimer.Restart();
-            }            
+            }
             if (!isMouseDown)
                 return;
 
@@ -164,10 +177,10 @@ namespace Project_Novi
             if (IdleManager.idleTimer != null)
             {
                 IdleManager.idleTimer.Restart();
-            }  
+            }
             if (isDragging && DragEnd != null)
                 DragEnd(point);
-                
+
             isMouseDown = false;
             isDragging = false;
         }

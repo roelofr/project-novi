@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using Project_Novi.Render;
 
 namespace Project_Novi.Api
 {
     public delegate void TickHandler();
+    public delegate void BackgroundUpdateHandler();
 
     public delegate void TouchHandler(Point point);
     public delegate void DragHandler(Point current, Point origin);
@@ -17,6 +17,7 @@ namespace Project_Novi.Api
         Avatar Avatar { get; }
 
         event TickHandler Tick;
+        event BackgroundUpdateHandler BackgroundUpdate;
         event TouchHandler Touch;
         event TouchHandler DragStart;
         event TouchHandler DragEnd;
