@@ -99,6 +99,7 @@ namespace Project_Novi
                 _form.BackgroundView.Detach();
             }
 
+            Avatar.Saying = "";
             _module = module;
             _module.Start();
             Avatar.Attach();
