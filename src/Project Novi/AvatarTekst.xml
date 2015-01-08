@@ -20,7 +20,6 @@
 
   <MapF0>
 	<String>Dat is op deze verdieping.</String>
-	<String>Die ruimte is op deze verdieping.</String>
 	<String>U bent al op de juiste verdieping.</String>
   </MapF0>
   
@@ -55,13 +54,13 @@
   </MapF5>
   
   <MapTrapRechts>
-	<String> Als u met de trap gaat is de ruimte aan uw rechterkant zodra u het trappenhuis uit loopt.</String>
+	<String> Als u met de trap gaat, is de ruimte aan uw rechterkant zodra u het trappenhuis uit loopt.</String>
 	<String> Zodra u op de verdieping bent, is de ruimte aan uw rechterkant als u met de trap gaat.</String>
 	<String> De ruimte is aan uw rechterkant zodra u het trappenhuis uit loopt.</String>
   </MapTrapRechts>
   
   <MapTrapLinks>
-	<String> Als u met de trap gaat, de ruimte aan uw linkerkant zodra u het trappenhuis uit loopt.</String>
+	<String> Als u met de trap gaat, is de ruimte aan uw linkerkant zodra u het trappenhuis uit loopt.</String>
 	<String> Zodra u op de verdieping bent, is de ruimte aan uw linkerkant als u met de trap gaat.</String>
 	<String> De ruimte is aan uw linkerkant zodra u het trappenhuis uit loopt.</String>
   </MapTrapLinks>
