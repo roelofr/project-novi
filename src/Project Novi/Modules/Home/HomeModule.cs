@@ -32,17 +32,11 @@ namespace Project_Novi.Modules.Home
             _controller = controller;
         }
 
-        private void controller_Touch(System.Drawing.Point point)
-		{
-			_controller.SelectModule(_controller.ModuleManager.GetModule("twitter"));
-		}
-
         public void Start()
         {
             //Available categories: Welkom, Poke, Idle, Kaart, RouteVragen
             //Let op: Exact overnemen!!!
             AvatarText = Text.TextManager.GetText("Welkom");
-            _controller.Touch += controller_Touch;
         }
 
         public void Stop() { }

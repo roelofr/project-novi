@@ -11,7 +11,6 @@ namespace Project_Novi
             InitializeComponent();
             GetUsernamesTwitter();
             GetHashtagsTwitter();
-
         }
 
         private void Controlpanel_KeyDown(object sender, KeyEventArgs e)
@@ -34,9 +33,9 @@ namespace Project_Novi
             var xmlDoc = new XmlDocument();
             xmlDoc.Load("TwitterSettings.xml");
 
-            XmlNode nodeUsername1 = xmlDoc.DocumentElement.SelectSingleNode(String.Format("/Strings/username1/String"));
-            XmlNode nodeUsername2 = xmlDoc.DocumentElement.SelectSingleNode(String.Format("/Strings/username2/String"));
-            XmlNode nodeUsername3 = xmlDoc.DocumentElement.SelectSingleNode(String.Format("/Strings/username3/String"));
+            XmlNode nodeUsername1 = xmlDoc.DocumentElement.SelectSingleNode(String.Format("/Strings/username1/Username"));
+            XmlNode nodeUsername2 = xmlDoc.DocumentElement.SelectSingleNode(String.Format("/Strings/username2/Username"));
+            XmlNode nodeUsername3 = xmlDoc.DocumentElement.SelectSingleNode(String.Format("/Strings/username3/Username"));
 
             textboxUsernameTwitter1.Text = nodeUsername1.InnerText;
             textboxUsernameTwitter2.Text = nodeUsername2.InnerText;
@@ -60,13 +59,19 @@ namespace Project_Novi
         {
             XmlDocument doc = new XmlDocument();
             doc.Load("TwitterSettings.xml");
-            XmlNode nodeUsername1 = doc.SelectSingleNode(String.Format("/Strings/username1/String"));
-            XmlNode nodeUsername2 = doc.SelectSingleNode(String.Format("/Strings/username2/String"));
-            XmlNode nodeUsername3 = doc.SelectSingleNode(String.Format("/Strings/username3/String"));
+            XmlNode nodeUsername1 = doc.SelectSingleNode(String.Format("/Strings/username1/Username"));
+            XmlNode nodeUsername2 = doc.SelectSingleNode(String.Format("/Strings/username2/Username"));
+            XmlNode nodeUsername3 = doc.SelectSingleNode(String.Format("/Strings/username3/Username"));
+            XmlNode nodeTag1 = doc.SelectSingleNode(String.Format("/Strings/username1/tag"));
+            XmlNode nodeTag2 = doc.SelectSingleNode(String.Format("/Strings/username2/tag"));
+            XmlNode nodeTag3 = doc.SelectSingleNode(String.Format("/Strings/username3/tag"));
 
             nodeUsername1.InnerText = textboxUsernameTwitter1.Text;
             nodeUsername2.InnerText = textboxUsernameTwitter2.Text;
             nodeUsername3.InnerText = textboxUsernameTwitter3.Text;
+            nodeTag1.InnerText = textboxUsernameTwitter1.Text;
+            nodeTag2.InnerText = textboxUsernameTwitter2.Text;
+            nodeTag3.InnerText = textboxUsernameTwitter3.Text;
 
             doc.Save("TwitterSettings.xml");
         }
@@ -77,39 +82,33 @@ namespace Project_Novi
             xmlDoc.Load("TwitterSettings.xml");
 
            
-            XmlNode nodeHashtags1 = xmlDoc.DocumentElement.SelectSingleNode(String.Format("/Strings/hashtag1/String"));
-            XmlNode nodeHashtags2 = xmlDoc.DocumentElement.SelectSingleNode(String.Format("/Strings/hashtag2/String"));
-            XmlNode nodeHashtags3 = xmlDoc.DocumentElement.SelectSingleNode(String.Format("/Strings/hashtag3/String"));
+            XmlNode nodeHashtags1 = xmlDoc.DocumentElement.SelectSingleNode(String.Format("/Strings/username4/Username"));
+            XmlNode nodeHashtags2 = xmlDoc.DocumentElement.SelectSingleNode(String.Format("/Strings/username5/Username"));
+            XmlNode nodeHashtags3 = xmlDoc.DocumentElement.SelectSingleNode(String.Format("/Strings/username6/Username"));
             
             textboxHashtag1.Text = nodeHashtags1.InnerText;
             textboxHashtag2.Text = nodeHashtags2.InnerText;
             textboxHashtag3.Text = nodeHashtags3.InnerText;
         }
 
-        public static string GetHashtagsTwitter(string hashtagNumber)
-        {
-            //hashtag1
-            //hashtag2
-            //hashtag3
-            var xmlDoc = new XmlDocument();
-            xmlDoc.Load("TwitterSettings.xml");
-
-            var nodeList = xmlDoc.DocumentElement.SelectNodes(String.Format("/Strings/{0}/String", hashtagNumber));
-
-            return nodeList[0].InnerText;
-        }
 
         public void SaveHashtags()
         {
             XmlDocument doc = new XmlDocument();
             doc.Load("TwitterSettings.xml");
-            XmlNode nodeHashtags1 = doc.SelectSingleNode(String.Format("/Strings/hashtag1/String"));
-            XmlNode nodeHashtags2 = doc.SelectSingleNode(String.Format("/Strings/hashtag2/String"));
-            XmlNode nodeHashtags3 = doc.SelectSingleNode(String.Format("/Strings/hashtag3/String"));
+            XmlNode nodeHashtags1 = doc.DocumentElement.SelectSingleNode(String.Format("/Strings/username4/Username"));
+            XmlNode nodeHashtags2 = doc.DocumentElement.SelectSingleNode(String.Format("/Strings/username5/Username"));
+            XmlNode nodeHashtags3 = doc.DocumentElement.SelectSingleNode(String.Format("/Strings/username6/Username"));
+            XmlNode nodeType1 = doc.DocumentElement.SelectSingleNode(String.Format("/Strings/username4/type"));
+            XmlNode nodeType2 = doc.DocumentElement.SelectSingleNode(String.Format("/Strings/username5/type"));
+            XmlNode nodeType3 = doc.DocumentElement.SelectSingleNode(String.Format("/Strings/username6/type"));
 
             nodeHashtags1.InnerText = textboxHashtag1.Text;
             nodeHashtags2.InnerText = textboxHashtag2.Text;
             nodeHashtags3.InnerText = textboxHashtag3.Text;
+            nodeType1.InnerText = textboxHashtag1.Text;
+            nodeType2.InnerText = textboxHashtag2.Text;
+            nodeType3.InnerText = textboxHashtag3.Text;
 
             doc.Save("TwitterSettings.xml");
         }

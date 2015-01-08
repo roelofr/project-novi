@@ -102,6 +102,7 @@ namespace Project_Novi
             if (!e.Control || e.KeyCode != Keys.N) return;
             PasswordDialog pd = new PasswordDialog();
             pd.ShowDialog();
+            _controller.Update();
         }
     }
 }

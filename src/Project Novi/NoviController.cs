@@ -60,18 +60,25 @@ namespace Project_Novi
             _timer.Tick += TimerCallback;
             _timer.Start();
 
-            var thread = new Thread(() =>
-            {
-                while (true)
-                {
-                    Thread.Sleep(300000);
-                    if (BackgroundUpdate != null) BackgroundUpdate();
-                }
-            });
+            var thread = new Thread(BackgroundThread);
             thread.IsBackground = true;
             thread.Start();
 
             return _form;
+        }
+
+        internal void Update()
+        {
+            if (BackgroundUpdate != null) BackgroundUpdate();
+        }
+
+        private void BackgroundThread()
+        {
+            while (true)
+            {
+                Thread.Sleep(300000);
+                Update();
+            }
         }
 
         private void TimerCallback(object sender, EventArgs e)
