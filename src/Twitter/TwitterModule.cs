@@ -82,6 +82,18 @@ namespace Twitter
 
         private void Update()
         {
+            tweets1.Clear();
+            tweets2.Clear();
+            tweets3.Clear();
+            accounts.Clear();
+            hashtags.Clear();
+            hashtagImage1.Clear();
+            hashtagImage2.Clear();
+            hashtagImage3.Clear();
+
+            hashtags1.Clear();
+            hashtags2.Clear();
+            hashtags3.Clear();
             const string accessToken = "2913538690-VtwNfPvdm17B16HmUwTMYbOUnXxxAXg3nJCPQG0";
             const string accessTokenSecret = "lRl45rfuVtwDNqiG0n0ioMOuwyKyvIqzOyZi3owczM43d";
             const string consumerKey = "HmvQgWj0nSthuP31zFV0dURCY";
