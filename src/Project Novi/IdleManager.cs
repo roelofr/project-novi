@@ -9,6 +9,11 @@ namespace Project_Novi
 
         public static Stopwatch idleTimer { get; set; }
 
+        /// <summary>
+        /// Check if current module is idle or not
+        /// </summary>
+        /// <param name="module"></param>
+        /// <returns></returns>
         public static bool CheckIdle(IModule module)
         {
             if (idleTimer == null)
@@ -26,6 +31,11 @@ namespace Project_Novi
             }            
         }
 
+        /// <summary>
+        /// Check if idle time has been passed
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
         private static bool CheckIdleTime(int time)
         {
             if (idleTimer.ElapsedMilliseconds > time * 1000)

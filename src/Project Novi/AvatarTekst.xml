@@ -13,29 +13,32 @@
   </Poke>
 
   <RouteVragen>
-    <String>Waar wilt u naartoe? Selecteer een verdieping of voer een lokaal in.</String>
-    <String>Waar kan ik u naartoe brengen? Selecteer een verdieping of voer een lokaal in.</String>
-    <String>Zal ik u de weg wijzen? Selecteer een verdieping of voer een lokaal in.</String>
+    <String>Waar wilt u naartoe? Selecteer een verdieping of voer een ruimte in.</String>
+    <String>Waar kan ik u naartoe brengen? Selecteer een verdieping of voer een ruimte in.</String>
+    <String>Zal ik u de weg wijzen? Selecteer een verdieping of voer een ruimte in.</String>
   </RouteVragen>
 
   <MapF0>
 	<String>Dat is op deze verdieping.</String>
-	<String>Dat lokaal is op deze verdieping.</String>
+	<String>U bent al op de juiste verdieping.</String>
   </MapF0>
   
   <MapF1>
 	<String>De eerste verdieping is slechts twintig traptreden. Ik raad u aan met de trap te gaan.</String>
 	<String>De eerste verdieping is hier vlak boven. U kan daarvoor het beste met de trap.</String>
+	<String>Om op de eerste verdieping te komen, kunt u het beste met de trap gaan.</String>
   </MapF1>
   
   <MapF2>
 	<String>De tweede verdieping is veertig traptreden. Dat kan best met de trap.</String>
 	<String>De tweede verdieping is niet zo ver omhoog, ik zou met de trap gaan.</String>
+	<String>Die ruimte is op de tweede verdieping. Hiervoor raad ik u aan met de trap te gaan.</String>
   </MapF2>
   
   <MapF3>
 	<String>De derde verdieping is zestig treden omhoog. De lift bevindt zich in de gangen naast u.</String>
 	<String>Voor verdieping drie zou ik de lift nemen.</String>
+	<String>Die ruimte is op de derde verdieping. U kunt de lift vinden in de gang naast u.</String>
   </MapF3>
   
   <MapF4>
@@ -51,44 +54,50 @@
   </MapF5>
   
   <MapTrapRechts>
-	<String> Als u met de trap gaat is het lokaal aan uw rechterkant zodra u het trappenhuis uit loopt.</String>
-	<String> Zodra u op de verdieping bent, is het lokaal aan uw rechterkant als u met de trap gaat.</String>
-	<String> Het lokaal is aan uw rechterkant zodra u het trappenhuis uit loopt.</String>
+	<String> Als u met de trap gaat, is de ruimte aan uw rechterkant zodra u het trappenhuis uit loopt.</String>
+	<String> Zodra u op de verdieping bent, is de ruimte aan uw rechterkant als u met de trap gaat.</String>
+	<String> De ruimte is aan uw rechterkant zodra u het trappenhuis uit loopt.</String>
   </MapTrapRechts>
   
   <MapTrapLinks>
-	<String> Als u met de trap gaat, is het lokaal aan uw linkerkant zodra u het trappenhuis uit loopt.</String>
-	<String> Zodra u op de verdieping bent, is het lokaal aan uw linkerkant als u met de trap gaat.</String>
-	<String> Het lokaal is aan uw linkerkant zodra u het trappenhuis uit loopt.</String>
+	<String> Als u met de trap gaat, is de ruimte aan uw linkerkant zodra u het trappenhuis uit loopt.</String>
+	<String> Zodra u op de verdieping bent, is de ruimte aan uw linkerkant als u met de trap gaat.</String>
+	<String> De ruimte is aan uw linkerkant zodra u het trappenhuis uit loopt.</String>
   </MapTrapLinks>
   
   <MapLiftRechts>
-	<String> Het lokaal is aan uw rechterkant zodra u de lift uit komt.</String>
-	<String> Zodra u op de verdieping bent, is het lokaal aan uw rechterkant als u met de lift gaat.</String>
+	<String> De ruimte is aan uw rechterkant zodra u de lift uit komt.</String>
+	<String> Zodra u op de verdieping bent, is de ruimte aan uw rechterkant als u met de lift gaat.</String>
+	<String> Wanneer u de lift uitkomt, is de ruimte aan uw rechterkant te vinden.</String>
   </MapLiftRechts>
   
   <MapLiftLinks>
-	<String> Het lokaal is aan uw linkerkant zodra u de lift uit komt.</String>
-	<String> Zodra u op de verdieping bent, is het lokaal aan uw linkerkant als u met de lift gaat.</String>
+	<String> De ruimte is aan uw linkerkant zodra u de lift uit komt.</String>
+	<String> Zodra u op de verdieping bent, is de ruimte aan uw linkerkant als u met de lift gaat.</String>
+	<String> Wanneer u de lift uitkomt, is de ruimte aan uw linkerkant te vinden.</String>
   </MapLiftLinks>
   
   <MapMidden>
-	<String> U kan het lokaal in de gang vinden.</String>
-	<String> Het lokaal is in het middelste deel van het gebouw.</String>
+	<String> U kan de ruimte in de gang vinden.</String>
+	<String> De ruimte is in het middelste deel van het gebouw.</String>
+	<String> De ruimte is te vinden in het midden van het gebouw.</String>
   </MapMidden>
 
   <MapBeganeGrondRechts>
-	<String> U kan het lokaal aan uw rechterhand vinden.</String>
-	<String> Dit lokaal bevindt zich aan uw rechterhand.</String>
+	<String> U kan de ruimte aan uw rechterhand vinden.</String>
+	<String> De ruimte bevindt zich aan uw rechterhand.</String>
+	<String> De ruimte is te vinden aan de rechterkant van het gebouw.</String>
   </MapBeganeGrondRechts>
 
   <MapBeganeGrondMidden>
-	<String> U kan het lokaal achter u vinden.</String>
-	<String> Dit lokaal bevindt zich achter u.</String>
+	<String> U kan de ruimte achter u vinden.</String>
+	<String> De ruimte bevindt zich achter u.</String>
+	<String> De ruimte is achter u te vinden.</String>
   </MapBeganeGrondMidden>
 
   <MapBeganeGrondLinks>
-	<String> U kan het lokaal aan uw linkerhand vinden.</String>
-	<String> Dit lokaal bevindt zich aan uw linkerhand.</String>
+	<String> U kan de ruimte aan uw linkerhand vinden.</String>
+	<String> De ruimte bevindt zich aan uw linkerhand.</String>
+	<String> De ruimte is te vinden aan de linkerkant van het gebouw.</String>
   </MapBeganeGrondLinks>
 </Strings>
