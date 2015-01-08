@@ -37,7 +37,11 @@ namespace Weather
                 throw new ArgumentException("A WeatherView can only render the interface for a WeatherModule");
 
             _module = weatherModule;
-            _controller.Avatar.Say(_module.WeatherResponse.currently.summary);
+            try
+            {
+                _controller.Avatar.Say(_module.WeatherResponse.currently.summary);
+            }
+            catch { }
         }
 
         public void Detach()
@@ -97,18 +101,22 @@ namespace Weather
 
         public void Render(Graphics graphics, Rectangle rectangle)
         {
-            var dayWidth = rectangle.Width / 4;
-            int x = 0;
-
-            RenderDay(graphics, _module.WeatherResponse.currently, new Rectangle(x, rectangle.Y, dayWidth, rectangle.Height));
-            x += dayWidth;
-
-            foreach (var day in _module.WeatherResponse.daily.data.GetRange(1, 3))
+            try
             {
-                RenderDay(graphics, day, new Rectangle(x, rectangle.Y, dayWidth, rectangle.Height));
+                var dayWidth = rectangle.Width / 4;
+                int x = 0;
+
+                RenderDay(graphics, _module.WeatherResponse.currently, new Rectangle(x, rectangle.Y, dayWidth, rectangle.Height));
                 x += dayWidth;
-                if (x >= rectangle.Right) break;
+
+                foreach (var day in _module.WeatherResponse.daily.data.GetRange(1, 3))
+                {
+                    RenderDay(graphics, day, new Rectangle(x, rectangle.Y, dayWidth, rectangle.Height));
+                    x += dayWidth;
+                    if (x >= rectangle.Right) break;
+                }
             }
+            catch { }
         }
     }
 }

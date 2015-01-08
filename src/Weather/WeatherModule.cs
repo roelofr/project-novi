@@ -24,7 +24,7 @@ namespace Weather
             {
                 if (WeatherResponse != null)
                     return GetWeatherImage(WeatherResponse.currently.icon);
-                return null;
+                return GetWeatherImage("sunny");
             }
         }
 
@@ -47,8 +47,12 @@ namespace Weather
 
         private void Update()
         {
-            var request = new ForecastIORequest("***REMOVED***", 52.5f, 6.079f, Unit.si);
-            WeatherResponse = request.Get();
+            try
+            {
+                var request = new ForecastIORequest("***REMOVED***", 52.5f, 6.079f, Unit.si);
+                WeatherResponse = request.Get();
+            }
+            catch { }
         }
 
         internal static Bitmap GetWeatherImage(string icon)
