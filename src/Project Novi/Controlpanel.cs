@@ -18,9 +18,7 @@ namespace Project_Novi
             switch (e.KeyCode)
             {
                 case Keys.Enter:
-                    SaveUsernames();
-                    SaveHashtags();
-                    Close();
+                    button1.PerformClick();
                     break;
                 case Keys.Escape:
                     Close();
@@ -111,6 +109,13 @@ namespace Project_Novi
             nodeType3.InnerText = textboxHashtag3.Text;
 
             doc.Save("TwitterSettings.xml");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SaveUsernames();
+            SaveHashtags();
+            Close();
         }
     }
 }
