@@ -11,9 +11,9 @@ namespace ForecastIO.Extensions
             return UnixEpoch.AddSeconds(_input);
         }
 
-        public static string ToUTCString(this DateTime _input)
+        public static string ToUTCString(this DateTime input)
         {
-            var milliseconds = _input.ToUniversalTime().Subtract(UnixEpoch).TotalSeconds;
+            var milliseconds = input.ToUniversalTime().Subtract(UnixEpoch).TotalSeconds;
             return Convert.ToInt64(milliseconds).ToString();
         }
     }

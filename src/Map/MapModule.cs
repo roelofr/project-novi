@@ -2,6 +2,10 @@ using System.Drawing;
 using System.Text;
 using Project_Novi.Api;
 using Project_Novi.Text;
+using System.Xml;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Map
 {
@@ -28,9 +32,16 @@ namespace Map
             get { return false; }
         }
 
+        public readonly string[] FloorNames = { "T5", "T4", "T3", "T2", "T1", "T0" };
+        public readonly string[] NumPadInputs = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+        public string ActiveFloor { get; set; }
+        public XmlDocument XmlDoc;
+
         public void Initialize(IController controller)
         {
             _controller = controller;
+            XmlDoc = new XmlDocument();
+            XmlDoc.Load("room_mapping.xml");
         }
 
         public void Start()
@@ -43,6 +54,7 @@ namespace Map
            
         }
 
+        
         /// <summary>
         /// Returns a textual route description based on the classroom code given
         /// </summary>
@@ -124,5 +136,71 @@ namespace Map
 
             return sb.ToString();
         }
+
+        /// <summary>
+        /// Return coordinates of given room
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public Point GetRoomLocation(string name)
+        {
+            var nodeList = XmlDoc.DocumentElement.SelectNodes(String.Format("/building/floor/room[starts-with(@id, 'T{0}')]", name));
+            var x = Convert.ToInt32(nodeList[0].SelectSingleNode("xPos").InnerText);
+            var y = Convert.ToInt32(nodeList[0].SelectSingleNode("yPos").InnerText);
+
+            return new Point(x, y);
+        }
+
+        /// <summary>
+        /// Returns all the classroomcodes and their locations for a given floor
+        /// </summary>
+        /// <param name="floor"></param>
+        /// <returns></returns>
+        public Dictionary<Point, string> GetRoomLocationsOnFloor(int floor)
+        {
+            var nodeList = XmlDoc.DocumentElement.SelectNodes(String.Format("/building/floor[@id='{0}']/room", floor));
+
+            return nodeList.Cast<XmlNode>().ToDictionary(room => new Point(Convert.ToInt32(room.SelectSingleNode("xPos").InnerText), Convert.ToInt32(room.SelectSingleNode("yPos").InnerText)), room => room.Attributes[0].InnerXml);
+        }
+
+        /// <summary>
+        /// Returns all available next digits for current room input
+        /// </summary>
+        /// <param name="start"></param>
+        /// <returns></returns>
+        public char[] GetNextDigits(string start)
+        {
+            var nodeList = XmlDoc.DocumentElement.SelectNodes(String.Format("/building/floor/room[starts-with(@id, 'T{0}')]", start));
+
+            var next = from XmlNode node in nodeList
+                       select node.Attributes["id"].InnerText[start.Length + 1];
+
+            return next.ToArray();
+        }
+
+        /// <summary>
+        /// Calculates which point from a given list is closest to the given point
+        /// </summary>
+        /// <param name="pointList">List of points to compare to given point</param>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public Point GetClosestPoint(IEnumerable<Point> pointList, Point point, int xpos, int ypos, int margin)
+        {
+            var closest = pointList.First();
+            var closestDist =  Math.Sqrt(Math.Pow(Math.Abs((pointList.First().X + xpos + ypos) - point.X), 2) + Math.Pow(Math.Abs((pointList.First().Y + xpos + margin) - point.Y), 2));
+
+            foreach (var _point in pointList)
+            {
+                var newDist =  Math.Sqrt(Math.Pow(Math.Abs((_point.X + xpos + ypos) - point.X), 2) + Math.Pow(Math.Abs((_point.Y + xpos + margin) - point.Y), 2));
+                if (newDist < closestDist)
+                {
+                    closest = _point;
+                    closestDist = newDist;
+                }
+            }
+
+            return closest;
+        }
+
     }
 }

@@ -17,19 +17,15 @@ namespace Map
         private readonly SolidBrush _markerBrush = new SolidBrush(Color.FromArgb(100, Color.Red));
         private readonly SolidBrush _arrowBrush = new SolidBrush(Color.FromArgb(100, Color.Black));
         private readonly Font _floorFont = new Font("Segoe UI", 30);
-        private readonly StringFormat _formatText = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
-        private string _activeFloor;
         private readonly Point[] _activeFloorArrow = new Point[3];
         private List<TouchButton> _floorButtons;       
-        private readonly string[] _floorNames = { "T5", "T4", "T3", "T2", "T1", "T0" };
-        private readonly string[] _numPadInputs = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
+        
         private int _xposFloorButtons;
         private int _yposFloorButtons;
         private const int WidthFloorButtons = 220;
         private const int HeightFloorButtons = 110;
         private const int MarginFloorButtons = 10;
         private const int MarginMap = 20;
-        private int _numberFloorButtons;
         private const int XposMap = 200;
         private const int YposMap = 0;
         private Point _activePosition;
@@ -46,8 +42,8 @@ namespace Map
         private const int WidthNumPad = 200;
         private const int HeightNumPad = 240;
         private const int MarkerSize = 50;
-        private XmlDocument _xmlDoc;
-        private const int scale = 100;
+        
+        private const int Scale = 100;
 
         private MapModule _module;
         private IController _controller;
@@ -63,9 +59,6 @@ namespace Map
         {
             BackgroundView = new SubBackground(controller, true);
             _controller = controller;
-
-            _xmlDoc = new XmlDocument();
-            _xmlDoc.Load("room_mapping.xml");
             
             _modularRectangle = BackgroundView.GetModuleRectangle(new Rectangle(0, 0, 1920, 1080));
         }
@@ -82,7 +75,7 @@ namespace Map
                 throw new ArgumentException("A MapView can only render the interface for a MapModule");
 
             // Display floor T0 upon attaching module
-            _activeFloor = "T0";
+            _module.ActiveFloor = "T0";
 
             // Buttons for selecting floor in top right corner
             _xposFloorButtons = _modularRectangle.Width - WidthFloorButtons - MarginFloorButtons;
@@ -90,12 +83,11 @@ namespace Map
             _floorButtons = new List<TouchButton>();
 
             // Placing numpad between map and bottom of module, centering
-            _xposNumPad = XposMap + MarginMap + ((Properties.Resources.T5x.Width*scale/100)/2) - (WidthNumPad / 2);
-            _yposNumPad = _modularRectangle.Height - (_modularRectangle.Height - (YposMap + 2 * MarginMap + Properties.Resources.T5x.Height*scale/100)) / 2 - HeightNumPad/2;
+            _xposNumPad = XposMap + MarginMap + ((Properties.Resources.T5x.Width*Scale/100)/2) - (WidthNumPad / 2);
+            _yposNumPad = _modularRectangle.Height - (_modularRectangle.Height - (YposMap + 2 * MarginMap + Properties.Resources.T5x.Height*Scale/100)) / 2 - HeightNumPad/2;
                         
             // Create and place numpad and output for numpad
-            _numberFloorButtons = _floorNames.Length;
-            _floorSelectNumpad = new NumPad(_xposNumPad, _yposNumPad, WidthNumPad, HeightNumPad, _numPadInputs, _buttonColor, _textColor, _floorFont);
+            _floorSelectNumpad = new NumPad(_xposNumPad, _yposNumPad, WidthNumPad, HeightNumPad, _module.NumPadInputs, _buttonColor, _textColor, _floorFont);
             _floorSelectOutput = new NumPadOutput(_xposNumPad, _yposNumPad - (1 * _floorSelectNumpad.TouchButtons[0].Height), (3 * _floorSelectNumpad.TouchButtons[0].Width) / 2, _floorSelectNumpad.TouchButtons[0].Height, 3, _floorSelectNumpad);
             _floorSelectOutput.TouchButtons[0].Xpos += _floorSelectOutput.TouchButtons[0].Width;
             _floorSelectOutput.TouchButtons[1].Xpos += 2 * _floorSelectOutput.TouchButtons[1].Width;
@@ -124,7 +116,7 @@ namespace Map
             _floorTimer.Start();
 
             // Create all buttons for selecting floors
-            CreateFloorButtons(_xposFloorButtons, _yposFloorButtons, WidthFloorButtons, HeightFloorButtons, MarginFloorButtons, _numberFloorButtons);
+            CreateFloorButtons(_xposFloorButtons, _yposFloorButtons, WidthFloorButtons, HeightFloorButtons, MarginFloorButtons);
 
             // Disable/Enable correct buttons in numpad for T0
             ButtonControl(_floorSelectNumpad, _floorSelectOutput);
@@ -144,12 +136,12 @@ namespace Map
             {
                 if (button.IsClicked(p))
                 {
-                    _activeFloor = _floorNames[_floorButtons.IndexOf(button)];
+                    _module.ActiveFloor = _module.FloorNames[_floorButtons.IndexOf(button)];
                     _floorSelectOutput.TouchButtons.ElementAt(_floorSelectOutput.ActiveDigit).ActiveTimer.Reset();
                     _floorSelectOutput.ActiveDigit = 0;
                     _floorSelectOutput.ClearOutput(0);
                     _floorSelectOutput.TouchButtons[0].Value =
-                        (_numberFloorButtons - 1 - _floorButtons.IndexOf(button)).ToString();
+                        (_module.FloorNames.Length - 1 - _floorButtons.IndexOf(button)).ToString();
                     _floorSelectOutput.BuildOutput();
                     ButtonControl(_floorSelectNumpad, _floorSelectOutput);
                 }
@@ -190,11 +182,11 @@ namespace Map
             }
 
             // Check if the map has been pressed
-            if (p.X > XposMap + MarginMap && p.X < XposMap + MarginMap + Properties.Resources.T1x.Width*scale / 100 && p.Y > YposMap + MarginMap && p.Y < YposMap + MarginMap + Properties.Resources.T1x.Height * scale / 100)
+            if (p.X > XposMap + MarginMap && p.X < XposMap + MarginMap + Properties.Resources.T1x.Width*Scale / 100 && p.Y > YposMap + MarginMap && p.Y < YposMap + MarginMap + Properties.Resources.T1x.Height * Scale / 100)
             {
-                var roomDict = GetRoomLocationsOnFloor(Convert.ToInt32(_activeFloor[1].ToString()));              
+                var roomDict = _module.GetRoomLocationsOnFloor(Convert.ToInt32(_module.ActiveFloor[1].ToString()));              
                 var roomList = roomDict.Keys;
-                var closest = GetClosestPoint(roomList, p);
+                var closest = _module.GetClosestPoint(roomList, p, XposMap, YposMap, MarginMap);
                 string room;
                 roomDict.TryGetValue(new Point(closest.X, closest.Y), out room);
 
@@ -229,7 +221,7 @@ namespace Map
 
             // Display correct floor map
             Bitmap bm = new Bitmap(Properties.Resources.T0x);
-            switch (_activeFloor)
+            switch (_module.ActiveFloor)
             {
                 case "T5":
                     bm = Properties.Resources.T5x;
@@ -250,11 +242,11 @@ namespace Map
                     bm = Properties.Resources.T0x;
                     break;
             }
-            graphics.DrawImage(bm, XposMap + MarginMap, YposMap + MarginMap, bm.Width * scale / 100, bm.Height * scale / 100);
+            graphics.DrawImage(bm, XposMap + MarginMap, YposMap + MarginMap, bm.Width * Scale / 100, bm.Height * Scale / 100);
 
             // Display all floor buttons
             foreach (var button in _floorButtons) {
-                if (_activeFloor.Equals("T" + (_numberFloorButtons - 1 - _floorButtons.IndexOf(button)).ToString()))
+                if (_module.ActiveFloor.Equals("T" + (_module.FloorNames.Length - 1 - _floorButtons.IndexOf(button)).ToString()))
                 {
                     _activeFloorArrow[0].X = button.Xpos;
                     _activeFloorArrow[0].Y = button.Ypos - 2;
@@ -296,86 +288,17 @@ namespace Map
         }
 
         // Create all buttons for selecting floor
-        public void CreateFloorButtons(int xpos, int ypos, int width, int height, int margin, int number)
+        public void CreateFloorButtons(int xpos, int ypos, int width, int height, int margin)
         {
-            for (var i = 0; i < _floorNames.Length; i++)
+            for (var i = 0; i < _module.FloorNames.Length; i++)
             {
-                var touchButton = new TouchButton(xpos, ypos + (i*height) + (i*margin), width, height, _floorNames[i],
+                var touchButton = new TouchButton(xpos, ypos + (i*height) + (i*margin), width, height, _module.FloorNames[i],
                     _buttonColor, _textColor, _floorFont);
                 _floorButtons.Add(touchButton);
             }
         }
 
-        // Collect all available/allowed digits that can be pressed next
-        public char[] GetNextDigits(string start)
-        {
-            var xmlDoc = new XmlDocument();
-            xmlDoc.Load("room_mapping.xml");
-            var nodeList = xmlDoc.DocumentElement.SelectNodes(String.Format("/building/floor/room[starts-with(@id, 'T{0}')]", start));
-
-            var next = from XmlNode node in nodeList
-                       select node.Attributes["id"].InnerText[start.Length + 1];
-
-            return next.ToArray();
-        }
-
-        // Collect coordinates from a selected room
-        public Point GetRoomLocation(string name)
-        {
-            var nodeList = _xmlDoc.DocumentElement.SelectNodes(String.Format("/building/floor/room[starts-with(@id, 'T{0}')]", name));
-            var x = Convert.ToInt32(nodeList[0].SelectSingleNode("xPos").InnerText);
-            var y = Convert.ToInt32(nodeList[0].SelectSingleNode("yPos").InnerText);
-
-            return new Point(x, y); 
-        }
-
-        /// <summary>
-        /// Returns all the classroomcodes and their locations for a given floor
-        /// </summary>
-        /// <param name="floor"></param>
-        /// <returns></returns>
-        public Dictionary<Point, string> GetRoomLocationsOnFloor(int floor)
-        {
-            var nodeList = _xmlDoc.DocumentElement.SelectNodes(String.Format("/building/floor[@id='{0}']/room", floor));
-
-            return nodeList.Cast<XmlNode>().ToDictionary(room => new Point(Convert.ToInt32(room.SelectSingleNode("xPos").InnerText), Convert.ToInt32(room.SelectSingleNode("yPos").InnerText)), room => room.Attributes[0].InnerXml);
-        }
-
-        /// <summary>
-        /// Calculates which point from a given list is closest to the given point
-        /// </summary>
-        /// <param name="pointList">List of points to compare to given point</param>
-        /// <param name="point"></param>
-        /// <returns></returns>
-        public Point GetClosestPoint(IEnumerable<Point> pointList, Point point)
-        {
-            var closest = pointList.First();
-            var closestDist = CalculateDist(pointList.First(), point);
-
-            foreach (var _point in pointList)
-            {
-                var newDist = CalculateDist(_point, point);
-                if (newDist < closestDist)
-                {
-                    closest = _point;
-                    closestDist = newDist;
-                }
-            }
-
-            return closest;
-        }
-
-        /// <summary>
-        /// Calculates the distance between two given points
-        /// </summary>
-        /// <param name="p1"></param>
-        /// <param name="p2"></param>
-        /// <returns></returns>
-        public double CalculateDist(Point p1, Point p2)
-        {        
-
-            return Math.Sqrt(Math.Pow(Math.Abs((p1.X + XposMap + MarginMap) - p2.X), 2) + Math.Pow(Math.Abs((p1.Y + YposMap + MarginMap)- p2.Y), 2));
-        }
+ 
 
         // Disable/Enable buttons and check output
         public void ButtonControl(NumPad numPad, NumPadOutput numPadOutput)
@@ -386,7 +309,7 @@ namespace Map
                 foreach (var button in numPad.TouchButtons)
                 {
                     button.Enabled = false;
-                    foreach (var c in GetNextDigits(numPadOutput.Output))
+                    foreach (var c in _module.GetNextDigits(numPadOutput.Output))
                     {
                         //Enable all allowed digits
                         if (button.Value.Equals(c.ToString()))
@@ -414,7 +337,7 @@ namespace Map
             // Check if at least one number has been filled to allow backspace
             if (numPadOutput.Output.Length > 0)
             {
-                _activeFloor = "T" + numPadOutput.Output[0];
+                _module.ActiveFloor = "T" + numPadOutput.Output[0];
                 _backspace.Enabled = true;
             }
             else
@@ -429,8 +352,8 @@ namespace Map
             // Check if a room has been filled in
             if (numPadOutput.Output.Length == numPadOutput.Digits)
             {
-                var roomPos = GetRoomLocation(numPadOutput.Output);
-                _activePosition = new Point(roomPos.X * scale / 100 + XposMap, roomPos.Y * scale / 100 + YposMap);
+                var roomPos = _module.GetRoomLocation(numPadOutput.Output);
+                _activePosition = new Point(roomPos.X * Scale / 100 + XposMap, roomPos.Y * Scale / 100 + YposMap);
                 var description = _module.GetRouteDescription(numPadOutput.Output);
                 _controller.Avatar.Say(description);
             }
