@@ -34,8 +34,6 @@ namespace Project_Novi.Modules.Home
 
         public void Start()
         {
-            //Available categories: Welkom, Poke, Idle, Kaart, RouteVragen
-            //Let op: Exact overnemen!!!
             AvatarText = Text.TextManager.GetText("Welkom");
         }
 
