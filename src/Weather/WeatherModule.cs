@@ -23,8 +23,8 @@ namespace Weather
             get
             {
                 if (WeatherResponse != null)
-                    return GetWeatherImage(WeatherResponse.currently.icon);
-                return GetWeatherImage("sunny");
+                    return GetWeatherImage(WeatherResponse.currently.icon, true);
+                return GetWeatherImage("sunny", true);
             }
         }
 
@@ -55,20 +55,63 @@ namespace Weather
             catch { }
         }
 
+        internal static Bitmap GetWeatherImage(string icon, bool metroIcon)
+        {
+            if (metroIcon)
+            {
+                switch (icon)
+                {
+                    case "clear-day":
+                        return Resources.metro_sun_weather;
+                    case "clearn-night":
+                        return Resources.metro_sun_weather;
+                    case "rain":
+                        return Resources.metro_raining_weather;
+                    case "snow":
+                        return Resources.metro_snowing_weather;
+                    case "sleet":
+                        return Resources.metro_sleet_weather;
+                    case "wind":
+                        return Resources.metro_cloudy_weather;
+                    case "fog":
+                        return Resources.metro_cloudy_weather;
+                    case "cloudy":
+                        return Resources.metro_cloudy_weather;
+                    case "partly-cloudy-night":
+                        return Resources.metro_mostly_cloudy_weather;
+                    default:
+                        return Resources.metro_mostly_sunny_weather;
+                }
+            }
+
+            switch (icon)
+            {
+                case "clear-day":
+                    return Resources.sun_weather;
+                case "clearn-night":
+                    return Resources.sun_weather;
+                case "rain":
+                    return Resources.raining_weather;
+                case "snow":
+                    return Resources.snowing_weather;
+                case "sleet":
+                    return Resources.sleet_weather;
+                case "wind":
+                    return Resources.cloudy_weather;
+                case "fog":
+                    return Resources.cloudy_weather;
+                case "cloudy":
+                    return Resources.cloudy_weather;
+                case "partly-cloudy-night":
+                    return Resources.mostly_cloudy_weather;
+                default:
+                    return Resources.mostly_sunny_weather;
+            }
+        }
+
         internal static Bitmap GetWeatherImage(string icon)
         {
-            if (icon == "clear-day") return Resources.sun_weather;
-            if (icon == "clearn-night") return Resources.sun_weather;
-            if (icon == "rain") return Resources.raining_weather;
-            if (icon == "snow") return Resources.snowing_weather;
-            if (icon == "sleet") return Resources.sleet_weather;
-            if (icon == "wind") return Resources.cloudy_weather;
-            if (icon == "fog") return Resources.cloudy_weather;
-            if (icon == "cloudy") return Resources.cloudy_weather;
-            if (icon == "partly-cloudy-day") return Resources.mostly_sunny_weather;
-            if (icon == "partly-cloudy-night") return Resources.mostly_cloudy_weather;
-
-            return Resources.mostly_sunny_weather;
+            return GetWeatherImage(icon, false);
         }
 
         public void Start()

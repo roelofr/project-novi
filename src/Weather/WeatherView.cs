@@ -66,7 +66,7 @@ namespace Weather
             var culture = new System.Globalization.CultureInfo("nl-NL");
             var dayName = culture.DateTimeFormat.GetDayName(UnixTimeStampToDateTime(day.time).DayOfWeek);
 
-            var str = String.Format("{0}\n{1}°C tot {2}°C\n\n\nwindsnelheid:{3} km/u {4}", dayName,
+            var str = String.Format("{0}\n{1}°C tot {2}°C\n\n\nwindsnelheid: {3} km/u {4}", dayName,
                 Math.Round(day.temperatureMin),
                 Math.Round(day.temperatureMax),
                 Math.Round(day.windSpeed * 3.6),
@@ -76,7 +76,7 @@ namespace Weather
             graphics.DrawString(
                 str,
                 font, Brushes.White,
-                new Rectangle(rectangle.X, rectangle.Y + height, width, rectangle.Height - height));
+                new Rectangle(rectangle.X, rectangle.Y + height, width + 2, rectangle.Height - height));
         }
 
         private static void RenderDay(Graphics graphics, Currently today, Rectangle rectangle)

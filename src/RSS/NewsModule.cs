@@ -17,8 +17,9 @@ namespace News
         /// <summary>
         /// Indicates that the data is being loaded
         /// </summary>
-        public bool IsLoading { get; private set; }
         public List<RssEntry> entries { get; private set; }
+
+        public bool HasNewData = false;
 
         public string Name
         {
@@ -54,12 +55,11 @@ namespace News
                 return;
 
             _rssHandler = new RssHandler();
-            _rssHandler.RssDownloadFinished += downloadFinished;
+            _rssHandler.RssDownloadFinished += DownloadFinished;
         }
 
         public void Start()
         {
-            IsLoading = true;
             UpdateData();
         }
 
@@ -75,7 +75,7 @@ namespace News
             if (EntriesUpdated != null)
                 EntriesUpdated();
 
-            IsLoading = false;
+            HasNewData = true;
         }
 
         private void UpdateData()
@@ -87,6 +87,8 @@ namespace News
                 if (CacheHandler.Contains(url))
                 {
                     var data = CacheHandler.ReadFromCache(url);
+                    if (data == null)
+                        continue;
                     foreach (var entry in data)
                         entries.Add(entry);
                 }
@@ -99,7 +101,7 @@ namespace News
             DoPostUpdate();
         }
 
-        private void downloadFinished(string url, string data)
+        private void DownloadFinished(string url, string data)
         {
             var parsed = RssHandler.ParseRssEntries(data, url);
 

@@ -73,6 +73,96 @@ namespace Weather.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap metro_cloudy_weather {
+            get {
+                object obj = ResourceManager.GetObject("metro_cloudy_weather", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap metro_mostly_cloudy_weather {
+            get {
+                object obj = ResourceManager.GetObject("metro_mostly_cloudy_weather", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap metro_mostly_sunny_weather {
+            get {
+                object obj = ResourceManager.GetObject("metro_mostly_sunny_weather", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap metro_raining_weather {
+            get {
+                object obj = ResourceManager.GetObject("metro_raining_weather", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap metro_sleet_weather {
+            get {
+                object obj = ResourceManager.GetObject("metro_sleet_weather", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap metro_snowing_weather {
+            get {
+                object obj = ResourceManager.GetObject("metro_snowing_weather", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap metro_storm_weather {
+            get {
+                object obj = ResourceManager.GetObject("metro_storm_weather", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap metro_sun_weather {
+            get {
+                object obj = ResourceManager.GetObject("metro_sun_weather", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap metro_sunny_rain_weather {
+            get {
+                object obj = ResourceManager.GetObject("metro_sunny_rain_weather", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap mostly_cloudy_weather {
             get {
                 object obj = ResourceManager.GetObject("mostly_cloudy_weather", resourceCulture);
