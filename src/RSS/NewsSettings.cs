@@ -82,7 +82,7 @@ namespace News
             if (!File.Exists(Path.Combine(BasePath, SettingsFile)))
             {
                 _urlList.Add("http://feeds.nos.nl/nosop3");
-                _urlList.Add("http://feeds.feedburner.com/tweakers/mixed");
+                _urlList.Add("http://tweakers.net/feeds/nieuws.xml");
                 _urlList.Add("http://www.windesheim.nl/over-windesheim/nieuws/rss/");
 
                 if (!WriteSettings())

@@ -12,7 +12,6 @@ namespace News
         private IController _controller;
         private NewsModule _module;
         private readonly List<RssEntry> _visibleEntries = new List<RssEntry>();
-        private Boolean _isVisible = false;
 
         // Fonts and alignment
         private readonly SolidBrush _transparentBlack = new SolidBrush(Color.FromArgb(75, Color.Black));
@@ -26,6 +25,10 @@ namespace News
         private readonly Font _dateFont = new Font("Open Sans", 14, FontStyle.Italic);
         private readonly Font _baseFont = new Font("Open Sans", 16);
         private readonly Font _titleFont = new Font("Open Sans Semibold", 18, FontStyle.Bold);
+
+        private DateTime _visibleTime;
+        private DateTime _lastNoDataTime;
+        private bool HasSpoken = false;
 
         public Type ModuleType
         {
@@ -46,41 +49,61 @@ namespace News
             if (newsModule != null)
             {
                 _module = newsModule;
-                _module.EntriesUpdated += RefreshView;
             }
             else
                 throw new ArgumentException("A NewsView can only render the interface for a NewsModule");
 
-            _module.EnableUpdate = false;
+            _visibleTime = DateTime.Now;
+            _lastNoDataTime = DateTime.Now;
 
-            _isVisible = false;
+            HasSpoken = false;
 
-            RefreshView();
+            _controller.Avatar.Say("");
+        }
 
+        public void SaySomething()
+        {
             if (_visibleEntries.Count < 1 || String.IsNullOrEmpty(_visibleEntries[0].Title))
-            {
-                //_controller.Avatar.Say(null);
-            }
-            else
-            {
-                _controller.Avatar.Say("Het laatste nieuws: " + _visibleEntries[0].Title);
-            }
+                return;
+
+            var hiddenFor = (DateTime.Now - _lastNoDataTime).TotalMilliseconds;
+            if (hiddenFor > 750 || hiddenFor < 200)
+                return;
+
+            HasSpoken = true;
+
+            var text = String.Format("Het laatste nieuws van {0}: {1}", _visibleEntries[0].Channel,
+                _visibleEntries[0].Title);
+            _controller.Avatar.Say(text);
+
         }
 
         public void Detach()
         {
-            _module.EnableUpdate = true;
             _module = null;
         }
 
         public void Render(Graphics graphics, Rectangle rectangle)
         {
+            if (_module == null)
+                return;
+
+            if (_module.HasNewData)
+            {
+                RefreshView();
+                _module.HasNewData = false;
+            }
+
             if (_visibleEntries.Count == 0)
             {
+                _lastNoDataTime = DateTime.Now;
                 RenderLoading(graphics, rectangle);
             }
             else
             {
+                if (!HasSpoken)
+                    SaySomething();
+
                 RenderNews(graphics, rectangle);
             }
         }
@@ -88,21 +111,17 @@ namespace News
         public void RenderLoading(Graphics graphics, Rectangle rectangle)
         {
             var textRectangle = new Rectangle(200, 55, 1000, 100);
-            if (_module != null && _module.IsLoading)
-            {
-                graphics.DrawString("Laden...", _titleFont, Brushes.White, textRectangle, _topCenterFormat);
-            }
-            else
-            {
+            if ((DateTime.Now - _visibleTime).TotalSeconds > 10)
                 graphics.DrawString("Er is geen nieuws beschikbaar.", _titleFont, Brushes.LightGray, textRectangle, _topCenterFormat);
-            }
+            else
+                graphics.DrawString("Laden...", _titleFont, Brushes.White, textRectangle, _topCenterFormat);
+
         }
 
         public void RenderNews(Graphics graphics, Rectangle rectangle)
         {
-            _isVisible = true;
-
             var yPos = 20;
+            var i = 0;
             foreach (var rssEntry in _visibleEntries)
             {
                 if (rssEntry.Title == null)
@@ -117,12 +136,12 @@ namespace News
                 graphics.FillRectangle(_transparentBlack, backgroundRect);
 
                 if (rssEntry.Image != null)
-                    graphics.DrawImage(rssEntry.Image, imgRect);
+                    DrawImage(graphics, rssEntry.Image, imgRect);
 
                 graphics.DrawString(rssEntry.Title, _titleFont, Brushes.White, titleRect, _topLeftFormat);
 
                 if (rssEntry.Content != null)
-                    graphics.DrawString(rssEntry.Content, _baseFont, Brushes.White, contentRect, _topLeftFormat);
+                    graphics.DrawString(rssEntry.Content, _baseFont, Brushes.GhostWhite, contentRect, _topLeftFormat);
 
                 if (!String.IsNullOrEmpty(rssEntry.Channel))
                     graphics.DrawString(rssEntry.Channel, _baseFont, Brushes.LightGray, titleRect, _bottomLeftFormat);
@@ -133,14 +152,37 @@ namespace News
                 graphics.DrawString(time, _dateFont, Brushes.LightGray, titleRect, _bottomRightFormat);
 
                 yPos += 220;
+                i++;
             }
+
+        }
+        /// <summary>
+        /// Resizes an image so it fits in the available space box nicely
+        /// Only suitable for square rectangles
+        /// </summary>
+        /// <param name="graphics"></param>
+        /// <param name="image"></param>
+        /// <param name="availableRectangle"></param>
+        private void DrawImage(Graphics graphics, Image image, Rectangle availableRectangle)
+        {
+            var Size = availableRectangle.Size;
+            var Pos = availableRectangle.Location;
+            if (!Size.Height.Equals(Size.Width))
+                return;
+
+            Size drawSize;
+            if (image.Height > image.Width)
+                drawSize = new Size((int)Math.Round(1d * image.Width / image.Height * availableRectangle.Width), image.Height);
+            else
+                drawSize = new Size(image.Width, (int)Math.Round(1d * image.Height / image.Width * availableRectangle.Height));
+
+            var drawRect = new Rectangle(Pos, drawSize);
+
+            graphics.DrawImage(image, drawRect);
         }
 
         public void RefreshView()
         {
-            if (_isVisible)
-                return;
-
             _visibleEntries.Clear();
 
             var entryFeedCount = new Dictionary<String, Int32>();

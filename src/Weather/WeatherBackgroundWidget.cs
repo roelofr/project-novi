@@ -25,10 +25,21 @@ namespace Weather
             {
                 var str = String.Format("{0}°C", Math.Round(_module.WeatherResponse.currently.temperature));
                 var font = TextUtils.GetFont(24);
-                var size = graphics.MeasureString(str, font);
 
-                graphics.DrawImage(WeatherModule.GetWeatherImage(_module.WeatherResponse.currently.icon), rectangle.X, (rectangle.Y + 10), rectangle.Height, rectangle.Height);
-                graphics.DrawString(str, font, Brushes.White, rectangle.Right - size.Width - 10, (rectangle.Y + 40));
+                var imageSize = new Size(64, 64);
+                var imagePosition = new Rectangle(rectangle.X,
+                    (rectangle.Y + 10) + (rectangle.Height - 10 - imageSize.Height)/2, imageSize.Height,
+                    imageSize.Height);
+                var textRectangle = new Rectangle(imagePosition.X + imagePosition.Width + 10, rectangle.Y,
+                    rectangle.Width - imagePosition.Width - 10, rectangle.Height);
+                var textFormat = new StringFormat
+                {
+                    Alignment = StringAlignment.Near,
+                    LineAlignment = StringAlignment.Center
+                };
+
+                graphics.DrawImage(WeatherModule.GetWeatherImage(_module.WeatherResponse.currently.icon, false), imagePosition);
+                graphics.DrawString(str, font, Brushes.White, textRectangle, textFormat);
             }
             catch { }
         }

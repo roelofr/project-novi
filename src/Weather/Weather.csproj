@@ -105,6 +105,33 @@
   <ItemGroup>
     <None Include="Resources\sun-weather.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\metro-cloudy-weather.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\metro-mostly-cloudy-weather.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\metro-mostly-sunny-weather.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\metro-raining-weather.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\metro-sleet-weather.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\metro-snowing-weather.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\metro-storm-weather.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\metro-sunny-rain-weather.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\metro-sun-weather.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

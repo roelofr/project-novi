@@ -48,7 +48,7 @@ namespace Twitter
         {
             get
             {
-                return Properties.Resources.twittericon;
+                return Properties.Resources.bird;
             }
         }
 
