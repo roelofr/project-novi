@@ -14,6 +14,10 @@ namespace News
         private RssHandler _rssHandler;
         private NewsSettings _settings;
         public bool EnableUpdate = true;
+        /// <summary>
+        /// Indicates that the data is being loaded
+        /// </summary>
+        public bool IsLoading { get; private set; }
         public List<RssEntry> entries { get; private set; }
 
         public string Name
@@ -41,23 +45,17 @@ namespace News
             if (_settings == null)
                 _settings = new NewsSettings();
 
-            if (_rssHandler == null)
-            {
-                _rssHandler = new RssHandler();
-                _rssHandler.RssDownloadFinished += downloadFinished;
-            }
+            if (_rssHandler != null) 
+                return;
 
-            var thread = new Thread(UpdateThread);
-            thread.IsBackground = true;
-            thread.Start();
-
-            var thread2 = new Thread(UpdateDataDelayed);
-            thread2.IsBackground = true;
-            thread2.Start();
+            _rssHandler = new RssHandler();
+            _rssHandler.RssDownloadFinished += downloadFinished;
         }
 
         public void Start()
         {
+            IsLoading = true;
+            UpdateData();
         }
 
         public void Stop()
@@ -71,6 +69,8 @@ namespace News
             entries.Sort((e1, e2) => e2.Timestamp.CompareTo(e1.Timestamp));
             if (EntriesUpdated != null)
                 EntriesUpdated();
+
+            IsLoading = false;
         }
 
         private void UpdateData()
@@ -92,23 +92,6 @@ namespace News
             }
 
             DoPostUpdate();
-        }
-
-        private void UpdateDataDelayed()
-        {
-            Thread.Sleep(1000);
-            UpdateData();
-            Thread.CurrentThread.Abort();
-        }
-
-        private void UpdateThread()
-        {
-            while (true)
-            {
-                Thread.Sleep(60*1000);
-                if(EnableUpdate)
-                    UpdateData();
-            }
         }
 
         private void downloadFinished(string url, string data)
