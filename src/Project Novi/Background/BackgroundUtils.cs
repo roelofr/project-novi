@@ -108,7 +108,7 @@ namespace Project_Novi.Background
 
         public static String GetDate(DateTime time)
         {
-            return String.Format("{0} {1} {2} {3}", DaysOfWeeks[(int) time.DayOfWeek], time.Day, Months[time.Month - 1],
+            return String.Format("{0} {1} {2} {3}", DaysOfWeeks[(int)time.DayOfWeek], time.Day, Months[time.Month - 1],
                 time.Year);
         }
 
@@ -119,6 +119,13 @@ namespace Project_Novi.Background
 
         public static String GetTime(DateTime time)
         {
+            return GetTime(time, true);
+        }
+
+        public static String GetTime(DateTime time, Boolean includeSeconds)
+        {
+            if (!includeSeconds)
+                return String.Format("{0}:{1}", time.Hour, ZeroFill(time.Minute));
             return String.Format("{0}:{1}:{2}", time.Hour, ZeroFill(time.Minute), ZeroFill(time.Second));
         }
 
@@ -133,8 +140,8 @@ namespace Project_Novi.Background
 
         public static void DrawClock(Graphics graphics)
         {
-            var timeFormat = new StringFormat {Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Center};
-            var dateFormat = new StringFormat {Alignment = StringAlignment.Far, LineAlignment = StringAlignment.Center};
+            var timeFormat = new StringFormat { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Center };
+            var dateFormat = new StringFormat { Alignment = StringAlignment.Far, LineAlignment = StringAlignment.Center };
 
             var timeRect = new Rectangle(1700, 40, 300, 40);
             var dateRect = new Rectangle(0, 40, 1700, 40);

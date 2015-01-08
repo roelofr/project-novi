@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiComm.cs" />
     <Compile Include="NSModule.cs" />
+    <Compile Include="NSReis.cs" />
     <Compile Include="NSView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -48,6 +50,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TrainTrack.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Project Novi\Project Novi.csproj">
