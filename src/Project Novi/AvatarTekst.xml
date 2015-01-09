@@ -100,4 +100,10 @@
 	<String> De ruimte bevindt zich aan uw linkerhand.</String>
 	<String> De ruimte is te vinden aan de linkerkant van het gebouw.</String>
   </MapBeganeGrondLinks>
+
+  <VertrektijdenWelcome>
+	<String>Dit zijn de actuele vertrektijden voor station Zwolle.</String>
+	<String>Hier zijn de vertrektijden voor station Zwolle.</String>
+	<String>De volgende treinen vertrekken binnenkort van station Zwolle</String>
+  </VertrektijdenWelcome>
 </Strings>

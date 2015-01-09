@@ -11,15 +11,16 @@ namespace Vertrektijden
         public delegate void NsDataAvailableEvent(XmlDocument document, string station);
 
         private const string CredentialFile = "nsApiCredentials.xml";
-        public const string DefaultStation = "Zwolle";
         private const string CacheFileTemplate = "nsCache-{0}.xml";
-        private const string ApiCredentials = "nsApiCredentials.xml";
         private const string ApiPath = "http://webservices.ns.nl/ns-api-avt?station={0}";
         private static readonly Regex NonFileRegex = new Regex("([^a-zA-Z0-9\\-]+)");
         private string _lastDownloaded;
         private readonly WebClient _client;
-
-        public ApiComm()
+        /// <summary>
+        /// Creates a new API handler, usng the given station as station name.
+        /// </summary>
+        /// <param name="station">The name to parse, is forwarded to the NS API</param>
+        public ApiComm(string station)
         {
             var clientCred = GetApiCredentials();
 
@@ -28,13 +29,19 @@ namespace Vertrektijden
                 throw new PlatformNotSupportedException();
             }
 
-            _client = new WebClient();
-            _client.Credentials = clientCred;
+            StationName = station;
+            LastModifiedTime = new DateTime(1970,1,1);
+
+            _client = new WebClient { Credentials = clientCred };
             _client.DownloadStringCompleted += DownloadCompleted;
         }
 
+        public string StationName { get; private set; }
+        public DateTime LastModifiedTime { get; private set; }
         public event NsDataAvailableEvent NsDataAvailable;
-
+        /// <summary>
+        /// Writes the default data to log in with to the settings file, in case it's deleted
+        /// </summary>
         private static void WriteDefaultApiCredentials()
         {
             using (var xmlWriter = XmlWriter.Create(CredentialFile))
@@ -49,7 +56,10 @@ namespace Vertrektijden
                 xmlWriter.WriteEndDocument();
             }
         }
-
+        /// <summary>
+        /// Returns a NetworkCredential manager containing the API credentials, or NULL if not available
+        /// </summary>
+        /// <returns></returns>
         private static NetworkCredential GetApiCredentials()
         {
             if (!File.Exists(CredentialFile))
@@ -83,76 +93,80 @@ namespace Vertrektijden
 
             return new NetworkCredential(user, pass);
         }
-
-        public string GetFile(string station)
+        /// <summary>
+        /// Returns the name of the file which is used for caching
+        /// </summary>
+        /// <param name="station"></param>
+        /// <returns></returns>
+        private string GetFile(string station)
         {
             if (string.IsNullOrWhiteSpace(station))
                 return null;
             var formattedStation = NonFileRegex.Replace(station, "-");
             return string.Format(CacheFileTemplate, formattedStation);
         }
-
-        public void GetInformation(string station)
-        {
-            if (GetFromCache(station, false))
-                return;
-            if (GetFromWeb(station))
-                return;
-            GetFromCache(station, true);
-        }
-
+        /// <summary>
+        /// Gets the information, using the cache if it is valid, then the web data and if that fails, falls back to the cache file ignoring it's validity
+        /// </summary>
         public void GetInformation()
         {
-            GetInformation(DefaultStation);
+            if (GetFromCache(false))
+                return;
+            if (GetFromWeb())
+                return;
+            GetFromCache(true);
         }
 
         /// <summary>
         ///     Gets the information from the cache file, optionally ignoring if the cache expired (in case of connection failure)
         /// </summary>
-        /// <param name="station"></param>
         /// <param name="ignoreExpire"></param>
         /// <returns></returns>
-        public bool GetFromCache(string station, bool ignoreExpire)
+        public bool GetFromCache(bool ignoreExpire)
         {
-            var file = GetFile(station);
+            var file = GetFile(StationName);
 
             if (!File.Exists(file))
                 return false;
-            if (!ignoreExpire && (DateTime.UtcNow - File.GetLastWriteTimeUtc(file)).TotalMinutes > 5)
+            if (!ignoreExpire && (DateTime.UtcNow - File.GetLastWriteTimeUtc(file)).TotalMinutes > 2)
                 return false;
 
             var data = File.ReadAllText(file);
 
-            UseData(data, false, station);
+            UseData(data, false, File.GetLastWriteTime(file));
 
             return true;
         }
-
-        public bool GetFromWeb(string station)
+        /// <summary>
+        /// Gets the data for this station from the NS API
+        /// </summary>
+        /// <returns></returns>
+        public bool GetFromWeb()
         {
-            if (_lastDownloaded != null || string.IsNullOrWhiteSpace(station))
+            if (_lastDownloaded != null)
                 return false;
-
-            _lastDownloaded = station;
 
             try
             {
-                var url = new Uri(string.Format(ApiPath, station));
+                var url = new Uri(string.Format(ApiPath, StationName));
                 _client.DownloadStringAsync(url);
                 return true;
             }
-            catch (Exception exception)
+            catch
             {
                 return false;
             }
         }
-
-        private void putInCache(string data, string station)
+        /// <summary>
+        /// Puts the retrieved content in this station's cache file.
+        /// </summary>
+        /// <param name="data"></param>
+        private void PutInCache(string data)
         {
-            if (string.IsNullOrWhiteSpace(data) || string.IsNullOrWhiteSpace(station))
+            if (string.IsNullOrWhiteSpace(data))
                 return;
 
-            var file = GetFile(station);
+            var file = GetFile(StationName);
             try
             {
                 File.WriteAllText(file, data);
@@ -162,8 +176,13 @@ namespace Vertrektijden
                 // Do nothing on failure, too bad
             }
         }
-
-        private void UseData(string data, bool cachable, string station)
+        /// <summary>
+        /// Checks if the given data is valid XML and if it is, caches it if required and then forwards it to the event handlers.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="cachable"></param>
+        /// <param name="lastUpdatedTime"></param>
+        private void UseData(string data, bool cachable, DateTime lastUpdatedTime)
         {
             if (String.IsNullOrWhiteSpace(data))
                 return;
@@ -179,18 +198,30 @@ namespace Vertrektijden
             }
 
 
-            if (cachable && station != null)
-                putInCache(data, station);
+            if (cachable)
+                PutInCache(data);
+
+            LastModifiedTime = lastUpdatedTime;
 
             if (NsDataAvailable != null)
             {
-                NsDataAvailable(XmlDoc, station ?? DefaultStation);
+                NsDataAvailable(XmlDoc, StationName);
             }
         }
-
+        /// <summary>
+        /// Fired when the download is completed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DownloadCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
-            UseData(e.Result, true, _lastDownloaded);
+            if (e.Error != null)
+                return;
+
+            if (e.Cancelled)
+                return;
+
+            UseData(e.Result, true, DateTime.Now);
             _lastDownloaded = null;
         }
     }
