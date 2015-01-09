@@ -30,11 +30,14 @@ namespace Map
             CreateNumPad();
         }
 
+        /// <summary>
+        /// Create the numpad with all its buttons
+        /// </summary>
         public void CreateNumPad()
         {
-            
-            var columns = Math.Sqrt((double)Values.Length * (double)Width/(double)Height);
-            var rows = Math.Sqrt((double)Values.Length * (double)Height / (double)Width);
+            //Determine how many rows/columns numpad should use
+            var columns = Math.Sqrt(Values.Length * (double)Width / Height);
+            var rows = Math.Sqrt(Values.Length * (double)Height / Width);
             if (Math.Ceiling(columns) - columns >= Math.Ceiling(rows) - rows)
             {
                 columns = Math.Ceiling(columns);
@@ -45,8 +48,12 @@ namespace Map
                 columns = Math.Round(columns);
                 rows = Math.Ceiling(rows);
             }
+
+            // Ensure fitting width/height
             Width = (int)Math.Floor(Width / columns) * (int)columns;
             Height = (int)Math.Floor(Height / rows) * (int)rows;
+
+            // Determine maximum fitting textsize
             var textLength = 0;
             foreach (var s in Values)
             {
@@ -55,20 +62,19 @@ namespace Map
                     textLength = s.Length;
                 }
             }
-            var textSpace = 0;
+            var textSpace = (int) (Height/rows);
             if ((Width/columns) <= (Height/rows))
             {
                 textSpace = (int) (Width/columns);
             }
-            else
-            {
-                textSpace = (int) (Height/rows);
-            }
-            TextFont = new Font(TextFont.FontFamily, (int)(0.8 * (textSpace / textLength)));
+            TextFont = new Font(TextFont.FontFamily, (int)(0.8 * textSpace / textLength));
+
+            // Create all buttons for numpad
             var rowIndex = 0;
             var columnIndex = 0;
             foreach (var s in Values)
             {
+                // Create optional disabled buttons at bottom row to fill up space, left side
                 if (rowIndex == (int)(rows - 1))
                 {
                     while (TouchButtons.Count < Math.Ceiling((((rows * columns) - Values.Length) / 2) + rowIndex * columns))
@@ -82,6 +88,8 @@ namespace Map
                     }
 
                 }
+
+                // Create button
                 TouchButtons.Add(new TouchButton((int) (Xpos + (columnIndex*(Width/columns))),
                         (int) (Ypos + (rowIndex*(Height/rows))), (int) (Width/columns), (int) (Height/rows), s,
                         ButtonColor.Color, TextColor.Color, TextFont));
@@ -96,6 +104,7 @@ namespace Map
                 else
                 {
                     columnIndex++;
+                    // Create optional disabled buttons at bottom row to fill up space, right side
                     if (rowIndex == (int)(rows - 1) && TouchButtons.Count >= Values.Length + Math.Ceiling(((rows * columns) - Values.Length) / 2))
                     {
                         while (TouchButtons.Count < (int)(rows * columns))
@@ -112,20 +121,17 @@ namespace Map
                 }
                 
             }
-            //while (TouchButtons.Count != (int)(rows * columns))
-            //{
-            //    var tb = new TouchButton((int)(Xpos + (columnIndex * (Width / columns))), (int)(Ypos + (rowIndex * (Height / rows))), (int)(Width / columns), (int)(Height / rows), " ", ButtonColor.Color, TextColor.Color, TextFont);
-            //    tb.Enabled = false;
-            //    TouchButtons.Add(tb);
-            //    columnIndex++;
-            //}
         }
 
+        /// <summary>
+        /// Draw the numpad
+        /// </summary>
+        /// <param name="graphics"></param>
         public void DrawTouchPad(Graphics graphics)
         {
             foreach (var tb in TouchButtons)
             {
-                tb.DrawButton(graphics);
+                tb.Draw(graphics);
             }
         }
 
