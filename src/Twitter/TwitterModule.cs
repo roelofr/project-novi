@@ -7,37 +7,33 @@ using System.Net;
 using System.IO;
 using System.Drawing;
 using System.Xml;
-using System.Threading;
-using System.Windows.Forms;
 
 namespace Twitter
 {
     public class TwitterModule : IModule
     {
+        public List<string> Accounts = new List<string>();
+        public List<string> Hashtags = new List<string>();
 
-        public List<Tweet> tweets1 = new List<Tweet>();
-        public List<Tweet> tweets2 = new List<Tweet>();
-        public List<Tweet> tweets3 = new List<Tweet>();
-        public List<string> accounts = new List<string>();
+        public List<Tweet> AllTweets = new List<Tweet>();
 
-        public List<Tweet> hashtags1 = new List<Tweet>();
-        public List<Tweet> hashtags2 = new List<Tweet>();
-        public List<Tweet> hashtags3 = new List<Tweet>();
-        public List<string> hashtags = new List<string>();
+        public List<Tweet> User1Tweets = new List<Tweet>();
+        public List<Tweet> User2Tweets = new List<Tweet>();
+        public List<Tweet> User3Tweets = new List<Tweet>();
 
-        public Image usernameImage1;
-        public Image usernameImage2;
-        public Image usernameImage3;
+        public List<Tweet> Hashtag1Tweets = new List<Tweet>();
+        public List<Tweet> Hashtag2Tweets = new List<Tweet>();
+        public List<Tweet> Hashtag3Tweets = new List<Tweet>();
 
-        WebClient wc = new WebClient();
+        public Image User1Image;
+        public Image User2Image;
+        public Image User3Image;
 
-        public List<Image> hashtagImage1 = new List<Image>();
-        public List<Image> hashtagImage2 = new List<Image>();
-        public List<Image> hashtagImage3 = new List<Image>();
+        public List<Image> Hashtag1Image = new List<Image>();
+        public List<Image> Hashtag2Image = new List<Image>();
+        public List<Image> Hashtag3Image = new List<Image>();
 
-        private Tweet tweet;
-
-        public string twitterAccountToDisplay = GetUsernameTwitter("username1");
+        public string TwitterAccountToDisplay = "All";
 
         public string Name
         {
@@ -72,18 +68,15 @@ namespace Twitter
         {
             try
             {
-                tweets1.Clear();
-                tweets2.Clear();
-                tweets3.Clear();
-                accounts.Clear();
-                hashtags.Clear();
-                hashtagImage1.Clear();
-                hashtagImage2.Clear();
-                hashtagImage3.Clear();
+                var user1Tweets = new List<Tweet>();
+                var user2Tweets = new List<Tweet>();
+                var user3Tweets = new List<Tweet>();
+                var hashtag1Tweets = new List<Tweet>();
+                var hashtag2Tweets = new List<Tweet>();
+                var hashtag3Tweets = new List<Tweet>();
+                var accounts = new List<string>();
+                var hashtags = new List<string>();
 
-                hashtags1.Clear();
-                hashtags2.Clear();
-                hashtags3.Clear();
                 const string accessToken = "2913538690-VtwNfPvdm17B16HmUwTMYbOUnXxxAXg3nJCPQG0";
                 const string accessTokenSecret = "lRl45rfuVtwDNqiG0n0ioMOuwyKyvIqzOyZi3owczM43d";
                 const string consumerKey = "HmvQgWj0nSthuP31zFV0dURCY";
@@ -101,130 +94,132 @@ namespace Twitter
                 };
                 var twitterContext = new TwitterContext(authorizer);
 
+                // Perform local caching of images
+                var pics = new Dictionary<string, Image>();
+                Func<string, Image> getPic = (url =>
+                {
+                    if (pics.ContainsKey(url))
+                    {
+                        return pics[url];
+                    }
+
+                    var bytes = new WebClient().DownloadData(url);
+                    var ms = new MemoryStream(bytes);
+                    return Image.FromStream(ms);
+                });
 
                 var xmlDoc = new XmlDocument();
                 xmlDoc.Load("TwitterSettings.xml");
-                XmlElement root = xmlDoc.DocumentElement;
-                XmlNodeList elemList = root.GetElementsByTagName("tag");
-                Console.WriteLine(elemList.Count);
-                for (int i = 0; i < elemList.Count; i++)
+                var root = xmlDoc.DocumentElement;
+
+                // Usernames
+                var usernameNodes = root.GetElementsByTagName("tag");
+
+                for (int i = 0; i < usernameNodes.Count; i++)
                 {
-                    accounts.Add(elemList[i].InnerXml);
+                    var name = usernameNodes[i].InnerXml;
+                    accounts.Add(name);
 
                     var statusTweets = from tweet in twitterContext.Status
-                        where tweet.Type == StatusType.User &&
-                              tweet.ScreenName == elemList[i].InnerXml &&
-                              tweet.IncludeContributorDetails == true &&
-                              tweet.Count == 4 &&
-                              tweet.IncludeEntities == true
-                        select tweet;
+                                       where tweet.Type == StatusType.User &&
+                                             tweet.ScreenName == name &&
+                                             tweet.IncludeContributorDetails == true &&
+                                             tweet.Count == 4 &&
+                                             tweet.IncludeEntities == true
+                                       select tweet;
 
                     foreach (var statusTweet in statusTweets)
                     {
-                        tweet = new Tweet(statusTweet.ScreenName, statusTweet.CreatedAt, statusTweet.Text);
+                        var pic = statusTweet.User.ProfileImageUrl;
+                        var img = getPic(pic);
+
+                        var tweet = new Tweet(statusTweet.ScreenName, statusTweet.CreatedAt, statusTweet.Text, img, "@" + name);
                         if (i == 0)
                         {
-                            tweets1.Add(tweet);
+                            user1Tweets.Add(tweet);
+                            User1Image = img;
                         }
                         if (i == 1)
                         {
-                            tweets2.Add(tweet);
+                            user2Tweets.Add(tweet);
+                            User2Image = img;
                         }
                         if (i == 2)
                         {
-                            tweets3.Add(tweet);
-                        }
-
-                    }
-
-                    var profilePicture = from tweet in twitterContext.User
-                        where tweet.Type == UserType.Show &&
-                              tweet.ScreenName == elemList[i].InnerXml
-                        select tweet.ProfileImageUrl;
-
-                    foreach (var pic in profilePicture)
-                    {
-                        byte[] bytes = new WebClient().DownloadData(pic);
-                        MemoryStream ms = new MemoryStream(bytes);
-                        Image img = Image.FromStream(ms);
-
-                        if (i == 0)
-                        {
-                            usernameImage1 = img;
-                        }
-                        if (i == 1)
-                        {
-                            usernameImage2 = img;
-                        }
-                        if (i == 2)
-                        {
-                            usernameImage3 = img;
+                            user3Tweets.Add(tweet);
+                            User3Image = img;
                         }
                     }
                 }
-                XmlNodeList elemList2 = root.GetElementsByTagName("type");
-                Console.WriteLine(elemList2.Count);
-                for (int i = 0; i < elemList2.Count; i++)
+
+                // Hashtags
+                var hashtagNodes = root.GetElementsByTagName("type");
+
+                for (int i = 0; i < hashtagNodes.Count; i++)
                 {
-                    hashtags.Add(elemList2[i].InnerXml);
+                    var hashtag = hashtagNodes[i].InnerXml;
+                    hashtags.Add(hashtag);
+
                     var hashtagtweet = from tweet in twitterContext.Search
-                        where tweet.Type == SearchType.Search &&
-                              tweet.Query == "#" + elemList2[i].InnerXml &&
-                              tweet.Count == 4 &&
-                              tweet.IncludeEntities == true
-                        select tweet;
+                                       where tweet.Type == SearchType.Search &&
+                                             tweet.Query == "#" + hashtag &&
+                                             tweet.Count == 4 &&
+                                             tweet.IncludeEntities == true
+                                       select tweet;
 
 
                     foreach (var twit in hashtagtweet)
                     {
                         for (int j = 0; j < 4; j++)
                         {
-                            tweet = new Tweet(twit.Statuses[j].User.Name, twit.Statuses[j].CreatedAt,
-                                twit.Statuses[j].Text);
+                            var statusTweet = twit.Statuses[j];
+
+                            var pic = statusTweet.User.ProfileImageUrl;
+                            var img = getPic(pic);
+
+                            var tweet = new Tweet(statusTweet.User.Name, statusTweet.CreatedAt, statusTweet.Text, img, "#" + hashtag);
 
                             if (i == 0)
-                            {
-                                hashtags1.Add(tweet);
-                            }
+                                hashtag1Tweets.Add(tweet);
                             if (i == 1)
-                            {
-                                hashtags2.Add(tweet);
-                            }
+                                hashtag2Tweets.Add(tweet);
                             if (i == 2)
-                            {
-                                hashtags3.Add(tweet);
-                            }
-                        }
-                        for (int j = 0; j < 4; j++)
-                        {
-                            byte[] bytes = wc.DownloadData(twit.Statuses[j].User.ProfileImageUrl);
-                            MemoryStream ms = new MemoryStream(bytes);
-                            System.Drawing.Image img = System.Drawing.Image.FromStream(ms);
-
-                            if (i == 0)
-                            {
-                                hashtagImage1.Add(img);
-                            }
-                            if (i == 1)
-                            {
-                                hashtagImage2.Add(img);
-                            }
-                            if (i == 2)
-                            {
-                                hashtagImage3.Add(img);
-                            }
+                                hashtag3Tweets.Add(tweet);
                         }
                     }
                 }
+
+                // The allTweets is composed of the most recent tweets of all sources
+                var allTweets = new List<Tweet>
+                {
+                    user1Tweets[0],
+                    user2Tweets[0],
+                    user3Tweets[0],
+                    hashtag1Tweets[0],
+                    hashtag2Tweets[0],
+                    hashtag3Tweets[0]
+                };
+                allTweets.Sort((tweet1, tweet2) => tweet1.CreatedAt.CompareTo(tweet2.CreatedAt));
+                allTweets.Reverse();
+
+                // Update all module variables
+                Accounts = accounts;
+                Hashtags = hashtags;
+
+                AllTweets = allTweets;
+                User1Tweets = user1Tweets;
+                User2Tweets = user2Tweets;
+                User3Tweets = user3Tweets;
+
+                Hashtag1Tweets = hashtag1Tweets;
+                Hashtag2Tweets = hashtag2Tweets;
+                Hashtag3Tweets = hashtag3Tweets;
             }
             catch { }
         }
 
         public static string GetUsernameTwitter(string usernameNumber)
         {
-            //username1
-            //username2
-            //username3
             var xmlDoc = new XmlDocument();
             xmlDoc.Load("TwitterSettings.xml");
 
@@ -235,7 +230,7 @@ namespace Twitter
 
         public void Start()
         {
-
+            TwitterAccountToDisplay = "All";
         }
 
         public void Stop()
