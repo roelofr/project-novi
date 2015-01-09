@@ -139,6 +139,9 @@ namespace Twitter
                 var imgRect = new Rectangle(130, yPos, 50, 50);
                 var backgroundRect = new Rectangle(110, yPos - 20, 720, 200);
 
+                var date = string.Format("{0}, {1}", BackgroundUtils.GetDate(tweet.CreatedAt),
+                    BackgroundUtils.GetTime(tweet.CreatedAt, false));
+                
                 graphics.FillRectangle(_brushedblack, backgroundRect);
 
                 graphics.DrawImage(tweet.Image, imgRect);
@@ -147,7 +150,7 @@ namespace Twitter
                 graphics.DrawString(tweet.Source, _textFont, Brushes.LightGray, nameBar,
                     _stringFormatTopRight);
                 graphics.DrawString(tweet.Text, _textFont, Brushes.White, tekstRect, _stringFormatTopLeft);
-                graphics.DrawString(tweet.CreatedAt.ToString(), _dateFont, Brushes.LightGray, nameBar,
+                graphics.DrawString(date, _dateFont, Brushes.LightGray, nameBar,
                     _stringFormatBottomRight);
 
                 yPos += 220;
