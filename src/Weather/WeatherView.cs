@@ -103,10 +103,11 @@ namespace Weather
         {
             try
             {
-                var dayWidth = rectangle.Width / 4;
+                var dayWidth = rectangle.Width/4;
                 int x = 0;
 
-                RenderDay(graphics, _module.WeatherResponse.currently, new Rectangle(x, rectangle.Y, dayWidth, rectangle.Height));
+                RenderDay(graphics, _module.WeatherResponse.currently,
+                    new Rectangle(x, rectangle.Y, dayWidth, rectangle.Height));
                 x += dayWidth;
 
                 foreach (var day in _module.WeatherResponse.daily.data.GetRange(1, 3))
@@ -115,8 +116,17 @@ namespace Weather
                     x += dayWidth;
                     if (x >= rectangle.Right) break;
                 }
+
+                var font = TextUtils.GetFont(14);
+                var str = new StringFormat { Alignment = StringAlignment.Far, LineAlignment = StringAlignment.Far };
+                graphics.DrawString(String.Format("Powered by Forecast (forecast.io)"), font, Brushes.White, rectangle, str);
             }
-            catch { }
+            catch
+            {
+                var font = TextUtils.GetFont(28);
+                var str = new StringFormat {Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center};
+                graphics.DrawString(String.Format("Er is geen weeroverzicht beschikbaar op dit moment, excuses voor het ongemak."), font, Brushes.White, rectangle, str );
+            }
         }
     }
 }
