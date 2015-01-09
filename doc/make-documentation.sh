@@ -16,6 +16,10 @@ function buildManual() {
 	`pandoc --toc -V lang=dutch -V documentclass=report --template default.latex -o handleiding.pdf Handleiding.md`
 	return $?
 }
+function buildTest() {
+	`pandoc --toc -V lang=dutch -V documentclass=report --template default.latex -o testrapport.pdf Testrapport.md`
+	return $?
+}
 
 if [ -z $ArgumentOne ] || [ $ArgumentOne = "all" ]; then
 	buildFo;
@@ -30,6 +34,9 @@ else
 	fi
 	if [ $ArgumentOne = "manual" ] || [ $ArgumentTwo = "manual" ] || $ArgumentThree = "manual" ]; then
 		buildManual;
+	fi
+	if [ $ArgumentOne = "test" ] || [ $ArgumentTwo = "test" ] || $ArgumentThree = "test" ]; then
+		buildTest;
 	fi
 fi
 
