@@ -66,6 +66,8 @@ namespace Vertrektijden
             _module.DataUpdated += NewInfoAvailable;
 
             _module.UpdateData();
+
+            _controller.Avatar.Say("");
         }
 
         public void Detach()
@@ -197,7 +199,7 @@ namespace Vertrektijden
             else if (string.IsNullOrWhiteSpace(reis.DelayText) && timeToDeparture < 10)
             {
                 var color = timeToDeparture < 6 ? Brushes.Tomato : Brushes.DarkOrange;
-                var text = String.Format("Vertrekt over {0} min", timeToDeparture);
+                var text = String.Format("Vertrekt over {0} min", Math.Ceiling(timeToDeparture));
                 DrawBox(graphics, text, delayRect, _trainLineFont, color, TextAlign.Left);
             } else {
             var text = String.Format("{0} van {1}", reis.TrainType, reis.Provider);
