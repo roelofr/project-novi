@@ -11,14 +11,14 @@ namespace Twitter
     {
         private IController _controller;
         private TwitterModule _module;
-        Rectangle _usernameRect1 = new Rectangle(1000, 0, 330, 130);
-        Rectangle _usernameRect2 = new Rectangle(1000, 150, 330, 130);
-        Rectangle _usernameRect3 = new Rectangle(1000, 300, 330, 130);
+        Rectangle _usernameRect1 = new Rectangle(1000, 80, 330, 130);
+        Rectangle _usernameRect2 = new Rectangle(1000, 220, 330, 130);
+        Rectangle _usernameRect3 = new Rectangle(1000, 360, 330, 130);
 
         Rectangle _hashtagRect1 = new Rectangle(1000, 500, 330, 50);
         Rectangle _hashtagRect2 = new Rectangle(1000, 560, 330, 50);
         Rectangle _hashtagRect3 = new Rectangle(1000, 620, 330, 50);
-        Rectangle _allTweetsRect = new Rectangle(1000, 700, 330, 50);
+        Rectangle _allTweetsRect = new Rectangle(1000, 0, 330, 50);
 
         readonly SolidBrush _brushedblack = new SolidBrush(Color.FromArgb(75, Color.Black));
 
@@ -204,21 +204,21 @@ namespace Twitter
                 const int accountNameX = 1120;
                 foreach (var account in _module.Accounts)
                 {
-                    graphics.DrawString(account, _headFont, textColor, accountNameX, (drawingY + 15), _stringFormatBottomLeft);
-                    graphics.DrawString("@" + account, _textFont, subTextColor, accountNameX, (drawingY + 15), _stringFormatTopLeft);
-                    drawingY += 150;
+                    graphics.DrawString(account, _headFont, textColor, accountNameX, (drawingY + 90), _stringFormatBottomLeft);
+                    graphics.DrawString("@" + account, _textFont, subTextColor, accountNameX, (drawingY + 90), _stringFormatTopLeft);
+                    drawingY += 140;
                 }
 
-                var img1 = new Rectangle(accountImageX, 15, 100, 100);
-                var img2 = new Rectangle(accountImageX, 165, 100, 100);
-                var img3 = new Rectangle(accountImageX, 315, 100, 100);
+                var img1 = new Rectangle(accountImageX, 95, 100, 100);
+                var img2 = new Rectangle(accountImageX, 235, 100, 100);
+                var img3 = new Rectangle(accountImageX, 375, 100, 100);
                 graphics.DrawImage(_module.User1Image, img1);
                 graphics.DrawImage(_module.User2Image, img2);
                 graphics.DrawImage(_module.User3Image, img3);
 
                 foreach (var hashtag in _module.Hashtags)
                 {
-                    graphics.DrawString(("#" + hashtag), _headFont, textColor, 1050, (drawingY + 60), _stringFormatBottomLeft);
+                    graphics.DrawString(("#" + hashtag), _headFont, textColor, 1050, (drawingY + 90), _stringFormatBottomLeft);
                     drawingY += 60;
                 }
 
