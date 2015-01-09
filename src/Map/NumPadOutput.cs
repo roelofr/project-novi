@@ -33,22 +33,21 @@ namespace Map
                     textLength = s.Length;
                 }
             }
-            var textSpace = 0;
+            var textSpace = Height;
             if ((Width / Digits) <= Height)
             {
-                textSpace = (int)(Width / Digits);
+                textSpace = (Width / Digits);
             }
-            else
-            {
-                textSpace = Height;
-            }
-            TextFont = new Font(NumPad.TextFont.FontFamily, (int)(0.8 * (textSpace / textLength)));
+            TextFont = new Font(NumPad.TextFont.FontFamily, (int)(0.8 * textSpace / textLength));
             TouchButtons = new List<TouchButton>();
             ActiveDigit = 0;
             CreateNumPadOutput();
             SetActive(ActiveDigit);
         }
 
+        /// <summary>
+        /// Create all outputdigits
+        /// </summary>
         public void CreateNumPadOutput()
         {
             for (var digit = 0; digit < Digits; digit++)
@@ -57,14 +56,22 @@ namespace Map
             }
         }
 
+        /// <summary>
+        /// Draw the Numpadoutput
+        /// </summary>
+        /// <param name="graphics"></param>
         public void DrawNumPadOutput(Graphics graphics)
         {
             foreach (var tb in TouchButtons)
             {
-                tb.DrawButton(graphics);
+                tb.Draw(graphics);
             }
         }
 
+        /// <summary>
+        /// Set current digit to inactive, make new one active
+        /// </summary>
+        /// <param name="digit"></param>
         public void SetActive(int digit)
         {
             TouchButtons.ElementAt(ActiveDigit).ActiveTimer.Reset();
@@ -72,6 +79,9 @@ namespace Map
             TouchButtons.ElementAt(ActiveDigit).ActiveTimer.Start();
         }
 
+        /// <summary>
+        /// Make next digit active
+        /// </summary>
         public void AddOutputDigit()
         {
             if (ActiveDigit != Digits - 1)
@@ -85,6 +95,9 @@ namespace Map
             
         }
 
+        /// <summary>
+        /// Determines which digit to activate when removing
+        /// </summary>
         public void DeleteOutputDigit()
         {
             if (!TouchButtons.ElementAt(ActiveDigit).Value.Equals("_"))
@@ -105,6 +118,9 @@ namespace Map
             }
         }
 
+        /// <summary>
+        ///  Build output from current filled in digits
+        /// </summary>
         public void BuildOutput()
         {
             Output = "";
@@ -117,6 +133,10 @@ namespace Map
             }
         }
 
+        /// <summary>
+        // Delete a digit
+        /// </summary>
+        /// <param name="digit"></param>
         public void ClearOutput(int digit)
         {
             foreach (var tb in TouchButtons)
@@ -133,5 +153,16 @@ namespace Map
             
         }
 
+        /// <summary>
+        /// Clear entire outputfield, make first digit active
+        /// </summary>
+        public void DeleteOutput()
+        {
+            foreach (var tb in TouchButtons)
+            {
+                tb.Value = "_";
+            }
+            SetActive(0);
+        }
     }
 }

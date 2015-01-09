@@ -52,11 +52,11 @@ namespace Project_Novi.Background
             return value.ToString();
         }
 
-        private static bool InsertDateAssoc(int Day, int Month, String description)
+        private static bool InsertDateAssoc(int Day, int month, String description)
         {
             try
             {
-                var timeString = String.Format("{2}-{1}-{0} 00:00:00Z", ZeroFill(Day), ZeroFill(Month),
+                var timeString = String.Format("{2}-{1}-{0} 00:00:00Z", ZeroFill(Day), ZeroFill(month),
                     DateTime.Now.Year);
                 Console.WriteLine("Parsing {0} for {1}", timeString, description);
 

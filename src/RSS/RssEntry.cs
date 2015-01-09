@@ -49,7 +49,7 @@ namespace News
             return DateTime.TryParse(dateString, out dtOut) ? dtOut : standardOut;
         }
 
-        public static RssEntry GetFromXML(XmlNode node, String feedURL)
+        public static RssEntry GetFromXML(XmlNode node, String feedUrl)
         {
             var titleNode = node.SelectSingleNode("title");
             var contentNode = node.SelectSingleNode("content");
@@ -66,7 +66,7 @@ namespace News
                 return null;
 
             var dateObj = GetDateTime(date);
-            return dateObj.Year < 2000 ? null : new RssEntry(title, content, dateObj, channel, feedURL);
+            return dateObj.Year < 2000 ? null : new RssEntry(title, content, dateObj, channel, feedUrl);
         }
 
         /// <summary>

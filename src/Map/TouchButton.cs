@@ -36,6 +36,11 @@ namespace Map
             _touchTimer = new Stopwatch();
         }
 
+        /// <summary>
+        /// Determines if button is clicked
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         public bool IsClicked(Point p)
         {
             if (p.X >= Xpos && p.X <= Xpos + Width && p.Y >= Ypos && p.Y <= Ypos + Height && Enabled)
@@ -49,8 +54,11 @@ namespace Map
             }
         }
 
-
-        public void DrawButton(Graphics g)
+        /// <summary>
+        /// Draw the button
+        /// </summary>
+        /// <param name="g"></param>
+        public void Draw(Graphics g)
         {
             if (_touchTimer.ElapsedMilliseconds < 250 && _touchTimer.IsRunning)
             {
