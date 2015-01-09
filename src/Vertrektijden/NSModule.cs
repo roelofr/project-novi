@@ -11,6 +11,8 @@ namespace Vertrektijden
     {
         public delegate void DataUpdatedEvent(List<NSReis> travelInformation);
 
+        public const string StationName = "Zwolle";
+
         private ApiComm _comm;
         public readonly List<NSReis> TripList = new List<NSReis>();
         public bool ApiMalConfigured { get; private set; }
@@ -34,6 +36,11 @@ namespace Vertrektijden
         public bool Rotatable
         {
             get { return true; }
+        }
+
+        public DateTime DataLastModified
+        {
+            get { return _comm != null ? _comm.LastModifiedTime : new DateTime(1970, 1, 1); }
         }
 
         public void Initialize(IController controller)
@@ -91,7 +98,7 @@ namespace Vertrektijden
 
             try
             {
-                _comm = new ApiComm();
+                _comm = new ApiComm(StationName);
                 _comm.NsDataAvailable += NsDataAvailable;
                 ApiMalConfigured = false;
             }

@@ -44,6 +44,12 @@ namespace News
         /// <param name="e"></param>
         private void DownloadComplete(object sender, DownloadStringCompletedEventArgs e)
         {
+            if (e.Error != null)
+                return;
+
+            if (e.Cancelled)
+                return;
+
             _webClientTimer.Stop();
             _webClientTimer.Interval = RequestTimeout;
 

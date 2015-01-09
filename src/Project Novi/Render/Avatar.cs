@@ -225,6 +225,19 @@ namespace Project_Novi.Render
                 _bitmapAnimations[Animated.Mouth].Clear();
             });
         }
+        /// <summary>
+        /// Makes the avatar stop talking
+        /// </summary>
+        public void StopTalking()
+        {
+            if (!Talking)
+                return;
+
+            if (_tts != null)
+                _tts.Talking = false;
+
+            _bitmapAnimations[Animated.Mouth].Clear();
+        }
 
         /// <summary>
         /// Make the avatar's eyes blink.

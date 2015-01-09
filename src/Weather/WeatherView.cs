@@ -39,7 +39,7 @@ namespace Weather
             _module = weatherModule;
             try
             {
-                _controller.Avatar.Say(_module.WeatherResponse.currently.summary);
+                _controller.Avatar.Say(String.Format("Het weer vandaag: {0}", _module.WeatherResponse.currently.summary));
             }
             catch { }
         }

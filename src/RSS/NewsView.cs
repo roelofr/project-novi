@@ -58,7 +58,7 @@ namespace News
 
             HasSpoken = false;
 
-            _controller.Avatar.Say("");
+            _controller.Avatar.StopTalking();
         }
 
         public void SaySomething()
@@ -111,8 +111,8 @@ namespace News
         public void RenderLoading(Graphics graphics, Rectangle rectangle)
         {
             var textRectangle = new Rectangle(200, 55, 1000, 100);
-            if ((DateTime.Now - _visibleTime).TotalSeconds > 10)
-                graphics.DrawString("Er is geen nieuws beschikbaar.", _titleFont, Brushes.LightGray, textRectangle, _topCenterFormat);
+            if ((DateTime.Now - _visibleTime).TotalSeconds > 3)
+                graphics.DrawString("Er is tijdelijk geen nieuws beschikbaar.", _titleFont, Brushes.LightGray, textRectangle, _topCenterFormat);
             else
                 graphics.DrawString("Laden...", _titleFont, Brushes.White, textRectangle, _topCenterFormat);
 

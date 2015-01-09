@@ -94,10 +94,11 @@ namespace Vertrektijden
                 TrainType = typeNode != null ? typeNode.InnerText : "Intercity",
                 Provider = provNode != null ? provNode.InnerText : "NS",
                 TripText = tripNode != null ? tripNode.InnerText : null,
-                DelayText = delayNode != null ? delayNode.InnerText : null,
                 DelayTime = delayTimeNode != null ? XmlConvert.ToTimeSpan(delayTimeNode.InnerText) : new TimeSpan(0L),
                 TravelAdvice = travelTip != null ? travelTip.InnerText : null
             };
+
+            trip.DelayText = DelayToDelayText(trip.DelayTime);
 
             if (commentNodes != null)
             {
@@ -115,6 +116,24 @@ namespace Vertrektijden
             }
 
             return trip;
+        }
+
+        public static String DelayToDelayText(TimeSpan delay)
+        {
+            var delayMins = delay.TotalMinutes;
+            if (delayMins <= 0)
+                return null;
+
+            var hrs = Math.Floor(delayMins / 60);
+            delayMins %= 60;
+            var mins = Math.Floor(delayMins);
+
+            if (hrs > 0 && mins >= 30)
+                return string.Format("{0},5 uur vertraging", hrs);
+            if (hrs > 0)
+                return string.Format("{0} uur vertraging", hrs);
+
+            return string.Format("{0} min vertraging", mins);
         }
 
         /// <summary>
