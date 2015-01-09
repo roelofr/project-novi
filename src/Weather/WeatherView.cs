@@ -116,6 +116,10 @@ namespace Weather
                     x += dayWidth;
                     if (x >= rectangle.Right) break;
                 }
+
+                var font = TextUtils.GetFont(14);
+                var str = new StringFormat { Alignment = StringAlignment.Far, LineAlignment = StringAlignment.Far };
+                graphics.DrawString(String.Format("Powered by Forecast (forecast.io)"), font, Brushes.White, rectangle, str);
             }
             catch
             {
