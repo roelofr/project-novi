@@ -76,7 +76,7 @@ Gegevens worden om de 5 minuten opnieuw opgehaald.
 ![Activitydiagram](images/Activitydiagram1.png)
 
 In het bovenstaande diagram wordt globaal aangegeven op welke manier een gebruiker tussen de verschillende schermen kan schakelen.
-Binnen het diagram kan een 'willekeurige module' ook het hoofdscherm zijn dit is compleet willekeurig.
+Binnen het diagram kan een 'willekeurige module' ook het hoofdscherm zijn, dit is compleet willekeurig.
 
 =======
 # Sequencediagram
