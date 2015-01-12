@@ -20,8 +20,6 @@ version: 0.1
 date: Januari 2015
 ...
 
-# Inleiding
-
 # Het proces
 
 Bij het opstarten van de applicatie worden alle `*.dll` bestanden in de map
@@ -136,7 +134,7 @@ en methoden:
 Een `IBackgroundWidget` heeft geen `Attach()` of `Detach()` methoden omdat hij
 altijd in beeld is.
 
-# Build your own!
+# Aan de slag
 
 Een module bouwen is eigenlijk heel eenvoudig:
 
