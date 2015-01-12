@@ -70,6 +70,11 @@ Daarnaast heeft de weermodule als extra uitbreiding een actuele voorspelling van
 De twittermodule wordt gebruikt om recente tweets te weergeven van accounts en hashtags die in het beheerspaneel aan te passen zijn.
 Informatie wordt binnengehaald door middel van de API die twitter voor developers beschikbaar heeft gesteld.
 Gegevens worden om de 5 minuten opnieuw opgehaald.
+======
+![nieuws klassendiagram](images/newsClassDiagram.png)
+
+De nieuwsmodule wordt gebruikt om RSS feeds van verschillende websites weer te geven in een centraal nieuwsoverzicht.
+Deze informatie wordt lokaal opgeslagen en wordt na 5 minuten vernieuwd, zodra de nieuwsmodule weer geopend wordt.
 
 =======
 # Activitydiagram
