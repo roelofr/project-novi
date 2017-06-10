@@ -1,7 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
+using System.Xml;
 using ForecastIO;
 using Project_Novi.Api;
 using Weather.Properties;
@@ -12,6 +14,9 @@ namespace Weather
     {
         private IController _controller;
         internal ForecastIOResponse WeatherResponse;
+
+        private const string CredentialFile = "forecastApi.xml";
+        private string ApiKey = null;
 
         public string Name
         {
@@ -42,14 +47,50 @@ namespace Weather
         {
             _controller = controller;
             _controller.BackgroundUpdate += Update;
+
+            // Get config from XML
+            try {
+                ApiKey = GetApiKeyFromXml();
+            } catch {
+                ApiKey = null;
+            }
+
+            // Update data
             Update();
+        }
+
+        private string GetApiKeyFromXml()
+        {
+            if (!File.Exists(CredentialFile)) return null;
+
+            var xmlDocument = new XmlDocument();
+            try
+            {
+                xmlDocument.Load(CredentialFile);
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine("Exception! {0}", e.Message);
+                return null;
+            }
+
+            var body = xmlDocument.DocumentElement;
+            if (body == null) return null;
+
+            var keyNode = body.SelectSingleNode("/forecast/key");
+
+            if (keyNode == null) return null;
+
+            return keyNode.InnerText;
         }
 
         private void Update()
         {
+            if (ApiKey == null) return;
+
             try
             {
-                var request = new ForecastIORequest("***REMOVED***", 52.5f, 6.079f, Unit.si);
+                var request = new ForecastIORequest(ApiKey, 52.5f, 6.079f, Unit.si);
                 WeatherResponse = request.Get();
             }
             catch { }
