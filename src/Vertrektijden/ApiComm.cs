@@ -10,7 +10,7 @@ namespace Vertrektijden
     {
         public delegate void NsDataAvailableEvent(XmlDocument document, string station);
 
-        private const string CredentialFile = "nsApiCredentials.xml";
+        private const string CredentialFile = "nsApi.xml";
         private const string CacheFileTemplate = "nsCache-{0}.xml";
         private const string ApiPath = "http://webservices.ns.nl/ns-api-avt?station={0}";
         private static readonly Regex NonFileRegex = new Regex("([^a-zA-Z0-9\\-]+)");
@@ -49,8 +49,8 @@ namespace Vertrektijden
                 xmlWriter.WriteStartDocument();
                 xmlWriter.WriteStartElement("loginData");
 
-                xmlWriter.WriteElementString("user", "***REMOVED***");
-                xmlWriter.WriteElementString("pass", "***REMOVED***");
+                xmlWriter.WriteElementString("user", "john.doe@example.com");
+                xmlWriter.WriteElementString("pass", "mypasword");
 
                 xmlWriter.WriteEndElement();
                 xmlWriter.WriteEndDocument();

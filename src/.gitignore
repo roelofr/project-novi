@@ -158,3 +158,6 @@ $RECYCLE.BIN/
 # MonoDevelop
 *.userprefs
 
+# Sensitive fields in the app
+nsApi.xml
+forecastApi.xml
