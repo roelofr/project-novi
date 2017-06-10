@@ -172,45 +172,45 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AppLogo.png" />
+    <None Include="Resources\applogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\Avatar\Hats\" />
+    <Folder Include="Resources\avatar\hats\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Avatar\Clothes\roundneck-green.png" />
-    <Resource Include="Resources\Avatar\Clothes\vneck-green.png" />
-    <Resource Include="Resources\Avatar\Head\Base\base.png" />
-    <Resource Include="Resources\Avatar\Head\Face\Mouths\closed-happy.png" />
-    <Resource Include="Resources\Avatar\Head\Face\Mouths\closed-sad.png" />
-    <Resource Include="Resources\Avatar\Head\Face\Mouths\open-happy.png" />
-    <Resource Include="Resources\Avatar\Head\Face\Mouths\open-round.png" />
-    <Resource Include="Resources\Avatar\Head\Face\Mouths\open-sad.png" />
+    <Resource Include="Resources\avatar\clothes\roundneck-green.png" />
+    <Resource Include="Resources\avatar\clothes\vneck-green.png" />
+    <Resource Include="Resources\avatar\head\base\base.png" />
+    <Resource Include="Resources\avatar\head\face\mouths\closed-happy.png" />
+    <Resource Include="Resources\avatar\head\face\mouths\closed-sad.png" />
+    <Resource Include="Resources\avatar\head\face\mouths\open-happy.png" />
+    <Resource Include="Resources\avatar\head\face\mouths\open-round.png" />
+    <Resource Include="Resources\avatar\head\face\mouths\open-sad.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Avatar\blank.png" />
+    <Resource Include="Resources\avatar\blank.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Avatar\Head\Face\Eyes\left-eye-blink1.png" />
-    <Resource Include="Resources\Avatar\Head\Face\Eyes\left-eye-blink2.png" />
-    <Resource Include="Resources\Avatar\Head\Face\Eyes\left-eye-blink3.png" />
-    <Resource Include="Resources\Avatar\Head\Face\Eyes\left-eye-open.png" />
-    <Resource Include="Resources\Avatar\Head\Face\Eyes\right-eye-blink1.png" />
-    <Resource Include="Resources\Avatar\Head\Face\Eyes\right-eye-blink2.png" />
-    <Resource Include="Resources\Avatar\Head\Face\Eyes\right-eye-blink3.png" />
-    <Resource Include="Resources\Avatar\Head\Face\Eyes\right-eye-open.png" />
+    <Resource Include="Resources\avatar\head\face\eyes\left-eye-blink1.png" />
+    <Resource Include="Resources\avatar\head\face\eyes\left-eye-blink2.png" />
+    <Resource Include="Resources\avatar\head\face\eyes\left-eye-blink3.png" />
+    <Resource Include="Resources\avatar\head\face\eyes\left-eye-open.png" />
+    <Resource Include="Resources\avatar\head\face\eyes\right-eye-blink1.png" />
+    <Resource Include="Resources\avatar\head\face\eyes\right-eye-blink2.png" />
+    <Resource Include="Resources\avatar\head\face\eyes\right-eye-blink3.png" />
+    <Resource Include="Resources\avatar\head\face\eyes\right-eye-open.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Design\ontwerpWithBorder.jpg" />
+    <Resource Include="Resources\design\ontwerpwithborder.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\home_button.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Design\home-button.png" />
+    <None Include="Resources\design\home-button.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Arrow-Up-Right.png" />
+    <None Include="Resources\arrow-up-right.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\pakket.jpg" />

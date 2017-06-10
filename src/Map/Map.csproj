@@ -60,19 +60,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\T1x.png" />
+    <None Include="Resources\t1x.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\T2x.png" />
+    <None Include="Resources\t2x.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\T3x.png" />
+    <None Include="Resources\t3x.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\T4x.png" />
+    <None Include="Resources\t4x.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\T5x.png" />
+    <None Include="Resources\t5x.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -81,13 +81,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\T0x.png" />
+    <None Include="Resources\t0x.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\mapicon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

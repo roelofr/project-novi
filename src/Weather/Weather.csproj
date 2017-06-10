@@ -106,34 +106,34 @@
     <None Include="Resources\sun-weather.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\metro-cloudy-weather.PNG" />
+    <None Include="Resources\metro-cloudy-weather.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\metro-mostly-cloudy-weather.PNG" />
+    <None Include="Resources\metro-mostly-cloudy-weather.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\metro-mostly-sunny-weather.PNG" />
+    <None Include="Resources\metro-mostly-sunny-weather.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\metro-raining-weather.PNG" />
+    <None Include="Resources\metro-raining-weather.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\metro-sleet-weather.PNG" />
+    <None Include="Resources\metro-sleet-weather.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\metro-snowing-weather.PNG" />
+    <None Include="Resources\metro-snowing-weather.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\metro-storm-weather.PNG" />
+    <None Include="Resources\metro-storm-weather.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\metro-sunny-rain-weather.PNG" />
+    <None Include="Resources\metro-sunny-rain-weather.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\metro-sun-weather.PNG" />
+    <None Include="Resources\metro-sun-weather.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

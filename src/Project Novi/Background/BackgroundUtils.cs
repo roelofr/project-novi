@@ -135,7 +135,7 @@ namespace Project_Novi.Background
 
         public static void DrawBackground(Graphics g)
         {
-            g.DrawImage(Resources.ontwerpWithBorder, 0, 0, 1920, 1080);
+            g.DrawImage(Resources.ontwerpwithborder, 0, 0, 1920, 1080);
         }
 
         public static void DrawClock(Graphics graphics)
