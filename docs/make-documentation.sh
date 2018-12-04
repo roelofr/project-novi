@@ -5,19 +5,19 @@ ArgumentTwo="$2"
 ArgumentThree="$3"
 
 function buildFo() {
-	`pandoc --toc -V lang=dutch -V documentclass=report --template default.latex -o functioneel\ ontwerp.pdf Functioneel\ Ontwerp.md`
+	`pandoc --toc -V lang=dutch -V documentclass=report --template default.latex -o functioneel-ontwerp.pdf functioneel-ontwerp.md`
 	return $?
 }
 function buildTo() {
-	`pandoc --toc -V lang=dutch -V documentclass=report --template default.latex -o technisch\ ontwerp.pdf Technisch\ Ontwerp.md`
+	`pandoc --toc -V lang=dutch -V documentclass=report --template default.latex -o technisch-ontwerp.pdf technisch-ontwerp.md`
 	return $?
 }
 function buildManual() {
-	`pandoc --toc -V lang=dutch -V documentclass=report --template default.latex -o handleiding.pdf Handleiding.md`
+	`pandoc --toc -V lang=dutch -V documentclass=report --template default.latex -o handleiding.pdf handleiding.md`
 	return $?
 }
 function buildTest() {
-	`pandoc --toc -V lang=dutch -V documentclass=report --template default.latex -o testrapport.pdf Testrapport.md`
+	`pandoc --toc -V lang=dutch -V documentclass=report --template default.latex -o testrapport.pdf testrapport.md`
 	return $?
 }
 
