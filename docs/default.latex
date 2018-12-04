@@ -1,156 +1,106 @@
-\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,$endif$$if(papersize)$$papersize$,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
+\documentclass[a4paper,12pt,nl,$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
+
+\usepackage[a-1a]{pdfx}     % Enforce PDF/A-2 for proper archiving
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
-% use upquote if available, for straight quotes in verbatim environments
-\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
-  \usepackage[utf8]{inputenc}
-$if(euro)$
-  \usepackage{eurosym}
-$endif$
-\else % if luatex or xelatex
-  \ifxetex
-    \usepackage{mathspec}
-    \usepackage{xltxtra,xunicode}
-  \else
-    \usepackage{fontspec}
-  \fi
-  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
-  \newcommand{\euro}{€}
-$if(mainfont)$
-    \setmainfont{$mainfont$}
-$endif$
-$if(sansfont)$
-    \setsansfont{$sansfont$}
-$endif$
-$if(monofont)$
-    \setmonofont[Mapping=tex-ansi]{$monofont$}
-$endif$
-$if(mathfont)$
-    \setmathfont(Digits,Latin,Greek){$mathfont$}
-$endif$
-\fi
+\renewcommand{\arraystretch}{1.5}
+% use upquote for straight quotes in verbatim environments
+\usepackage{upquote}
+\usepackage[utf8]{inputenc}
+\usepackage{eurosym}
 % use microtype if available
-\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
-$if(geometry)$
-\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
-$endif$
-$if(natbib)$
-\usepackage{natbib}
-\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
-$endif$
-$if(biblatex)$
-\usepackage{biblatex}
-$if(biblio-files)$
-\bibliography{$biblio-files$}
-$endif$
-$endif$
-$if(listings)$
-\usepackage{listings}
-$endif$
-$if(lhs)$
-\lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
-$endif$
-$if(highlighting-macros)$
-$highlighting-macros$
-$endif$
-$if(verbatim-in-note)$
-\usepackage{fancyvrb}
-$endif$
-$if(tables)$
+\usepackage{microtype}
+\usepackage[a4paper,bottom=3cm]{geometry}
+\usepackage{listings}   % Code blocks
+\usepackage{fancyvrb}   % Better verbatim text
 \usepackage{longtable,booktabs}
-$endif$
-$if(graphics)$
-\usepackage{graphicx}
+\usepackage{graphicx}   % Images
+\usepackage{caption}    % Link to images, instead of the captions
+\usepackage{subcaption} % Multiple captions with subfigures
+\usepackage{multicol}   % Mutli-column layouts
+\usepackage{tocloft}    % Tweaks on the Table of Contents
+\usepackage{lscape}     % Allow some pages to be in landscape
+\usepackage{pdflscape}  % Acutally rotate the PDF file
+\usepackage{varioref}   % Varible refereces for figures on possibly different pages
+
 % Redefine \includegraphics so that, unless explicit options are
 % given, the image width will not exceed the width of the page.
 % Images get their normal width if they fit onto the page, but
 % are scaled down if they would overflow the margins.
 \makeatletter
-\def\ScaleIfNeeded{%
-  \ifdim\Gin@nat@width>\linewidth
-    \linewidth
-  \else
-    \Gin@nat@width
-  \fi
-}
+\def\ScaleIfNeeded{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \makeatother
-\let\Oldincludegraphics\includegraphics
-{%
- \catcode`\@=11\relax%
- \gdef\includegraphics{\@ifnextchar[{\Oldincludegraphics}{\Oldincludegraphics[width=\ScaleIfNeeded]}}%
-}%
-$endif$
-\ifxetex
-  \usepackage[setpagesize=false, % page size defined by xetex
-              unicode=false, % unicode breaks when used with xetex
-              xetex]{hyperref}
-\else
-  \usepackage[unicode=true]{hyperref}
-\fi
-\hypersetup{breaklinks=true,
-            bookmarks=true,
-            pdfauthor={$author-meta$},
-            pdftitle={$title-meta$},
-            colorlinks=true,
-            citecolor=$if(citecolor)$$citecolor$$else$blue$endif$,
-            urlcolor=$if(urlcolor)$$urlcolor$$else$blue$endif$,
-            linkcolor=$if(linkcolor)$$linkcolor$$else$magenta$endif$,
-            pdfborder={0 0 0}}
-\urlstyle{same}  % don't use monospace font for urls
-$if(links-as-notes)$
-% Make links footnotes instead of hotlinks:
-\renewcommand{\href}[2]{#2\footnote{\url{#1}}}
-$endif$
+\let\Oldincludegraphics\includegraphics{\catcode`\@=11\relax\gdef\includegraphics{\@ifnextchar[{\Oldincludegraphics}{\Oldincludegraphics[width=\ScaleIfNeeded]}}}
+
+\usepackage{hyperref}
+\hypersetup{
+    breaklinks=true,
+    bookmarks=true,
+    pdfauthor={$author-meta$},
+    pdftitle={$title-meta$},
+    colorlinks=true,
+    citecolor=blue,
+    urlcolor=blue,
+    linkcolor=magenta,
+    pdfborder={0 0 0}
+}
+
+% Don't use monospace font for urls
+\urlstyle{same}
+
+% Strike out fixes
 $if(strikeout)$
 \usepackage[normalem]{ulem}
 % avoid problems with \sout in headers with hyperref:
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 $endif$
+
+% Don't indent paragraphs, but add a whitespace afterwards
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-$if(numbersections)$
-\setcounter{secnumdepth}{5}
-$else$
-\setcounter{secnumdepth}{0}
-$endif$
-$if(verbatim-in-note)$
-\VerbatimFootnotes % allows verbatim text in footnotes
-$endif$
-$if(lang)$
-\ifxetex
-  \usepackage{polyglossia}
-  \setmainlanguage{$mainlang$}
-\else
-  \usepackage[$lang$]{babel}
-\fi
-$endif$
+
+% prevent overfull lines
+\setlength{\emergencystretch}{3em}
+
+% Number sections
+\setcounter{secnumdepth}{1}
+
+% Set language to Dutch
+\usepackage[dutch,main=dutch]{babel}
+
+% Fixes image references
+\def\figurename{Figuur}
+\def\figureautorefname{Figuur}
+
+% Include other items
 $for(header-includes)$
 $header-includes$
 $endfor$
 
-$if(title)$
+% Set meta
 \title{$title$}
-$endif$
-$if(subtitle)$
-\subtitle{$subtitle$}
-$endif$
 \author{$for(author)$$author.name$$sep$ \and $endfor$}
 \date{$date$}
 
-% Project Novi edits
-
-\usepackage{xcolor}
-\definecolor{titlepagecolor}{HTML}{00346B}
+% Add bibliography sources, if any
+$if(bibliography)$
+\usepackage[style=apa,backend=biber]{biblatex}
+$for(bibliography)$
+\addbibresource{$bibliography$}
+$endfor$
+$endif$
 
 % Remove chapter headings
-\renewcommand{\thechapter}{}
-\addto\captionsdutch{\renewcommand\chaptername{}}
-\renewcommand{\chaptername}{}
+% \renewcommand{\thechapter}{}
+% \addto\captionsdutch{\renewcommand\chaptername{}}
+% \renewcommand{\chaptername}{}
+
+% Project Novi edits
+\usepackage{xcolor}
+\definecolor{titlepagecolor}{HTML}{00346B}
 
 \begin{document}
 
