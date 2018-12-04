@@ -18,7 +18,7 @@ author:
   snr: S1073508
 version: 0.1
 date: Januari 2015
-...
+---
 
 # Het proces
 

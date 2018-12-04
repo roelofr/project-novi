@@ -18,7 +18,7 @@ author:
   snr: S1073508
 version: 1.2
 date: November 2014
-...
+---
 
 # Inleiding
 
@@ -44,7 +44,7 @@ Het primaire doel van onze applicatie is om een avatar te laten zien die de gebr
 
 ### Schermontwerp
 
-Onze avatar heeft oorspronkelijk dit ontwerp, maar in de loop van het project hebben we iemand gekregen die de grafische ontwerpen van ons project zou gaan maken. 
+Onze avatar heeft oorspronkelijk dit ontwerp, maar in de loop van het project hebben we iemand gekregen die de grafische ontwerpen van ons project zou gaan maken.
 
 ![Uiterlijk avatar](images/assets/avatar.png)
 
@@ -58,7 +58,7 @@ En tot slot is dit een ontwerp van het scherm waarin de avatar gecentreerd op he
 
 ## Pratende avatar
 
-Als gebruiker wil ik dat de avatar tekst uitspreekt via audio, zodat ik meer het gevoel heb dat ik met een levend wezen te maken heb. 
+Als gebruiker wil ik dat de avatar tekst uitspreekt via audio, zodat ik meer het gevoel heb dat ik met een levend wezen te maken heb.
 
 ### Toelichting
 
@@ -71,7 +71,7 @@ Als gebruiker wil ik dat de uitgesproken tekst ook op het scherm weergegeven wor
 
 ### Toelichting
 
-Mensen die de uitgesproken tekst niet helemaal gevolgd hebben, kunnen dit teruglezen op de applicatie voor meer duidelijkheid. 
+Mensen die de uitgesproken tekst niet helemaal gevolgd hebben, kunnen dit teruglezen op de applicatie voor meer duidelijkheid.
 
 ### Schermontwerp
 

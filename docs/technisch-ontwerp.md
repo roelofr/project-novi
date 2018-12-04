@@ -17,7 +17,7 @@ author:
   snr: S1073508
 version: 0.1
 date: November 2014
-...
+---
 
 # Inleiding
 In dit document staan de technische aspecten van het project beschreven.
