@@ -30,7 +30,7 @@ De user stories zijn in dit document niet voorzien van testscenario's aangezien 
 
 # Use-Case Diagram
 
-![Use-Case Diagram v1](images/schermontwerpen/Use-CaseNovi.jpg)
+![Use-Case Diagram v1](images/diagrams/use-case-diagram.png)
 
 # User Stories
 
@@ -46,15 +46,15 @@ Het primaire doel van onze applicatie is om een avatar te laten zien die de gebr
 
 Onze avatar heeft oorspronkelijk dit ontwerp, maar in de loop van het project hebben we iemand gekregen die de grafische ontwerpen van ons project zou gaan maken. 
 
-![Uiterlijk avatar](images/schermontwerpen/avatar.png)
+![Uiterlijk avatar](images/assets/avatar.png)
 
 Dit is het ontwerp van onze grafisch designer:
 
-![Uiterlijk avatar](images/schermontwerpen/NoviHead.png)
+![Uiterlijk avatar](images/assets/avatar-designer.png)
 
 En tot slot is dit een ontwerp van het scherm waarin de avatar gecentreerd op het scherm komt te staan:
 
-![Schermontwerp zichtbare avatar](images/schermontwerpen/zichtbare-avatar.png)
+![Schermontwerp zichtbare avatar](images/screen-designs/avatar-design.png)
 
 ## Pratende avatar
 
@@ -75,7 +75,7 @@ Mensen die de uitgesproken tekst niet helemaal gevolgd hebben, kunnen dit terugl
 
 ### Schermontwerp
 
-![Mockup tekst weergeven](images/schermontwerpen/weergave-dialoog.png)
+![Mockup tekst weergeven](images/screen-designs/dialogue.png)
 
 ## Animeren avatar
 
@@ -99,9 +99,9 @@ Het wordt redelijk saai als de avatar alleen maar dezelfde teksten uitspreekt. T
 
 ### Schermontwerp
 
-![Mockup tekst weergeven](images/schermontwerpen/weergave-dialoog.png)
+![Mockup tekst weergeven](images/screen-designs/dialogue.png)
 
-![Mockup tekst weergeven](images/schermontwerpen/weergave-dialoog-2.png)
+![Mockup tekst weergeven](images/screen-designs/dialogue-2.png)
 
 ## Overzicht locaties
 Als gebruiker wil ik een overzicht van alle lokalen in het T-gebouw, zodat ik kan opzoeken waar ik moet zijn.
@@ -113,12 +113,12 @@ Dit moet per verdieping kunnen gebeuren, dus gebruikers hebben de mogelijkheid o
 
 ### Schermontwerp
 
-![Mockup tekst weergeven](images/schermontwerpen/mockup_selectverdieping.png)
+![Mockup tekst weergeven](images/screen-designs/map-select-floor.png)
 
 ## Selecteren lokaal
 Als gebruiker wil ik een lokaal selecteren, zodat ik weet waar elk lokaal zich bevindt.
 
-![Mockup tekst weergeven](images/schermontwerpen/mockup_selectroom.jpg)
+![Mockup tekst weergeven](images/screen-designs/map-select-room.jpg)
 
 ### Toelichting
 De gebruiker moet een specifiek lokaal kunnen selecteren, zodat een lokaal makkelijker gevonden kan worden.
@@ -134,7 +134,7 @@ Voor mensen die onbekend zijn in het T-gebouw, is het wel handig om een routebes
 
 ### Schermontwerp
 
-![Mockup route weergeven](images/schermontwerpen/weergave-route.png)
+![Mockup route weergeven](images/screen-designs/map-route.png)
 
 ## Idle
 
@@ -158,7 +158,7 @@ We wilden een module maken waarin de twitteraccounts van Windesheim en ICT over 
 
 ### Schermontwerp
 
-![Twitter](images/schermontwerpen/mockup_twitter.png)
+![Twitter](images/screen-designs/twitter.png)
 
 ## Weeroverzicht
 
@@ -170,7 +170,7 @@ Een module voor het weer zorgt ervoor dat gebruikers weten wat voor weer er aan 
 
 ### Schermontwerp
 
-![Weer](images/schermontwerpen/weermodule.png)
+![Weer](images/screen-designs/weather.png)
 
 ## Nieuwsoverzicht
 
@@ -182,7 +182,7 @@ Gebruikers moeten via onze applicatie op de hoogte kunnen blijven van het actuel
 
 ### Schermontwerp
 
-![Nieuws](images/schermontwerpen/nieuwsmodule.png)
+![Nieuws](images/screen-designs/news.png)
 
 ## Treintijden
 
@@ -211,9 +211,9 @@ De mogelijkheid bestaat dat een accounts of hashtag helemaal niet meer wordt geb
 
 ### Schermontwerp
 
-![Beveiliging](images/schermontwerpen/controlpanel.png)
+![Beveiliging](images/screen-designs/twitter-edit-password.png)
 
-![Beveiliging](images/schermontwerpen/twitterwijzig.png)
+![Beveiliging](images/screen-designs/twitter-edit-form.png)
 
 ## Toevoegen modules
 
