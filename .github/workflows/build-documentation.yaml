@@ -1,0 +1,53 @@
+name: Build documentation files
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+  release:
+    types:
+      - published
+
+env:
+  PANDOC_VERSION: "2.19"
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  build:
+    name: Build documentation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pull pandoc/latex image
+        run: docker pull pandoc/latex:${{ env.PANDOC_VERSION }}
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Build documentation
+        run: .github/bin/build-documentation.sh
+
+      - name: Upload documentation
+        uses: actions/upload-artifact@v3
+        with:
+          name: documentation
+          path: doc/build/*.pdf
+          if-no-files-found: error
+
+      - name: Upload release asset, if releasing
+        if: github.event_name == 'release'
+        run: |
+          compress-archive -path "doc/build/*.pdf" -destinationpath "bundle.zip"
+          gh release upload ${{ github.event.release.tag_name }} "bundle.zip#Novi Documentation ${{ github.event.release.tag_name }}.zip"
+        env:
+          GH_TOKEN: ${{ github.token }}

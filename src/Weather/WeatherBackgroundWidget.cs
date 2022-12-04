@@ -23,6 +23,11 @@ namespace Weather
         {
             try
             {
+                if ( _module.WeatherResponse == null)
+                {
+                    return;
+                }
+
                 var str = String.Format("{0}°C", Math.Round(_module.WeatherResponse.currently.temperature));
                 var font = TextUtils.GetFont(24);
 

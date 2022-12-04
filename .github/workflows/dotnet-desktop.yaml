@@ -1,0 +1,75 @@
+name: Build .NET 4.8 application
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+  release:
+    types:
+      - published
+
+env:
+  DOTNET_VERSION: '4.8.04084' # The .NET SDK version to use
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        configuration:
+          - Debug
+          - Release
+
+    runs-on: windows-latest
+
+    steps:
+      # Checkout the code
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Restore NuGet cache, to speed up build
+      - name: Restore nuget cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('src/**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      # Find MSBuild somewhere
+      - name: Find msbuild
+        uses: microsoft/setup-msbuild@v1.1
+        with:
+          msbuild-architecture: x64
+
+      # Download NuGet packages
+      - name: Restore solution
+        run: nuget restore ".\src\Project Novi.sln"
+
+      # Build the solution
+      - name: Build solution
+        run: msbuild /graphBuild:true /p:Configuration=${{ matrix.configuration }} "src/Project Novi.sln"
+
+      # Upload the build artifacts
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.configuration }} Artifacts
+          path: |
+            src/Project Novi/bin/${{ matrix.configuration }}
+
+      - name: Upload release asset, if releasing
+        if: github.event_name == 'release' && matrix.configuration == 'Release'
+        run: |
+          compress-archive -path "src/Project Novi/bin/${{ matrix.configuration }}" -destinationpath "bundle.zip"
+          gh release upload ${{ github.event.release.tag_name }} "bundle.zip#Novi Application ${{ github.event.release.tag_name }}.zip"
+        env:
+          GH_TOKEN: ${{ github.token }}
