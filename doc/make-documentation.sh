@@ -1,43 +1,62 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-ArgumentOne="$1"
-ArgumentTwo="$2"
-ArgumentThree="$3"
+# Get git root and go there
+ROOT_DIR="$( git rev-parse --show-toplevel )"
+cd "$ROOT_DIR"
 
-function buildFo() {
-	pandoc --toc -V lang=dutch -V documentclass=report --template default.latex -o functioneel-ontwerp.pdf functioneel-ontwerp.md
-	return $?
-}
-function buildTo() {
-	pandoc --toc -V lang=dutch -V documentclass=report --template default.latex -o technisch-ontwerp.pdf technisch-ontwerp.md
-	return $?
-}
-function buildManual() {
-	pandoc --toc -V lang=dutch -V documentclass=report --template default.latex -o handleiding.pdf handleiding.md
-	return $?
-}
-function buildTest() {
-	pandoc --toc -V lang=dutch -V documentclass=report --template default.latex -o testrapport.pdf testrapport.md
-	return $?
+# Create a build function that uses Docker. Avoid the user
+# having to install the entire LaTeX + Pandoc toolchain.
+function build() {
+	filename=$1
+
+    echo -e "Building \033[0;34m${filename}.md\033[0m..."
+
+    docker run \
+        --rm \
+        --volume "${ROOT_DIR}/doc:/data" \
+        pandoc/latex:2.19 \
+        --table-of-contents \
+        --variable=lang=dutch \
+        --variable=documentclass=report \
+        --template="default.latex" \
+        --output="build/${filename}.pdf" \
+        "${filename}.md"
+
+	echo -e "\033[0;32mBuild completed\033[0m"
 }
 
-if [ -z $ArgumentOne ] || [ $ArgumentOne = "all" ]; then
-	buildFo;
-	buildTo;
-	buildManual;
-else
-	if [ $ArgumentOne = "fo" ] || [ $ArgumentTwo = "fo" ] || $ArgumentThree = "fo" ]; then
-		buildFo;
-	fi
-	if [ $ArgumentOne = "to" ] || [ $ArgumentTwo = "to" ] || $ArgumentThree = "to" ]; then
-		buildTo;
-	fi
-	if [ $ArgumentOne = "manual" ] || [ $ArgumentTwo = "manual" ] || $ArgumentThree = "manual" ]; then
-		buildManual;
-	fi
-	if [ $ArgumentOne = "test" ] || [ $ArgumentTwo = "test" ] || $ArgumentThree = "test" ]; then
-		buildTest;
-	fi
+args=("$@")
+
+# If no arguments are passed, build all files
+if [ -z $args ]; then
+	echo -e "\033[0;33mNo files specified, building all files\033[0m"
+	args=("fo" "to" "manual" "test")
 fi
 
-exit 0
+# Stop on failure
+set -e
+
+# Ensure the build directory exists
+test -d doc/build || mkdir doc/build
+
+# Yee haw 🤠
+for filename in "${args[@]}"; do
+	case $filename in
+		"fo")
+			build "functioneel-ontwerp"
+			;;
+		"to")
+			build "technisch-ontwerp"
+			;;
+		"manual")
+			build "handleiding"
+			;;
+		"test")
+			build "testrapport"
+			;;
+		*)
+			echo -e "\033[0;31mInvalid file: ${filename}\033[0m"
+			exit 1
+			;;
+	esac
+done

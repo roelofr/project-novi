@@ -20,6 +20,11 @@ no longer work (like the "Vertrektijden" screen, as NS has discontinued the API 
 - Map of the building, with instructions (out of date, but functional)
 - Extensive documentation
 
+## Dependencies
+
+The project depends on some NuGet packages, but most importantly it requires Microsoft .NET Framework v4.8.
+The original project was developed on v4.5, but I've bumped it up on December 4th, 2022.
+
 ## Getting started
 
 1. Clone the repository
