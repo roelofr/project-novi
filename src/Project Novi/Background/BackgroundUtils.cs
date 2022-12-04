@@ -168,9 +168,13 @@ namespace Project_Novi.Background
             int widgetX = 100;
             foreach (var widget in widgets)
             {
-                var rect = new Rectangle(widgetX, 5, 200, 100);
-                widget.Render(graphics, rect);
-                widgetX += 200;
+                try
+                {
+                    var rect = new Rectangle(widgetX, 5, 200, 100);
+                    widget.Render(graphics, rect);
+                    widgetX += 200;
+                }
+                catch { }
             }
         }
     }
